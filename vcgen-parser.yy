@@ -36,13 +36,61 @@ class vcgen_driver;
 
 %token
   END  0  "end of file"
-  ASSIGN  ":="
-  MINUS   "-"
+
+/*Arithmetic Expressions (AEXP)*/
+
   PLUS    "+"
-  STAR    "*"
-  SLASH   "/"
+  MINUS   "-"
+  STAR    "*"   /* MULT */
+  SLASH   "/"   /* DIV */
+  MOD     "%"
   LPAREN  "("
   RPAREN  ")"
+
+/*Program Conditions (COMP)*/
+
+  EQUAL   "="
+  NEQUAL  "!="
+  LEQ     "<="
+  GEQ     ">="
+  LT      "<"
+  GT      ">"
+
+/*Boolean Expressions (BEXP)*/
+
+  NOT       "!"
+  OR        "||"
+  AND       "&&"
+
+/* Program Statements (STMT) */
+
+  ASSIGN    ":="
+  SEMICOLON ";"
+  COMMA     ","
+  IF        "if"
+  THEN      "then"
+  ELSE      "else"
+  ENDSTMT   "end"
+  WHILE     "while"
+  DO        "do"
+  INV       "inv"
+  LSQUARE   "["
+  RSQUARE   "]"
+
+/* Program */
+
+  PROGRAM   "program"
+  PRE       "pre"
+  POST      "post"
+  IS        "is"
+
+/* Assertions */
+
+  IFF       "==>"
+  ALL       "forall"
+  SOME      "exists"
+
+
 ;
 
 %token <std::string> IDENTIFIER "identifier"

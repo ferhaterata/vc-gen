@@ -41,6 +41,20 @@ blank [ \t]
 "/"      return yy::vcgen_parser::make_SLASH(loc);
 "("      return yy::vcgen_parser::make_LPAREN(loc);
 ")"      return yy::vcgen_parser::make_RPAREN(loc);
+
+"="      return yy::vcgen_parser::make_EQUAL(loc);
+"!="     return yy::vcgen_parser::make_NEQUAL(loc);
+"<="     return yy::vcgen_parser::make_LEQ(loc);
+">="     return yy::vcgen_parser::make_GEQ(loc);
+"<"      return yy::vcgen_parser::make_LT(loc);
+">"      return yy::vcgen_parser::make_GT(loc);
+
+"!"      return yy::vcgen_parser::make_NOT(loc);
+"||"     return yy::vcgen_parser::make_OR(loc);
+"&&"     return yy::vcgen_parser::make_ANDT(loc);
+
+
+
 ":="     return yy::vcgen_parser::make_ASSIGN(loc);
 
 

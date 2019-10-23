@@ -37,7 +37,7 @@ class vcgen_driver;
 %token
   END  0  "end of file"
 
-/*Arithmetic Expressions (AEXP)*/
+/* Arithmetic Expressions (AEXP)*/
 
   PLUS    "+"
   MINUS   "-"
@@ -47,7 +47,7 @@ class vcgen_driver;
   LPAREN  "("
   RPAREN  ")"
 
-/*Program Conditions (COMP)*/
+/* Program Conditions (COMP)*/
 
   EQUAL   "="
   NEQUAL  "!="
@@ -56,7 +56,7 @@ class vcgen_driver;
   LT      "<"
   GT      ">"
 
-/*Boolean Expressions (BEXP)*/
+/* Boolean Expressions (BEXP)*/
 
   NOT       "!"
   OR        "||"
@@ -89,7 +89,6 @@ class vcgen_driver;
   IFF       "==>"
   ALL       "forall"
   SOME      "exists"
-
 
 ;
 
@@ -124,8 +123,7 @@ exp:
 %%
 
 void
-yy::vcgen_parser::error (const location_type& l,
-                          const std::string& m)
+yy::vcgen_parser::error (const location_type& l, const std::string& m)
 {
   driver.error (l, m);
 }

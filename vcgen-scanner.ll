@@ -33,30 +33,47 @@ blank [ \t]
   loc.step ();
 %}
 
-{blank}+   loc.step ();
-[\n]+      loc.lines (yyleng); loc.step ();
-"-"      return yy::vcgen_parser::make_MINUS(loc);
-"+"      return yy::vcgen_parser::make_PLUS(loc);
-"*"      return yy::vcgen_parser::make_STAR(loc);
-"/"      return yy::vcgen_parser::make_SLASH(loc);
-"("      return yy::vcgen_parser::make_LPAREN(loc);
-")"      return yy::vcgen_parser::make_RPAREN(loc);
+{blank}+    loc.step ();
+[\n]+       loc.lines (yyleng); loc.step ();
+"-"         return yy::vcgen_parser::make_MINUS(loc);
+"+"         return yy::vcgen_parser::make_PLUS(loc);
+"*"         return yy::vcgen_parser::make_STAR(loc);
+"/"         return yy::vcgen_parser::make_SLASH(loc);
+"("         return yy::vcgen_parser::make_LPAREN(loc);
+")"         return yy::vcgen_parser::make_RPAREN(loc);
 
-"="      return yy::vcgen_parser::make_EQUAL(loc);
-"!="     return yy::vcgen_parser::make_NEQUAL(loc);
-"<="     return yy::vcgen_parser::make_LEQ(loc);
-">="     return yy::vcgen_parser::make_GEQ(loc);
-"<"      return yy::vcgen_parser::make_LT(loc);
-">"      return yy::vcgen_parser::make_GT(loc);
+"="         return yy::vcgen_parser::make_EQUAL(loc);
+"!="        return yy::vcgen_parser::make_NEQUAL(loc);
+"<="        return yy::vcgen_parser::make_LEQ(loc);
+">="        return yy::vcgen_parser::make_GEQ(loc);
+"<"         return yy::vcgen_parser::make_LT(loc);
+">"         return yy::vcgen_parser::make_GT(loc);
 
-"!"      return yy::vcgen_parser::make_NOT(loc);
-"||"     return yy::vcgen_parser::make_OR(loc);
-"&&"     return yy::vcgen_parser::make_ANDT(loc);
+"!"         return yy::vcgen_parser::make_NOT(loc);
+"||"        return yy::vcgen_parser::make_OR(loc);
+"&&"        return yy::vcgen_parser::make_AND(loc);
 
+":="        return yy::vcgen_parser::make_ASSIGN(loc);
+";"         return yy::vcgen_parser::make_SEMICOLON(loc);
+","         return yy::vcgen_parser::make_COMMA(loc);
+"if"        return yy::vcgen_parser::make_IF(loc);
+"then"      return yy::vcgen_parser::make_THEN(loc);
+"else"      return yy::vcgen_parser::make_ELSE(loc);
+"end"       return yy::vcgen_parser::make_ENDSTMT(loc);
+"while"     return yy::vcgen_parser::make_WHILE(loc);
+"do"        return yy::vcgen_parser::make_DO(loc);
+"inv"       return yy::vcgen_parser::make_INV(loc);
+"["         return yy::vcgen_parser::make_LSQUARE(loc);
+"]"         return yy::vcgen_parser::make_RSQUARE(loc);
 
+"program"   return yy::vcgen_parser::make_PROGRAM(loc);
+"pre"       return yy::vcgen_parser::make_PRE(loc);
+"post"      return yy::vcgen_parser::make_POST(loc);
+"is"        return yy::vcgen_parser::make_IS(loc);
 
-":="     return yy::vcgen_parser::make_ASSIGN(loc);
-
+"==>"       return yy::vcgen_parser::make_IFF(loc);
+"forall"    return yy::vcgen_parser::make_ALL(loc);
+"exists"    return yy::vcgen_parser::make_SOME(loc);
 
 {int}      {
   errno = 0;

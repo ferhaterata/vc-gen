@@ -1,0 +1,3 @@
+/home/ferhat/git/vc-gen/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/home/ferhat/git/vc-gen/cmake-build-debug/CMakeFiles/vcgen.dir
+/home/ferhat/git/vc-gen/cmake-build-debug/CMakeFiles/edit_cache.dir

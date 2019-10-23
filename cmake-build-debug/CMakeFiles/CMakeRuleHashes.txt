@@ -1,0 +1,3 @@
+# Hashes of file build rules.
+8ac20bd1331c844a37ef4f4fdc82304a ../recognizer/vcgen-parser.cpp
+d7d07de7b90eb299db0615f4b6c1682d ../recognizer/vcgen-scanner.cpp

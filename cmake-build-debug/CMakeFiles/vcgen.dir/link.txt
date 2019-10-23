@@ -1,0 +1,1 @@
+/usr/bin/c++  -g   CMakeFiles/vcgen.dir/vcgen-driver.cpp.o CMakeFiles/vcgen.dir/vcgen.cpp.o CMakeFiles/vcgen.dir/recognizer/vcgen-parser.cpp.o CMakeFiles/vcgen.dir/recognizer/vcgen-scanner.cpp.o  -o vcgen 

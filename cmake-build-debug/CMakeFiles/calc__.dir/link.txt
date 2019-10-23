@@ -1,0 +1,1 @@
+/usr/bin/c++  -g   CMakeFiles/calc__.dir/vcgen-driver.cpp.o CMakeFiles/calc__.dir/vcgen.cpp.o CMakeFiles/calc__.dir/recognizer/vcgen-parser.cpp.o CMakeFiles/calc__.dir/recognizer/vcgen-scanner.cpp.o  -o calc__ 

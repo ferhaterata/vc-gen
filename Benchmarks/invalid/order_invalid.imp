@@ -1,0 +1,9 @@
+program order
+  post x <= y
+is
+  if x > y then
+    x, y := x, y;
+  else
+    x, y := x, y;
+  end
+end

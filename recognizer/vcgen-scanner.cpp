@@ -1089,7 +1089,7 @@ return yy::vcgen_parser::make_ELSE(loc);
 case 24:
 YY_RULE_SETUP
 #line 63 "vcgen-scanner.ll"
-return yy::vcgen_parser::make_ENDSTMT(loc);
+return yy::vcgen_parser::make_END(loc);
 	YY_BREAK
 case 25:
 YY_RULE_SETUP
@@ -1174,7 +1174,7 @@ driver.error (loc, "invalid character");
 	YY_BREAK
 case YY_STATE_EOF(INITIAL):
 #line 89 "vcgen-scanner.ll"
-return yy::vcgen_parser::make_END(loc);
+return yy::vcgen_parser::make_EOF(loc);
 	YY_BREAK
 case 40:
 YY_RULE_SETUP

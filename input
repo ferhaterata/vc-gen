@@ -5,7 +5,7 @@ is
   n := 0;
   while n < N && a[n] != x
     inv 0 <= n && n <= N
-    inv forall i, (0 <= i && i < n) ==> a[i] != x
+    inv forall i j, (0 <= i && i < n) ==> a[i] != x
   do
     n := n + 1;
   end

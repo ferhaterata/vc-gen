@@ -6,6 +6,16 @@
 
 #IncludeRegexTransform: 
 
+../ast.hpp
+iterator
+-
+map
+-
+string
+-
+vector
+-
+
 ../recognizer/location.hh
 algorithm
 -
@@ -17,6 +27,12 @@ string
 ../recognizer/vcgen-parser.hpp
 string
 -
+vector
+-
+iterator
+-
+ast.hpp
+../recognizer/ast.hpp
 cassert
 -
 cstdlib
@@ -63,6 +79,12 @@ libintl.h
 /home/ferhat/git/vc-gen/recognizer/vcgen-parser.hpp
 string
 -
+vector
+-
+iterator
+-
+ast.hpp
+/home/ferhat/git/vc-gen/recognizer/ast.hpp
 cassert
 -
 cstdlib

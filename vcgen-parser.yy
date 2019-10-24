@@ -14,7 +14,10 @@
 
 %code requires
 {
-# include <string>
+#include <string>
+#include <vector>
+#include <iterator>
+#include "ast.hpp"
 class vcgen_driver;
 }
 
@@ -33,12 +36,31 @@ class vcgen_driver;
 %code
 {
 # include "vcgen-driver.hpp"
+
+template <class T, class V>
+T&& enlist(T& t, V& v)
+{
+    t.push_back(move(v));
+    return move(t);
+}
+
+template <typename T>
+void print(std::vector<T>& v){
+  if ( !v.empty() ) {
+    cout << '[';
+    std::copy (v.begin(), v.end(), std::ostream_iterator<T>(cout, ", "));
+    cout << "\b\b]";
+  }
+}
+
+
+
 }
 
 %define api.token.prefix {TOK_}
 
 %token
-  END  0  "end of file"
+  EOF  0  "end of file"
 
 /* Arithmetic Expressions (AEXP)*/
 
@@ -73,7 +95,7 @@ class vcgen_driver;
   IF        "if"
   THEN      "then"
   ELSE      "else"
-  ENDSTMT   "end"
+  END       "end"
   WHILE     "while"
   DO        "do"
   INV       "inv"
@@ -95,27 +117,32 @@ class vcgen_driver;
 
 ;
 
-%token <std::string>        IDENTIFIER "identifier"
-%token <int>                NUMBER "number"
-%type  <int>                aexp
+%token <std::string>    IDENTIFIER "identifier"
+%token <int>            NUMBER "number"
 
-%type <ast::FunctionOf>             determ_depen
-%type <ast::Expression>             inform_expr
-%type <ast::Term>                     inform_term
+%type <ast::ArithmeticExpression>       aexp
+%type <ast::Comparison>                 comp
+%type <ast::BooleanExpression>          bexp
+%type <ast::Statement>                  stmt
+%type <ast::Invariant>                  inv
+%type <ast::Block>                      block
+%type <ast::Program>                    prog
+%type <ast::PreCondition>               pre
+%type <ast::PostCondition>              post
+%type <ast::Assertion>                  assertion
 
-%printer { yyoutput << $$; } <*>;
+%type <std::vector<ast::Invariant>>     inv_list;
+%type <std::vector<ast::Statement>>     stmt_list;
+%type <std::vector<ast::PreCondition>>  pre_list;
+%type <std::vector<ast::PostCondition>> post_list;
+%type <std::vector<std::string>>        identifier_list;
+
+
+//%printer { yyoutput << $$; } <*>;
 
 %%
 
 %start prog;
-unit: assignments aexp          { driver.result = $2; };
-
-assignments:
-  %empty                        {}
-| assignments assignment        {};
-
-assignment:
-  "identifier" ":=" aexp        { driver.variables[$1] = $3; };
 
 %precedence "!";
 %precedence "&&";
@@ -124,95 +151,96 @@ assignment:
 %left "*" "/";
 
 aexp:
-      "identifier"              { $$ = driver.variables[$1]; }
-    | "number"                  { std::swap ($$, $1); };
-    | "identifier" "[" aexp "]" {}
-    | "-" aexp {}
-    | aexp "+" aexp             { $$ = $1 + $3; }
-    | aexp "-" aexp             { $$ = $1 - $3; }
-    | aexp "*" aexp             { $$ = $1 * $3; }
-    | aexp "/" aexp             { $$ = $1 / $3; }
-    | aexp "%" aexp             { $$ = $1 / $3; }
-    | "(" aexp ")"              { std::swap ($$, $2); }
-    ;
-
-comp:
-      aexp "="  aexp
-    | aexp "!=" aexp
-    | aexp "<=" aexp
-    | aexp ">=" aexp
-    | aexp "<"  aexp
-    | aexp ">"  aexp
+      "identifier"              { }
+    | "number"                  { }
+    | "identifier" "[" aexp "]" { }
+    | "-" aexp                  { }
+    | aexp "+" aexp             { }
+    | aexp "-" aexp             { }
+    | aexp "*" aexp             { }
+    | aexp "/" aexp             { }
+    | aexp "%" aexp             { }
+    | "(" aexp ")"              { $$ = $2;}
     ;
 
 bexp:
-      comp
-    | "!" bexp
-    | bexp "||" bexp
-    | bexp "&&" bexp
-    | "(" bexp ")"
+      comp                      { }
+    | "!" bexp                  { }
+    | bexp "||" bexp            { }
+    | bexp "&&" bexp            { }
+    | "(" bexp ")"              { $$ = $2;}
+    ;
+
+comp:
+      aexp "="  aexp            { }
+    | aexp "!=" aexp            { }
+    | aexp "<=" aexp            { }
+    | aexp ">=" aexp            { }
+    | aexp "<"  aexp            { }
+    | aexp ">"  aexp            { }
     ;
 
 stmt:
-      "identifier" ":=" aexp ";"
-    | "identifier" "," "identifier" ":=" aexp "," aexp ";"
-    | "identifier" "[" aexp "]" ":=" aexp ";"
-    | "if" bexp "then" block "else" block "end"
-    | "if" bexp "then" block "end"
-    | "while" bexp inv_list "do" block "end"
+      "identifier" ":=" aexp ";"                            { }
+    | "identifier" "," "identifier" ":=" aexp "," aexp ";"  { }
+    | "identifier" "[" aexp "]" ":=" aexp ";"               { }
+    | "if" bexp "then" block "else" block "end"             { }
+    | "if" bexp "then" block "end"                          { }
+    | "while" bexp inv_list "do" block "end"                { }
     ;
 
 inv:
-      "inv" assn
+      "inv" assertion        { }
     ;
 
 inv_list:
-      inv
-    | inv_list inv
+      inv               { }
+    | inv_list inv      { }
     ;
 
 block:
-      stmt_list
+      stmt_list         { }
     ;
 
 stmt_list:
-      stmt
-    | stmt_list stmt
+      stmt              { }
+    | stmt_list stmt    { }
     ;
 
 prog: "program" "identifier" pre_list post_list "is" block "end"
+                            { }
     ;
 
-pre: "pre" assn
+pre: "pre" assertion        { }
     ;
 
 pre_list:
-      pre
-    | pre_list pre
+      pre                   { }
+    | pre_list pre          { }
     ;
 
-post: "post" assn
+post: "post" assertion      { }
     ;
 
 post_list:
-      post
-    | post_list post
+      post                  { }
+    | post_list post        { }
     ;
 
-assn:
-      comp
-    | "!" assn
-    | assn "||" assn
-    | assn "&&" assn
-    | assn "==>" assn
-    | "forall" identifier_list "," assn
-    | "exists" identifier_list "," assn
-    | "(" assn ")"
+assertion:
+      comp                                      { }
+    | "!" assertion                             { }
+    | assertion "||" assertion                  { }
+    | assertion "&&" assertion                  { }
+    | assertion "==>" assertion                 { }
+    | "forall" identifier_list "," assertion    { print<std::string>($2);}
+    | "exists" identifier_list "," assertion    { print<std::string>($2);}
+    | "(" assertion ")"                         { $$ = $2;}
     ;
 
 identifier_list:
-      "identifier"
-    | identifier_list "identifier"
+      "identifier"                      { $$ = {$1};}
+    | identifier_list "identifier"      { $$ = enlist($1, $2);}
     ;
 %%
 

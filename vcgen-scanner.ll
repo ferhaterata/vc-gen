@@ -59,7 +59,7 @@ blank [ \t]
 "if"        return yy::vcgen_parser::make_IF(loc);
 "then"      return yy::vcgen_parser::make_THEN(loc);
 "else"      return yy::vcgen_parser::make_ELSE(loc);
-"end"       return yy::vcgen_parser::make_ENDSTMT(loc);
+"end"       return yy::vcgen_parser::make_END(loc);
 "while"     return yy::vcgen_parser::make_WHILE(loc);
 "do"        return yy::vcgen_parser::make_DO(loc);
 "inv"       return yy::vcgen_parser::make_INV(loc);
@@ -85,7 +85,7 @@ blank [ \t]
 
 {id}       return yy::vcgen_parser::make_IDENTIFIER(yytext, loc);
 .          driver.error (loc, "invalid character");
-<<EOF>>    return yy::vcgen_parser::make_END(loc);
+<<EOF>>    return yy::vcgen_parser::make_EOF(loc);
 %%
 
 void

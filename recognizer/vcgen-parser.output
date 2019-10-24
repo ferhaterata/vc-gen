@@ -1,20 +1,3 @@
-Nonterminals useless in grammar
-
-    unit
-    assignments
-    assignment
-
-
-Rules useless in grammar
-
-   51 unit: assignments aexp
-
-   52 assignments: %empty
-   53            | assignments assignment
-
-   54 assignment: "identifier" ":=" aexp
-
-
 State 23 conflicts: 1 shift/reduce
 State 26 conflicts: 1 shift/reduce
 State 55 conflicts: 1 shift/reduce
@@ -46,18 +29,18 @@ Grammar
     9     | aexp "%" aexp
    10     | "(" aexp ")"
 
-   11 comp: aexp "=" aexp
-   12     | aexp "!=" aexp
-   13     | aexp "<=" aexp
-   14     | aexp ">=" aexp
-   15     | aexp "<" aexp
-   16     | aexp ">" aexp
+   11 bexp: comp
+   12     | "!" bexp
+   13     | bexp "||" bexp
+   14     | bexp "&&" bexp
+   15     | "(" bexp ")"
 
-   17 bexp: comp
-   18     | "!" bexp
-   19     | bexp "||" bexp
-   20     | bexp "&&" bexp
-   21     | "(" bexp ")"
+   16 comp: aexp "=" aexp
+   17     | aexp "!=" aexp
+   18     | aexp "<=" aexp
+   19     | aexp ">=" aexp
+   20     | aexp "<" aexp
+   21     | aexp ">" aexp
 
    22 stmt: "identifier" ":=" aexp ";"
    23     | "identifier" "," "identifier" ":=" aexp "," aexp ";"
@@ -66,7 +49,7 @@ Grammar
    26     | "if" bexp "then" block "end"
    27     | "while" bexp inv_list "do" block "end"
 
-   28 inv: "inv" assn
+   28 inv: "inv" assertion
 
    29 inv_list: inv
    30         | inv_list inv
@@ -78,24 +61,24 @@ Grammar
 
    34 prog: "program" "identifier" pre_list post_list "is" block "end"
 
-   35 pre: "pre" assn
+   35 pre: "pre" assertion
 
    36 pre_list: pre
    37         | pre_list pre
 
-   38 post: "post" assn
+   38 post: "post" assertion
 
    39 post_list: post
    40          | post_list post
 
-   41 assn: comp
-   42     | "!" assn
-   43     | assn "||" assn
-   44     | assn "&&" assn
-   45     | assn "==>" assn
-   46     | "forall" identifier_list "," assn
-   47     | "exists" identifier_list "," assn
-   48     | "(" assn ")"
+   41 assertion: comp
+   42          | "!" assertion
+   43          | assertion "||" assertion
+   44          | assertion "&&" assertion
+   45          | assertion "==>" assertion
+   46          | "forall" identifier_list "," assertion
+   47          | "exists" identifier_list "," assertion
+   48          | "(" assertion ")"
 
    49 identifier_list: "identifier"
    50                | identifier_list "identifier"
@@ -110,17 +93,17 @@ Terminals, with rules where they appear
     "*" (260) 7
     "/" (261) 8
     "%" (262) 9
-    "(" (263) 10 21 48
-    ")" (264) 10 21 48
-    "=" (265) 11
-    "!=" (266) 12
-    "<=" (267) 13
-    ">=" (268) 14
-    "<" (269) 15
-    ">" (270) 16
-    "!" (271) 18 42
-    "||" (272) 19 43
-    "&&" (273) 20 44
+    "(" (263) 10 15 48
+    ")" (264) 10 15 48
+    "=" (265) 16
+    "!=" (266) 17
+    "<=" (267) 18
+    ">=" (268) 19
+    "<" (269) 20
+    ">" (270) 21
+    "!" (271) 12 42
+    "||" (272) 13 43
+    "&&" (273) 14 44
     ":=" (274) 22 23 24
     ";" (275) 22 23 24
     "," (276) 23 46 47
@@ -148,49 +131,49 @@ Nonterminals, with rules where they appear
 
     $accept (40)
         on left: 0
-    aexp <int> (41)
+    aexp <ast::ArithmeticExpression> (41)
         on left: 1 2 3 4 5 6 7 8 9 10
-        on right: 3 4 5 6 7 8 9 10 11 12 13 14 15 16 22 23 24
-    comp (42)
-        on left: 11 12 13 14 15 16
-        on right: 17 41
-    bexp (43)
-        on left: 17 18 19 20 21
-        on right: 18 19 20 21 25 26 27
-    stmt (44)
+        on right: 3 4 5 6 7 8 9 10 16 17 18 19 20 21 22 23 24
+    bexp <ast::BooleanExpression> (42)
+        on left: 11 12 13 14 15
+        on right: 12 13 14 15 25 26 27
+    comp <ast::Comparison> (43)
+        on left: 16 17 18 19 20 21
+        on right: 11 41
+    stmt <ast::Statement> (44)
         on left: 22 23 24 25 26 27
         on right: 32 33
-    inv (45)
+    inv <ast::Invariant> (45)
         on left: 28
         on right: 29 30
-    inv_list (46)
+    inv_list <std::vector<ast::Invariant>> (46)
         on left: 29 30
         on right: 27 30
-    block (47)
+    block <ast::Block> (47)
         on left: 31
         on right: 25 26 27 34
-    stmt_list (48)
+    stmt_list <std::vector<ast::Statement>> (48)
         on left: 32 33
         on right: 31 33
-    prog (49)
+    prog <ast::Program> (49)
         on left: 34
         on right: 0
-    pre (50)
+    pre <ast::PreCondition> (50)
         on left: 35
         on right: 36 37
-    pre_list (51)
+    pre_list <std::vector<ast::PreCondition>> (51)
         on left: 36 37
         on right: 34 37
-    post (52)
+    post <ast::PostCondition> (52)
         on left: 38
         on right: 39 40
-    post_list (53)
+    post_list <std::vector<ast::PostCondition>> (53)
         on left: 39 40
         on right: 34 40
-    assn (54)
+    assertion <ast::Assertion> (54)
         on left: 41 42 43 44 45 46 47 48
         on right: 28 35 38 42 43 44 45 46 47 48
-    identifier_list (55)
+    identifier_list <std::vector<std::string>> (55)
         on left: 49 50
         on right: 46 47 50
 
@@ -237,7 +220,7 @@ State 4
 
 State 5
 
-   35 pre: "pre" . assn
+   35 pre: "pre" . assertion
 
     "-"           shift, and go to state 8
     "("           shift, and go to state 9
@@ -247,9 +230,9 @@ State 5
     "identifier"  shift, and go to state 13
     "number"      shift, and go to state 14
 
-    aexp  go to state 15
-    comp  go to state 16
-    assn  go to state 17
+    aexp       go to state 15
+    comp       go to state 16
+    assertion  go to state 17
 
 
 State 6
@@ -287,7 +270,7 @@ State 8
 State 9
 
    10 aexp: "(" . aexp ")"
-   48 assn: "(" . assn ")"
+   48 assertion: "(" . assertion ")"
 
     "-"           shift, and go to state 8
     "("           shift, and go to state 9
@@ -297,14 +280,14 @@ State 9
     "identifier"  shift, and go to state 13
     "number"      shift, and go to state 14
 
-    aexp  go to state 24
-    comp  go to state 16
-    assn  go to state 25
+    aexp       go to state 24
+    comp       go to state 16
+    assertion  go to state 25
 
 
 State 10
 
-   42 assn: "!" . assn
+   42 assertion: "!" . assertion
 
     "-"           shift, and go to state 8
     "("           shift, and go to state 9
@@ -314,14 +297,14 @@ State 10
     "identifier"  shift, and go to state 13
     "number"      shift, and go to state 14
 
-    aexp  go to state 15
-    comp  go to state 16
-    assn  go to state 26
+    aexp       go to state 15
+    comp       go to state 16
+    assertion  go to state 26
 
 
 State 11
 
-   46 assn: "forall" . identifier_list "," assn
+   46 assertion: "forall" . identifier_list "," assertion
 
     "identifier"  shift, and go to state 27
 
@@ -330,7 +313,7 @@ State 11
 
 State 12
 
-   47 assn: "exists" . identifier_list "," assn
+   47 assertion: "exists" . identifier_list "," assertion
 
     "identifier"  shift, and go to state 27
 
@@ -361,12 +344,12 @@ State 15
     7     | aexp . "*" aexp
     8     | aexp . "/" aexp
     9     | aexp . "%" aexp
-   11 comp: aexp . "=" aexp
-   12     | aexp . "!=" aexp
-   13     | aexp . "<=" aexp
-   14     | aexp . ">=" aexp
-   15     | aexp . "<" aexp
-   16     | aexp . ">" aexp
+   16 comp: aexp . "=" aexp
+   17     | aexp . "!=" aexp
+   18     | aexp . "<=" aexp
+   19     | aexp . ">=" aexp
+   20     | aexp . "<" aexp
+   21     | aexp . ">" aexp
 
     "+"   shift, and go to state 31
     "-"   shift, and go to state 32
@@ -383,17 +366,17 @@ State 15
 
 State 16
 
-   41 assn: comp .
+   41 assertion: comp .
 
-    $default  reduce using rule 41 (assn)
+    $default  reduce using rule 41 (assertion)
 
 
 State 17
 
-   35 pre: "pre" assn .
-   43 assn: assn . "||" assn
-   44     | assn . "&&" assn
-   45     | assn . "==>" assn
+   35 pre: "pre" assertion .
+   43 assertion: assertion . "||" assertion
+   44          | assertion . "&&" assertion
+   45          | assertion . "==>" assertion
 
     "||"   shift, and go to state 42
     "&&"   shift, and go to state 43
@@ -404,7 +387,7 @@ State 17
 
 State 18
 
-   38 post: "post" . assn
+   38 post: "post" . assertion
 
     "-"           shift, and go to state 8
     "("           shift, and go to state 9
@@ -414,9 +397,9 @@ State 18
     "identifier"  shift, and go to state 13
     "number"      shift, and go to state 14
 
-    aexp  go to state 15
-    comp  go to state 16
-    assn  go to state 45
+    aexp       go to state 15
+    comp       go to state 16
+    assertion  go to state 45
 
 
 State 19
@@ -481,12 +464,12 @@ State 24
     8     | aexp . "/" aexp
     9     | aexp . "%" aexp
    10     | "(" aexp . ")"
-   11 comp: aexp . "=" aexp
-   12     | aexp . "!=" aexp
-   13     | aexp . "<=" aexp
-   14     | aexp . ">=" aexp
-   15     | aexp . "<" aexp
-   16     | aexp . ">" aexp
+   16 comp: aexp . "=" aexp
+   17     | aexp . "!=" aexp
+   18     | aexp . "<=" aexp
+   19     | aexp . ">=" aexp
+   20     | aexp . "<" aexp
+   21     | aexp . ">" aexp
 
     "+"   shift, and go to state 31
     "-"   shift, and go to state 32
@@ -504,10 +487,10 @@ State 24
 
 State 25
 
-   43 assn: assn . "||" assn
-   44     | assn . "&&" assn
-   45     | assn . "==>" assn
-   48     | "(" assn . ")"
+   43 assertion: assertion . "||" assertion
+   44          | assertion . "&&" assertion
+   45          | assertion . "==>" assertion
+   48          | "(" assertion . ")"
 
     ")"    shift, and go to state 50
     "||"   shift, and go to state 42
@@ -517,17 +500,17 @@ State 25
 
 State 26
 
-   42 assn: "!" assn .
-   43     | assn . "||" assn
-   44     | assn . "&&" assn
-   45     | assn . "==>" assn
+   42 assertion: "!" assertion .
+   43          | assertion . "||" assertion
+   44          | assertion . "&&" assertion
+   45          | assertion . "==>" assertion
 
     "||"   shift, and go to state 42
     "&&"   shift, and go to state 43
     "==>"  shift, and go to state 44
 
-    "==>"     [reduce using rule 42 (assn)]
-    $default  reduce using rule 42 (assn)
+    "==>"     [reduce using rule 42 (assertion)]
+    $default  reduce using rule 42 (assertion)
 
 
 State 27
@@ -539,7 +522,7 @@ State 27
 
 State 28
 
-   46 assn: "forall" identifier_list . "," assn
+   46 assertion: "forall" identifier_list . "," assertion
    50 identifier_list: identifier_list . "identifier"
 
     ","           shift, and go to state 51
@@ -548,7 +531,7 @@ State 28
 
 State 29
 
-   47 assn: "exists" identifier_list . "," assn
+   47 assertion: "exists" identifier_list . "," assertion
    50 identifier_list: identifier_list . "identifier"
 
     ","           shift, and go to state 53
@@ -629,7 +612,7 @@ State 35
 
 State 36
 
-   11 comp: aexp "=" . aexp
+   16 comp: aexp "=" . aexp
 
     "-"           shift, and go to state 8
     "("           shift, and go to state 22
@@ -641,7 +624,7 @@ State 36
 
 State 37
 
-   12 comp: aexp "!=" . aexp
+   17 comp: aexp "!=" . aexp
 
     "-"           shift, and go to state 8
     "("           shift, and go to state 22
@@ -653,7 +636,7 @@ State 37
 
 State 38
 
-   13 comp: aexp "<=" . aexp
+   18 comp: aexp "<=" . aexp
 
     "-"           shift, and go to state 8
     "("           shift, and go to state 22
@@ -665,7 +648,7 @@ State 38
 
 State 39
 
-   14 comp: aexp ">=" . aexp
+   19 comp: aexp ">=" . aexp
 
     "-"           shift, and go to state 8
     "("           shift, and go to state 22
@@ -677,7 +660,7 @@ State 39
 
 State 40
 
-   15 comp: aexp "<" . aexp
+   20 comp: aexp "<" . aexp
 
     "-"           shift, and go to state 8
     "("           shift, and go to state 22
@@ -689,7 +672,7 @@ State 40
 
 State 41
 
-   16 comp: aexp ">" . aexp
+   21 comp: aexp ">" . aexp
 
     "-"           shift, and go to state 8
     "("           shift, and go to state 22
@@ -701,7 +684,7 @@ State 41
 
 State 42
 
-   43 assn: assn "||" . assn
+   43 assertion: assertion "||" . assertion
 
     "-"           shift, and go to state 8
     "("           shift, and go to state 9
@@ -711,14 +694,14 @@ State 42
     "identifier"  shift, and go to state 13
     "number"      shift, and go to state 14
 
-    aexp  go to state 15
-    comp  go to state 16
-    assn  go to state 66
+    aexp       go to state 15
+    comp       go to state 16
+    assertion  go to state 66
 
 
 State 43
 
-   44 assn: assn "&&" . assn
+   44 assertion: assertion "&&" . assertion
 
     "-"           shift, and go to state 8
     "("           shift, and go to state 9
@@ -728,14 +711,14 @@ State 43
     "identifier"  shift, and go to state 13
     "number"      shift, and go to state 14
 
-    aexp  go to state 15
-    comp  go to state 16
-    assn  go to state 67
+    aexp       go to state 15
+    comp       go to state 16
+    assertion  go to state 67
 
 
 State 44
 
-   45 assn: assn "==>" . assn
+   45 assertion: assertion "==>" . assertion
 
     "-"           shift, and go to state 8
     "("           shift, and go to state 9
@@ -745,17 +728,17 @@ State 44
     "identifier"  shift, and go to state 13
     "number"      shift, and go to state 14
 
-    aexp  go to state 15
-    comp  go to state 16
-    assn  go to state 68
+    aexp       go to state 15
+    comp       go to state 16
+    assertion  go to state 68
 
 
 State 45
 
-   38 post: "post" assn .
-   43 assn: assn . "||" assn
-   44     | assn . "&&" assn
-   45     | assn . "==>" assn
+   38 post: "post" assertion .
+   43 assertion: assertion . "||" assertion
+   44          | assertion . "&&" assertion
+   45          | assertion . "==>" assertion
 
     "||"   shift, and go to state 42
     "&&"   shift, and go to state 43
@@ -810,14 +793,14 @@ State 49
 
 State 50
 
-   48 assn: "(" assn ")" .
+   48 assertion: "(" assertion ")" .
 
-    $default  reduce using rule 48 (assn)
+    $default  reduce using rule 48 (assertion)
 
 
 State 51
 
-   46 assn: "forall" identifier_list "," . assn
+   46 assertion: "forall" identifier_list "," . assertion
 
     "-"           shift, and go to state 8
     "("           shift, and go to state 9
@@ -827,9 +810,9 @@ State 51
     "identifier"  shift, and go to state 13
     "number"      shift, and go to state 14
 
-    aexp  go to state 15
-    comp  go to state 16
-    assn  go to state 75
+    aexp       go to state 15
+    comp       go to state 16
+    assertion  go to state 75
 
 
 State 52
@@ -841,7 +824,7 @@ State 52
 
 State 53
 
-   47 assn: "exists" identifier_list "," . assn
+   47 assertion: "exists" identifier_list "," . assertion
 
     "-"           shift, and go to state 8
     "("           shift, and go to state 9
@@ -851,9 +834,9 @@ State 53
     "identifier"  shift, and go to state 13
     "number"      shift, and go to state 14
 
-    aexp  go to state 15
-    comp  go to state 16
-    assn  go to state 76
+    aexp       go to state 15
+    comp       go to state 16
+    assertion  go to state 76
 
 
 State 54
@@ -967,97 +950,7 @@ State 60
     7     | aexp . "*" aexp
     8     | aexp . "/" aexp
     9     | aexp . "%" aexp
-   11 comp: aexp "=" aexp .
-
-    "+"  shift, and go to state 31
-    "-"  shift, and go to state 32
-    "*"  shift, and go to state 33
-    "/"  shift, and go to state 34
-    "%"  shift, and go to state 35
-
-    $default  reduce using rule 11 (comp)
-
-
-State 61
-
-    5 aexp: aexp . "+" aexp
-    6     | aexp . "-" aexp
-    7     | aexp . "*" aexp
-    8     | aexp . "/" aexp
-    9     | aexp . "%" aexp
-   12 comp: aexp "!=" aexp .
-
-    "+"  shift, and go to state 31
-    "-"  shift, and go to state 32
-    "*"  shift, and go to state 33
-    "/"  shift, and go to state 34
-    "%"  shift, and go to state 35
-
-    $default  reduce using rule 12 (comp)
-
-
-State 62
-
-    5 aexp: aexp . "+" aexp
-    6     | aexp . "-" aexp
-    7     | aexp . "*" aexp
-    8     | aexp . "/" aexp
-    9     | aexp . "%" aexp
-   13 comp: aexp "<=" aexp .
-
-    "+"  shift, and go to state 31
-    "-"  shift, and go to state 32
-    "*"  shift, and go to state 33
-    "/"  shift, and go to state 34
-    "%"  shift, and go to state 35
-
-    $default  reduce using rule 13 (comp)
-
-
-State 63
-
-    5 aexp: aexp . "+" aexp
-    6     | aexp . "-" aexp
-    7     | aexp . "*" aexp
-    8     | aexp . "/" aexp
-    9     | aexp . "%" aexp
-   14 comp: aexp ">=" aexp .
-
-    "+"  shift, and go to state 31
-    "-"  shift, and go to state 32
-    "*"  shift, and go to state 33
-    "/"  shift, and go to state 34
-    "%"  shift, and go to state 35
-
-    $default  reduce using rule 14 (comp)
-
-
-State 64
-
-    5 aexp: aexp . "+" aexp
-    6     | aexp . "-" aexp
-    7     | aexp . "*" aexp
-    8     | aexp . "/" aexp
-    9     | aexp . "%" aexp
-   15 comp: aexp "<" aexp .
-
-    "+"  shift, and go to state 31
-    "-"  shift, and go to state 32
-    "*"  shift, and go to state 33
-    "/"  shift, and go to state 34
-    "%"  shift, and go to state 35
-
-    $default  reduce using rule 15 (comp)
-
-
-State 65
-
-    5 aexp: aexp . "+" aexp
-    6     | aexp . "-" aexp
-    7     | aexp . "*" aexp
-    8     | aexp . "/" aexp
-    9     | aexp . "%" aexp
-   16 comp: aexp ">" aexp .
+   16 comp: aexp "=" aexp .
 
     "+"  shift, and go to state 31
     "-"  shift, and go to state 32
@@ -1068,52 +961,142 @@ State 65
     $default  reduce using rule 16 (comp)
 
 
+State 61
+
+    5 aexp: aexp . "+" aexp
+    6     | aexp . "-" aexp
+    7     | aexp . "*" aexp
+    8     | aexp . "/" aexp
+    9     | aexp . "%" aexp
+   17 comp: aexp "!=" aexp .
+
+    "+"  shift, and go to state 31
+    "-"  shift, and go to state 32
+    "*"  shift, and go to state 33
+    "/"  shift, and go to state 34
+    "%"  shift, and go to state 35
+
+    $default  reduce using rule 17 (comp)
+
+
+State 62
+
+    5 aexp: aexp . "+" aexp
+    6     | aexp . "-" aexp
+    7     | aexp . "*" aexp
+    8     | aexp . "/" aexp
+    9     | aexp . "%" aexp
+   18 comp: aexp "<=" aexp .
+
+    "+"  shift, and go to state 31
+    "-"  shift, and go to state 32
+    "*"  shift, and go to state 33
+    "/"  shift, and go to state 34
+    "%"  shift, and go to state 35
+
+    $default  reduce using rule 18 (comp)
+
+
+State 63
+
+    5 aexp: aexp . "+" aexp
+    6     | aexp . "-" aexp
+    7     | aexp . "*" aexp
+    8     | aexp . "/" aexp
+    9     | aexp . "%" aexp
+   19 comp: aexp ">=" aexp .
+
+    "+"  shift, and go to state 31
+    "-"  shift, and go to state 32
+    "*"  shift, and go to state 33
+    "/"  shift, and go to state 34
+    "%"  shift, and go to state 35
+
+    $default  reduce using rule 19 (comp)
+
+
+State 64
+
+    5 aexp: aexp . "+" aexp
+    6     | aexp . "-" aexp
+    7     | aexp . "*" aexp
+    8     | aexp . "/" aexp
+    9     | aexp . "%" aexp
+   20 comp: aexp "<" aexp .
+
+    "+"  shift, and go to state 31
+    "-"  shift, and go to state 32
+    "*"  shift, and go to state 33
+    "/"  shift, and go to state 34
+    "%"  shift, and go to state 35
+
+    $default  reduce using rule 20 (comp)
+
+
+State 65
+
+    5 aexp: aexp . "+" aexp
+    6     | aexp . "-" aexp
+    7     | aexp . "*" aexp
+    8     | aexp . "/" aexp
+    9     | aexp . "%" aexp
+   21 comp: aexp ">" aexp .
+
+    "+"  shift, and go to state 31
+    "-"  shift, and go to state 32
+    "*"  shift, and go to state 33
+    "/"  shift, and go to state 34
+    "%"  shift, and go to state 35
+
+    $default  reduce using rule 21 (comp)
+
+
 State 66
 
-   43 assn: assn . "||" assn
-   43     | assn "||" assn .
-   44     | assn . "&&" assn
-   45     | assn . "==>" assn
+   43 assertion: assertion . "||" assertion
+   43          | assertion "||" assertion .
+   44          | assertion . "&&" assertion
+   45          | assertion . "==>" assertion
 
     "||"   shift, and go to state 42
     "==>"  shift, and go to state 44
 
-    "||"      [reduce using rule 43 (assn)]
-    "==>"     [reduce using rule 43 (assn)]
-    $default  reduce using rule 43 (assn)
+    "||"      [reduce using rule 43 (assertion)]
+    "==>"     [reduce using rule 43 (assertion)]
+    $default  reduce using rule 43 (assertion)
 
 
 State 67
 
-   43 assn: assn . "||" assn
-   44     | assn . "&&" assn
-   44     | assn "&&" assn .
-   45     | assn . "==>" assn
+   43 assertion: assertion . "||" assertion
+   44          | assertion . "&&" assertion
+   44          | assertion "&&" assertion .
+   45          | assertion . "==>" assertion
 
     "||"   shift, and go to state 42
     "&&"   shift, and go to state 43
     "==>"  shift, and go to state 44
 
-    "&&"      [reduce using rule 44 (assn)]
-    "==>"     [reduce using rule 44 (assn)]
-    $default  reduce using rule 44 (assn)
+    "&&"      [reduce using rule 44 (assertion)]
+    "==>"     [reduce using rule 44 (assertion)]
+    $default  reduce using rule 44 (assertion)
 
 
 State 68
 
-   43 assn: assn . "||" assn
-   44     | assn . "&&" assn
-   45     | assn . "==>" assn
-   45     | assn "==>" assn .
+   43 assertion: assertion . "||" assertion
+   44          | assertion . "&&" assertion
+   45          | assertion . "==>" assertion
+   45          | assertion "==>" assertion .
 
     "||"   shift, and go to state 42
     "&&"   shift, and go to state 43
     "==>"  shift, and go to state 44
 
-    "||"      [reduce using rule 45 (assn)]
-    "&&"      [reduce using rule 45 (assn)]
-    "==>"     [reduce using rule 45 (assn)]
-    $default  reduce using rule 45 (assn)
+    "||"      [reduce using rule 45 (assertion)]
+    "&&"      [reduce using rule 45 (assertion)]
+    "==>"     [reduce using rule 45 (assertion)]
+    $default  reduce using rule 45 (assertion)
 
 
 State 69
@@ -1128,8 +1111,8 @@ State 69
     "number"      shift, and go to state 14
 
     aexp  go to state 15
-    comp  go to state 80
-    bexp  go to state 81
+    bexp  go to state 80
+    comp  go to state 81
 
 
 State 70
@@ -1143,8 +1126,8 @@ State 70
     "number"      shift, and go to state 14
 
     aexp  go to state 15
-    comp  go to state 80
     bexp  go to state 82
+    comp  go to state 81
 
 
 State 71
@@ -1188,36 +1171,36 @@ State 74
 
 State 75
 
-   43 assn: assn . "||" assn
-   44     | assn . "&&" assn
-   45     | assn . "==>" assn
-   46     | "forall" identifier_list "," assn .
+   43 assertion: assertion . "||" assertion
+   44          | assertion . "&&" assertion
+   45          | assertion . "==>" assertion
+   46          | "forall" identifier_list "," assertion .
 
     "||"   shift, and go to state 42
     "&&"   shift, and go to state 43
     "==>"  shift, and go to state 44
 
-    "||"      [reduce using rule 46 (assn)]
-    "&&"      [reduce using rule 46 (assn)]
-    "==>"     [reduce using rule 46 (assn)]
-    $default  reduce using rule 46 (assn)
+    "||"      [reduce using rule 46 (assertion)]
+    "&&"      [reduce using rule 46 (assertion)]
+    "==>"     [reduce using rule 46 (assertion)]
+    $default  reduce using rule 46 (assertion)
 
 
 State 76
 
-   43 assn: assn . "||" assn
-   44     | assn . "&&" assn
-   45     | assn . "==>" assn
-   47     | "exists" identifier_list "," assn .
+   43 assertion: assertion . "||" assertion
+   44          | assertion . "&&" assertion
+   45          | assertion . "==>" assertion
+   47          | "exists" identifier_list "," assertion .
 
     "||"   shift, and go to state 42
     "&&"   shift, and go to state 43
     "==>"  shift, and go to state 44
 
-    "||"      [reduce using rule 47 (assn)]
-    "&&"      [reduce using rule 47 (assn)]
-    "==>"     [reduce using rule 47 (assn)]
-    $default  reduce using rule 47 (assn)
+    "||"      [reduce using rule 47 (assertion)]
+    "&&"      [reduce using rule 47 (assertion)]
+    "==>"     [reduce using rule 47 (assertion)]
+    $default  reduce using rule 47 (assertion)
 
 
 State 77
@@ -1230,7 +1213,7 @@ State 77
 State 78
 
    10 aexp: "(" . aexp ")"
-   21 bexp: "(" . bexp ")"
+   15 bexp: "(" . bexp ")"
 
     "-"           shift, and go to state 8
     "("           shift, and go to state 78
@@ -1239,13 +1222,13 @@ State 78
     "number"      shift, and go to state 14
 
     aexp  go to state 24
-    comp  go to state 80
     bexp  go to state 88
+    comp  go to state 81
 
 
 State 79
 
-   18 bexp: "!" . bexp
+   12 bexp: "!" . bexp
 
     "-"           shift, and go to state 8
     "("           shift, and go to state 78
@@ -1254,21 +1237,14 @@ State 79
     "number"      shift, and go to state 14
 
     aexp  go to state 15
-    comp  go to state 80
     bexp  go to state 89
+    comp  go to state 81
 
 
 State 80
 
-   17 bexp: comp .
-
-    $default  reduce using rule 17 (bexp)
-
-
-State 81
-
-   19 bexp: bexp . "||" bexp
-   20     | bexp . "&&" bexp
+   13 bexp: bexp . "||" bexp
+   14     | bexp . "&&" bexp
    25 stmt: "if" bexp . "then" block "else" block "end"
    26     | "if" bexp . "then" block "end"
 
@@ -1277,10 +1253,17 @@ State 81
     "then"  shift, and go to state 92
 
 
+State 81
+
+   11 bexp: comp .
+
+    $default  reduce using rule 11 (bexp)
+
+
 State 82
 
-   19 bexp: bexp . "||" bexp
-   20     | bexp . "&&" bexp
+   13 bexp: bexp . "||" bexp
+   14     | bexp . "&&" bexp
    27 stmt: "while" bexp . inv_list "do" block "end"
 
     "||"   shift, and go to state 90
@@ -1338,9 +1321,9 @@ State 87
 
 State 88
 
-   19 bexp: bexp . "||" bexp
-   20     | bexp . "&&" bexp
-   21     | "(" bexp . ")"
+   13 bexp: bexp . "||" bexp
+   14     | bexp . "&&" bexp
+   15     | "(" bexp . ")"
 
     ")"   shift, and go to state 99
     "||"  shift, and go to state 90
@@ -1349,19 +1332,19 @@ State 88
 
 State 89
 
-   18 bexp: "!" bexp .
-   19     | bexp . "||" bexp
-   20     | bexp . "&&" bexp
+   12 bexp: "!" bexp .
+   13     | bexp . "||" bexp
+   14     | bexp . "&&" bexp
 
     "||"  shift, and go to state 90
     "&&"  shift, and go to state 91
 
-    $default  reduce using rule 18 (bexp)
+    $default  reduce using rule 12 (bexp)
 
 
 State 90
 
-   19 bexp: bexp "||" . bexp
+   13 bexp: bexp "||" . bexp
 
     "-"           shift, and go to state 8
     "("           shift, and go to state 78
@@ -1370,13 +1353,13 @@ State 90
     "number"      shift, and go to state 14
 
     aexp  go to state 15
-    comp  go to state 80
     bexp  go to state 100
+    comp  go to state 81
 
 
 State 91
 
-   20 bexp: bexp "&&" . bexp
+   14 bexp: bexp "&&" . bexp
 
     "-"           shift, and go to state 8
     "("           shift, and go to state 78
@@ -1385,8 +1368,8 @@ State 91
     "number"      shift, and go to state 14
 
     aexp  go to state 15
-    comp  go to state 80
     bexp  go to state 101
+    comp  go to state 81
 
 
 State 92
@@ -1405,7 +1388,7 @@ State 92
 
 State 93
 
-   28 inv: "inv" . assn
+   28 inv: "inv" . assertion
 
     "-"           shift, and go to state 8
     "("           shift, and go to state 9
@@ -1415,9 +1398,9 @@ State 93
     "identifier"  shift, and go to state 13
     "number"      shift, and go to state 14
 
-    aexp  go to state 15
-    comp  go to state 16
-    assn  go to state 103
+    aexp       go to state 15
+    comp       go to state 16
+    assertion  go to state 103
 
 
 State 94
@@ -1481,34 +1464,34 @@ State 98
 
 State 99
 
-   21 bexp: "(" bexp ")" .
+   15 bexp: "(" bexp ")" .
 
-    $default  reduce using rule 21 (bexp)
+    $default  reduce using rule 15 (bexp)
 
 
 State 100
 
-   19 bexp: bexp . "||" bexp
-   19     | bexp "||" bexp .
-   20     | bexp . "&&" bexp
+   13 bexp: bexp . "||" bexp
+   13     | bexp "||" bexp .
+   14     | bexp . "&&" bexp
 
     "||"  shift, and go to state 90
 
-    "||"      [reduce using rule 19 (bexp)]
-    $default  reduce using rule 19 (bexp)
+    "||"      [reduce using rule 13 (bexp)]
+    $default  reduce using rule 13 (bexp)
 
 
 State 101
 
-   19 bexp: bexp . "||" bexp
-   20     | bexp . "&&" bexp
-   20     | bexp "&&" bexp .
+   13 bexp: bexp . "||" bexp
+   14     | bexp . "&&" bexp
+   14     | bexp "&&" bexp .
 
     "||"  shift, and go to state 90
     "&&"  shift, and go to state 91
 
-    "&&"      [reduce using rule 20 (bexp)]
-    $default  reduce using rule 20 (bexp)
+    "&&"      [reduce using rule 14 (bexp)]
+    $default  reduce using rule 14 (bexp)
 
 
 State 102
@@ -1522,10 +1505,10 @@ State 102
 
 State 103
 
-   28 inv: "inv" assn .
-   43 assn: assn . "||" assn
-   44     | assn . "&&" assn
-   45     | assn . "==>" assn
+   28 inv: "inv" assertion .
+   43 assertion: assertion . "||" assertion
+   44          | assertion . "&&" assertion
+   45          | assertion . "==>" assertion
 
     "||"   shift, and go to state 42
     "&&"   shift, and go to state 43

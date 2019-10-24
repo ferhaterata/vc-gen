@@ -5,3 +5,7 @@
 // -----------------------------------------------------------------------------
 
 #include "ast.hpp"
+//ostream& ast::ArithmeticExpression::print(ostream& out) {
+//    out << " ]>top\n";
+//    return out;
+//}

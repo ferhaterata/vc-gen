@@ -7,9 +7,9 @@
 #ifndef VC_GEN_AST_HPP
 #define VC_GEN_AST_HPP
 
+#include <iterator>
 #include <map>
 #include <string>
-#include <utility>
 #include <vector>
 
 using namespace std;
@@ -20,17 +20,23 @@ class Node {
   public:
     Node() {}
     virtual ~Node() = default;
+    //    virtual ostream& print(ostream& out) const = 0;
 };
 
-class ArithmeticExpression : public Node {};
-class Comparison : public Node {};
+class ArithmeticExpression : public Node {
+    //    ostream& print(ostream& out);
+};
+
 class BooleanExpression : public Node {};
+class Comparison : public Node {};
+
 class Statement : public Node {};
 class Invariant : public Node {};
 class Block : public Node {};
 class Program : public Node {};
-class Precondition : public Node {};
+class PreCondition : public Node {};
 class PostCondition : public Node {};
+class Assertion : public Node {};
 class Identifier : public Node {};
 
 class AssignmentStatement : public Statement {
@@ -86,5 +92,19 @@ class WhileStatement : public Statement {
 };
 
 } // namespace ast
+
+// inline ostream& operator<<(ostream& out, ast::Node& node) {
+//    return node.print(out);
+//}
+
+template <typename T>
+std::ostream& operator<<(std::ostream& out, const std::vector<T>& v) {
+    if (!v.empty()) {
+        out << '[';
+        std::copy(v.begin(), v.end(), std::ostream_iterator<T>(out, ", "));
+        out << "\b\b]";
+    }
+    return out;
+}
 
 #endif // VC_GEN_AST_HPP

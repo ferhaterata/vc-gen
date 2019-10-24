@@ -132,6 +132,7 @@ void print(std::vector<T>& v){
 %type <ast::Assertion>                  assertion
 %type <ast::Location>                   location
 %type <ast::Reference>                  reference
+%type <ast::Constant>                   constant
 
 %type <std::vector<ast::Invariant>>     inv_list;
 %type <std::vector<ast::Statement>>     stmt_list;
@@ -154,26 +155,28 @@ void print(std::vector<T>& v){
 
 aexp:
       reference                 { $$ = $1; }
-    | "number"                  { }
-    | reference "[" aexp "]"    { }
-    | "-" aexp                  { }
-    | aexp "+" aexp             { }
-    | aexp "-" aexp             { }
-    | aexp "*" aexp             { }
-    | aexp "/" aexp             { }
-    | aexp "%" aexp             { }
+    | reference "[" aexp "]"    { $$ = ast::ArrayReference($1, $3); }
+    | constant                  { $$ = $1; }
+    | "-" aexp                  { $$ = ast::Negate($2); }
+    | aexp "+" aexp             { $$ = ast::Sum($1, $3);}
+    | aexp "-" aexp             { $$ = ast::Subtract($1, $3); }
+    | aexp "*" aexp             { $$ = ast::Multiply($1, $3); }
+    | aexp "/" aexp             { $$ = ast::Divide($1, $3); }
+    | aexp "%" aexp             { $$ = ast::Mod($1, $3); }
     | "(" aexp ")"              { $$ = $2;}
     ;
 
 reference: "identifier"         { $$ = ast::Reference({$1}); }
     ;
 
+constant: "number"              { $$ = ast::Constant({$1}); }
+    ;
 
 bexp:
       comp                      { $$ = $1; }
-    | "!" bexp                  { }
-    | bexp "||" bexp            { }
-    | bexp "&&" bexp            { }
+    | "!" bexp                  { $$ = ast::NotExpression({$2}); }
+    | bexp "||" bexp            { $$ = ast::OrExpression({$1, $3}); }
+    | bexp "&&" bexp            { $$ = ast::AndExpression({$1, $3}); }
     | "(" bexp ")"              { $$ = $2;}
     ;
 

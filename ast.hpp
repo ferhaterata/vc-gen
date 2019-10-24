@@ -24,8 +24,32 @@ class Node {
 };
 
 class BooleanExpression : public Node {};
+
+class NotExpression : public BooleanExpression {
+  public:
+    const BooleanExpression expression;
+    explicit NotExpression(BooleanExpression& expression)
+        : expression(expression) {}
+};
+
+class OrExpression : public BooleanExpression {
+  public:
+    const BooleanExpression left;
+    const BooleanExpression right;
+    OrExpression(BooleanExpression& left, BooleanExpression& right)
+        : left(left), right(right) {}
+};
+
+class AndExpression : public BooleanExpression {
+
+  public:
+    const BooleanExpression left;
+    const BooleanExpression right;
+    AndExpression(BooleanExpression& left, BooleanExpression& right)
+        : left(left), right(right) {}
+};
+
 class Assertion : public Node {};
-class Comparison : public BooleanExpression, public Assertion {};
 
 class Statement : public Node {};
 
@@ -83,7 +107,7 @@ class Program : public Node {
 class Negation : public Assertion {
   public:
     const Assertion assertion;
-    Negation(Assertion& assertion) : assertion(assertion) {}
+    explicit Negation(Assertion& assertion) : assertion(assertion) {}
 };
 
 class Disjunction : public Assertion {
@@ -133,6 +157,69 @@ class Reference : public ArithmeticExpression {
     Reference() = default;
     explicit Reference(string& identifier) : identifier(identifier) {}
 };
+
+class Constant : public ArithmeticExpression {
+  public:
+    int number{};
+    Constant() = default;
+    explicit Constant(int number) : number(number) {}
+};
+
+class ArrayReference : public ArithmeticExpression {
+  public:
+    Reference reference;
+    ArithmeticExpression index;
+    ArrayReference(Reference& reference, ArithmeticExpression& index)
+        : reference(reference), index(index) {}
+};
+
+class Negate : public ArithmeticExpression {
+  public:
+    ArithmeticExpression expression;
+    explicit Negate(ArithmeticExpression& expression) : expression(expression) {}
+};
+
+class Sum : public ArithmeticExpression {
+  public:
+    ArithmeticExpression left;
+    ArithmeticExpression right;
+    Sum(ArithmeticExpression& left, ArithmeticExpression& right)
+        : left(left), right(right) {}
+};
+
+class Subtract : public ArithmeticExpression {
+  public:
+    ArithmeticExpression left;
+    ArithmeticExpression right;
+    Subtract(ArithmeticExpression& left, ArithmeticExpression& right)
+        : left(left), right(right) {}
+};
+
+class Multiply : public ArithmeticExpression {
+  public:
+    ArithmeticExpression left;
+    ArithmeticExpression right;
+    Multiply(ArithmeticExpression& left, ArithmeticExpression& right)
+        : left(left), right(right) {}
+};
+
+class Divide : public ArithmeticExpression {
+  public:
+    ArithmeticExpression left;
+    ArithmeticExpression right;
+    Divide(ArithmeticExpression& left, ArithmeticExpression& right)
+        : left(left), right(right) {}
+};
+
+class Mod : public ArithmeticExpression {
+  public:
+    ArithmeticExpression left;
+    ArithmeticExpression right;
+    Mod(ArithmeticExpression& left, ArithmeticExpression& right)
+        : left(left), right(right) {}
+};
+
+class Comparison : public BooleanExpression, public Assertion {};
 
 class EqualComparison : public Comparison {
   public:

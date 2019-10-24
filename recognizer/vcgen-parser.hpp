@@ -386,47 +386,50 @@ namespace yy {
       // comp
       char dummy5[sizeof (ast::Comparison)];
 
+      // constant
+      char dummy6[sizeof (ast::Constant)];
+
       // inv
-      char dummy6[sizeof (ast::Invariant)];
+      char dummy7[sizeof (ast::Invariant)];
 
       // location
-      char dummy7[sizeof (ast::Location)];
+      char dummy8[sizeof (ast::Location)];
 
       // post
-      char dummy8[sizeof (ast::PostCondition)];
+      char dummy9[sizeof (ast::PostCondition)];
 
       // pre
-      char dummy9[sizeof (ast::PreCondition)];
+      char dummy10[sizeof (ast::PreCondition)];
 
       // prog
-      char dummy10[sizeof (ast::Program)];
+      char dummy11[sizeof (ast::Program)];
 
       // reference
-      char dummy11[sizeof (ast::Reference)];
+      char dummy12[sizeof (ast::Reference)];
 
       // stmt
-      char dummy12[sizeof (ast::Statement)];
+      char dummy13[sizeof (ast::Statement)];
 
       // "number"
-      char dummy13[sizeof (int)];
+      char dummy14[sizeof (int)];
 
       // "identifier"
-      char dummy14[sizeof (std::string)];
+      char dummy15[sizeof (std::string)];
 
       // inv_list
-      char dummy15[sizeof (std::vector<ast::Invariant>)];
+      char dummy16[sizeof (std::vector<ast::Invariant>)];
 
       // post_list
-      char dummy16[sizeof (std::vector<ast::PostCondition>)];
+      char dummy17[sizeof (std::vector<ast::PostCondition>)];
 
       // pre_list
-      char dummy17[sizeof (std::vector<ast::PreCondition>)];
+      char dummy18[sizeof (std::vector<ast::PreCondition>)];
 
       // stmt_list
-      char dummy18[sizeof (std::vector<ast::Statement>)];
+      char dummy19[sizeof (std::vector<ast::Statement>)];
 
       // identifier_list
-      char dummy19[sizeof (std::vector<std::string>)];
+      char dummy20[sizeof (std::vector<std::string>)];
     };
 
     /// The size of the largest semantic type.
@@ -625,6 +628,19 @@ namespace yy {
       {}
 #else
       basic_symbol (typename Base::kind_type t, const ast::Comparison& v, const location_type& l)
+        : Base (t)
+        , value (v)
+        , location (l)
+      {}
+#endif
+#if 201103L <= YY_CPLUSPLUS
+      basic_symbol (typename Base::kind_type t, ast::Constant&& v, location_type&& l)
+        : Base (t)
+        , value (std::move (v))
+        , location (std::move (l))
+      {}
+#else
+      basic_symbol (typename Base::kind_type t, const ast::Constant& v, const location_type& l)
         : Base (t)
         , value (v)
         , location (l)
@@ -839,39 +855,43 @@ switch (yytype)
         value.template destroy< ast::ArithmeticExpression > ();
         break;
 
-      case 56: // assertion
+      case 57: // assertion
         value.template destroy< ast::Assertion > ();
         break;
 
-      case 49: // block
+      case 50: // block
         value.template destroy< ast::Block > ();
         break;
 
-      case 43: // bexp
+      case 44: // bexp
         value.template destroy< ast::BooleanExpression > ();
         break;
 
-      case 44: // comp
+      case 45: // comp
         value.template destroy< ast::Comparison > ();
         break;
 
-      case 48: // inv
+      case 43: // constant
+        value.template destroy< ast::Constant > ();
+        break;
+
+      case 49: // inv
         value.template destroy< ast::Invariant > ();
         break;
 
-      case 46: // location
+      case 47: // location
         value.template destroy< ast::Location > ();
         break;
 
-      case 55: // post
+      case 56: // post
         value.template destroy< ast::PostCondition > ();
         break;
 
-      case 53: // pre
+      case 54: // pre
         value.template destroy< ast::PreCondition > ();
         break;
 
-      case 51: // prog
+      case 52: // prog
         value.template destroy< ast::Program > ();
         break;
 
@@ -879,7 +899,7 @@ switch (yytype)
         value.template destroy< ast::Reference > ();
         break;
 
-      case 45: // stmt
+      case 46: // stmt
         value.template destroy< ast::Statement > ();
         break;
 
@@ -891,23 +911,23 @@ switch (yytype)
         value.template destroy< std::string > ();
         break;
 
-      case 47: // inv_list
+      case 48: // inv_list
         value.template destroy< std::vector<ast::Invariant> > ();
         break;
 
-      case 54: // post_list
+      case 55: // post_list
         value.template destroy< std::vector<ast::PostCondition> > ();
         break;
 
-      case 52: // pre_list
+      case 53: // pre_list
         value.template destroy< std::vector<ast::PreCondition> > ();
         break;
 
-      case 50: // stmt_list
+      case 51: // stmt_list
         value.template destroy< std::vector<ast::Statement> > ();
         break;
 
-      case 57: // identifier_list
+      case 58: // identifier_list
         value.template destroy< std::vector<std::string> > ();
         break;
 
@@ -1939,7 +1959,7 @@ switch (yytype)
     {
       yyeof_ = 0,
       yylast_ = 190,     ///< Last index in yytable_.
-      yynnts_ = 18,  ///< Number of nonterminal symbols.
+      yynnts_ = 19,  ///< Number of nonterminal symbols.
       yyfinal_ = 4, ///< Termination state number.
       yyterror_ = 1,
       yyerrcode_ = 256,
@@ -2017,39 +2037,43 @@ switch (yytype)
         value.move< ast::ArithmeticExpression > (std::move (that.value));
         break;
 
-      case 56: // assertion
+      case 57: // assertion
         value.move< ast::Assertion > (std::move (that.value));
         break;
 
-      case 49: // block
+      case 50: // block
         value.move< ast::Block > (std::move (that.value));
         break;
 
-      case 43: // bexp
+      case 44: // bexp
         value.move< ast::BooleanExpression > (std::move (that.value));
         break;
 
-      case 44: // comp
+      case 45: // comp
         value.move< ast::Comparison > (std::move (that.value));
         break;
 
-      case 48: // inv
+      case 43: // constant
+        value.move< ast::Constant > (std::move (that.value));
+        break;
+
+      case 49: // inv
         value.move< ast::Invariant > (std::move (that.value));
         break;
 
-      case 46: // location
+      case 47: // location
         value.move< ast::Location > (std::move (that.value));
         break;
 
-      case 55: // post
+      case 56: // post
         value.move< ast::PostCondition > (std::move (that.value));
         break;
 
-      case 53: // pre
+      case 54: // pre
         value.move< ast::PreCondition > (std::move (that.value));
         break;
 
-      case 51: // prog
+      case 52: // prog
         value.move< ast::Program > (std::move (that.value));
         break;
 
@@ -2057,7 +2081,7 @@ switch (yytype)
         value.move< ast::Reference > (std::move (that.value));
         break;
 
-      case 45: // stmt
+      case 46: // stmt
         value.move< ast::Statement > (std::move (that.value));
         break;
 
@@ -2069,23 +2093,23 @@ switch (yytype)
         value.move< std::string > (std::move (that.value));
         break;
 
-      case 47: // inv_list
+      case 48: // inv_list
         value.move< std::vector<ast::Invariant> > (std::move (that.value));
         break;
 
-      case 54: // post_list
+      case 55: // post_list
         value.move< std::vector<ast::PostCondition> > (std::move (that.value));
         break;
 
-      case 52: // pre_list
+      case 53: // pre_list
         value.move< std::vector<ast::PreCondition> > (std::move (that.value));
         break;
 
-      case 50: // stmt_list
+      case 51: // stmt_list
         value.move< std::vector<ast::Statement> > (std::move (that.value));
         break;
 
-      case 57: // identifier_list
+      case 58: // identifier_list
         value.move< std::vector<std::string> > (std::move (that.value));
         break;
 
@@ -2108,39 +2132,43 @@ switch (yytype)
         value.copy< ast::ArithmeticExpression > (YY_MOVE (that.value));
         break;
 
-      case 56: // assertion
+      case 57: // assertion
         value.copy< ast::Assertion > (YY_MOVE (that.value));
         break;
 
-      case 49: // block
+      case 50: // block
         value.copy< ast::Block > (YY_MOVE (that.value));
         break;
 
-      case 43: // bexp
+      case 44: // bexp
         value.copy< ast::BooleanExpression > (YY_MOVE (that.value));
         break;
 
-      case 44: // comp
+      case 45: // comp
         value.copy< ast::Comparison > (YY_MOVE (that.value));
         break;
 
-      case 48: // inv
+      case 43: // constant
+        value.copy< ast::Constant > (YY_MOVE (that.value));
+        break;
+
+      case 49: // inv
         value.copy< ast::Invariant > (YY_MOVE (that.value));
         break;
 
-      case 46: // location
+      case 47: // location
         value.copy< ast::Location > (YY_MOVE (that.value));
         break;
 
-      case 55: // post
+      case 56: // post
         value.copy< ast::PostCondition > (YY_MOVE (that.value));
         break;
 
-      case 53: // pre
+      case 54: // pre
         value.copy< ast::PreCondition > (YY_MOVE (that.value));
         break;
 
-      case 51: // prog
+      case 52: // prog
         value.copy< ast::Program > (YY_MOVE (that.value));
         break;
 
@@ -2148,7 +2176,7 @@ switch (yytype)
         value.copy< ast::Reference > (YY_MOVE (that.value));
         break;
 
-      case 45: // stmt
+      case 46: // stmt
         value.copy< ast::Statement > (YY_MOVE (that.value));
         break;
 
@@ -2160,23 +2188,23 @@ switch (yytype)
         value.copy< std::string > (YY_MOVE (that.value));
         break;
 
-      case 47: // inv_list
+      case 48: // inv_list
         value.copy< std::vector<ast::Invariant> > (YY_MOVE (that.value));
         break;
 
-      case 54: // post_list
+      case 55: // post_list
         value.copy< std::vector<ast::PostCondition> > (YY_MOVE (that.value));
         break;
 
-      case 52: // pre_list
+      case 53: // pre_list
         value.copy< std::vector<ast::PreCondition> > (YY_MOVE (that.value));
         break;
 
-      case 50: // stmt_list
+      case 51: // stmt_list
         value.copy< std::vector<ast::Statement> > (YY_MOVE (that.value));
         break;
 
-      case 57: // identifier_list
+      case 58: // identifier_list
         value.copy< std::vector<std::string> > (YY_MOVE (that.value));
         break;
 
@@ -2206,39 +2234,43 @@ switch (yytype)
         value.move< ast::ArithmeticExpression > (YY_MOVE (s.value));
         break;
 
-      case 56: // assertion
+      case 57: // assertion
         value.move< ast::Assertion > (YY_MOVE (s.value));
         break;
 
-      case 49: // block
+      case 50: // block
         value.move< ast::Block > (YY_MOVE (s.value));
         break;
 
-      case 43: // bexp
+      case 44: // bexp
         value.move< ast::BooleanExpression > (YY_MOVE (s.value));
         break;
 
-      case 44: // comp
+      case 45: // comp
         value.move< ast::Comparison > (YY_MOVE (s.value));
         break;
 
-      case 48: // inv
+      case 43: // constant
+        value.move< ast::Constant > (YY_MOVE (s.value));
+        break;
+
+      case 49: // inv
         value.move< ast::Invariant > (YY_MOVE (s.value));
         break;
 
-      case 46: // location
+      case 47: // location
         value.move< ast::Location > (YY_MOVE (s.value));
         break;
 
-      case 55: // post
+      case 56: // post
         value.move< ast::PostCondition > (YY_MOVE (s.value));
         break;
 
-      case 53: // pre
+      case 54: // pre
         value.move< ast::PreCondition > (YY_MOVE (s.value));
         break;
 
-      case 51: // prog
+      case 52: // prog
         value.move< ast::Program > (YY_MOVE (s.value));
         break;
 
@@ -2246,7 +2278,7 @@ switch (yytype)
         value.move< ast::Reference > (YY_MOVE (s.value));
         break;
 
-      case 45: // stmt
+      case 46: // stmt
         value.move< ast::Statement > (YY_MOVE (s.value));
         break;
 
@@ -2258,23 +2290,23 @@ switch (yytype)
         value.move< std::string > (YY_MOVE (s.value));
         break;
 
-      case 47: // inv_list
+      case 48: // inv_list
         value.move< std::vector<ast::Invariant> > (YY_MOVE (s.value));
         break;
 
-      case 54: // post_list
+      case 55: // post_list
         value.move< std::vector<ast::PostCondition> > (YY_MOVE (s.value));
         break;
 
-      case 52: // pre_list
+      case 53: // pre_list
         value.move< std::vector<ast::PreCondition> > (YY_MOVE (s.value));
         break;
 
-      case 50: // stmt_list
+      case 51: // stmt_list
         value.move< std::vector<ast::Statement> > (YY_MOVE (s.value));
         break;
 
-      case 57: // identifier_list
+      case 58: // identifier_list
         value.move< std::vector<std::string> > (YY_MOVE (s.value));
         break;
 
@@ -2351,7 +2383,7 @@ switch (yytype)
   }
 
 } // yy
-#line 2355 "/home/ferhat/git/vc-gen/recognizer/vcgen-parser.hpp"
+#line 2387 "/home/ferhat/git/vc-gen/recognizer/vcgen-parser.hpp"
 
 
 

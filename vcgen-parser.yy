@@ -130,6 +130,8 @@ void print(std::vector<T>& v){
 %type <ast::PreCondition>               pre
 %type <ast::PostCondition>              post
 %type <ast::Assertion>                  assertion
+%type <ast::Location>                   location
+%type <ast::Reference>                  reference
 
 %type <std::vector<ast::Invariant>>     inv_list;
 %type <std::vector<ast::Statement>>     stmt_list;
@@ -151,9 +153,9 @@ void print(std::vector<T>& v){
 %left "*" "/";
 
 aexp:
-      reference                 { }
+      reference                 { $$ = $1; }
     | "number"                  { }
-    | "identifier" "[" aexp "]" { }
+    | reference "[" aexp "]"    { }
     | "-" aexp                  { }
     | aexp "+" aexp             { }
     | aexp "-" aexp             { }
@@ -163,7 +165,7 @@ aexp:
     | "(" aexp ")"              { $$ = $2;}
     ;
 
-reference: "identifier"         { }
+reference: "identifier"         { $$ = ast::Reference({$1}); }
     ;
 
 
@@ -185,12 +187,15 @@ comp:
     ;
 
 stmt:
-      "identifier" ":=" aexp ";"                            { $$ = ast::AssignmentStatement($1, $3);}
-    | "identifier" "," "identifier" ":=" aexp "," aexp ";"  { $$ = ast::MultipleAssignmentStatement($1, $3, $5, $7);}
-    | "identifier" "[" aexp "]" ":=" aexp ";"               { $$ = ast::ArrayAssignmentStatement($1, $3, $6);}
-    | "if" bexp "then" block "else" block "end"             { $$ = ast::IfThenElseStatement($2, $4, $6);}
-    | "if" bexp "then" block "end"                          { $$ = ast::IfThenStatement($2, $4);}
-    | "while" bexp inv_list "do" block "end"                { $$ = ast::WhileStatement($2, $3, $5);}
+      location ":=" aexp ";"                        { $$ = ast::AssignmentStatement($1, $3);}
+    | location "," location ":=" aexp "," aexp ";"  { $$ = ast::MultipleAssignmentStatement($1, $3, $5, $7);}
+    | location "[" aexp "]" ":=" aexp ";"           { $$ = ast::ArrayAssignmentStatement($1, $3, $6);}
+    | "if" bexp "then" block "else" block "end"     { $$ = ast::IfThenElseStatement($2, $4, $6);}
+    | "if" bexp "then" block "end"                  { $$ = ast::IfThenStatement($2, $4);}
+    | "while" bexp inv_list "do" block "end"        { $$ = ast::WhileStatement($2, $3, $5);}
+    ;
+
+location: "identifier"  { $$ = ast::Location({$1}); }
     ;
 
 inv_list:
@@ -198,8 +203,7 @@ inv_list:
     | inv_list inv      { $$ = enlist($1, $2); }
     ;
 
-inv:
-      "inv" assertion   { $$ = ast::Invariant({$2}); }
+inv: "inv" assertion   { $$ = ast::Invariant({$2}); }
     ;
 
 block: stmt_list        { $$ = ast::Block({$1}); /*print<ast::Statement>($1);*/}
@@ -210,8 +214,7 @@ stmt_list:
     | stmt_list stmt    { $$ = enlist($1, $2); }
     ;
 
-prog: "program" "identifier" pre_list post_list "is" block "end"
-    { $$ = ast::Program($2, $3, $4, $6);}
+prog: "program" "identifier" pre_list post_list "is" block "end"    { $$ = ast::Program($2, $3, $4, $6);}
     ;
 
 pre_list:

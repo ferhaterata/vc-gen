@@ -18,7 +18,7 @@ namespace ast {
 
 class Node {
   public:
-    Node() {}
+    Node() = default;
     virtual ~Node() = default;
     //    virtual ostream& print(ostream& out) const = 0;
 };
@@ -26,33 +26,43 @@ class Node {
 class BooleanExpression : public Node {};
 class Assertion : public Node {};
 class Comparison : public BooleanExpression, public Assertion {};
+
 class Statement : public Node {};
+
+class Location : public Statement {
+  public:
+    string identifier;
+    Location() = default;
+    explicit Location(string& identifier) : identifier(identifier) {}
+};
 
 class Invariant : public Node {
   public:
     Assertion assertion;
-    Invariant()= default;;
+    Invariant() = default;
+    ;
     explicit Invariant(Assertion& assertion) : assertion(assertion) {}
 };
 
 class Block : public Node {
   public:
     vector<Statement> stmts;
-    Block()= default;;
+    Block() = default;
     explicit Block(vector<Statement>& stmts) : stmts(stmts) {}
 };
 
 class PreCondition : public Node {
   public:
     Assertion assertion;
-    PreCondition()= default;;
+    PreCondition() = default;
     explicit PreCondition(Assertion& assertion) : assertion(assertion) {}
 };
 
 class PostCondition : public Node {
   public:
     Assertion assertion;
-    PostCondition()= default;;
+    PostCondition() = default;
+    ;
     explicit PostCondition(Assertion& assertion) : assertion(assertion) {}
 };
 
@@ -117,6 +127,13 @@ class ArithmeticExpression : public Node {
     //    ostream& print(ostream& out);
 };
 
+class Reference : public ArithmeticExpression {
+  public:
+    string identifier;
+    Reference() = default;
+    explicit Reference(string& identifier) : identifier(identifier) {}
+};
+
 class EqualComparison : public Comparison {
   public:
     const ArithmeticExpression left;
@@ -167,19 +184,19 @@ class GtComparison : public Comparison {
 
 class AssignmentStatement : public Statement {
   public:
-    const string loc;
+    const Location loc;
     const ArithmeticExpression expr;
-    AssignmentStatement(string& loc, ArithmeticExpression& expr)
+    AssignmentStatement(Location& loc, ArithmeticExpression& expr)
         : loc(loc), expr(expr) {}
 };
 
 class MultipleAssignmentStatement : public Statement {
   public:
-    const string locFirst;
-    const string locSecond;
+    const Location locFirst;
+    const Location locSecond;
     const ArithmeticExpression exprFirst;
     const ArithmeticExpression exprSecond;
-    MultipleAssignmentStatement(string& locFirst, string& locSecond,
+    MultipleAssignmentStatement(Location& locFirst, Location& locSecond,
                                 ArithmeticExpression& exprFirst,
                                 ArithmeticExpression& exprSecond)
         : locFirst(locFirst), locSecond(locSecond), exprFirst(exprFirst),
@@ -188,10 +205,10 @@ class MultipleAssignmentStatement : public Statement {
 
 class ArrayAssignmentStatement : public Statement {
   public:
-    const string loc;
+    const Location loc;
     const ArithmeticExpression index;
     const ArithmeticExpression exp;
-    ArrayAssignmentStatement(string& loc, ArithmeticExpression& index,
+    ArrayAssignmentStatement(Location& loc, ArithmeticExpression& index,
                              ArithmeticExpression& exp)
         : loc(loc), index(index), exp(exp) {}
 };

@@ -8,6 +8,8 @@
 #include "vcgen-parser.hpp"
 #include <fstream>
 
+extern ast::Program* program;
+
 vcgen_driver::vcgen_driver() : trace_scanning(false), trace_parsing(false) {
     variables["one"] = 1;
     variables["two"] = 2;

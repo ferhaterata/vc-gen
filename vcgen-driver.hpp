@@ -19,6 +19,7 @@ YY_DECL;
 
 class vcgen_driver {
   public:
+    //ast::Program* prog = nullptr;
     vcgen_driver();
     virtual ~vcgen_driver();
 

@@ -2,14 +2,13 @@
 %require "3.4"
 %language "c++"
 
-/* Generate the parser description file. */
-%verbose
+%verbose                            /* Generate the parser description file. */
 
 %defines
 %define api.parser.class {vcgen_parser}
 %define api.token.constructor
 %define api.value.type variant
-%define parse.assert
+%define parse.assert                /* assert correct cleanup of semantic value objects */
 
 
 %code requires
@@ -21,17 +20,18 @@
 class vcgen_driver;
 }
 
-// The parsing context.
-%param { vcgen_driver& driver }
-%locations
+%param { vcgen_driver& driver }     /* The parsing context. */
+
+%locations                          /* we request location tracking. */
+
 %initial-action
 {
   // Initialize the initial location.
   @$.begin.filename = @$.end.filename = &driver.file;
 };
 
-%define parse.trace
-%define parse.error verbose
+%define parse.trace                 /* enable parser tracing */
+%define parse.error verbose         /* increase usefulness of error messages */
 
 %code
 {
@@ -53,7 +53,7 @@ void print(std::vector<T>& v){
   }
 }
 
-
+ast::Program *program; /* the top level root node of our final AST */
 
 }
 
@@ -217,7 +217,8 @@ stmt_list:
     | stmt_list stmt    { $$ = enlist($1, $2); }
     ;
 
-prog: "program" "identifier" pre_list post_list "is" block "end"    { $$ = ast::Program($2, $3, $4, $6);}
+prog: "program" "identifier" pre_list post_list "is" block "end"
+      { $$ = ast::Program($2, $3, $4, $6); program = &$$;}
     ;
 
 pre_list:

@@ -44,7 +44,7 @@
 #ifndef YY_YY_HOME_FERHAT_GIT_VC_GEN_RECOGNIZER_VCGEN_PARSER_HPP_INCLUDED
 # define YY_YY_HOME_FERHAT_GIT_VC_GEN_RECOGNIZER_VCGEN_PARSER_HPP_INCLUDED
 // //                    "%code requires" blocks.
-#line 16 "/home/ferhat/git/vc-gen/vcgen-parser.yy"
+#line 15 "/home/ferhat/git/vc-gen/vcgen-parser.yy"
 
 #include <string>
 #include <vector>

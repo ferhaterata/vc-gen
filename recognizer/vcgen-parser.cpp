@@ -268,55 +268,55 @@ namespace yy {
     switch (that.type_get ())
     {
       case 41: // aexp
-        value.YY_MOVE_OR_COPY< ast::ArithmeticExpression > (YY_MOVE (that.value));
+        value.YY_MOVE_OR_COPY< ast::ArithmeticExpression* > (YY_MOVE (that.value));
         break;
 
       case 57: // assertion
-        value.YY_MOVE_OR_COPY< ast::Assertion > (YY_MOVE (that.value));
+        value.YY_MOVE_OR_COPY< ast::Assertion* > (YY_MOVE (that.value));
         break;
 
       case 50: // block
-        value.YY_MOVE_OR_COPY< ast::Block > (YY_MOVE (that.value));
+        value.YY_MOVE_OR_COPY< ast::Block* > (YY_MOVE (that.value));
         break;
 
       case 44: // bexp
-        value.YY_MOVE_OR_COPY< ast::BooleanExpression > (YY_MOVE (that.value));
+        value.YY_MOVE_OR_COPY< ast::BooleanExpression* > (YY_MOVE (that.value));
         break;
 
       case 45: // comp
-        value.YY_MOVE_OR_COPY< ast::Comparison > (YY_MOVE (that.value));
+        value.YY_MOVE_OR_COPY< ast::Comparison* > (YY_MOVE (that.value));
         break;
 
       case 43: // constant
-        value.YY_MOVE_OR_COPY< ast::Constant > (YY_MOVE (that.value));
+        value.YY_MOVE_OR_COPY< ast::Constant* > (YY_MOVE (that.value));
         break;
 
       case 49: // inv
-        value.YY_MOVE_OR_COPY< ast::Invariant > (YY_MOVE (that.value));
+        value.YY_MOVE_OR_COPY< ast::Invariant* > (YY_MOVE (that.value));
         break;
 
       case 47: // location
-        value.YY_MOVE_OR_COPY< ast::Location > (YY_MOVE (that.value));
+        value.YY_MOVE_OR_COPY< ast::Location* > (YY_MOVE (that.value));
         break;
 
       case 56: // post
-        value.YY_MOVE_OR_COPY< ast::PostCondition > (YY_MOVE (that.value));
+        value.YY_MOVE_OR_COPY< ast::PostCondition* > (YY_MOVE (that.value));
         break;
 
       case 54: // pre
-        value.YY_MOVE_OR_COPY< ast::PreCondition > (YY_MOVE (that.value));
+        value.YY_MOVE_OR_COPY< ast::PreCondition* > (YY_MOVE (that.value));
         break;
 
       case 52: // prog
-        value.YY_MOVE_OR_COPY< ast::Program > (YY_MOVE (that.value));
+        value.YY_MOVE_OR_COPY< ast::Program* > (YY_MOVE (that.value));
         break;
 
       case 42: // reference
-        value.YY_MOVE_OR_COPY< ast::Reference > (YY_MOVE (that.value));
+        value.YY_MOVE_OR_COPY< ast::Reference* > (YY_MOVE (that.value));
         break;
 
       case 46: // stmt
-        value.YY_MOVE_OR_COPY< ast::Statement > (YY_MOVE (that.value));
+        value.YY_MOVE_OR_COPY< ast::Statement* > (YY_MOVE (that.value));
         break;
 
       case 39: // "number"
@@ -328,19 +328,19 @@ namespace yy {
         break;
 
       case 48: // inv_list
-        value.YY_MOVE_OR_COPY< std::vector<ast::Invariant> > (YY_MOVE (that.value));
+        value.YY_MOVE_OR_COPY< std::vector<ast::Invariant*> > (YY_MOVE (that.value));
         break;
 
       case 55: // post_list
-        value.YY_MOVE_OR_COPY< std::vector<ast::PostCondition> > (YY_MOVE (that.value));
+        value.YY_MOVE_OR_COPY< std::vector<ast::PostCondition*> > (YY_MOVE (that.value));
         break;
 
       case 53: // pre_list
-        value.YY_MOVE_OR_COPY< std::vector<ast::PreCondition> > (YY_MOVE (that.value));
+        value.YY_MOVE_OR_COPY< std::vector<ast::PreCondition*> > (YY_MOVE (that.value));
         break;
 
       case 51: // stmt_list
-        value.YY_MOVE_OR_COPY< std::vector<ast::Statement> > (YY_MOVE (that.value));
+        value.YY_MOVE_OR_COPY< std::vector<ast::Statement*> > (YY_MOVE (that.value));
         break;
 
       case 58: // identifier_list
@@ -363,55 +363,55 @@ namespace yy {
     switch (that.type_get ())
     {
       case 41: // aexp
-        value.move< ast::ArithmeticExpression > (YY_MOVE (that.value));
+        value.move< ast::ArithmeticExpression* > (YY_MOVE (that.value));
         break;
 
       case 57: // assertion
-        value.move< ast::Assertion > (YY_MOVE (that.value));
+        value.move< ast::Assertion* > (YY_MOVE (that.value));
         break;
 
       case 50: // block
-        value.move< ast::Block > (YY_MOVE (that.value));
+        value.move< ast::Block* > (YY_MOVE (that.value));
         break;
 
       case 44: // bexp
-        value.move< ast::BooleanExpression > (YY_MOVE (that.value));
+        value.move< ast::BooleanExpression* > (YY_MOVE (that.value));
         break;
 
       case 45: // comp
-        value.move< ast::Comparison > (YY_MOVE (that.value));
+        value.move< ast::Comparison* > (YY_MOVE (that.value));
         break;
 
       case 43: // constant
-        value.move< ast::Constant > (YY_MOVE (that.value));
+        value.move< ast::Constant* > (YY_MOVE (that.value));
         break;
 
       case 49: // inv
-        value.move< ast::Invariant > (YY_MOVE (that.value));
+        value.move< ast::Invariant* > (YY_MOVE (that.value));
         break;
 
       case 47: // location
-        value.move< ast::Location > (YY_MOVE (that.value));
+        value.move< ast::Location* > (YY_MOVE (that.value));
         break;
 
       case 56: // post
-        value.move< ast::PostCondition > (YY_MOVE (that.value));
+        value.move< ast::PostCondition* > (YY_MOVE (that.value));
         break;
 
       case 54: // pre
-        value.move< ast::PreCondition > (YY_MOVE (that.value));
+        value.move< ast::PreCondition* > (YY_MOVE (that.value));
         break;
 
       case 52: // prog
-        value.move< ast::Program > (YY_MOVE (that.value));
+        value.move< ast::Program* > (YY_MOVE (that.value));
         break;
 
       case 42: // reference
-        value.move< ast::Reference > (YY_MOVE (that.value));
+        value.move< ast::Reference* > (YY_MOVE (that.value));
         break;
 
       case 46: // stmt
-        value.move< ast::Statement > (YY_MOVE (that.value));
+        value.move< ast::Statement* > (YY_MOVE (that.value));
         break;
 
       case 39: // "number"
@@ -423,19 +423,19 @@ namespace yy {
         break;
 
       case 48: // inv_list
-        value.move< std::vector<ast::Invariant> > (YY_MOVE (that.value));
+        value.move< std::vector<ast::Invariant*> > (YY_MOVE (that.value));
         break;
 
       case 55: // post_list
-        value.move< std::vector<ast::PostCondition> > (YY_MOVE (that.value));
+        value.move< std::vector<ast::PostCondition*> > (YY_MOVE (that.value));
         break;
 
       case 53: // pre_list
-        value.move< std::vector<ast::PreCondition> > (YY_MOVE (that.value));
+        value.move< std::vector<ast::PreCondition*> > (YY_MOVE (that.value));
         break;
 
       case 51: // stmt_list
-        value.move< std::vector<ast::Statement> > (YY_MOVE (that.value));
+        value.move< std::vector<ast::Statement*> > (YY_MOVE (that.value));
         break;
 
       case 58: // identifier_list
@@ -458,55 +458,55 @@ namespace yy {
     switch (that.type_get ())
     {
       case 41: // aexp
-        value.move< ast::ArithmeticExpression > (that.value);
+        value.move< ast::ArithmeticExpression* > (that.value);
         break;
 
       case 57: // assertion
-        value.move< ast::Assertion > (that.value);
+        value.move< ast::Assertion* > (that.value);
         break;
 
       case 50: // block
-        value.move< ast::Block > (that.value);
+        value.move< ast::Block* > (that.value);
         break;
 
       case 44: // bexp
-        value.move< ast::BooleanExpression > (that.value);
+        value.move< ast::BooleanExpression* > (that.value);
         break;
 
       case 45: // comp
-        value.move< ast::Comparison > (that.value);
+        value.move< ast::Comparison* > (that.value);
         break;
 
       case 43: // constant
-        value.move< ast::Constant > (that.value);
+        value.move< ast::Constant* > (that.value);
         break;
 
       case 49: // inv
-        value.move< ast::Invariant > (that.value);
+        value.move< ast::Invariant* > (that.value);
         break;
 
       case 47: // location
-        value.move< ast::Location > (that.value);
+        value.move< ast::Location* > (that.value);
         break;
 
       case 56: // post
-        value.move< ast::PostCondition > (that.value);
+        value.move< ast::PostCondition* > (that.value);
         break;
 
       case 54: // pre
-        value.move< ast::PreCondition > (that.value);
+        value.move< ast::PreCondition* > (that.value);
         break;
 
       case 52: // prog
-        value.move< ast::Program > (that.value);
+        value.move< ast::Program* > (that.value);
         break;
 
       case 42: // reference
-        value.move< ast::Reference > (that.value);
+        value.move< ast::Reference* > (that.value);
         break;
 
       case 46: // stmt
-        value.move< ast::Statement > (that.value);
+        value.move< ast::Statement* > (that.value);
         break;
 
       case 39: // "number"
@@ -518,19 +518,19 @@ namespace yy {
         break;
 
       case 48: // inv_list
-        value.move< std::vector<ast::Invariant> > (that.value);
+        value.move< std::vector<ast::Invariant*> > (that.value);
         break;
 
       case 55: // post_list
-        value.move< std::vector<ast::PostCondition> > (that.value);
+        value.move< std::vector<ast::PostCondition*> > (that.value);
         break;
 
       case 53: // pre_list
-        value.move< std::vector<ast::PreCondition> > (that.value);
+        value.move< std::vector<ast::PreCondition*> > (that.value);
         break;
 
       case 51: // stmt_list
-        value.move< std::vector<ast::Statement> > (that.value);
+        value.move< std::vector<ast::Statement*> > (that.value);
         break;
 
       case 58: // identifier_list
@@ -797,55 +797,55 @@ namespace yy {
       switch (yyr1_[yyn])
     {
       case 41: // aexp
-        yylhs.value.emplace< ast::ArithmeticExpression > ();
+        yylhs.value.emplace< ast::ArithmeticExpression* > ();
         break;
 
       case 57: // assertion
-        yylhs.value.emplace< ast::Assertion > ();
+        yylhs.value.emplace< ast::Assertion* > ();
         break;
 
       case 50: // block
-        yylhs.value.emplace< ast::Block > ();
+        yylhs.value.emplace< ast::Block* > ();
         break;
 
       case 44: // bexp
-        yylhs.value.emplace< ast::BooleanExpression > ();
+        yylhs.value.emplace< ast::BooleanExpression* > ();
         break;
 
       case 45: // comp
-        yylhs.value.emplace< ast::Comparison > ();
+        yylhs.value.emplace< ast::Comparison* > ();
         break;
 
       case 43: // constant
-        yylhs.value.emplace< ast::Constant > ();
+        yylhs.value.emplace< ast::Constant* > ();
         break;
 
       case 49: // inv
-        yylhs.value.emplace< ast::Invariant > ();
+        yylhs.value.emplace< ast::Invariant* > ();
         break;
 
       case 47: // location
-        yylhs.value.emplace< ast::Location > ();
+        yylhs.value.emplace< ast::Location* > ();
         break;
 
       case 56: // post
-        yylhs.value.emplace< ast::PostCondition > ();
+        yylhs.value.emplace< ast::PostCondition* > ();
         break;
 
       case 54: // pre
-        yylhs.value.emplace< ast::PreCondition > ();
+        yylhs.value.emplace< ast::PreCondition* > ();
         break;
 
       case 52: // prog
-        yylhs.value.emplace< ast::Program > ();
+        yylhs.value.emplace< ast::Program* > ();
         break;
 
       case 42: // reference
-        yylhs.value.emplace< ast::Reference > ();
+        yylhs.value.emplace< ast::Reference* > ();
         break;
 
       case 46: // stmt
-        yylhs.value.emplace< ast::Statement > ();
+        yylhs.value.emplace< ast::Statement* > ();
         break;
 
       case 39: // "number"
@@ -857,19 +857,19 @@ namespace yy {
         break;
 
       case 48: // inv_list
-        yylhs.value.emplace< std::vector<ast::Invariant> > ();
+        yylhs.value.emplace< std::vector<ast::Invariant*> > ();
         break;
 
       case 55: // post_list
-        yylhs.value.emplace< std::vector<ast::PostCondition> > ();
+        yylhs.value.emplace< std::vector<ast::PostCondition*> > ();
         break;
 
       case 53: // pre_list
-        yylhs.value.emplace< std::vector<ast::PreCondition> > ();
+        yylhs.value.emplace< std::vector<ast::PreCondition*> > ();
         break;
 
       case 51: // stmt_list
-        yylhs.value.emplace< std::vector<ast::Statement> > ();
+        yylhs.value.emplace< std::vector<ast::Statement*> > ();
         break;
 
       case 58: // identifier_list
@@ -898,307 +898,307 @@ namespace yy {
             {
   case 2:
 #line 157 "/home/ferhat/git/vc-gen/vcgen-parser.yy"
-    { yylhs.value.as < ast::ArithmeticExpression > () = yystack_[0].value.as < ast::Reference > (); }
+    { yylhs.value.as < ast::ArithmeticExpression* > () = yystack_[0].value.as < ast::Reference* > (); }
 #line 903 "/home/ferhat/git/vc-gen/recognizer/vcgen-parser.cpp"
     break;
 
   case 3:
 #line 158 "/home/ferhat/git/vc-gen/vcgen-parser.yy"
-    { yylhs.value.as < ast::ArithmeticExpression > () = ast::ArrayReference(yystack_[3].value.as < ast::Reference > (), yystack_[1].value.as < ast::ArithmeticExpression > ()); }
+    { yylhs.value.as < ast::ArithmeticExpression* > () = new ast::ArrayReference(*yystack_[3].value.as < ast::Reference* > (), *yystack_[1].value.as < ast::ArithmeticExpression* > ()); }
 #line 909 "/home/ferhat/git/vc-gen/recognizer/vcgen-parser.cpp"
     break;
 
   case 4:
 #line 159 "/home/ferhat/git/vc-gen/vcgen-parser.yy"
-    { yylhs.value.as < ast::ArithmeticExpression > () = yystack_[0].value.as < ast::Constant > (); }
+    { yylhs.value.as < ast::ArithmeticExpression* > () = yystack_[0].value.as < ast::Constant* > (); }
 #line 915 "/home/ferhat/git/vc-gen/recognizer/vcgen-parser.cpp"
     break;
 
   case 5:
 #line 160 "/home/ferhat/git/vc-gen/vcgen-parser.yy"
-    { yylhs.value.as < ast::ArithmeticExpression > () = ast::Negate(yystack_[0].value.as < ast::ArithmeticExpression > ()); }
+    { yylhs.value.as < ast::ArithmeticExpression* > () = new ast::Negate(*yystack_[0].value.as < ast::ArithmeticExpression* > ()); }
 #line 921 "/home/ferhat/git/vc-gen/recognizer/vcgen-parser.cpp"
     break;
 
   case 6:
 #line 161 "/home/ferhat/git/vc-gen/vcgen-parser.yy"
-    { yylhs.value.as < ast::ArithmeticExpression > () = ast::Sum(yystack_[2].value.as < ast::ArithmeticExpression > (), yystack_[0].value.as < ast::ArithmeticExpression > ());}
+    { yylhs.value.as < ast::ArithmeticExpression* > () = new ast::Sum(*yystack_[2].value.as < ast::ArithmeticExpression* > (), *yystack_[0].value.as < ast::ArithmeticExpression* > ());}
 #line 927 "/home/ferhat/git/vc-gen/recognizer/vcgen-parser.cpp"
     break;
 
   case 7:
 #line 162 "/home/ferhat/git/vc-gen/vcgen-parser.yy"
-    { yylhs.value.as < ast::ArithmeticExpression > () = ast::Subtract(yystack_[2].value.as < ast::ArithmeticExpression > (), yystack_[0].value.as < ast::ArithmeticExpression > ()); }
+    { yylhs.value.as < ast::ArithmeticExpression* > () = new ast::Subtract(*yystack_[2].value.as < ast::ArithmeticExpression* > (), *yystack_[0].value.as < ast::ArithmeticExpression* > ()); }
 #line 933 "/home/ferhat/git/vc-gen/recognizer/vcgen-parser.cpp"
     break;
 
   case 8:
 #line 163 "/home/ferhat/git/vc-gen/vcgen-parser.yy"
-    { yylhs.value.as < ast::ArithmeticExpression > () = ast::Multiply(yystack_[2].value.as < ast::ArithmeticExpression > (), yystack_[0].value.as < ast::ArithmeticExpression > ()); }
+    { yylhs.value.as < ast::ArithmeticExpression* > () = new ast::Multiply(*yystack_[2].value.as < ast::ArithmeticExpression* > (), *yystack_[0].value.as < ast::ArithmeticExpression* > ()); }
 #line 939 "/home/ferhat/git/vc-gen/recognizer/vcgen-parser.cpp"
     break;
 
   case 9:
 #line 164 "/home/ferhat/git/vc-gen/vcgen-parser.yy"
-    { yylhs.value.as < ast::ArithmeticExpression > () = ast::Divide(yystack_[2].value.as < ast::ArithmeticExpression > (), yystack_[0].value.as < ast::ArithmeticExpression > ()); }
+    { yylhs.value.as < ast::ArithmeticExpression* > () = new ast::Divide(*yystack_[2].value.as < ast::ArithmeticExpression* > (), *yystack_[0].value.as < ast::ArithmeticExpression* > ()); }
 #line 945 "/home/ferhat/git/vc-gen/recognizer/vcgen-parser.cpp"
     break;
 
   case 10:
 #line 165 "/home/ferhat/git/vc-gen/vcgen-parser.yy"
-    { yylhs.value.as < ast::ArithmeticExpression > () = ast::Mod(yystack_[2].value.as < ast::ArithmeticExpression > (), yystack_[0].value.as < ast::ArithmeticExpression > ()); }
+    { yylhs.value.as < ast::ArithmeticExpression* > () = new ast::Mod(*yystack_[2].value.as < ast::ArithmeticExpression* > (), *yystack_[0].value.as < ast::ArithmeticExpression* > ()); }
 #line 951 "/home/ferhat/git/vc-gen/recognizer/vcgen-parser.cpp"
     break;
 
   case 11:
 #line 166 "/home/ferhat/git/vc-gen/vcgen-parser.yy"
-    { yylhs.value.as < ast::ArithmeticExpression > () = yystack_[1].value.as < ast::ArithmeticExpression > ();}
+    { yylhs.value.as < ast::ArithmeticExpression* > () = yystack_[1].value.as < ast::ArithmeticExpression* > ();}
 #line 957 "/home/ferhat/git/vc-gen/recognizer/vcgen-parser.cpp"
     break;
 
   case 12:
 #line 169 "/home/ferhat/git/vc-gen/vcgen-parser.yy"
-    { yylhs.value.as < ast::Reference > () = ast::Reference({yystack_[0].value.as < std::string > ()}); }
+    { yylhs.value.as < ast::Reference* > () = new ast::Reference(yystack_[0].value.as < std::string > ()); }
 #line 963 "/home/ferhat/git/vc-gen/recognizer/vcgen-parser.cpp"
     break;
 
   case 13:
 #line 172 "/home/ferhat/git/vc-gen/vcgen-parser.yy"
-    { yylhs.value.as < ast::Constant > () = ast::Constant({yystack_[0].value.as < int > ()}); }
+    { yylhs.value.as < ast::Constant* > () = new ast::Constant(yystack_[0].value.as < int > ()); }
 #line 969 "/home/ferhat/git/vc-gen/recognizer/vcgen-parser.cpp"
     break;
 
   case 14:
 #line 176 "/home/ferhat/git/vc-gen/vcgen-parser.yy"
-    { yylhs.value.as < ast::BooleanExpression > () = yystack_[0].value.as < ast::Comparison > (); }
+    { yylhs.value.as < ast::BooleanExpression* > () = yystack_[0].value.as < ast::Comparison* > (); }
 #line 975 "/home/ferhat/git/vc-gen/recognizer/vcgen-parser.cpp"
     break;
 
   case 15:
 #line 177 "/home/ferhat/git/vc-gen/vcgen-parser.yy"
-    { yylhs.value.as < ast::BooleanExpression > () = ast::NotExpression({yystack_[0].value.as < ast::BooleanExpression > ()}); }
+    { yylhs.value.as < ast::BooleanExpression* > () = new ast::NotExpression(*yystack_[0].value.as < ast::BooleanExpression* > ()); }
 #line 981 "/home/ferhat/git/vc-gen/recognizer/vcgen-parser.cpp"
     break;
 
   case 16:
 #line 178 "/home/ferhat/git/vc-gen/vcgen-parser.yy"
-    { yylhs.value.as < ast::BooleanExpression > () = ast::OrExpression({yystack_[2].value.as < ast::BooleanExpression > (), yystack_[0].value.as < ast::BooleanExpression > ()}); }
+    { yylhs.value.as < ast::BooleanExpression* > () = new ast::OrExpression(*yystack_[2].value.as < ast::BooleanExpression* > (), *yystack_[0].value.as < ast::BooleanExpression* > ()); }
 #line 987 "/home/ferhat/git/vc-gen/recognizer/vcgen-parser.cpp"
     break;
 
   case 17:
 #line 179 "/home/ferhat/git/vc-gen/vcgen-parser.yy"
-    { yylhs.value.as < ast::BooleanExpression > () = ast::AndExpression({yystack_[2].value.as < ast::BooleanExpression > (), yystack_[0].value.as < ast::BooleanExpression > ()}); }
+    { yylhs.value.as < ast::BooleanExpression* > () = new ast::AndExpression(*yystack_[2].value.as < ast::BooleanExpression* > (), *yystack_[0].value.as < ast::BooleanExpression* > ()); }
 #line 993 "/home/ferhat/git/vc-gen/recognizer/vcgen-parser.cpp"
     break;
 
   case 18:
 #line 180 "/home/ferhat/git/vc-gen/vcgen-parser.yy"
-    { yylhs.value.as < ast::BooleanExpression > () = yystack_[1].value.as < ast::BooleanExpression > ();}
+    { yylhs.value.as < ast::BooleanExpression* > () = yystack_[1].value.as < ast::BooleanExpression* > ();}
 #line 999 "/home/ferhat/git/vc-gen/recognizer/vcgen-parser.cpp"
     break;
 
   case 19:
 #line 184 "/home/ferhat/git/vc-gen/vcgen-parser.yy"
-    { yylhs.value.as < ast::Comparison > () = ast::EqualComparison(yystack_[2].value.as < ast::ArithmeticExpression > (), yystack_[0].value.as < ast::ArithmeticExpression > ()); }
+    { yylhs.value.as < ast::Comparison* > () = new ast::EqualComparison(*yystack_[2].value.as < ast::ArithmeticExpression* > (), *yystack_[0].value.as < ast::ArithmeticExpression* > ()); }
 #line 1005 "/home/ferhat/git/vc-gen/recognizer/vcgen-parser.cpp"
     break;
 
   case 20:
 #line 185 "/home/ferhat/git/vc-gen/vcgen-parser.yy"
-    { yylhs.value.as < ast::Comparison > () = ast::NotEqualComparison(yystack_[2].value.as < ast::ArithmeticExpression > (), yystack_[0].value.as < ast::ArithmeticExpression > ()); }
+    { yylhs.value.as < ast::Comparison* > () = new ast::NotEqualComparison(*yystack_[2].value.as < ast::ArithmeticExpression* > (), *yystack_[0].value.as < ast::ArithmeticExpression* > ()); }
 #line 1011 "/home/ferhat/git/vc-gen/recognizer/vcgen-parser.cpp"
     break;
 
   case 21:
 #line 186 "/home/ferhat/git/vc-gen/vcgen-parser.yy"
-    { yylhs.value.as < ast::Comparison > () = ast::LeqComparison(yystack_[2].value.as < ast::ArithmeticExpression > (), yystack_[0].value.as < ast::ArithmeticExpression > ()); }
+    { yylhs.value.as < ast::Comparison* > () = new ast::LeqComparison(*yystack_[2].value.as < ast::ArithmeticExpression* > (), *yystack_[0].value.as < ast::ArithmeticExpression* > ()); }
 #line 1017 "/home/ferhat/git/vc-gen/recognizer/vcgen-parser.cpp"
     break;
 
   case 22:
 #line 187 "/home/ferhat/git/vc-gen/vcgen-parser.yy"
-    { yylhs.value.as < ast::Comparison > () = ast::GeqComparison(yystack_[2].value.as < ast::ArithmeticExpression > (), yystack_[0].value.as < ast::ArithmeticExpression > ()); }
+    { yylhs.value.as < ast::Comparison* > () = new ast::GeqComparison(*yystack_[2].value.as < ast::ArithmeticExpression* > (), *yystack_[0].value.as < ast::ArithmeticExpression* > ()); }
 #line 1023 "/home/ferhat/git/vc-gen/recognizer/vcgen-parser.cpp"
     break;
 
   case 23:
 #line 188 "/home/ferhat/git/vc-gen/vcgen-parser.yy"
-    { yylhs.value.as < ast::Comparison > () = ast::LtComparison(yystack_[2].value.as < ast::ArithmeticExpression > (), yystack_[0].value.as < ast::ArithmeticExpression > ()); }
+    { yylhs.value.as < ast::Comparison* > () = new ast::LtComparison(*yystack_[2].value.as < ast::ArithmeticExpression* > (), *yystack_[0].value.as < ast::ArithmeticExpression* > ()); }
 #line 1029 "/home/ferhat/git/vc-gen/recognizer/vcgen-parser.cpp"
     break;
 
   case 24:
 #line 189 "/home/ferhat/git/vc-gen/vcgen-parser.yy"
-    { yylhs.value.as < ast::Comparison > () = ast::GtComparison(yystack_[2].value.as < ast::ArithmeticExpression > (), yystack_[0].value.as < ast::ArithmeticExpression > ()); }
+    { yylhs.value.as < ast::Comparison* > () = new ast::GtComparison(*yystack_[2].value.as < ast::ArithmeticExpression* > (), *yystack_[0].value.as < ast::ArithmeticExpression* > ()); }
 #line 1035 "/home/ferhat/git/vc-gen/recognizer/vcgen-parser.cpp"
     break;
 
   case 25:
 #line 193 "/home/ferhat/git/vc-gen/vcgen-parser.yy"
-    { yylhs.value.as < ast::Statement > () = ast::AssignmentStatement(yystack_[3].value.as < ast::Location > (), yystack_[1].value.as < ast::ArithmeticExpression > ());}
+    { yylhs.value.as < ast::Statement* > () = new ast::AssignmentStatement(*yystack_[3].value.as < ast::Location* > (), *yystack_[1].value.as < ast::ArithmeticExpression* > ());}
 #line 1041 "/home/ferhat/git/vc-gen/recognizer/vcgen-parser.cpp"
     break;
 
   case 26:
 #line 194 "/home/ferhat/git/vc-gen/vcgen-parser.yy"
-    { yylhs.value.as < ast::Statement > () = ast::MultipleAssignmentStatement(yystack_[7].value.as < ast::Location > (), yystack_[5].value.as < ast::Location > (), yystack_[3].value.as < ast::ArithmeticExpression > (), yystack_[1].value.as < ast::ArithmeticExpression > ());}
+    { yylhs.value.as < ast::Statement* > () = new ast::MultipleAssignmentStatement(*yystack_[7].value.as < ast::Location* > (), *yystack_[5].value.as < ast::Location* > (), *yystack_[3].value.as < ast::ArithmeticExpression* > (), *yystack_[1].value.as < ast::ArithmeticExpression* > ());}
 #line 1047 "/home/ferhat/git/vc-gen/recognizer/vcgen-parser.cpp"
     break;
 
   case 27:
 #line 195 "/home/ferhat/git/vc-gen/vcgen-parser.yy"
-    { yylhs.value.as < ast::Statement > () = ast::ArrayAssignmentStatement(yystack_[6].value.as < ast::Location > (), yystack_[4].value.as < ast::ArithmeticExpression > (), yystack_[1].value.as < ast::ArithmeticExpression > ());}
+    { yylhs.value.as < ast::Statement* > () = new ast::ArrayAssignmentStatement(*yystack_[6].value.as < ast::Location* > (), *yystack_[4].value.as < ast::ArithmeticExpression* > (), *yystack_[1].value.as < ast::ArithmeticExpression* > ());}
 #line 1053 "/home/ferhat/git/vc-gen/recognizer/vcgen-parser.cpp"
     break;
 
   case 28:
 #line 196 "/home/ferhat/git/vc-gen/vcgen-parser.yy"
-    { yylhs.value.as < ast::Statement > () = ast::IfThenElseStatement(yystack_[5].value.as < ast::BooleanExpression > (), yystack_[3].value.as < ast::Block > (), yystack_[1].value.as < ast::Block > ());}
+    { yylhs.value.as < ast::Statement* > () = new ast::IfThenElseStatement(*yystack_[5].value.as < ast::BooleanExpression* > (), *yystack_[3].value.as < ast::Block* > (), *yystack_[1].value.as < ast::Block* > ());}
 #line 1059 "/home/ferhat/git/vc-gen/recognizer/vcgen-parser.cpp"
     break;
 
   case 29:
 #line 197 "/home/ferhat/git/vc-gen/vcgen-parser.yy"
-    { yylhs.value.as < ast::Statement > () = ast::IfThenStatement(yystack_[3].value.as < ast::BooleanExpression > (), yystack_[1].value.as < ast::Block > ());}
+    { yylhs.value.as < ast::Statement* > () = new ast::IfThenStatement(*yystack_[3].value.as < ast::BooleanExpression* > (), *yystack_[1].value.as < ast::Block* > ());}
 #line 1065 "/home/ferhat/git/vc-gen/recognizer/vcgen-parser.cpp"
     break;
 
   case 30:
 #line 198 "/home/ferhat/git/vc-gen/vcgen-parser.yy"
-    { yylhs.value.as < ast::Statement > () = ast::WhileStatement(yystack_[4].value.as < ast::BooleanExpression > (), yystack_[3].value.as < std::vector<ast::Invariant> > (), yystack_[1].value.as < ast::Block > ());}
+    { yylhs.value.as < ast::Statement* > () = new ast::WhileStatement(*yystack_[4].value.as < ast::BooleanExpression* > (), yystack_[3].value.as < std::vector<ast::Invariant*> > (), *yystack_[1].value.as < ast::Block* > ());}
 #line 1071 "/home/ferhat/git/vc-gen/recognizer/vcgen-parser.cpp"
     break;
 
   case 31:
 #line 201 "/home/ferhat/git/vc-gen/vcgen-parser.yy"
-    { yylhs.value.as < ast::Location > () = ast::Location({yystack_[0].value.as < std::string > ()}); }
+    { yylhs.value.as < ast::Location* > () = new ast::Location(yystack_[0].value.as < std::string > ()); }
 #line 1077 "/home/ferhat/git/vc-gen/recognizer/vcgen-parser.cpp"
     break;
 
   case 32:
 #line 205 "/home/ferhat/git/vc-gen/vcgen-parser.yy"
-    { yylhs.value.as < std::vector<ast::Invariant> > () = {yystack_[0].value.as < ast::Invariant > ()}; }
+    { yylhs.value.as < std::vector<ast::Invariant*> > () = {yystack_[0].value.as < ast::Invariant* > ()}; }
 #line 1083 "/home/ferhat/git/vc-gen/recognizer/vcgen-parser.cpp"
     break;
 
   case 33:
 #line 206 "/home/ferhat/git/vc-gen/vcgen-parser.yy"
-    { yylhs.value.as < std::vector<ast::Invariant> > () = enlist(yystack_[1].value.as < std::vector<ast::Invariant> > (), yystack_[0].value.as < ast::Invariant > ()); }
+    { yylhs.value.as < std::vector<ast::Invariant*> > () = enlist(yystack_[1].value.as < std::vector<ast::Invariant*> > (), yystack_[0].value.as < ast::Invariant* > ()); }
 #line 1089 "/home/ferhat/git/vc-gen/recognizer/vcgen-parser.cpp"
     break;
 
   case 34:
 #line 209 "/home/ferhat/git/vc-gen/vcgen-parser.yy"
-    { yylhs.value.as < ast::Invariant > () = ast::Invariant({yystack_[0].value.as < ast::Assertion > ()}); }
+    { yylhs.value.as < ast::Invariant* > () = new ast::Invariant(*yystack_[0].value.as < ast::Assertion* > ()); }
 #line 1095 "/home/ferhat/git/vc-gen/recognizer/vcgen-parser.cpp"
     break;
 
   case 35:
 #line 212 "/home/ferhat/git/vc-gen/vcgen-parser.yy"
-    { yylhs.value.as < ast::Block > () = ast::Block({yystack_[0].value.as < std::vector<ast::Statement> > ()}); /*print<ast::Statement>($1);*/}
+    { yylhs.value.as < ast::Block* > () = new ast::Block(yystack_[0].value.as < std::vector<ast::Statement*> > ()); /*print<ast::Statement>($1);*/}
 #line 1101 "/home/ferhat/git/vc-gen/recognizer/vcgen-parser.cpp"
     break;
 
   case 36:
 #line 216 "/home/ferhat/git/vc-gen/vcgen-parser.yy"
-    { yylhs.value.as < std::vector<ast::Statement> > () = {yystack_[0].value.as < ast::Statement > ()};}
+    { yylhs.value.as < std::vector<ast::Statement*> > () = {yystack_[0].value.as < ast::Statement* > ()};}
 #line 1107 "/home/ferhat/git/vc-gen/recognizer/vcgen-parser.cpp"
     break;
 
   case 37:
 #line 217 "/home/ferhat/git/vc-gen/vcgen-parser.yy"
-    { yylhs.value.as < std::vector<ast::Statement> > () = enlist(yystack_[1].value.as < std::vector<ast::Statement> > (), yystack_[0].value.as < ast::Statement > ()); }
+    { yylhs.value.as < std::vector<ast::Statement*> > () = enlist(yystack_[1].value.as < std::vector<ast::Statement*> > (), yystack_[0].value.as < ast::Statement* > ()); }
 #line 1113 "/home/ferhat/git/vc-gen/recognizer/vcgen-parser.cpp"
     break;
 
   case 38:
 #line 221 "/home/ferhat/git/vc-gen/vcgen-parser.yy"
-    { yylhs.value.as < ast::Program > () = new ast::Program(yystack_[5].value.as < std::string > (), yystack_[4].value.as < std::vector<ast::PreCondition> > (), yystack_[3].value.as < std::vector<ast::PostCondition> > (), yystack_[1].value.as < ast::Block > ()); program = &yylhs.value.as < ast::Program > ();}
+    { yylhs.value.as < ast::Program* > () = new ast::Program(yystack_[5].value.as < std::string > (), yystack_[4].value.as < std::vector<ast::PreCondition*> > (), yystack_[3].value.as < std::vector<ast::PostCondition*> > (), *yystack_[1].value.as < ast::Block* > ()); driver.program = yylhs.value.as < ast::Program* > ();}
 #line 1119 "/home/ferhat/git/vc-gen/recognizer/vcgen-parser.cpp"
     break;
 
   case 39:
 #line 225 "/home/ferhat/git/vc-gen/vcgen-parser.yy"
-    { yylhs.value.as < std::vector<ast::PreCondition> > () = {yystack_[0].value.as < ast::PreCondition > ()}; }
+    { yylhs.value.as < std::vector<ast::PreCondition*> > () = {yystack_[0].value.as < ast::PreCondition* > ()}; }
 #line 1125 "/home/ferhat/git/vc-gen/recognizer/vcgen-parser.cpp"
     break;
 
   case 40:
 #line 226 "/home/ferhat/git/vc-gen/vcgen-parser.yy"
-    { yylhs.value.as < std::vector<ast::PreCondition> > () = enlist(yystack_[1].value.as < std::vector<ast::PreCondition> > (), yystack_[0].value.as < ast::PreCondition > ()); }
+    { yylhs.value.as < std::vector<ast::PreCondition*> > () = enlist(yystack_[1].value.as < std::vector<ast::PreCondition*> > (), yystack_[0].value.as < ast::PreCondition* > ()); }
 #line 1131 "/home/ferhat/git/vc-gen/recognizer/vcgen-parser.cpp"
     break;
 
   case 41:
 #line 229 "/home/ferhat/git/vc-gen/vcgen-parser.yy"
-    { yylhs.value.as < ast::PreCondition > () = ast::PreCondition({yystack_[0].value.as < ast::Assertion > ()}); }
+    { yylhs.value.as < ast::PreCondition* > () = new ast::PreCondition(*yystack_[0].value.as < ast::Assertion* > ()); }
 #line 1137 "/home/ferhat/git/vc-gen/recognizer/vcgen-parser.cpp"
     break;
 
   case 42:
 #line 233 "/home/ferhat/git/vc-gen/vcgen-parser.yy"
-    { yylhs.value.as < std::vector<ast::PostCondition> > () = {yystack_[0].value.as < ast::PostCondition > ()}; }
+    { yylhs.value.as < std::vector<ast::PostCondition*> > () = {yystack_[0].value.as < ast::PostCondition* > ()}; }
 #line 1143 "/home/ferhat/git/vc-gen/recognizer/vcgen-parser.cpp"
     break;
 
   case 43:
 #line 234 "/home/ferhat/git/vc-gen/vcgen-parser.yy"
-    { yylhs.value.as < std::vector<ast::PostCondition> > () = enlist(yystack_[1].value.as < std::vector<ast::PostCondition> > (), yystack_[0].value.as < ast::PostCondition > ()); }
+    { yylhs.value.as < std::vector<ast::PostCondition*> > () = enlist(yystack_[1].value.as < std::vector<ast::PostCondition*> > (), yystack_[0].value.as < ast::PostCondition* > ()); }
 #line 1149 "/home/ferhat/git/vc-gen/recognizer/vcgen-parser.cpp"
     break;
 
   case 44:
 #line 237 "/home/ferhat/git/vc-gen/vcgen-parser.yy"
-    { yylhs.value.as < ast::PostCondition > () = ast::PostCondition({yystack_[0].value.as < ast::Assertion > ()}); }
+    { yylhs.value.as < ast::PostCondition* > () = new ast::PostCondition(*yystack_[0].value.as < ast::Assertion* > ()); }
 #line 1155 "/home/ferhat/git/vc-gen/recognizer/vcgen-parser.cpp"
     break;
 
   case 45:
 #line 241 "/home/ferhat/git/vc-gen/vcgen-parser.yy"
-    { yylhs.value.as < ast::Assertion > () = yystack_[0].value.as < ast::Comparison > (); }
+    { yylhs.value.as < ast::Assertion* > () = yystack_[0].value.as < ast::Comparison* > (); }
 #line 1161 "/home/ferhat/git/vc-gen/recognizer/vcgen-parser.cpp"
     break;
 
   case 46:
 #line 242 "/home/ferhat/git/vc-gen/vcgen-parser.yy"
-    { yylhs.value.as < ast::Assertion > () = ast::Negation(yystack_[0].value.as < ast::Assertion > ()); }
+    { yylhs.value.as < ast::Assertion* > () = new ast::Negation(*yystack_[0].value.as < ast::Assertion* > ()); }
 #line 1167 "/home/ferhat/git/vc-gen/recognizer/vcgen-parser.cpp"
     break;
 
   case 47:
 #line 243 "/home/ferhat/git/vc-gen/vcgen-parser.yy"
-    { yylhs.value.as < ast::Assertion > () = ast::Disjunction(yystack_[2].value.as < ast::Assertion > (), yystack_[0].value.as < ast::Assertion > ()); }
+    { yylhs.value.as < ast::Assertion* > () = new ast::Disjunction(*yystack_[2].value.as < ast::Assertion* > (), *yystack_[0].value.as < ast::Assertion* > ()); }
 #line 1173 "/home/ferhat/git/vc-gen/recognizer/vcgen-parser.cpp"
     break;
 
   case 48:
 #line 244 "/home/ferhat/git/vc-gen/vcgen-parser.yy"
-    { yylhs.value.as < ast::Assertion > () = ast::Conjunction(yystack_[2].value.as < ast::Assertion > (), yystack_[0].value.as < ast::Assertion > ()); }
+    { yylhs.value.as < ast::Assertion* > () = new ast::Conjunction(*yystack_[2].value.as < ast::Assertion* > (), *yystack_[0].value.as < ast::Assertion* > ()); }
 #line 1179 "/home/ferhat/git/vc-gen/recognizer/vcgen-parser.cpp"
     break;
 
   case 49:
 #line 245 "/home/ferhat/git/vc-gen/vcgen-parser.yy"
-    { yylhs.value.as < ast::Assertion > () = ast::Implication(yystack_[2].value.as < ast::Assertion > (), yystack_[0].value.as < ast::Assertion > ()); }
+    { yylhs.value.as < ast::Assertion* > () = new ast::Implication(*yystack_[2].value.as < ast::Assertion* > (), *yystack_[0].value.as < ast::Assertion* > ()); }
 #line 1185 "/home/ferhat/git/vc-gen/recognizer/vcgen-parser.cpp"
     break;
 
   case 50:
 #line 246 "/home/ferhat/git/vc-gen/vcgen-parser.yy"
-    { yylhs.value.as < ast::Assertion > () = ast::UniversalQuantification(yystack_[2].value.as < std::vector<std::string> > (), yystack_[0].value.as < ast::Assertion > ()); print<std::string>(yystack_[2].value.as < std::vector<std::string> > ()); }
+    { yylhs.value.as < ast::Assertion* > () = new ast::UniversalQuantification(yystack_[2].value.as < std::vector<std::string> > (), *yystack_[0].value.as < ast::Assertion* > ()); print<std::string>(yystack_[2].value.as < std::vector<std::string> > ()); }
 #line 1191 "/home/ferhat/git/vc-gen/recognizer/vcgen-parser.cpp"
     break;
 
   case 51:
 #line 247 "/home/ferhat/git/vc-gen/vcgen-parser.yy"
-    { yylhs.value.as < ast::Assertion > () = ast::ExistentialQuantification(yystack_[2].value.as < std::vector<std::string> > (), yystack_[0].value.as < ast::Assertion > ()); print<std::string>(yystack_[2].value.as < std::vector<std::string> > ()); }
+    { yylhs.value.as < ast::Assertion* > () = new ast::ExistentialQuantification(yystack_[2].value.as < std::vector<std::string> > (), *yystack_[0].value.as < ast::Assertion* > ()); print<std::string>(yystack_[2].value.as < std::vector<std::string> > ()); }
 #line 1197 "/home/ferhat/git/vc-gen/recognizer/vcgen-parser.cpp"
     break;
 
   case 52:
 #line 248 "/home/ferhat/git/vc-gen/vcgen-parser.yy"
-    { yylhs.value.as < ast::Assertion > () = yystack_[1].value.as < ast::Assertion > (); }
+    { yylhs.value.as < ast::Assertion* > () = yystack_[1].value.as < ast::Assertion* > (); }
 #line 1203 "/home/ferhat/git/vc-gen/recognizer/vcgen-parser.cpp"
     break;
 

@@ -19,7 +19,8 @@ YY_DECL;
 
 class vcgen_driver {
   public:
-    //ast::Program* prog = nullptr;
+    /* the top level root node of our final AST */
+    ast::Program* program = nullptr;
     vcgen_driver();
     virtual ~vcgen_driver();
 

@@ -120,24 +120,24 @@ ast::Program *program; /* the top level root node of our final AST */
 %token <std::string>    IDENTIFIER "identifier"
 %token <int>            NUMBER "number"
 
-%type <ast::ArithmeticExpression>       aexp
-%type <ast::Comparison>                 comp
-%type <ast::BooleanExpression>          bexp
-%type <ast::Statement>                  stmt
-%type <ast::Invariant>                  inv
-%type <ast::Block>                      block
-%type <ast::Program>                    prog
-%type <ast::PreCondition>               pre
-%type <ast::PostCondition>              post
-%type <ast::Assertion>                  assertion
-%type <ast::Location>                   location
-%type <ast::Reference>                  reference
-%type <ast::Constant>                   constant
+%type <ast::ArithmeticExpression*>       aexp
+%type <ast::Comparison*>                 comp
+%type <ast::BooleanExpression*>          bexp
+%type <ast::Statement*>                  stmt
+%type <ast::Invariant*>                  inv
+%type <ast::Block*>                      block
+%type <ast::Program*>                    prog
+%type <ast::PreCondition*>               pre
+%type <ast::PostCondition*>              post
+%type <ast::Assertion*>                  assertion
+%type <ast::Location*>                   location
+%type <ast::Reference*>                  reference
+%type <ast::Constant*>                   constant
 
-%type <std::vector<ast::Invariant>>     inv_list;
-%type <std::vector<ast::Statement>>     stmt_list;
-%type <std::vector<ast::PreCondition>>  pre_list;
-%type <std::vector<ast::PostCondition>> post_list;
+%type <std::vector<ast::Invariant*>>     inv_list;
+%type <std::vector<ast::Statement*>>     stmt_list;
+%type <std::vector<ast::PreCondition*>>  pre_list;
+%type <std::vector<ast::PostCondition*>> post_list;
 %type <std::vector<std::string>>        identifier_list;
 
 
@@ -155,50 +155,50 @@ ast::Program *program; /* the top level root node of our final AST */
 
 aexp:
       reference                 { $$ = $1; }
-    | reference "[" aexp "]"    { $$ = ast::ArrayReference($1, $3); }
+    | reference "[" aexp "]"    { $$ = new ast::ArrayReference(*$1, *$3); }
     | constant                  { $$ = $1; }
-    | "-" aexp                  { $$ = ast::Negate($2); }
-    | aexp "+" aexp             { $$ = ast::Sum($1, $3);}
-    | aexp "-" aexp             { $$ = ast::Subtract($1, $3); }
-    | aexp "*" aexp             { $$ = ast::Multiply($1, $3); }
-    | aexp "/" aexp             { $$ = ast::Divide($1, $3); }
-    | aexp "%" aexp             { $$ = ast::Mod($1, $3); }
+    | "-" aexp                  { $$ = new ast::Negate(*$2); }
+    | aexp "+" aexp             { $$ = new ast::Sum(*$1, *$3);}
+    | aexp "-" aexp             { $$ = new ast::Subtract(*$1, *$3); }
+    | aexp "*" aexp             { $$ = new ast::Multiply(*$1, *$3); }
+    | aexp "/" aexp             { $$ = new ast::Divide(*$1, *$3); }
+    | aexp "%" aexp             { $$ = new ast::Mod(*$1, *$3); }
     | "(" aexp ")"              { $$ = $2;}
     ;
 
-reference: "identifier"         { $$ = ast::Reference({$1}); }
+reference: "identifier"         { $$ = new ast::Reference($1); }
     ;
 
-constant: "number"              { $$ = ast::Constant({$1}); }
+constant: "number"              { $$ = new ast::Constant($1); }
     ;
 
 bexp:
       comp                      { $$ = $1; }
-    | "!" bexp                  { $$ = ast::NotExpression({$2}); }
-    | bexp "||" bexp            { $$ = ast::OrExpression({$1, $3}); }
-    | bexp "&&" bexp            { $$ = ast::AndExpression({$1, $3}); }
+    | "!" bexp                  { $$ = new ast::NotExpression(*$2); }
+    | bexp "||" bexp            { $$ = new ast::OrExpression(*$1, *$3); }
+    | bexp "&&" bexp            { $$ = new ast::AndExpression(*$1, *$3); }
     | "(" bexp ")"              { $$ = $2;}
     ;
 
 comp:
-      aexp "="  aexp            { $$ = ast::EqualComparison($1, $3); }
-    | aexp "!=" aexp            { $$ = ast::NotEqualComparison($1, $3); }
-    | aexp "<=" aexp            { $$ = ast::LeqComparison($1, $3); }
-    | aexp ">=" aexp            { $$ = ast::GeqComparison($1, $3); }
-    | aexp "<"  aexp            { $$ = ast::LtComparison($1, $3); }
-    | aexp ">"  aexp            { $$ = ast::GtComparison($1, $3); }
+      aexp "="  aexp            { $$ = new ast::EqualComparison(*$1, *$3); }
+    | aexp "!=" aexp            { $$ = new ast::NotEqualComparison(*$1, *$3); }
+    | aexp "<=" aexp            { $$ = new ast::LeqComparison(*$1, *$3); }
+    | aexp ">=" aexp            { $$ = new ast::GeqComparison(*$1, *$3); }
+    | aexp "<"  aexp            { $$ = new ast::LtComparison(*$1, *$3); }
+    | aexp ">"  aexp            { $$ = new ast::GtComparison(*$1, *$3); }
     ;
 
 stmt:
-      location ":=" aexp ";"                        { $$ = ast::AssignmentStatement($1, $3);}
-    | location "," location ":=" aexp "," aexp ";"  { $$ = ast::MultipleAssignmentStatement($1, $3, $5, $7);}
-    | location "[" aexp "]" ":=" aexp ";"           { $$ = ast::ArrayAssignmentStatement($1, $3, $6);}
-    | "if" bexp "then" block "else" block "end"     { $$ = ast::IfThenElseStatement($2, $4, $6);}
-    | "if" bexp "then" block "end"                  { $$ = ast::IfThenStatement($2, $4);}
-    | "while" bexp inv_list "do" block "end"        { $$ = ast::WhileStatement($2, $3, $5);}
+      location ":=" aexp ";"                        { $$ = new ast::AssignmentStatement(*$1, *$3);}
+    | location "," location ":=" aexp "," aexp ";"  { $$ = new ast::MultipleAssignmentStatement(*$1, *$3, *$5, *$7);}
+    | location "[" aexp "]" ":=" aexp ";"           { $$ = new ast::ArrayAssignmentStatement(*$1, *$3, *$6);}
+    | "if" bexp "then" block "else" block "end"     { $$ = new ast::IfThenElseStatement(*$2, *$4, *$6);}
+    | "if" bexp "then" block "end"                  { $$ = new ast::IfThenStatement(*$2, *$4);}
+    | "while" bexp inv_list "do" block "end"        { $$ = new ast::WhileStatement(*$2, $3, *$5);}
     ;
 
-location: "identifier"  { $$ = ast::Location({$1}); }
+location: "identifier"  { $$ = new ast::Location($1); }
     ;
 
 inv_list:
@@ -206,10 +206,10 @@ inv_list:
     | inv_list inv      { $$ = enlist($1, $2); }
     ;
 
-inv: "inv" assertion   { $$ = ast::Invariant({$2}); }
+inv: "inv" assertion   { $$ = new ast::Invariant(*$2); }
     ;
 
-block: stmt_list        { $$ = ast::Block({$1}); /*print<ast::Statement>($1);*/}
+block: stmt_list        { $$ = new ast::Block($1); /*print<ast::Statement>($1);*/}
     ;
 
 stmt_list:
@@ -218,7 +218,7 @@ stmt_list:
     ;
 
 prog: "program" "identifier" pre_list post_list "is" block "end"
-      { $$ = ast::Program($2, $3, $4, $6); program = &$$;}
+      { $$ = new ast::Program($2, $3, $4, *$6); driver.program = $$;}
     ;
 
 pre_list:
@@ -226,7 +226,7 @@ pre_list:
     | pre_list pre          { $$ = enlist($1, $2); }
     ;
 
-pre: "pre" assertion        { $$ = ast::PreCondition({$2}); }
+pre: "pre" assertion        { $$ = new ast::PreCondition(*$2); }
     ;
 
 post_list:
@@ -234,17 +234,17 @@ post_list:
     | post_list post        { $$ = enlist($1, $2); }
     ;
 
-post: "post" assertion      { $$ = ast::PostCondition({$2}); }
+post: "post" assertion      { $$ = new ast::PostCondition(*$2); }
     ;
 
 assertion:
       comp                                      { $$ = $1; }
-    | "!" assertion                             { $$ = ast::Negation($2); }
-    | assertion "||" assertion                  { $$ = ast::Disjunction($1, $3); }
-    | assertion "&&" assertion                  { $$ = ast::Conjunction($1, $3); }
-    | assertion "==>" assertion                 { $$ = ast::Implication($1, $3); }
-    | "forall" identifier_list "," assertion    { $$ = ast::UniversalQuantification($2, $4); print<std::string>($2); }
-    | "exists" identifier_list "," assertion    { $$ = ast::ExistentialQuantification($2, $4); print<std::string>($2); }
+    | "!" assertion                             { $$ = new ast::Negation(*$2); }
+    | assertion "||" assertion                  { $$ = new ast::Disjunction(*$1, *$3); }
+    | assertion "&&" assertion                  { $$ = new ast::Conjunction(*$1, *$3); }
+    | assertion "==>" assertion                 { $$ = new ast::Implication(*$1, *$3); }
+    | "forall" identifier_list "," assertion    { $$ = new ast::UniversalQuantification($2, *$4); print<std::string>($2); }
+    | "exists" identifier_list "," assertion    { $$ = new ast::ExistentialQuantification($2, *$4); print<std::string>($2); }
     | "(" assertion ")"                         { $$ = $2; }
     ;
 

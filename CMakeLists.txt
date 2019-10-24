@@ -8,7 +8,9 @@ include_directories(. recognizer)
 find_package(BISON)
 find_package(FLEX)
 
-BISON_TARGET(MyParser vcgen-parser.yy ${CMAKE_CURRENT_SOURCE_DIR}/recognizer/vcgen-parser.cpp)
+
+BISON_TARGET(MyParser vcgen-parser.yy ${CMAKE_CURRENT_SOURCE_DIR}/recognizer/vcgen-parser.cpp
+        COMPILE_FLAGS "--report=state --graph --warnings=all")
 FLEX_TARGET(MyScanner vcgen-scanner.ll ${CMAKE_CURRENT_SOURCE_DIR}/recognizer/vcgen-scanner.cpp)
 ADD_FLEX_BISON_DEPENDENCY(MyScanner MyParser)
 
@@ -19,4 +21,4 @@ add_executable(vcgen
         vcgen.cpp
         ${BISON_MyParser_OUTPUTS}
         ${FLEX_MyScanner_OUTPUTS}
-)
+        ast.cpp ast.hpp)

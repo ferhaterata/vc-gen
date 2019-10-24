@@ -44,7 +44,7 @@
 #ifndef YY_YY_HOME_FERHAT_GIT_VC_GEN_RECOGNIZER_VCGEN_PARSER_HPP_INCLUDED
 # define YY_YY_HOME_FERHAT_GIT_VC_GEN_RECOGNIZER_VCGEN_PARSER_HPP_INCLUDED
 // //                    "%code requires" blocks.
-#line 13 "/home/ferhat/git/vc-gen/vcgen-parser.yy"
+#line 16 "/home/ferhat/git/vc-gen/vcgen-parser.yy"
 
 # include <string>
 class vcgen_driver;
@@ -369,7 +369,7 @@ namespace yy {
     union union_type
     {
       // "number"
-      // exp
+      // aexp
       char dummy1[sizeof (int)];
 
       // "identifier"
@@ -562,7 +562,7 @@ namespace yy {
 switch (yytype)
     {
       case 39: // "number"
-      case 44: // exp
+      case 41: // aexp
         value.template destroy< int > ();
         break;
 
@@ -1329,7 +1329,7 @@ switch (yytype)
     // Tables.
   // YYPACT[STATE-NUM] -- Index in YYTABLE of the portion describing
   // STATE-NUM.
-  static const signed char yypact_[];
+  static const short yypact_[];
 
   // YYDEFACT[STATE-NUM] -- Default reduction number in state STATE-NUM.
   // Performed when YYTABLE does not specify something else to do.  Zero
@@ -1337,7 +1337,7 @@ switch (yytype)
   static const unsigned char yydefact_[];
 
   // YYPGOTO[NTERM-NUM].
-  static const signed char yypgoto_[];
+  static const short yypgoto_[];
 
   // YYDEFGOTO[NTERM-NUM].
   static const signed char yydefgoto_[];
@@ -1347,7 +1347,7 @@ switch (yytype)
   // number is the opposite.  If YYTABLE_NINF, syntax error.
   static const unsigned char yytable_[];
 
-  static const signed char yycheck_[];
+  static const unsigned char yycheck_[];
 
   // YYSTOS[STATE-NUM] -- The (internal number of the) accessing
   // symbol of state STATE-NUM.
@@ -1597,9 +1597,9 @@ switch (yytype)
     enum
     {
       yyeof_ = 0,
-      yylast_ = 33,     ///< Last index in yytable_.
-      yynnts_ = 5,  ///< Number of nonterminal symbols.
-      yyfinal_ = 3, ///< Termination state number.
+      yylast_ = 189,     ///< Last index in yytable_.
+      yynnts_ = 16,  ///< Number of nonterminal symbols.
+      yyfinal_ = 4, ///< Termination state number.
       yyterror_ = 1,
       yyerrcode_ = 256,
       yyntokens_ = 40  ///< Number of tokens.
@@ -1673,7 +1673,7 @@ switch (yytype)
     switch (this->type_get ())
     {
       case 39: // "number"
-      case 44: // exp
+      case 41: // aexp
         value.move< int > (std::move (that.value));
         break;
 
@@ -1697,7 +1697,7 @@ switch (yytype)
     switch (this->type_get ())
     {
       case 39: // "number"
-      case 44: // exp
+      case 41: // aexp
         value.copy< int > (YY_MOVE (that.value));
         break;
 
@@ -1728,7 +1728,7 @@ switch (yytype)
     switch (this->type_get ())
     {
       case 39: // "number"
-      case 44: // exp
+      case 41: // aexp
         value.move< int > (YY_MOVE (s.value));
         break;
 

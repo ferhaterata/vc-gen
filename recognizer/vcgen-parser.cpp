@@ -41,7 +41,7 @@
 
 
 // Unqualified %code blocks.
-#line 31 "/home/ferhat/git/vc-gen/vcgen-parser.yy"
+#line 34 "/home/ferhat/git/vc-gen/vcgen-parser.yy"
 
 # include "vcgen-driver.hpp"
 
@@ -249,7 +249,7 @@ namespace yy {
     switch (that.type_get ())
     {
       case 39: // "number"
-      case 44: // exp
+      case 41: // aexp
         value.YY_MOVE_OR_COPY< int > (YY_MOVE (that.value));
         break;
 
@@ -273,7 +273,7 @@ namespace yy {
     switch (that.type_get ())
     {
       case 39: // "number"
-      case 44: // exp
+      case 41: // aexp
         value.move< int > (YY_MOVE (that.value));
         break;
 
@@ -297,7 +297,7 @@ namespace yy {
     switch (that.type_get ())
     {
       case 39: // "number"
-      case 44: // exp
+      case 41: // aexp
         value.move< int > (that.value);
         break;
 
@@ -345,19 +345,19 @@ namespace yy {
     switch (yytype)
     {
       case 38: // "identifier"
-#line 100 "/home/ferhat/git/vc-gen/vcgen-parser.yy"
+#line 102 "/home/ferhat/git/vc-gen/vcgen-parser.yy"
         { yyoutput << yysym.value.template as < std::string > (); }
 #line 351 "/home/ferhat/git/vc-gen/recognizer/vcgen-parser.cpp"
         break;
 
       case 39: // "number"
-#line 100 "/home/ferhat/git/vc-gen/vcgen-parser.yy"
+#line 102 "/home/ferhat/git/vc-gen/vcgen-parser.yy"
         { yyoutput << yysym.value.template as < int > (); }
 #line 357 "/home/ferhat/git/vc-gen/recognizer/vcgen-parser.cpp"
         break;
 
-      case 44: // exp
-#line 100 "/home/ferhat/git/vc-gen/vcgen-parser.yy"
+      case 41: // aexp
+#line 102 "/home/ferhat/git/vc-gen/vcgen-parser.yy"
         { yyoutput << yysym.value.template as < int > (); }
 #line 363 "/home/ferhat/git/vc-gen/recognizer/vcgen-parser.cpp"
         break;
@@ -478,7 +478,7 @@ namespace yy {
 
 
     // User initialization code.
-#line 22 "/home/ferhat/git/vc-gen/vcgen-parser.yy"
+#line 25 "/home/ferhat/git/vc-gen/vcgen-parser.yy"
 {
   // Initialize the initial location.
   yyla.location.begin.filename = yyla.location.end.filename = &driver.file;
@@ -587,7 +587,7 @@ namespace yy {
       switch (yyr1_[yyn])
     {
       case 39: // "number"
-      case 44: // exp
+      case 41: // aexp
         yylhs.value.emplace< int > ();
         break;
 
@@ -616,73 +616,67 @@ namespace yy {
           switch (yyn)
             {
   case 2:
-#line 105 "/home/ferhat/git/vc-gen/vcgen-parser.yy"
-    { driver.result = yystack_[0].value.as < int > (); }
+#line 123 "/home/ferhat/git/vc-gen/vcgen-parser.yy"
+    { yylhs.value.as < int > () = driver.variables[yystack_[0].value.as < std::string > ()]; }
 #line 622 "/home/ferhat/git/vc-gen/recognizer/vcgen-parser.cpp"
     break;
 
   case 3:
-#line 108 "/home/ferhat/git/vc-gen/vcgen-parser.yy"
-    {}
+#line 124 "/home/ferhat/git/vc-gen/vcgen-parser.yy"
+    { std::swap (yylhs.value.as < int > (), yystack_[0].value.as < int > ()); }
 #line 628 "/home/ferhat/git/vc-gen/recognizer/vcgen-parser.cpp"
     break;
 
   case 4:
-#line 109 "/home/ferhat/git/vc-gen/vcgen-parser.yy"
+#line 125 "/home/ferhat/git/vc-gen/vcgen-parser.yy"
     {}
 #line 634 "/home/ferhat/git/vc-gen/recognizer/vcgen-parser.cpp"
     break;
 
   case 5:
-#line 112 "/home/ferhat/git/vc-gen/vcgen-parser.yy"
-    { driver.variables[yystack_[2].value.as < std::string > ()] = yystack_[0].value.as < int > (); }
+#line 126 "/home/ferhat/git/vc-gen/vcgen-parser.yy"
+    {}
 #line 640 "/home/ferhat/git/vc-gen/recognizer/vcgen-parser.cpp"
     break;
 
   case 6:
-#line 117 "/home/ferhat/git/vc-gen/vcgen-parser.yy"
+#line 127 "/home/ferhat/git/vc-gen/vcgen-parser.yy"
     { yylhs.value.as < int > () = yystack_[2].value.as < int > () + yystack_[0].value.as < int > (); }
 #line 646 "/home/ferhat/git/vc-gen/recognizer/vcgen-parser.cpp"
     break;
 
   case 7:
-#line 118 "/home/ferhat/git/vc-gen/vcgen-parser.yy"
+#line 128 "/home/ferhat/git/vc-gen/vcgen-parser.yy"
     { yylhs.value.as < int > () = yystack_[2].value.as < int > () - yystack_[0].value.as < int > (); }
 #line 652 "/home/ferhat/git/vc-gen/recognizer/vcgen-parser.cpp"
     break;
 
   case 8:
-#line 119 "/home/ferhat/git/vc-gen/vcgen-parser.yy"
+#line 129 "/home/ferhat/git/vc-gen/vcgen-parser.yy"
     { yylhs.value.as < int > () = yystack_[2].value.as < int > () * yystack_[0].value.as < int > (); }
 #line 658 "/home/ferhat/git/vc-gen/recognizer/vcgen-parser.cpp"
     break;
 
   case 9:
-#line 120 "/home/ferhat/git/vc-gen/vcgen-parser.yy"
+#line 130 "/home/ferhat/git/vc-gen/vcgen-parser.yy"
     { yylhs.value.as < int > () = yystack_[2].value.as < int > () / yystack_[0].value.as < int > (); }
 #line 664 "/home/ferhat/git/vc-gen/recognizer/vcgen-parser.cpp"
     break;
 
   case 10:
-#line 121 "/home/ferhat/git/vc-gen/vcgen-parser.yy"
-    { std::swap (yylhs.value.as < int > (), yystack_[1].value.as < int > ()); }
+#line 131 "/home/ferhat/git/vc-gen/vcgen-parser.yy"
+    { yylhs.value.as < int > () = yystack_[2].value.as < int > () / yystack_[0].value.as < int > (); }
 #line 670 "/home/ferhat/git/vc-gen/recognizer/vcgen-parser.cpp"
     break;
 
   case 11:
-#line 122 "/home/ferhat/git/vc-gen/vcgen-parser.yy"
-    { yylhs.value.as < int > () = driver.variables[yystack_[0].value.as < std::string > ()]; }
+#line 132 "/home/ferhat/git/vc-gen/vcgen-parser.yy"
+    { std::swap (yylhs.value.as < int > (), yystack_[1].value.as < int > ()); }
 #line 676 "/home/ferhat/git/vc-gen/recognizer/vcgen-parser.cpp"
     break;
 
-  case 12:
-#line 123 "/home/ferhat/git/vc-gen/vcgen-parser.yy"
-    { std::swap (yylhs.value.as < int > (), yystack_[0].value.as < int > ()); }
-#line 682 "/home/ferhat/git/vc-gen/recognizer/vcgen-parser.cpp"
-    break;
 
-
-#line 686 "/home/ferhat/git/vc-gen/recognizer/vcgen-parser.cpp"
+#line 680 "/home/ferhat/git/vc-gen/recognizer/vcgen-parser.cpp"
 
             default:
               break;
@@ -953,76 +947,146 @@ namespace yy {
   }
 
 
-  const signed char vcgen_parser::yypact_ninf_ = -9;
+  const signed char vcgen_parser::yypact_ninf_ = -23;
 
   const signed char vcgen_parser::yytable_ninf_ = -1;
 
-  const signed char
+  const short
   vcgen_parser::yypact_[] =
   {
-      -9,     7,    -8,    -9,    -6,     1,    -9,    -9,     0,    -9,
-      10,    -6,    -6,    -6,    -6,    -6,    -9,     0,    12,    12,
-      -9,    -9
+     -22,   -19,    45,    37,   -23,     2,   -23,    39,     9,     2,
+       2,    85,    85,   106,   -23,   149,   -23,    48,     2,   -23,
+     -23,    64,     9,   172,   136,    50,    48,   -23,   -17,    66,
+       9,     9,     9,     9,     9,     9,     9,     9,     9,     9,
+       9,     9,     2,     2,     2,    48,    98,   -23,   162,   -23,
+     -23,     2,   -23,     2,    46,   172,   172,   130,   130,   169,
+     169,   169,   169,   169,   169,   169,    -1,    48,    48,     4,
+       4,   -14,   -23,   119,    98,    48,    48,   -23,     4,     4,
+     -23,   111,    56,     9,   132,     9,   -23,   -23,   113,   108,
+       4,     4,    98,     2,   -23,    79,    89,   161,    51,   -23,
+     164,   108,   133,    48,    98,   -23,   -23,     9,   163,    98,
+     -23,   158,    57,     9,   159,   -23,     9,   107,   -23,   112,
+     -23,   -23
   };
 
   const unsigned char
   vcgen_parser::yydefact_[] =
   {
-       3,     0,     0,     1,     0,    11,    12,     4,     2,    11,
-       0,     0,     0,     0,     0,     0,    10,     5,     6,     7,
-       8,     9
+       0,     0,     0,     0,     1,     0,    37,     0,     0,     0,
+       0,     0,     0,     2,     3,     0,    42,    36,     0,    38,
+      40,     0,     0,     5,     0,     0,    43,    50,     0,     0,
+       0,     0,     0,     0,     0,     0,     0,     0,     0,     0,
+       0,     0,     0,     0,     0,    39,     0,    41,     0,    11,
+      49,     0,    51,     0,     0,     6,     7,     8,     9,    10,
+      12,    13,    14,    15,    16,    17,    44,    45,    46,     0,
+       0,     0,    33,     0,    32,    47,    48,     4,     0,     0,
+      18,     0,     0,     0,     0,     0,    35,    34,     0,    19,
+       0,     0,     0,     0,    30,     0,     0,     0,     0,    22,
+      20,    21,     0,    29,     0,    31,    23,     0,     0,     0,
+      27,     0,     0,     0,     0,    28,     0,     0,    26,     0,
+      25,    24
   };
 
-  const signed char
+  const short
   vcgen_parser::yypgoto_[] =
   {
-      -9,    -9,    -9,    -9,    -3
+     -23,    -8,    10,    12,   114,    90,   -23,    29,   -23,   -23,
+     179,   -23,   166,   -23,    -7,   177
   };
 
   const signed char
   vcgen_parser::yydefgoto_[] =
   {
-      -1,     1,     2,     7,     8
+      -1,    15,    16,    81,    72,    94,    95,    73,    74,     2,
+       6,     7,    20,    21,    17,    28
   };
 
   const unsigned char
   vcgen_parser::yytable_[] =
   {
-       4,    10,     4,    12,    13,    14,    15,     3,    17,    18,
-      19,    20,    21,    12,    13,    14,    15,    14,    15,    16,
-      11,     0,     0,     0,     0,     0,     0,     0,     0,     0,
-       5,     6,     9,     6
+      23,    24,    25,    26,    51,    83,     8,    84,     8,     1,
+       9,    45,    78,     8,    48,    85,    42,    22,    10,     3,
+      79,    52,    54,    55,    56,    57,    58,    59,    60,    61,
+      62,    63,    64,    65,    44,    66,    67,    68,    11,    12,
+      13,    14,    13,    14,    75,     4,    76,    13,    14,    31,
+      32,    33,    34,    35,    31,    32,    33,    34,    35,    50,
+      31,    32,    33,    34,    35,    42,    43,    42,    43,     5,
+      24,     5,    18,    90,    91,    96,    77,    98,   116,    80,
+      80,   108,    82,    44,    93,    44,   103,    53,    80,    80,
+      88,    89,    31,    32,    33,    34,    35,    18,    46,   112,
+      80,    80,   100,   101,    52,   117,   104,    93,   119,   106,
+      31,    32,    33,    34,    35,    31,    32,    33,    34,    35,
+      69,   102,    99,    27,    70,    90,    91,   120,    90,    91,
+      90,    91,   121,   111,    92,    30,    71,    35,   114,    31,
+      32,    33,    34,    35,    86,    49,    36,    37,    38,    39,
+      40,    41,    31,    32,    33,    34,    35,   109,   110,    36,
+      37,    38,    39,    40,    41,    31,    32,    33,    34,    35,
+      97,    49,    31,    32,    33,    34,    35,    33,    34,    35,
+     107,    90,   113,   115,   118,   105,    19,    47,    87,    29
   };
 
-  const signed char
+  const unsigned char
   vcgen_parser::yycheck_[] =
   {
-       8,     4,     8,     3,     4,     5,     6,     0,    11,    12,
-      13,    14,    15,     3,     4,     5,     6,     5,     6,     9,
-      19,    -1,    -1,    -1,    -1,    -1,    -1,    -1,    -1,    -1,
-      38,    39,    38,    39
+       8,     9,     9,    10,    21,    19,     4,    21,     4,    31,
+       8,    18,     8,     4,    22,    29,    17,     8,    16,    38,
+      16,    38,    30,    31,    32,    33,    34,    35,    36,    37,
+      38,    39,    40,    41,    35,    42,    43,    44,    36,    37,
+      38,    39,    38,    39,    51,     0,    53,    38,    39,     3,
+       4,     5,     6,     7,     3,     4,     5,     6,     7,     9,
+       3,     4,     5,     6,     7,    17,    18,    17,    18,    32,
+      78,    32,    33,    17,    18,    83,    30,    85,    21,    69,
+      70,    30,    70,    35,    28,    35,    93,    21,    78,    79,
+      78,    79,     3,     4,     5,     6,     7,    33,    34,   107,
+      90,    91,    90,    91,    38,   113,    27,    28,   116,    20,
+       3,     4,     5,     6,     7,     3,     4,     5,     6,     7,
+      22,    92,     9,    38,    26,    17,    18,    20,    17,    18,
+      17,    18,    20,   104,    23,    29,    38,     7,   109,     3,
+       4,     5,     6,     7,    25,     9,    10,    11,    12,    13,
+      14,    15,     3,     4,     5,     6,     7,    24,    25,    10,
+      11,    12,    13,    14,    15,     3,     4,     5,     6,     7,
+      38,     9,     3,     4,     5,     6,     7,     5,     6,     7,
+      19,    17,    19,    25,    25,    95,     7,    21,    74,    12
   };
 
   const unsigned char
   vcgen_parser::yystos_[] =
   {
-       0,    41,    42,     0,     8,    38,    39,    43,    44,    38,
-      44,    19,     3,     4,     5,     6,     9,    44,    44,    44,
-      44,    44
+       0,    31,    49,    38,     0,    32,    50,    51,     4,     8,
+      16,    36,    37,    38,    39,    41,    42,    54,    33,    50,
+      52,    53,     8,    41,    41,    54,    54,    38,    55,    55,
+      29,     3,     4,     5,     6,     7,    10,    11,    12,    13,
+      14,    15,    17,    18,    35,    54,    34,    52,    41,     9,
+       9,    21,    38,    21,    41,    41,    41,    41,    41,    41,
+      41,    41,    41,    41,    41,    41,    54,    54,    54,    22,
+      26,    38,    44,    47,    48,    54,    54,    30,     8,    16,
+      42,    43,    43,    19,    21,    29,    25,    44,    43,    43,
+      17,    18,    23,    28,    45,    46,    41,    38,    41,     9,
+      43,    43,    47,    54,    27,    45,    20,    19,    30,    24,
+      25,    47,    41,    19,    47,    25,    21,    41,    25,    41,
+      20,    20
   };
 
   const unsigned char
   vcgen_parser::yyr1_[] =
   {
-       0,    40,    41,    42,    42,    43,    44,    44,    44,    44,
-      44,    44,    44
+       0,    40,    41,    41,    41,    41,    41,    41,    41,    41,
+      41,    41,    42,    42,    42,    42,    42,    42,    43,    43,
+      43,    43,    43,    44,    44,    44,    44,    44,    44,    45,
+      46,    46,    47,    48,    48,    49,    50,    51,    51,    52,
+      53,    53,    54,    54,    54,    54,    54,    54,    54,    54,
+      55,    55
   };
 
   const unsigned char
   vcgen_parser::yyr2_[] =
   {
-       0,     2,     2,     0,     2,     3,     3,     3,     3,     3,
-       3,     1,     1
+       0,     2,     1,     1,     4,     2,     3,     3,     3,     3,
+       3,     3,     3,     3,     3,     3,     3,     3,     1,     2,
+       3,     3,     3,     4,     8,     7,     7,     5,     6,     2,
+       1,     2,     1,     1,     2,     7,     2,     1,     2,     2,
+       1,     2,     1,     2,     3,     3,     3,     4,     4,     3,
+       1,     2
   };
 
 
@@ -1038,16 +1102,21 @@ namespace yy {
   "\";\"", "\",\"", "\"if\"", "\"then\"", "\"else\"", "\"end\"",
   "\"while\"", "\"do\"", "\"inv\"", "\"[\"", "\"]\"", "\"program\"",
   "\"pre\"", "\"post\"", "\"is\"", "\"==>\"", "\"forall\"", "\"exists\"",
-  "\"identifier\"", "\"number\"", "$accept", "unit", "assignments",
-  "assignment", "exp", YY_NULLPTR
+  "\"identifier\"", "\"number\"", "$accept", "aexp", "comp", "bexp",
+  "stmt", "inv", "inv_list", "block", "stmt_list", "prog", "pre",
+  "pre_list", "post", "post_list", "assn", "identifier_list", YY_NULLPTR
   };
 
 #if YYDEBUG
   const unsigned char
   vcgen_parser::yyrline_[] =
   {
-       0,   105,   105,   108,   109,   112,   117,   118,   119,   120,
-     121,   122,   123
+       0,   107,   123,   124,   125,   126,   127,   128,   129,   130,
+     131,   132,   136,   137,   138,   139,   140,   141,   145,   146,
+     147,   148,   149,   153,   154,   155,   156,   157,   158,   162,
+     166,   167,   171,   175,   176,   179,   182,   186,   187,   190,
+     194,   195,   199,   200,   201,   202,   203,   204,   205,   206,
+     210,   211
   };
 
   // Print the state stack on the debug stream.
@@ -1081,14 +1150,13 @@ namespace yy {
 
 
 } // yy
-#line 1085 "/home/ferhat/git/vc-gen/recognizer/vcgen-parser.cpp"
+#line 1154 "/home/ferhat/git/vc-gen/recognizer/vcgen-parser.cpp"
 
-#line 124 "/home/ferhat/git/vc-gen/vcgen-parser.yy"
+#line 213 "/home/ferhat/git/vc-gen/vcgen-parser.yy"
 
 
 void
-yy::vcgen_parser::error (const location_type& l,
-                          const std::string& m)
+yy::vcgen_parser::error (const location_type& l, const std::string& m)
 {
   driver.error (l, m);
 }

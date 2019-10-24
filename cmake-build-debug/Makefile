@@ -123,6 +123,33 @@ vcgen/fast:
 	$(MAKE) -f CMakeFiles/vcgen.dir/build.make CMakeFiles/vcgen.dir/build
 .PHONY : vcgen/fast
 
+ast.o: ast.cpp.o
+
+.PHONY : ast.o
+
+# target to build an object file
+ast.cpp.o:
+	$(MAKE) -f CMakeFiles/vcgen.dir/build.make CMakeFiles/vcgen.dir/ast.cpp.o
+.PHONY : ast.cpp.o
+
+ast.i: ast.cpp.i
+
+.PHONY : ast.i
+
+# target to preprocess a source file
+ast.cpp.i:
+	$(MAKE) -f CMakeFiles/vcgen.dir/build.make CMakeFiles/vcgen.dir/ast.cpp.i
+.PHONY : ast.cpp.i
+
+ast.s: ast.cpp.s
+
+.PHONY : ast.s
+
+# target to generate assembly for a file
+ast.cpp.s:
+	$(MAKE) -f CMakeFiles/vcgen.dir/build.make CMakeFiles/vcgen.dir/ast.cpp.s
+.PHONY : ast.cpp.s
+
 recognizer/vcgen-parser.o: recognizer/vcgen-parser.cpp.o
 
 .PHONY : recognizer/vcgen-parser.o
@@ -240,6 +267,9 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... vcgen"
 	@echo "... edit_cache"
+	@echo "... ast.o"
+	@echo "... ast.i"
+	@echo "... ast.s"
 	@echo "... recognizer/vcgen-parser.o"
 	@echo "... recognizer/vcgen-parser.i"
 	@echo "... recognizer/vcgen-parser.s"

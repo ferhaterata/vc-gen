@@ -23,70 +23,204 @@ class Node {
     //    virtual ostream& print(ostream& out) const = 0;
 };
 
+class BooleanExpression : public Node {};
+class Assertion : public Node {};
+class Comparison : public BooleanExpression, public Assertion {};
+class Statement : public Node {};
+
+class Invariant : public Node {
+  public:
+    Assertion assertion;
+    Invariant()= default;;
+    explicit Invariant(Assertion& assertion) : assertion(assertion) {}
+};
+
+class Block : public Node {
+  public:
+    vector<Statement> stmts;
+    Block()= default;;
+    explicit Block(vector<Statement>& stmts) : stmts(stmts) {}
+};
+
+class PreCondition : public Node {
+  public:
+    Assertion assertion;
+    PreCondition()= default;;
+    explicit PreCondition(Assertion& assertion) : assertion(assertion) {}
+};
+
+class PostCondition : public Node {
+  public:
+    Assertion assertion;
+    PostCondition()= default;;
+    explicit PostCondition(Assertion& assertion) : assertion(assertion) {}
+};
+
+class Program : public Node {
+    string identifier;
+    vector<PreCondition> preConditions;
+    vector<PostCondition> postConditions;
+    Block block;
+
+  public:
+    Program() = default;
+    Program(string& identifier, vector<PreCondition>& preConditions,
+            vector<PostCondition>& postConditions, Block& block)
+        : identifier(identifier), preConditions(preConditions),
+          postConditions(postConditions), block(block) {}
+};
+
+class Negation : public Assertion {
+  public:
+    const Assertion assertion;
+    Negation(Assertion& assertion) : assertion(assertion) {}
+};
+
+class Disjunction : public Assertion {
+  public:
+    const Assertion left;
+    const Assertion right;
+    Disjunction(Assertion& left, Assertion& right) : left(left), right(right) {}
+};
+
+class Conjunction : public Assertion {
+  public:
+    const Assertion left;
+    const Assertion right;
+    Conjunction(Assertion& left, Assertion& right) : left(left), right(right) {}
+};
+
+class Implication : public Assertion {
+  public:
+    const Assertion left;
+    const Assertion right;
+    Implication(Assertion& left, Assertion& right) : left(left), right(right) {}
+};
+
+class UniversalQuantification : public Assertion {
+  public:
+    const vector<string> variables;
+    const Assertion body;
+    UniversalQuantification(vector<string>& variables, Assertion& body)
+        : variables(variables), body(body) {}
+};
+
+class ExistentialQuantification : public Assertion {
+  public:
+    const vector<string> variables;
+    const Assertion body;
+    ExistentialQuantification(vector<string>& variables, Assertion& body)
+        : variables(variables), body(body) {}
+};
+
 class ArithmeticExpression : public Node {
     //    ostream& print(ostream& out);
 };
 
-class BooleanExpression : public Node {};
-class Comparison : public Node {};
+class EqualComparison : public Comparison {
+  public:
+    const ArithmeticExpression left;
+    const ArithmeticExpression right;
+    EqualComparison(ArithmeticExpression& left, ArithmeticExpression& right)
+        : left(left), right(right) {}
+};
 
-class Statement : public Node {};
-class Invariant : public Node {};
-class Block : public Node {};
-class Program : public Node {};
-class PreCondition : public Node {};
-class PostCondition : public Node {};
-class Assertion : public Node {};
-class Identifier : public Node {};
+class NotEqualComparison : public Comparison {
+  public:
+    const ArithmeticExpression left;
+    const ArithmeticExpression right;
+    NotEqualComparison(ArithmeticExpression& left, ArithmeticExpression& right)
+        : left(left), right(right) {}
+};
+
+class LeqComparison : public Comparison {
+  public:
+    const ArithmeticExpression left;
+    const ArithmeticExpression right;
+    LeqComparison(ArithmeticExpression& left, ArithmeticExpression& right)
+        : left(left), right(right) {}
+};
+
+class GeqComparison : public Comparison {
+  public:
+    const ArithmeticExpression left;
+    const ArithmeticExpression right;
+    GeqComparison(ArithmeticExpression& left, ArithmeticExpression& right)
+        : left(left), right(right) {}
+};
+
+class LtComparison : public Comparison {
+  public:
+    const ArithmeticExpression left;
+    const ArithmeticExpression right;
+    LtComparison(ArithmeticExpression& left, ArithmeticExpression& right)
+        : left(left), right(right) {}
+};
+
+class GtComparison : public Comparison {
+  public:
+    const ArithmeticExpression left;
+    const ArithmeticExpression right;
+    GtComparison(ArithmeticExpression& left, ArithmeticExpression& right)
+        : left(left), right(right) {}
+};
 
 class AssignmentStatement : public Statement {
   public:
-    const ArithmeticExpression* condition;
-    const Identifier* location;
-    AssignmentStatement(ArithmeticExpression* condition, Identifier* location)
-        : condition(condition), location(location) {}
+    const string loc;
+    const ArithmeticExpression expr;
+    AssignmentStatement(string& loc, ArithmeticExpression& expr)
+        : loc(loc), expr(expr) {}
 };
 
 class MultipleAssignmentStatement : public Statement {
   public:
-    const map<Identifier, ArithmeticExpression> assignments;
+    const string locFirst;
+    const string locSecond;
+    const ArithmeticExpression exprFirst;
+    const ArithmeticExpression exprSecond;
+    MultipleAssignmentStatement(string& locFirst, string& locSecond,
+                                ArithmeticExpression& exprFirst,
+                                ArithmeticExpression& exprSecond)
+        : locFirst(locFirst), locSecond(locSecond), exprFirst(exprFirst),
+          exprSecond(exprSecond) {}
 };
 
 class ArrayAssignmentStatement : public Statement {
   public:
-    const ArithmeticExpression* condition;
-    const ArithmeticExpression* index;
-    const Identifier* location;
-    ArrayAssignmentStatement(ArithmeticExpression* condition,
-                             ArithmeticExpression* index, Identifier* location)
-        : condition(condition), index(index), location(location) {}
+    const string loc;
+    const ArithmeticExpression index;
+    const ArithmeticExpression exp;
+    ArrayAssignmentStatement(string& loc, ArithmeticExpression& index,
+                             ArithmeticExpression& exp)
+        : loc(loc), index(index), exp(exp) {}
 };
 
 class IfThenStatement : public Statement {
   public:
-    const BooleanExpression* condition;
-    const Block* thenBlock;
-    IfThenStatement(BooleanExpression* condition, Block* thenBlock)
-        : condition(condition), thenBlock(thenBlock) {}
+    const BooleanExpression exp;
+    const Block thenBlock;
+    IfThenStatement(BooleanExpression& exp, Block& thenBlock)
+        : exp(exp), thenBlock(thenBlock) {}
 };
 
 class IfThenElseStatement : public Statement {
   public:
-    const BooleanExpression* condition;
-    const Block* thenBlock;
-    const Block* elseBlock;
-    IfThenElseStatement(BooleanExpression* condition, Block* thenBlock,
-                        Block* elseBlock)
+    const BooleanExpression condition;
+    const Block thenBlock;
+    const Block elseBlock;
+    IfThenElseStatement(BooleanExpression& condition, Block& thenBlock,
+                        Block& elseBlock)
         : condition(condition), thenBlock(thenBlock), elseBlock(elseBlock) {}
 };
 
 class WhileStatement : public Statement {
   public:
-    const BooleanExpression* condition;
+    const BooleanExpression condition;
     const vector<Invariant> invariants;
-    const Block* block;
-    WhileStatement(BooleanExpression* condition, vector<Invariant> invariants,
-                   Block* block)
+    const Block block;
+    WhileStatement(BooleanExpression& condition, vector<Invariant> invariants,
+                   Block& block)
         : condition(condition), invariants(std::move(invariants)),
           block(block) {}
 };

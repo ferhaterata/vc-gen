@@ -1139,7 +1139,7 @@ return yy::vcgen_parser::make_IS(loc);
 case 34:
 YY_RULE_SETUP
 #line 75 "vcgen-scanner.ll"
-return yy::vcgen_parser::make_IFF(loc);
+return yy::vcgen_parser::make_IMPLY(loc);
 	YY_BREAK
 case 35:
 YY_RULE_SETUP

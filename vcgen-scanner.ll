@@ -71,7 +71,7 @@ blank [ \t]
 "post"      return yy::vcgen_parser::make_POST(loc);
 "is"        return yy::vcgen_parser::make_IS(loc);
 
-"==>"       return yy::vcgen_parser::make_IFF(loc);
+"==>"       return yy::vcgen_parser::make_IMPLY(loc);
 "forall"    return yy::vcgen_parser::make_ALL(loc);
 "exists"    return yy::vcgen_parser::make_SOME(loc);
 

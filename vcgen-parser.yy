@@ -111,7 +111,7 @@ void print(std::vector<T>& v){
 
 /* Assertions */
 
-  IFF       "==>"
+  IMPLY     "==>"
   ALL       "forall"
   SOME      "exists"
 
@@ -151,7 +151,7 @@ void print(std::vector<T>& v){
 %left "*" "/";
 
 aexp:
-      "identifier"              { }
+      reference                 { }
     | "number"                  { }
     | "identifier" "[" aexp "]" { }
     | "-" aexp                  { }
@@ -163,8 +163,12 @@ aexp:
     | "(" aexp ")"              { $$ = $2;}
     ;
 
+reference: "identifier"         { }
+    ;
+
+
 bexp:
-      comp                      { }
+      comp                      { $$ = $1; }
     | "!" bexp                  { }
     | bexp "||" bexp            { }
     | bexp "&&" bexp            { }
@@ -172,75 +176,74 @@ bexp:
     ;
 
 comp:
-      aexp "="  aexp            { }
-    | aexp "!=" aexp            { }
-    | aexp "<=" aexp            { }
-    | aexp ">=" aexp            { }
-    | aexp "<"  aexp            { }
-    | aexp ">"  aexp            { }
+      aexp "="  aexp            { $$ = ast::EqualComparison($1, $3); }
+    | aexp "!=" aexp            { $$ = ast::NotEqualComparison($1, $3); }
+    | aexp "<=" aexp            { $$ = ast::LeqComparison($1, $3); }
+    | aexp ">=" aexp            { $$ = ast::GeqComparison($1, $3); }
+    | aexp "<"  aexp            { $$ = ast::LtComparison($1, $3); }
+    | aexp ">"  aexp            { $$ = ast::GtComparison($1, $3); }
     ;
 
 stmt:
-      "identifier" ":=" aexp ";"                            { }
-    | "identifier" "," "identifier" ":=" aexp "," aexp ";"  { }
-    | "identifier" "[" aexp "]" ":=" aexp ";"               { }
-    | "if" bexp "then" block "else" block "end"             { }
-    | "if" bexp "then" block "end"                          { }
-    | "while" bexp inv_list "do" block "end"                { }
-    ;
-
-inv:
-      "inv" assertion        { }
+      "identifier" ":=" aexp ";"                            { $$ = ast::AssignmentStatement($1, $3);}
+    | "identifier" "," "identifier" ":=" aexp "," aexp ";"  { $$ = ast::MultipleAssignmentStatement($1, $3, $5, $7);}
+    | "identifier" "[" aexp "]" ":=" aexp ";"               { $$ = ast::ArrayAssignmentStatement($1, $3, $6);}
+    | "if" bexp "then" block "else" block "end"             { $$ = ast::IfThenElseStatement($2, $4, $6);}
+    | "if" bexp "then" block "end"                          { $$ = ast::IfThenStatement($2, $4);}
+    | "while" bexp inv_list "do" block "end"                { $$ = ast::WhileStatement($2, $3, $5);}
     ;
 
 inv_list:
-      inv               { }
-    | inv_list inv      { }
+      inv               { $$ = {$1}; }
+    | inv_list inv      { $$ = enlist($1, $2); }
     ;
 
-block:
-      stmt_list         { }
+inv:
+      "inv" assertion   { $$ = ast::Invariant({$2}); }
+    ;
+
+block: stmt_list        { $$ = ast::Block({$1}); /*print<ast::Statement>($1);*/}
     ;
 
 stmt_list:
-      stmt              { }
-    | stmt_list stmt    { }
+      stmt              { $$ = {$1};}
+    | stmt_list stmt    { $$ = enlist($1, $2); }
     ;
 
 prog: "program" "identifier" pre_list post_list "is" block "end"
-                            { }
-    ;
-
-pre: "pre" assertion        { }
+    { $$ = ast::Program($2, $3, $4, $6);}
     ;
 
 pre_list:
-      pre                   { }
-    | pre_list pre          { }
+      pre                   { $$ = {$1}; }
+    | pre_list pre          { $$ = enlist($1, $2); }
     ;
 
-post: "post" assertion      { }
+pre: "pre" assertion        { $$ = ast::PreCondition({$2}); }
     ;
 
 post_list:
-      post                  { }
-    | post_list post        { }
+      post                  { $$ = {$1}; }
+    | post_list post        { $$ = enlist($1, $2); }
+    ;
+
+post: "post" assertion      { $$ = ast::PostCondition({$2}); }
     ;
 
 assertion:
-      comp                                      { }
-    | "!" assertion                             { }
-    | assertion "||" assertion                  { }
-    | assertion "&&" assertion                  { }
-    | assertion "==>" assertion                 { }
-    | "forall" identifier_list "," assertion    { print<std::string>($2);}
-    | "exists" identifier_list "," assertion    { print<std::string>($2);}
-    | "(" assertion ")"                         { $$ = $2;}
+      comp                                      { $$ = $1; }
+    | "!" assertion                             { $$ = ast::Negation($2); }
+    | assertion "||" assertion                  { $$ = ast::Disjunction($1, $3); }
+    | assertion "&&" assertion                  { $$ = ast::Conjunction($1, $3); }
+    | assertion "==>" assertion                 { $$ = ast::Implication($1, $3); }
+    | "forall" identifier_list "," assertion    { $$ = ast::UniversalQuantification($2, $4); print<std::string>($2); }
+    | "exists" identifier_list "," assertion    { $$ = ast::ExistentialQuantification($2, $4); print<std::string>($2); }
+    | "(" assertion ")"                         { $$ = $2; }
     ;
 
 identifier_list:
-      "identifier"                      { $$ = {$1};}
-    | identifier_list "identifier"      { $$ = enlist($1, $2);}
+      "identifier"                              { $$ = {$1}; }
+    | identifier_list "identifier"              { $$ = enlist($1, $2); }
     ;
 %%
 

@@ -49,10 +49,10 @@ Grammar
    26     | "if" bexp "then" block "end"
    27     | "while" bexp inv_list "do" block "end"
 
-   28 inv: "inv" assertion
+   28 inv_list: inv
+   29         | inv_list inv
 
-   29 inv_list: inv
-   30         | inv_list inv
+   30 inv: "inv" assertion
 
    31 block: stmt_list
 
@@ -61,15 +61,15 @@ Grammar
 
    34 prog: "program" "identifier" pre_list post_list "is" block "end"
 
-   35 pre: "pre" assertion
+   35 pre_list: pre
+   36         | pre_list pre
 
-   36 pre_list: pre
-   37         | pre_list pre
+   37 pre: "pre" assertion
 
-   38 post: "post" assertion
+   38 post_list: post
+   39          | post_list post
 
-   39 post_list: post
-   40          | post_list post
+   40 post: "post" assertion
 
    41 assertion: comp
    42          | "!" assertion
@@ -113,12 +113,12 @@ Terminals, with rules where they appear
     "end" (280) 25 26 27 34
     "while" (281) 27
     "do" (282) 27
-    "inv" (283) 28
+    "inv" (283) 30
     "[" (284) 3 24
     "]" (285) 3 24
     "program" (286) 34
-    "pre" (287) 35
-    "post" (288) 38
+    "pre" (287) 37
+    "post" (288) 40
     "is" (289) 34
     "==>" (290) 45
     "forall" (291) 46
@@ -143,12 +143,12 @@ Nonterminals, with rules where they appear
     stmt <ast::Statement> (44)
         on left: 22 23 24 25 26 27
         on right: 32 33
-    inv <ast::Invariant> (45)
-        on left: 28
-        on right: 29 30
-    inv_list <std::vector<ast::Invariant>> (46)
-        on left: 29 30
-        on right: 27 30
+    inv_list <std::vector<ast::Invariant>> (45)
+        on left: 28 29
+        on right: 27 29
+    inv <ast::Invariant> (46)
+        on left: 30
+        on right: 28 29
     block <ast::Block> (47)
         on left: 31
         on right: 25 26 27 34
@@ -158,21 +158,21 @@ Nonterminals, with rules where they appear
     prog <ast::Program> (49)
         on left: 34
         on right: 0
-    pre <ast::PreCondition> (50)
-        on left: 35
-        on right: 36 37
-    pre_list <std::vector<ast::PreCondition>> (51)
-        on left: 36 37
-        on right: 34 37
-    post <ast::PostCondition> (52)
-        on left: 38
-        on right: 39 40
-    post_list <std::vector<ast::PostCondition>> (53)
-        on left: 39 40
-        on right: 34 40
+    pre_list <std::vector<ast::PreCondition>> (50)
+        on left: 35 36
+        on right: 34 36
+    pre <ast::PreCondition> (51)
+        on left: 37
+        on right: 35 36
+    post_list <std::vector<ast::PostCondition>> (52)
+        on left: 38 39
+        on right: 34 39
+    post <ast::PostCondition> (53)
+        on left: 40
+        on right: 38 39
     assertion <ast::Assertion> (54)
         on left: 41 42 43 44 45 46 47 48
-        on right: 28 35 38 42 43 44 45 46 47 48
+        on right: 30 37 40 42 43 44 45 46 47 48
     identifier_list <std::vector<std::string>> (55)
         on left: 49 50
         on right: 46 47 50
@@ -207,8 +207,8 @@ State 3
 
     "pre"  shift, and go to state 5
 
-    pre       go to state 6
-    pre_list  go to state 7
+    pre_list  go to state 6
+    pre       go to state 7
 
 
 State 4
@@ -220,7 +220,7 @@ State 4
 
 State 5
 
-   35 pre: "pre" . assertion
+   37 pre: "pre" . assertion
 
     "-"           shift, and go to state 8
     "("           shift, and go to state 9
@@ -237,22 +237,22 @@ State 5
 
 State 6
 
-   36 pre_list: pre .
-
-    $default  reduce using rule 36 (pre_list)
-
-
-State 7
-
    34 prog: "program" "identifier" pre_list . post_list "is" block "end"
-   37 pre_list: pre_list . pre
+   36 pre_list: pre_list . pre
 
     "pre"   shift, and go to state 5
     "post"  shift, and go to state 18
 
     pre        go to state 19
-    post       go to state 20
-    post_list  go to state 21
+    post_list  go to state 20
+    post       go to state 21
+
+
+State 7
+
+   35 pre_list: pre .
+
+    $default  reduce using rule 35 (pre_list)
 
 
 State 8
@@ -373,7 +373,7 @@ State 16
 
 State 17
 
-   35 pre: "pre" assertion .
+   37 pre: "pre" assertion .
    43 assertion: assertion . "||" assertion
    44          | assertion . "&&" assertion
    45          | assertion . "==>" assertion
@@ -382,12 +382,12 @@ State 17
     "&&"   shift, and go to state 43
     "==>"  shift, and go to state 44
 
-    $default  reduce using rule 35 (pre)
+    $default  reduce using rule 37 (pre)
 
 
 State 18
 
-   38 post: "post" . assertion
+   40 post: "post" . assertion
 
     "-"           shift, and go to state 8
     "("           shift, and go to state 9
@@ -404,27 +404,27 @@ State 18
 
 State 19
 
-   37 pre_list: pre_list pre .
+   36 pre_list: pre_list pre .
 
-    $default  reduce using rule 37 (pre_list)
+    $default  reduce using rule 36 (pre_list)
 
 
 State 20
 
-   39 post_list: post .
-
-    $default  reduce using rule 39 (post_list)
-
-
-State 21
-
    34 prog: "program" "identifier" pre_list post_list . "is" block "end"
-   40 post_list: post_list . post
+   39 post_list: post_list . post
 
     "post"  shift, and go to state 18
     "is"    shift, and go to state 46
 
     post  go to state 47
+
+
+State 21
+
+   38 post_list: post .
+
+    $default  reduce using rule 38 (post_list)
 
 
 State 22
@@ -735,7 +735,7 @@ State 44
 
 State 45
 
-   38 post: "post" assertion .
+   40 post: "post" assertion .
    43 assertion: assertion . "||" assertion
    44          | assertion . "&&" assertion
    45          | assertion . "==>" assertion
@@ -744,7 +744,7 @@ State 45
     "&&"   shift, and go to state 43
     "==>"  shift, and go to state 44
 
-    $default  reduce using rule 38 (post)
+    $default  reduce using rule 40 (post)
 
 
 State 46
@@ -762,9 +762,9 @@ State 46
 
 State 47
 
-   40 post_list: post_list post .
+   39 post_list: post_list post .
 
-    $default  reduce using rule 40 (post_list)
+    $default  reduce using rule 39 (post_list)
 
 
 State 48
@@ -1270,8 +1270,8 @@ State 82
     "&&"   shift, and go to state 91
     "inv"  shift, and go to state 93
 
-    inv       go to state 94
-    inv_list  go to state 95
+    inv_list  go to state 94
+    inv       go to state 95
 
 
 State 83
@@ -1388,7 +1388,7 @@ State 92
 
 State 93
 
-   28 inv: "inv" . assertion
+   30 inv: "inv" . assertion
 
     "-"           shift, and go to state 8
     "("           shift, and go to state 9
@@ -1405,20 +1405,20 @@ State 93
 
 State 94
 
-   29 inv_list: inv .
-
-    $default  reduce using rule 29 (inv_list)
-
-
-State 95
-
    27 stmt: "while" bexp inv_list . "do" block "end"
-   30 inv_list: inv_list . inv
+   29 inv_list: inv_list . inv
 
     "do"   shift, and go to state 104
     "inv"  shift, and go to state 93
 
     inv  go to state 105
+
+
+State 95
+
+   28 inv_list: inv .
+
+    $default  reduce using rule 28 (inv_list)
 
 
 State 96
@@ -1505,7 +1505,7 @@ State 102
 
 State 103
 
-   28 inv: "inv" assertion .
+   30 inv: "inv" assertion .
    43 assertion: assertion . "||" assertion
    44          | assertion . "&&" assertion
    45          | assertion . "==>" assertion
@@ -1514,7 +1514,7 @@ State 103
     "&&"   shift, and go to state 43
     "==>"  shift, and go to state 44
 
-    $default  reduce using rule 28 (inv)
+    $default  reduce using rule 30 (inv)
 
 
 State 104
@@ -1532,9 +1532,9 @@ State 104
 
 State 105
 
-   30 inv_list: inv_list inv .
+   29 inv_list: inv_list inv .
 
-    $default  reduce using rule 30 (inv_list)
+    $default  reduce using rule 29 (inv_list)
 
 
 State 106

@@ -27,6 +27,7 @@ CMakeFiles/vcgen.dir/vcgen.cpp.o: ../recognizer/location.hh
 CMakeFiles/vcgen.dir/vcgen.cpp.o: ../recognizer/vcgen-parser.hpp
 CMakeFiles/vcgen.dir/vcgen.cpp.o: ../abstract-visitor.hpp
 CMakeFiles/vcgen.dir/vcgen.cpp.o: ../ast.hpp
+CMakeFiles/vcgen.dir/vcgen.cpp.o: ../printer-visitor.hpp
 CMakeFiles/vcgen.dir/vcgen.cpp.o: ../vcgen-driver.hpp
 CMakeFiles/vcgen.dir/vcgen.cpp.o: ../vcgen.cpp
 CMakeFiles/vcgen.dir/vcgen.cpp.o: ../visitor.hpp

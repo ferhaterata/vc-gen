@@ -97,6 +97,9 @@
 		<Unit filename="/home/ferhat/git/vc-gen/ast.hpp">
 			<Option target="vcgen"/>
 		</Unit>
+		<Unit filename="/home/ferhat/git/vc-gen/printer-visitor.hpp">
+			<Option target="vcgen"/>
+		</Unit>
 		<Unit filename="/home/ferhat/git/vc-gen/recognizer/vcgen-parser.cpp">
 			<Option target="vcgen"/>
 		</Unit>

@@ -4,7 +4,7 @@
 //  Copyright (c) 2019 Yale University. All rights reserved.
 // -----------------------------------------------------------------------------
 
-#include "abstract-visitor.hpp"
+#include "printer-visitor.hpp"
 #include "vcgen-driver.hpp"
 #include <iostream>
 
@@ -18,7 +18,7 @@ int main(int argc, char* argv[]) {
             driver.trace_scanning = true;
         else if (!driver.parse(argv[i])) {
             // std::cout << *driver.prog << std::endl;
-            ast::AbstractVisitor visitor(driver.program);
+            ast::PrinterVisitor visitor(driver.program);
             std::cout << std::endl;
         }
         else

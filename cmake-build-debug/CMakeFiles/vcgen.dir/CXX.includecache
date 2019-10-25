@@ -47,6 +47,8 @@ cassert
 /home/ferhat/git/vc-gen/abstract-visitor.hpp
 ast.hpp
 /home/ferhat/git/vc-gen/ast.hpp
+iostream
+-
 
 /home/ferhat/git/vc-gen/ast.hpp
 visitor.hpp
@@ -60,6 +62,12 @@ string
 vector
 -
 
+/home/ferhat/git/vc-gen/printer-visitor.hpp
+abstract-visitor.hpp
+/home/ferhat/git/vc-gen/abstract-visitor.hpp
+iostream
+-
+
 /home/ferhat/git/vc-gen/vcgen-driver.hpp
 vcgen-parser.hpp
 /home/ferhat/git/vc-gen/vcgen-parser.hpp
@@ -69,8 +77,8 @@ string
 -
 
 /home/ferhat/git/vc-gen/vcgen.cpp
-abstract-visitor.hpp
-/home/ferhat/git/vc-gen/abstract-visitor.hpp
+printer-visitor.hpp
+/home/ferhat/git/vc-gen/printer-visitor.hpp
 vcgen-driver.hpp
 /home/ferhat/git/vc-gen/vcgen-driver.hpp
 iostream

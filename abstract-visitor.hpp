@@ -7,196 +7,304 @@
 #ifndef VC_GEN_ABSTRACT_VISITOR_HPP
 #define VC_GEN_ABSTRACT_VISITOR_HPP
 #include "ast.hpp"
+#include <iostream>
 
 namespace ast {
 
-class AbstractVisitor : public Visitor {
+template <class T> class AbstractVisitor : public Visitor<T> {
   public:
+    const Program* prog;
+
     explicit AbstractVisitor(const Program* program) : prog(program) {
         visit(program);
     }
 
-    const Program* prog;
+    T visit(const Node* node) override {}
 
-    void visit(const Node* node) override {}
+    T visit(const BooleanExpression* expression) override {
+        switch (expression->type) {
+        case BooleanExpression::Type::NotExpression:
+            visit(dynamic_cast<const NotExpression*>(expression));
+            break;
+        case BooleanExpression::Type::OrExpression:
+            visit(dynamic_cast<const OrExpression*>(expression));
+            break;
+        case BooleanExpression::Type::AndExpression:
+            visit(dynamic_cast<const AndExpression*>(expression));
+            break;
+        case BooleanExpression::Type::Comparison:
+            visit(dynamic_cast<const Comparison*>(expression));
+            break;
+        }
+    }
 
-    void visit(const BooleanExpression* expression) override {}
-
-    void visit(const NotExpression* expression) override {
+    T visit(const NotExpression* expression) override {
         visit(&expression->expression);
     }
 
-    void visit(const OrExpression* expression) override {
+    T visit(const OrExpression* expression) override {
         visit(&expression->left);
         visit(&expression->right);
     }
 
-    void visit(const AndExpression* expression) override {
+    T visit(const AndExpression* expression) override {
         visit(&expression->left);
         visit(&expression->right);
+        cout << "and expression" << endl;
     }
 
-    void visit(const Assertion* assertion) override {}
+    T visit(const Assertion* assertion) override {
+        switch (assertion->type) {
+        case Assertion::Type::Negation:
+            visit(dynamic_cast<const Negation*>(assertion));
+            break;
+        case Assertion::Type::Disjunction:
+            visit(dynamic_cast<const Disjunction*>(assertion));
+            break;
+        case Assertion::Type::Conjunction:
+            visit(dynamic_cast<const Conjunction*>(assertion));
+            break;
+        case Assertion::Type::Implication:
+            visit(dynamic_cast<const Implication*>(assertion));
+            break;
+        case Assertion::Type::UniversalQuantification:
+            visit(dynamic_cast<const UniversalQuantification*>(assertion));
+            break;
+        case Assertion::Type::ExistentialQuantification:
+            visit(dynamic_cast<const ExistentialQuantification*>(assertion));
+            break;
+        case Assertion::Type::Comparison:
+            visit(dynamic_cast<const Comparison*>(assertion));
+            break;
+        }
+    }
 
-    void visit(const Statement* statement) override {}
+    T visit(const Statement* statement) override {
+        switch (statement->type) {
+        case Statement::Type::AssignmentStatement:
+            visit(dynamic_cast<const AssignmentStatement*>(statement));
+            break;
+        case Statement::Type::MultipleAssignmentStatement:
+            visit(dynamic_cast<const MultipleAssignmentStatement*>(statement));
+            break;
+        case Statement::Type::ArrayAssignmentStatement:
+            visit(dynamic_cast<const ArrayAssignmentStatement*>(statement));
+            break;
+        case Statement::Type::IfThenElseStatement:
+            visit(dynamic_cast<const IfThenElseStatement*>(statement));
+            break;
+        case Statement::Type::IfThenStatement:
+            visit(dynamic_cast<const IfThenStatement*>(statement));
+            break;
+        case Statement::Type::WhileStatement:
+            visit(dynamic_cast<const WhileStatement*>(statement));
+            break;
+        }
+    }
 
-    void visit(const Location* location) override {}
+    T visit(const Location* location) override {}
 
-    void visit(const Invariant* invariant) override {
+    T visit(const Invariant* invariant) override {
         visit(&invariant->assertion);
     }
 
-    void visit(const Block* block) override {
+    T visit(const Block* block) override {
         for (const auto& node : block->stmts) {
             visit(node);
         }
     }
 
-    void visit(const PreCondition* condition) override {
+    T visit(const PreCondition* condition) override {
         visit(&condition->assertion);
     }
 
-    void visit(const PostCondition* condition) override {
+    T visit(const PostCondition* condition) override {
         visit(&condition->assertion);
     }
 
-    void visit(const Program* program) override {
+    T visit(const Program* program) override {
         for (const auto& node : program->preConditions) {
             visit(node);
         }
         for (const auto& node : program->postConditions) {
             visit(node);
         }
+        visit(&program->block);
     }
 
-    void visit(const Negation* assertion) override {
+    T visit(const Negation* assertion) override {
         visit(&assertion->assertion);
     }
 
-    void visit(const Conjunction* assertion) override {
+    T visit(const Conjunction* assertion) override {
         visit(&assertion->left);
         visit(&assertion->right);
     }
 
-    void visit(const Disjunction* assertion) override {
+    T visit(const Disjunction* assertion) override {
         visit(&assertion->left);
         visit(&assertion->right);
     }
 
-    void visit(const Implication* assertion) override {
+    T visit(const Implication* assertion) override {
         visit(&assertion->left);
         visit(&assertion->right);
     }
 
-    void visit(const UniversalQuantification* assertion) override {
+    T visit(const UniversalQuantification* assertion) override {
         visit(&assertion->body);
     }
 
-    void visit(const ExistentialQuantification* assertion) override {
+    T visit(const ExistentialQuantification* assertion) override {
         visit(&assertion->body);
     }
 
-    void visit(const ArithmeticExpression* expression) override {}
+    T visit(const ArithmeticExpression* expression) override {
+        switch (expression->type) {
+        case ArithmeticExpression::Type::Reference:
+            visit(dynamic_cast<const Reference*>(expression));
+            break;
+        case ArithmeticExpression::Type::ArrayReference:
+            visit(dynamic_cast<const ArrayReference*>(expression));
+            break;
+        case ArithmeticExpression::Type::Constant:
+            visit(dynamic_cast<const Constant*>(expression));
+            break;
+        case ArithmeticExpression::Type::Negate:
+            visit(dynamic_cast<const Negate*>(expression));
+            break;
+        case ArithmeticExpression::Type::Sum:
+            visit(dynamic_cast<const Sum*>(expression));
+            break;
+        case ArithmeticExpression::Type::Subtract:
+            visit(dynamic_cast<const Subtract*>(expression));
+            break;
+        case ArithmeticExpression::Type::Multiply:
+            visit(dynamic_cast<const Multiply*>(expression));
+            break;
+        case ArithmeticExpression::Type::Divide:
+            visit(dynamic_cast<const Divide*>(expression));
+            break;
+        case ArithmeticExpression::Type::Mod:
+            visit(dynamic_cast<const Mod*>(expression));
+            break;
+        }
+    }
 
-    void visit(const Reference* expression) override {}
+    T visit(const Reference* expression) override {}
 
-    void visit(const Constant* expression) override {}
+    T visit(const Constant* expression) override {}
 
-    void visit(const ArrayReference* expression) override {
+    T visit(const ArrayReference* expression) override {
         visit(&expression->reference);
         visit(&expression->index);
     }
 
-    void visit(const Negate* expression) override {
+    T visit(const Negate* expression) override {
         visit(&expression->expression);
     }
 
-    void visit(const Sum* expression) override {
+    T visit(const Sum* expression) override {
         visit(&expression->left);
         visit(&expression->right);
     }
 
-    void visit(const Subtract* expression) override {
+    T visit(const Subtract* expression) override {
         visit(&expression->left);
         visit(&expression->right);
     }
 
-    void visit(const Multiply* expression) override {
+    T visit(const Multiply* expression) override {
         visit(&expression->left);
         visit(&expression->right);
     }
 
-    void visit(const Divide* expression) override {
+    T visit(const Divide* expression) override {
         visit(&expression->left);
         visit(&expression->right);
     }
 
-    void visit(const Mod* expression) override {
+    T visit(const Mod* expression) override {
         visit(&expression->left);
         visit(&expression->right);
     }
 
-    void visit(const Comparison* comparison) override {}
+    T visit(const Comparison* comparison) override {
+        switch (comparison->type) {
+        case Comparison::Type::EqualComparison:
+            break;
+        case Comparison::Type::NotEqualComparison:
+            break;
+        case Comparison::Type::LeqComparison:
+            break;
+        case Comparison::Type::GeqComparison:
+            break;
+        case Comparison::Type::LtComparison:
+            break;
+        case Comparison::Type::GtComparison:
+            break;
+        }
+    }
 
-    void visit(const EqualComparison* comparison) override {
+    T visit(const EqualComparison* comparison) override {
         visit(&comparison->left);
         visit(&comparison->right);
     }
 
-    void visit(const NotEqualComparison* comparison) override {
+    T visit(const NotEqualComparison* comparison) override {
         visit(&comparison->left);
         visit(&comparison->right);
     }
 
-    void visit(const LeqComparison* comparison) override {
+    T visit(const LeqComparison* comparison) override {
         visit(&comparison->left);
         visit(&comparison->right);
     }
-    void visit(const GeqComparison* comparison) override {
-        visit(&comparison->left);
-        visit(&comparison->right);
-    }
-
-    void visit(const LtComparison* comparison) override {
+    T visit(const GeqComparison* comparison) override {
         visit(&comparison->left);
         visit(&comparison->right);
     }
 
-    void visit(const GtComparison* comparison) override {
+    T visit(const LtComparison* comparison) override {
         visit(&comparison->left);
         visit(&comparison->right);
     }
 
-    void visit(const AssignmentStatement* statement) override {
+    T visit(const GtComparison* comparison) override {
+        visit(&comparison->left);
+        visit(&comparison->right);
+    }
+
+    T visit(const AssignmentStatement* statement) override {
         visit(&statement->loc);
         visit(&statement->expr);
     }
 
-    void visit(const MultipleAssignmentStatement* statement) override {
+    T visit(const MultipleAssignmentStatement* statement) override {
         visit(&statement->locFirst);
         visit(&statement->exprFirst);
         visit(&statement->locSecond);
         visit(&statement->exprSecond);
     }
 
-    void visit(const ArrayAssignmentStatement* statement) override {
+    T visit(const ArrayAssignmentStatement* statement) override {
         visit(&statement->loc);
         visit(&statement->index);
         visit(&statement->exp);
     }
 
-    void visit(const IfThenStatement* statement) override {
+    T visit(const IfThenStatement* statement) override {
         visit(&statement->condition);
         visit(&statement->thenBlock);
     }
 
-    void visit(const IfThenElseStatement* statement) override {
+    T visit(const IfThenElseStatement* statement) override {
         visit(&statement->condition);
         visit(&statement->thenBlock);
         visit(&statement->elseBlock);
     }
 
-    void visit(const WhileStatement* statement) override {
+    T visit(const WhileStatement* statement) override {
         visit(&statement->condition);
         for (const auto& invariant : statement->invariants) {
             visit(invariant);

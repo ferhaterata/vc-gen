@@ -204,6 +204,33 @@ recognizer/vcgen-scanner.cpp.s:
 	$(MAKE) -f CMakeFiles/vcgen.dir/build.make CMakeFiles/vcgen.dir/recognizer/vcgen-scanner.cpp.s
 .PHONY : recognizer/vcgen-scanner.cpp.s
 
+tools.o: tools.cpp.o
+
+.PHONY : tools.o
+
+# target to build an object file
+tools.cpp.o:
+	$(MAKE) -f CMakeFiles/vcgen.dir/build.make CMakeFiles/vcgen.dir/tools.cpp.o
+.PHONY : tools.cpp.o
+
+tools.i: tools.cpp.i
+
+.PHONY : tools.i
+
+# target to preprocess a source file
+tools.cpp.i:
+	$(MAKE) -f CMakeFiles/vcgen.dir/build.make CMakeFiles/vcgen.dir/tools.cpp.i
+.PHONY : tools.cpp.i
+
+tools.s: tools.cpp.s
+
+.PHONY : tools.s
+
+# target to generate assembly for a file
+tools.cpp.s:
+	$(MAKE) -f CMakeFiles/vcgen.dir/build.make CMakeFiles/vcgen.dir/tools.cpp.s
+.PHONY : tools.cpp.s
+
 vcgen-driver.o: vcgen-driver.cpp.o
 
 .PHONY : vcgen-driver.o
@@ -276,6 +303,9 @@ help:
 	@echo "... recognizer/vcgen-scanner.o"
 	@echo "... recognizer/vcgen-scanner.i"
 	@echo "... recognizer/vcgen-scanner.s"
+	@echo "... tools.o"
+	@echo "... tools.i"
+	@echo "... tools.s"
 	@echo "... vcgen-driver.o"
 	@echo "... vcgen-driver.i"
 	@echo "... vcgen-driver.s"

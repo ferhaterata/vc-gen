@@ -16,6 +16,9 @@ CMakeFiles/vcgen.dir/recognizer/vcgen-scanner.cpp.o: ../recognizer/location.hh
 CMakeFiles/vcgen.dir/recognizer/vcgen-scanner.cpp.o: ../recognizer/vcgen-parser.hpp
 CMakeFiles/vcgen.dir/recognizer/vcgen-scanner.cpp.o: ../recognizer/vcgen-scanner.cpp
 
+CMakeFiles/vcgen.dir/tools.cpp.o: ../tools.cpp
+CMakeFiles/vcgen.dir/tools.cpp.o: ../tools.hpp
+
 CMakeFiles/vcgen.dir/vcgen-driver.cpp.o: ../ast.hpp
 CMakeFiles/vcgen.dir/vcgen-driver.cpp.o: ../recognizer/location.hh
 CMakeFiles/vcgen.dir/vcgen-driver.cpp.o: ../recognizer/vcgen-parser.hpp
@@ -28,6 +31,7 @@ CMakeFiles/vcgen.dir/vcgen.cpp.o: ../recognizer/vcgen-parser.hpp
 CMakeFiles/vcgen.dir/vcgen.cpp.o: ../abstract-visitor.hpp
 CMakeFiles/vcgen.dir/vcgen.cpp.o: ../ast.hpp
 CMakeFiles/vcgen.dir/vcgen.cpp.o: ../printer-visitor.hpp
+CMakeFiles/vcgen.dir/vcgen.cpp.o: ../tools.hpp
 CMakeFiles/vcgen.dir/vcgen.cpp.o: ../vcgen-driver.hpp
 CMakeFiles/vcgen.dir/vcgen.cpp.o: ../vcgen.cpp
 CMakeFiles/vcgen.dir/vcgen.cpp.o: ../visitor.hpp

@@ -1,0 +1,167 @@
+
+using namespace ast;
+inline ostream& operator<<(ostream& os, const Statement& statement) {
+    return os << "Statement" << endl;
+}
+
+inline ostream& operator<<(ostream& os, const BooleanExpression& expression) {
+    return os << "BooleanExpression" << endl;
+}
+
+inline ostream& operator<<(ostream& os, const Assertion& assertion) {
+    return os << "Assertion" << endl;
+}
+
+inline ostream& operator<<(ostream& os, const Program& program) {
+    return os << "Program" << endl;
+}
+
+inline ostream& operator<<(ostream& os, const ArithmeticExpression& expr) {
+    return os << "ArithmeticExpression" << endl;
+}
+
+inline ostream& operator<<(ostream& os, const PreCondition& condition) {
+    return os << "PreCondition" << endl;
+}
+
+ostream& operator<<(ostream& os, const AndExpression& expression) {
+    return os << "AndExpression" << endl;
+}
+
+inline ostream& operator<<(ostream& os, const ArrayAssignmentStatement& stmt) {
+    return os << "ArrayAssignmentStatement" << endl;
+}
+
+inline ostream& operator<<(ostream& os, const ArrayReference& exp) {
+    return os << "ArrayReference" << endl;
+}
+
+inline ostream& operator<<(ostream& os, const AssignmentStatement& statement) {
+
+    return os << "AssignmentStatement" << endl;
+}
+
+inline ostream& operator<<(ostream& os, const Block& block) {
+    return os << "Block" << endl;
+}
+
+inline ostream& operator<<(ostream& os, const Comparison& comparison) {
+    return os << "Comparison" << endl;
+}
+
+inline ostream& operator<<(ostream& os, const Conjunction& assertion) {
+    return os << "Conjunction" << endl;
+}
+
+inline ostream& operator<<(ostream& os, const Constant& expression) {
+    return os << "Constant" << endl;
+}
+
+inline ostream& operator<<(ostream& os, const Disjunction& assertion) {
+    return os << "Disjunction" << endl;
+}
+
+inline ostream& operator<<(ostream& os, const Divide& expression) {
+    return os << "Divide" << endl;
+}
+
+inline ostream& operator<<(ostream& os, const EqualComparison& exp) {
+    return os << "EqualComparison" << endl;
+}
+
+inline ostream& operator<<(ostream& os, const ExistentialQuantification& asst) {
+    return os << "ExistentialQuantification" << endl;
+}
+
+inline ostream& operator<<(ostream& os, const GeqComparison& comparison) {
+    return os << "GeqComparison" << endl;
+}
+
+inline ostream& operator<<(ostream& os, const GtComparison& comparison) {
+    return os << "GtComparison" << endl;
+}
+
+inline ostream& operator<<(ostream& os, const IfThenElseStatement& statement) {
+    return os << "IfThenElseStatement" << endl;
+}
+
+inline ostream& operator<<(ostream& os, const IfThenStatement& statement) {
+    return os << "IfThenStatement" << endl;
+}
+
+inline ostream& operator<<(ostream& os, const Implication& assertion) {
+    return os << "Implication" << endl;
+}
+
+inline ostream& operator<<(ostream& os, const Invariant& invariant) {
+    return os << "Invariant" << endl;
+}
+
+inline ostream& operator<<(ostream& os, const LeqComparison& comparison) {
+    return os << "LeqComparison" << endl;
+}
+
+inline ostream& operator<<(ostream& os, const Location& statement) {
+    return os << "Location" << endl;
+}
+
+inline ostream& operator<<(ostream& os, const LtComparison& comparison) {
+    return os << "LtComparison" << endl;
+}
+
+inline ostream& operator<<(ostream& os, const Mod& expression) {
+    return os << "Mod" << endl;
+}
+
+inline ostream& operator<<(ostream& os,
+                           const MultipleAssignmentStatement& statement) {
+    return os << "MultipleAssignmentStatement" << endl;
+}
+
+inline ostream& operator<<(ostream& os, const Multiply& expression) {
+    return os << "Multiply" << endl;
+}
+
+inline ostream& operator<<(ostream& os, const Negate& expression) {
+    return os << "Negate" << endl;
+}
+
+inline ostream& operator<<(ostream& os, const Negation& assertion) {
+    return os << "Negation" << endl;
+}
+
+inline ostream& operator<<(ostream& os, const Node& node) {
+    return os << "Node" << endl;
+}
+
+inline ostream& operator<<(ostream& os, const NotEqualComparison& comparison) {
+    return os << "NotEqualComparison" << endl;
+}
+
+inline ostream& operator<<(ostream& os, const NotExpression& expression) {
+    return os << "NotExpression" << endl;
+}
+
+inline ostream& operator<<(ostream& os, const OrExpression& expression) {
+    return os << "OrExpression" << endl;
+}
+
+inline ostream& operator<<(ostream& os, const PostCondition& postCondition) {
+    return os << "PostCondition" << endl;
+}
+
+inline ostream& operator<<(ostream& os, const Reference& expression) {
+    return os << "Reference" << endl;
+}
+
+inline ostream& operator<<(ostream& os, const Subtract& expression) {
+    return os << "Subtract" << endl;
+}
+
+inline ostream& operator<<(ostream& os, const Sum& expression) {
+    return os << "Sum" << endl;
+}
+
+inline ostream& operator<<(ostream& os, const UniversalQuantification& assert) {
+    return os << "UniversalQuantification" << endl;
+}

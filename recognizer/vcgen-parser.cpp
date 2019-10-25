@@ -61,21 +61,12 @@ void print(std::vector<T>& v){
   }
 }
 
-template <typename T> ostream& operator<<(ostream& out, const vector<T*>& v) {
-    if (!v.empty()) {
-        out << '[';
-        std::copy(v.begin(), v.end(), std::ostream_iterator<T>(out, ", "));
-        out << "\b\b]";
-    }
-    return out;
-}
-
 ast::Program *program; /* the top level root node of our final AST */
 
 void clear_stack ();
 stack <ast::Node*> nodes;
 
-#line 79 "/home/ferhat/git/vc-gen/recognizer/vcgen-parser.cpp"
+#line 70 "/home/ferhat/git/vc-gen/recognizer/vcgen-parser.cpp"
 
 
 #ifndef YY_
@@ -169,7 +160,7 @@ stack <ast::Node*> nodes;
 #define YYRECOVERING()  (!!yyerrstatus_)
 
 namespace yy {
-#line 173 "/home/ferhat/git/vc-gen/recognizer/vcgen-parser.cpp"
+#line 164 "/home/ferhat/git/vc-gen/recognizer/vcgen-parser.cpp"
 
 
   /* Return YYSTR after stripping away unnecessary quotes and
@@ -705,7 +696,7 @@ namespace yy {
   yyla.location.begin.filename = yyla.location.end.filename = &driver.file;
 }
 
-#line 709 "/home/ferhat/git/vc-gen/recognizer/vcgen-parser.cpp"
+#line 700 "/home/ferhat/git/vc-gen/recognizer/vcgen-parser.cpp"
 
 
     /* Initialize the stack.  The initial state will be set in
@@ -908,337 +899,337 @@ namespace yy {
           switch (yyn)
             {
   case 2:
-#line 169 "/home/ferhat/git/vc-gen/vcgen-parser.yy"
+#line 160 "/home/ferhat/git/vc-gen/vcgen-parser.yy"
     { yylhs.value.as < ast::ArithmeticExpression* > () = yystack_[0].value.as < ast::Reference* > (); }
-#line 914 "/home/ferhat/git/vc-gen/recognizer/vcgen-parser.cpp"
+#line 905 "/home/ferhat/git/vc-gen/recognizer/vcgen-parser.cpp"
     break;
 
   case 3:
-#line 170 "/home/ferhat/git/vc-gen/vcgen-parser.yy"
+#line 161 "/home/ferhat/git/vc-gen/vcgen-parser.yy"
     { yylhs.value.as < ast::ArithmeticExpression* > () = new ast::ArrayReference(*yystack_[3].value.as < ast::Reference* > (), *yystack_[1].value.as < ast::ArithmeticExpression* > ()); }
-#line 920 "/home/ferhat/git/vc-gen/recognizer/vcgen-parser.cpp"
+#line 911 "/home/ferhat/git/vc-gen/recognizer/vcgen-parser.cpp"
     break;
 
   case 4:
-#line 171 "/home/ferhat/git/vc-gen/vcgen-parser.yy"
+#line 162 "/home/ferhat/git/vc-gen/vcgen-parser.yy"
     { yylhs.value.as < ast::ArithmeticExpression* > () = yystack_[0].value.as < ast::Constant* > (); }
-#line 926 "/home/ferhat/git/vc-gen/recognizer/vcgen-parser.cpp"
+#line 917 "/home/ferhat/git/vc-gen/recognizer/vcgen-parser.cpp"
     break;
 
   case 5:
-#line 172 "/home/ferhat/git/vc-gen/vcgen-parser.yy"
+#line 163 "/home/ferhat/git/vc-gen/vcgen-parser.yy"
     { yylhs.value.as < ast::ArithmeticExpression* > () = new ast::Negate(*yystack_[0].value.as < ast::ArithmeticExpression* > ()); }
-#line 932 "/home/ferhat/git/vc-gen/recognizer/vcgen-parser.cpp"
+#line 923 "/home/ferhat/git/vc-gen/recognizer/vcgen-parser.cpp"
     break;
 
   case 6:
-#line 173 "/home/ferhat/git/vc-gen/vcgen-parser.yy"
+#line 164 "/home/ferhat/git/vc-gen/vcgen-parser.yy"
     { yylhs.value.as < ast::ArithmeticExpression* > () = new ast::Sum(*yystack_[2].value.as < ast::ArithmeticExpression* > (), *yystack_[0].value.as < ast::ArithmeticExpression* > ());}
-#line 938 "/home/ferhat/git/vc-gen/recognizer/vcgen-parser.cpp"
+#line 929 "/home/ferhat/git/vc-gen/recognizer/vcgen-parser.cpp"
     break;
 
   case 7:
-#line 174 "/home/ferhat/git/vc-gen/vcgen-parser.yy"
+#line 165 "/home/ferhat/git/vc-gen/vcgen-parser.yy"
     { yylhs.value.as < ast::ArithmeticExpression* > () = new ast::Subtract(*yystack_[2].value.as < ast::ArithmeticExpression* > (), *yystack_[0].value.as < ast::ArithmeticExpression* > ()); }
-#line 944 "/home/ferhat/git/vc-gen/recognizer/vcgen-parser.cpp"
+#line 935 "/home/ferhat/git/vc-gen/recognizer/vcgen-parser.cpp"
     break;
 
   case 8:
-#line 175 "/home/ferhat/git/vc-gen/vcgen-parser.yy"
+#line 166 "/home/ferhat/git/vc-gen/vcgen-parser.yy"
     { yylhs.value.as < ast::ArithmeticExpression* > () = new ast::Multiply(*yystack_[2].value.as < ast::ArithmeticExpression* > (), *yystack_[0].value.as < ast::ArithmeticExpression* > ()); }
-#line 950 "/home/ferhat/git/vc-gen/recognizer/vcgen-parser.cpp"
+#line 941 "/home/ferhat/git/vc-gen/recognizer/vcgen-parser.cpp"
     break;
 
   case 9:
-#line 176 "/home/ferhat/git/vc-gen/vcgen-parser.yy"
+#line 167 "/home/ferhat/git/vc-gen/vcgen-parser.yy"
     { yylhs.value.as < ast::ArithmeticExpression* > () = new ast::Divide(*yystack_[2].value.as < ast::ArithmeticExpression* > (), *yystack_[0].value.as < ast::ArithmeticExpression* > ()); }
-#line 956 "/home/ferhat/git/vc-gen/recognizer/vcgen-parser.cpp"
+#line 947 "/home/ferhat/git/vc-gen/recognizer/vcgen-parser.cpp"
     break;
 
   case 10:
-#line 177 "/home/ferhat/git/vc-gen/vcgen-parser.yy"
+#line 168 "/home/ferhat/git/vc-gen/vcgen-parser.yy"
     { yylhs.value.as < ast::ArithmeticExpression* > () = new ast::Mod(*yystack_[2].value.as < ast::ArithmeticExpression* > (), *yystack_[0].value.as < ast::ArithmeticExpression* > ()); }
-#line 962 "/home/ferhat/git/vc-gen/recognizer/vcgen-parser.cpp"
+#line 953 "/home/ferhat/git/vc-gen/recognizer/vcgen-parser.cpp"
     break;
 
   case 11:
-#line 178 "/home/ferhat/git/vc-gen/vcgen-parser.yy"
+#line 169 "/home/ferhat/git/vc-gen/vcgen-parser.yy"
     { yylhs.value.as < ast::ArithmeticExpression* > () = yystack_[1].value.as < ast::ArithmeticExpression* > ();}
-#line 968 "/home/ferhat/git/vc-gen/recognizer/vcgen-parser.cpp"
+#line 959 "/home/ferhat/git/vc-gen/recognizer/vcgen-parser.cpp"
     break;
 
   case 12:
-#line 181 "/home/ferhat/git/vc-gen/vcgen-parser.yy"
+#line 172 "/home/ferhat/git/vc-gen/vcgen-parser.yy"
     { yylhs.value.as < ast::Reference* > () = new ast::Reference(yystack_[0].value.as < std::string > ()); }
-#line 974 "/home/ferhat/git/vc-gen/recognizer/vcgen-parser.cpp"
+#line 965 "/home/ferhat/git/vc-gen/recognizer/vcgen-parser.cpp"
     break;
 
   case 13:
-#line 184 "/home/ferhat/git/vc-gen/vcgen-parser.yy"
+#line 175 "/home/ferhat/git/vc-gen/vcgen-parser.yy"
     { yylhs.value.as < ast::Constant* > () = new ast::Constant(yystack_[0].value.as < int > ()); }
-#line 980 "/home/ferhat/git/vc-gen/recognizer/vcgen-parser.cpp"
+#line 971 "/home/ferhat/git/vc-gen/recognizer/vcgen-parser.cpp"
     break;
 
   case 14:
-#line 188 "/home/ferhat/git/vc-gen/vcgen-parser.yy"
+#line 179 "/home/ferhat/git/vc-gen/vcgen-parser.yy"
     { yylhs.value.as < ast::BooleanExpression* > () = yystack_[0].value.as < ast::Comparison* > (); }
-#line 986 "/home/ferhat/git/vc-gen/recognizer/vcgen-parser.cpp"
+#line 977 "/home/ferhat/git/vc-gen/recognizer/vcgen-parser.cpp"
     break;
 
   case 15:
-#line 189 "/home/ferhat/git/vc-gen/vcgen-parser.yy"
+#line 180 "/home/ferhat/git/vc-gen/vcgen-parser.yy"
     { yylhs.value.as < ast::BooleanExpression* > () = new ast::NotExpression(*yystack_[0].value.as < ast::BooleanExpression* > ()); }
-#line 992 "/home/ferhat/git/vc-gen/recognizer/vcgen-parser.cpp"
+#line 983 "/home/ferhat/git/vc-gen/recognizer/vcgen-parser.cpp"
     break;
 
   case 16:
-#line 190 "/home/ferhat/git/vc-gen/vcgen-parser.yy"
+#line 181 "/home/ferhat/git/vc-gen/vcgen-parser.yy"
     { yylhs.value.as < ast::BooleanExpression* > () = new ast::OrExpression(*yystack_[2].value.as < ast::BooleanExpression* > (), *yystack_[0].value.as < ast::BooleanExpression* > ()); }
-#line 998 "/home/ferhat/git/vc-gen/recognizer/vcgen-parser.cpp"
+#line 989 "/home/ferhat/git/vc-gen/recognizer/vcgen-parser.cpp"
     break;
 
   case 17:
-#line 191 "/home/ferhat/git/vc-gen/vcgen-parser.yy"
+#line 182 "/home/ferhat/git/vc-gen/vcgen-parser.yy"
     { yylhs.value.as < ast::BooleanExpression* > () = new ast::AndExpression(*yystack_[2].value.as < ast::BooleanExpression* > (), *yystack_[0].value.as < ast::BooleanExpression* > ()); }
-#line 1004 "/home/ferhat/git/vc-gen/recognizer/vcgen-parser.cpp"
+#line 995 "/home/ferhat/git/vc-gen/recognizer/vcgen-parser.cpp"
     break;
 
   case 18:
-#line 192 "/home/ferhat/git/vc-gen/vcgen-parser.yy"
+#line 183 "/home/ferhat/git/vc-gen/vcgen-parser.yy"
     { yylhs.value.as < ast::BooleanExpression* > () = yystack_[1].value.as < ast::BooleanExpression* > ();}
-#line 1010 "/home/ferhat/git/vc-gen/recognizer/vcgen-parser.cpp"
+#line 1001 "/home/ferhat/git/vc-gen/recognizer/vcgen-parser.cpp"
     break;
 
   case 19:
-#line 196 "/home/ferhat/git/vc-gen/vcgen-parser.yy"
+#line 187 "/home/ferhat/git/vc-gen/vcgen-parser.yy"
     { yylhs.value.as < ast::Comparison* > () = new ast::EqualComparison(*yystack_[2].value.as < ast::ArithmeticExpression* > (), *yystack_[0].value.as < ast::ArithmeticExpression* > ()); }
-#line 1016 "/home/ferhat/git/vc-gen/recognizer/vcgen-parser.cpp"
+#line 1007 "/home/ferhat/git/vc-gen/recognizer/vcgen-parser.cpp"
     break;
 
   case 20:
-#line 197 "/home/ferhat/git/vc-gen/vcgen-parser.yy"
+#line 188 "/home/ferhat/git/vc-gen/vcgen-parser.yy"
     { yylhs.value.as < ast::Comparison* > () = new ast::NotEqualComparison(*yystack_[2].value.as < ast::ArithmeticExpression* > (), *yystack_[0].value.as < ast::ArithmeticExpression* > ()); }
-#line 1022 "/home/ferhat/git/vc-gen/recognizer/vcgen-parser.cpp"
+#line 1013 "/home/ferhat/git/vc-gen/recognizer/vcgen-parser.cpp"
     break;
 
   case 21:
-#line 198 "/home/ferhat/git/vc-gen/vcgen-parser.yy"
+#line 189 "/home/ferhat/git/vc-gen/vcgen-parser.yy"
     { yylhs.value.as < ast::Comparison* > () = new ast::LeqComparison(*yystack_[2].value.as < ast::ArithmeticExpression* > (), *yystack_[0].value.as < ast::ArithmeticExpression* > ()); }
-#line 1028 "/home/ferhat/git/vc-gen/recognizer/vcgen-parser.cpp"
+#line 1019 "/home/ferhat/git/vc-gen/recognizer/vcgen-parser.cpp"
     break;
 
   case 22:
-#line 199 "/home/ferhat/git/vc-gen/vcgen-parser.yy"
+#line 190 "/home/ferhat/git/vc-gen/vcgen-parser.yy"
     { yylhs.value.as < ast::Comparison* > () = new ast::GeqComparison(*yystack_[2].value.as < ast::ArithmeticExpression* > (), *yystack_[0].value.as < ast::ArithmeticExpression* > ()); }
-#line 1034 "/home/ferhat/git/vc-gen/recognizer/vcgen-parser.cpp"
+#line 1025 "/home/ferhat/git/vc-gen/recognizer/vcgen-parser.cpp"
     break;
 
   case 23:
-#line 200 "/home/ferhat/git/vc-gen/vcgen-parser.yy"
+#line 191 "/home/ferhat/git/vc-gen/vcgen-parser.yy"
     { yylhs.value.as < ast::Comparison* > () = new ast::LtComparison(*yystack_[2].value.as < ast::ArithmeticExpression* > (), *yystack_[0].value.as < ast::ArithmeticExpression* > ()); }
-#line 1040 "/home/ferhat/git/vc-gen/recognizer/vcgen-parser.cpp"
+#line 1031 "/home/ferhat/git/vc-gen/recognizer/vcgen-parser.cpp"
     break;
 
   case 24:
-#line 201 "/home/ferhat/git/vc-gen/vcgen-parser.yy"
+#line 192 "/home/ferhat/git/vc-gen/vcgen-parser.yy"
     { yylhs.value.as < ast::Comparison* > () = new ast::GtComparison(*yystack_[2].value.as < ast::ArithmeticExpression* > (), *yystack_[0].value.as < ast::ArithmeticExpression* > ()); }
-#line 1046 "/home/ferhat/git/vc-gen/recognizer/vcgen-parser.cpp"
+#line 1037 "/home/ferhat/git/vc-gen/recognizer/vcgen-parser.cpp"
     break;
 
   case 25:
-#line 205 "/home/ferhat/git/vc-gen/vcgen-parser.yy"
+#line 196 "/home/ferhat/git/vc-gen/vcgen-parser.yy"
     { yylhs.value.as < ast::Statement* > () = new ast::AssignmentStatement(*yystack_[3].value.as < ast::Location* > (), *yystack_[1].value.as < ast::ArithmeticExpression* > ());}
-#line 1052 "/home/ferhat/git/vc-gen/recognizer/vcgen-parser.cpp"
+#line 1043 "/home/ferhat/git/vc-gen/recognizer/vcgen-parser.cpp"
     break;
 
   case 26:
-#line 206 "/home/ferhat/git/vc-gen/vcgen-parser.yy"
+#line 197 "/home/ferhat/git/vc-gen/vcgen-parser.yy"
     { yylhs.value.as < ast::Statement* > () = new ast::MultipleAssignmentStatement(*yystack_[7].value.as < ast::Location* > (), *yystack_[5].value.as < ast::Location* > (), *yystack_[3].value.as < ast::ArithmeticExpression* > (), *yystack_[1].value.as < ast::ArithmeticExpression* > ());}
-#line 1058 "/home/ferhat/git/vc-gen/recognizer/vcgen-parser.cpp"
+#line 1049 "/home/ferhat/git/vc-gen/recognizer/vcgen-parser.cpp"
     break;
 
   case 27:
-#line 207 "/home/ferhat/git/vc-gen/vcgen-parser.yy"
+#line 198 "/home/ferhat/git/vc-gen/vcgen-parser.yy"
     { yylhs.value.as < ast::Statement* > () = new ast::ArrayAssignmentStatement(*yystack_[6].value.as < ast::Location* > (), *yystack_[4].value.as < ast::ArithmeticExpression* > (), *yystack_[1].value.as < ast::ArithmeticExpression* > ());}
-#line 1064 "/home/ferhat/git/vc-gen/recognizer/vcgen-parser.cpp"
+#line 1055 "/home/ferhat/git/vc-gen/recognizer/vcgen-parser.cpp"
     break;
 
   case 28:
-#line 208 "/home/ferhat/git/vc-gen/vcgen-parser.yy"
+#line 199 "/home/ferhat/git/vc-gen/vcgen-parser.yy"
     { yylhs.value.as < ast::Statement* > () = new ast::IfThenElseStatement(*yystack_[5].value.as < ast::BooleanExpression* > (), *yystack_[3].value.as < ast::Block* > (), *yystack_[1].value.as < ast::Block* > ());}
-#line 1070 "/home/ferhat/git/vc-gen/recognizer/vcgen-parser.cpp"
+#line 1061 "/home/ferhat/git/vc-gen/recognizer/vcgen-parser.cpp"
     break;
 
   case 29:
-#line 209 "/home/ferhat/git/vc-gen/vcgen-parser.yy"
+#line 200 "/home/ferhat/git/vc-gen/vcgen-parser.yy"
     { yylhs.value.as < ast::Statement* > () = new ast::IfThenStatement(*yystack_[3].value.as < ast::BooleanExpression* > (), *yystack_[1].value.as < ast::Block* > ());}
-#line 1076 "/home/ferhat/git/vc-gen/recognizer/vcgen-parser.cpp"
+#line 1067 "/home/ferhat/git/vc-gen/recognizer/vcgen-parser.cpp"
     break;
 
   case 30:
-#line 210 "/home/ferhat/git/vc-gen/vcgen-parser.yy"
+#line 201 "/home/ferhat/git/vc-gen/vcgen-parser.yy"
     { yylhs.value.as < ast::Statement* > () = new ast::WhileStatement(*yystack_[4].value.as < ast::BooleanExpression* > (), yystack_[3].value.as < std::vector<ast::Invariant*> > (), *yystack_[1].value.as < ast::Block* > ());}
-#line 1082 "/home/ferhat/git/vc-gen/recognizer/vcgen-parser.cpp"
+#line 1073 "/home/ferhat/git/vc-gen/recognizer/vcgen-parser.cpp"
     break;
 
   case 31:
-#line 213 "/home/ferhat/git/vc-gen/vcgen-parser.yy"
+#line 204 "/home/ferhat/git/vc-gen/vcgen-parser.yy"
     { yylhs.value.as < ast::Location* > () = new ast::Location(yystack_[0].value.as < std::string > ()); }
-#line 1088 "/home/ferhat/git/vc-gen/recognizer/vcgen-parser.cpp"
+#line 1079 "/home/ferhat/git/vc-gen/recognizer/vcgen-parser.cpp"
     break;
 
   case 32:
-#line 217 "/home/ferhat/git/vc-gen/vcgen-parser.yy"
+#line 208 "/home/ferhat/git/vc-gen/vcgen-parser.yy"
     { yylhs.value.as < std::vector<ast::Invariant*> > () = {yystack_[0].value.as < ast::Invariant* > ()}; }
-#line 1094 "/home/ferhat/git/vc-gen/recognizer/vcgen-parser.cpp"
+#line 1085 "/home/ferhat/git/vc-gen/recognizer/vcgen-parser.cpp"
     break;
 
   case 33:
-#line 218 "/home/ferhat/git/vc-gen/vcgen-parser.yy"
+#line 209 "/home/ferhat/git/vc-gen/vcgen-parser.yy"
     { yylhs.value.as < std::vector<ast::Invariant*> > () = enlist(yystack_[1].value.as < std::vector<ast::Invariant*> > (), yystack_[0].value.as < ast::Invariant* > ()); }
-#line 1100 "/home/ferhat/git/vc-gen/recognizer/vcgen-parser.cpp"
+#line 1091 "/home/ferhat/git/vc-gen/recognizer/vcgen-parser.cpp"
     break;
 
   case 34:
-#line 221 "/home/ferhat/git/vc-gen/vcgen-parser.yy"
+#line 212 "/home/ferhat/git/vc-gen/vcgen-parser.yy"
     { yylhs.value.as < ast::Invariant* > () = new ast::Invariant(*yystack_[0].value.as < ast::Assertion* > ()); }
-#line 1106 "/home/ferhat/git/vc-gen/recognizer/vcgen-parser.cpp"
+#line 1097 "/home/ferhat/git/vc-gen/recognizer/vcgen-parser.cpp"
     break;
 
   case 35:
-#line 224 "/home/ferhat/git/vc-gen/vcgen-parser.yy"
+#line 215 "/home/ferhat/git/vc-gen/vcgen-parser.yy"
     { yylhs.value.as < ast::Block* > () = new ast::Block(yystack_[0].value.as < std::vector<ast::Statement*> > ()); /*print<ast::Statement>($1);*/}
-#line 1112 "/home/ferhat/git/vc-gen/recognizer/vcgen-parser.cpp"
+#line 1103 "/home/ferhat/git/vc-gen/recognizer/vcgen-parser.cpp"
     break;
 
   case 36:
-#line 228 "/home/ferhat/git/vc-gen/vcgen-parser.yy"
+#line 219 "/home/ferhat/git/vc-gen/vcgen-parser.yy"
     { yylhs.value.as < std::vector<ast::Statement*> > () = {yystack_[0].value.as < ast::Statement* > ()};}
-#line 1118 "/home/ferhat/git/vc-gen/recognizer/vcgen-parser.cpp"
+#line 1109 "/home/ferhat/git/vc-gen/recognizer/vcgen-parser.cpp"
     break;
 
   case 37:
-#line 229 "/home/ferhat/git/vc-gen/vcgen-parser.yy"
+#line 220 "/home/ferhat/git/vc-gen/vcgen-parser.yy"
     { yylhs.value.as < std::vector<ast::Statement*> > () = enlist(yystack_[1].value.as < std::vector<ast::Statement*> > (), yystack_[0].value.as < ast::Statement* > ()); }
-#line 1124 "/home/ferhat/git/vc-gen/recognizer/vcgen-parser.cpp"
+#line 1115 "/home/ferhat/git/vc-gen/recognizer/vcgen-parser.cpp"
     break;
 
   case 38:
-#line 234 "/home/ferhat/git/vc-gen/vcgen-parser.yy"
+#line 225 "/home/ferhat/git/vc-gen/vcgen-parser.yy"
     { yylhs.value.as < ast::Program* > () = new ast::Program(yystack_[5].value.as < std::string > (), yystack_[4].value.as < std::vector<ast::PreCondition*> > (), yystack_[3].value.as < std::vector<ast::PostCondition*> > (), *yystack_[1].value.as < ast::Block* > ()); driver.program = yylhs.value.as < ast::Program* > ();}
-#line 1130 "/home/ferhat/git/vc-gen/recognizer/vcgen-parser.cpp"
+#line 1121 "/home/ferhat/git/vc-gen/recognizer/vcgen-parser.cpp"
     break;
 
   case 39:
-#line 236 "/home/ferhat/git/vc-gen/vcgen-parser.yy"
+#line 227 "/home/ferhat/git/vc-gen/vcgen-parser.yy"
     { clear_stack (); }
-#line 1136 "/home/ferhat/git/vc-gen/recognizer/vcgen-parser.cpp"
+#line 1127 "/home/ferhat/git/vc-gen/recognizer/vcgen-parser.cpp"
     break;
 
   case 40:
-#line 240 "/home/ferhat/git/vc-gen/vcgen-parser.yy"
+#line 231 "/home/ferhat/git/vc-gen/vcgen-parser.yy"
     { yylhs.value.as < std::vector<ast::PreCondition*> > () = {yystack_[0].value.as < ast::PreCondition* > ()}; }
-#line 1142 "/home/ferhat/git/vc-gen/recognizer/vcgen-parser.cpp"
+#line 1133 "/home/ferhat/git/vc-gen/recognizer/vcgen-parser.cpp"
     break;
 
   case 41:
-#line 241 "/home/ferhat/git/vc-gen/vcgen-parser.yy"
+#line 232 "/home/ferhat/git/vc-gen/vcgen-parser.yy"
     { yylhs.value.as < std::vector<ast::PreCondition*> > () = enlist(yystack_[1].value.as < std::vector<ast::PreCondition*> > (), yystack_[0].value.as < ast::PreCondition* > ()); }
-#line 1148 "/home/ferhat/git/vc-gen/recognizer/vcgen-parser.cpp"
+#line 1139 "/home/ferhat/git/vc-gen/recognizer/vcgen-parser.cpp"
     break;
 
   case 42:
-#line 244 "/home/ferhat/git/vc-gen/vcgen-parser.yy"
+#line 235 "/home/ferhat/git/vc-gen/vcgen-parser.yy"
     { yylhs.value.as < ast::PreCondition* > () = new ast::PreCondition(*yystack_[0].value.as < ast::Assertion* > ()); }
-#line 1154 "/home/ferhat/git/vc-gen/recognizer/vcgen-parser.cpp"
+#line 1145 "/home/ferhat/git/vc-gen/recognizer/vcgen-parser.cpp"
     break;
 
   case 43:
-#line 248 "/home/ferhat/git/vc-gen/vcgen-parser.yy"
+#line 239 "/home/ferhat/git/vc-gen/vcgen-parser.yy"
     { yylhs.value.as < std::vector<ast::PostCondition*> > () = {yystack_[0].value.as < ast::PostCondition* > ()}; }
-#line 1160 "/home/ferhat/git/vc-gen/recognizer/vcgen-parser.cpp"
+#line 1151 "/home/ferhat/git/vc-gen/recognizer/vcgen-parser.cpp"
     break;
 
   case 44:
-#line 249 "/home/ferhat/git/vc-gen/vcgen-parser.yy"
+#line 240 "/home/ferhat/git/vc-gen/vcgen-parser.yy"
     { yylhs.value.as < std::vector<ast::PostCondition*> > () = enlist(yystack_[1].value.as < std::vector<ast::PostCondition*> > (), yystack_[0].value.as < ast::PostCondition* > ()); }
-#line 1166 "/home/ferhat/git/vc-gen/recognizer/vcgen-parser.cpp"
+#line 1157 "/home/ferhat/git/vc-gen/recognizer/vcgen-parser.cpp"
     break;
 
   case 45:
-#line 252 "/home/ferhat/git/vc-gen/vcgen-parser.yy"
+#line 243 "/home/ferhat/git/vc-gen/vcgen-parser.yy"
     { yylhs.value.as < ast::PostCondition* > () = new ast::PostCondition(*yystack_[0].value.as < ast::Assertion* > ()); }
-#line 1172 "/home/ferhat/git/vc-gen/recognizer/vcgen-parser.cpp"
+#line 1163 "/home/ferhat/git/vc-gen/recognizer/vcgen-parser.cpp"
     break;
 
   case 46:
-#line 256 "/home/ferhat/git/vc-gen/vcgen-parser.yy"
+#line 247 "/home/ferhat/git/vc-gen/vcgen-parser.yy"
     { yylhs.value.as < ast::Assertion* > () = yystack_[0].value.as < ast::Comparison* > (); }
-#line 1178 "/home/ferhat/git/vc-gen/recognizer/vcgen-parser.cpp"
+#line 1169 "/home/ferhat/git/vc-gen/recognizer/vcgen-parser.cpp"
     break;
 
   case 47:
-#line 257 "/home/ferhat/git/vc-gen/vcgen-parser.yy"
+#line 248 "/home/ferhat/git/vc-gen/vcgen-parser.yy"
     { yylhs.value.as < ast::Assertion* > () = new ast::Negation(*yystack_[0].value.as < ast::Assertion* > ()); }
-#line 1184 "/home/ferhat/git/vc-gen/recognizer/vcgen-parser.cpp"
+#line 1175 "/home/ferhat/git/vc-gen/recognizer/vcgen-parser.cpp"
     break;
 
   case 48:
-#line 258 "/home/ferhat/git/vc-gen/vcgen-parser.yy"
+#line 249 "/home/ferhat/git/vc-gen/vcgen-parser.yy"
     { yylhs.value.as < ast::Assertion* > () = new ast::Disjunction(*yystack_[2].value.as < ast::Assertion* > (), *yystack_[0].value.as < ast::Assertion* > ()); }
-#line 1190 "/home/ferhat/git/vc-gen/recognizer/vcgen-parser.cpp"
+#line 1181 "/home/ferhat/git/vc-gen/recognizer/vcgen-parser.cpp"
     break;
 
   case 49:
-#line 259 "/home/ferhat/git/vc-gen/vcgen-parser.yy"
+#line 250 "/home/ferhat/git/vc-gen/vcgen-parser.yy"
     { yylhs.value.as < ast::Assertion* > () = new ast::Conjunction(*yystack_[2].value.as < ast::Assertion* > (), *yystack_[0].value.as < ast::Assertion* > ()); }
-#line 1196 "/home/ferhat/git/vc-gen/recognizer/vcgen-parser.cpp"
+#line 1187 "/home/ferhat/git/vc-gen/recognizer/vcgen-parser.cpp"
     break;
 
   case 50:
-#line 260 "/home/ferhat/git/vc-gen/vcgen-parser.yy"
+#line 251 "/home/ferhat/git/vc-gen/vcgen-parser.yy"
     { yylhs.value.as < ast::Assertion* > () = new ast::Implication(*yystack_[2].value.as < ast::Assertion* > (), *yystack_[0].value.as < ast::Assertion* > ()); }
-#line 1202 "/home/ferhat/git/vc-gen/recognizer/vcgen-parser.cpp"
+#line 1193 "/home/ferhat/git/vc-gen/recognizer/vcgen-parser.cpp"
     break;
 
   case 51:
-#line 261 "/home/ferhat/git/vc-gen/vcgen-parser.yy"
-    { yylhs.value.as < ast::Assertion* > () = new ast::UniversalQuantification(yystack_[2].value.as < std::vector<std::string> > (), *yystack_[0].value.as < ast::Assertion* > ()); print<std::string>(yystack_[2].value.as < std::vector<std::string> > ()); }
-#line 1208 "/home/ferhat/git/vc-gen/recognizer/vcgen-parser.cpp"
+#line 252 "/home/ferhat/git/vc-gen/vcgen-parser.yy"
+    { yylhs.value.as < ast::Assertion* > () = new ast::UniversalQuantification(yystack_[2].value.as < std::vector<std::string> > (), *yystack_[0].value.as < ast::Assertion* > ()); /*print<std::string>($2);*/ }
+#line 1199 "/home/ferhat/git/vc-gen/recognizer/vcgen-parser.cpp"
     break;
 
   case 52:
-#line 262 "/home/ferhat/git/vc-gen/vcgen-parser.yy"
-    { yylhs.value.as < ast::Assertion* > () = new ast::ExistentialQuantification(yystack_[2].value.as < std::vector<std::string> > (), *yystack_[0].value.as < ast::Assertion* > ()); print<std::string>(yystack_[2].value.as < std::vector<std::string> > ()); }
-#line 1214 "/home/ferhat/git/vc-gen/recognizer/vcgen-parser.cpp"
+#line 253 "/home/ferhat/git/vc-gen/vcgen-parser.yy"
+    { yylhs.value.as < ast::Assertion* > () = new ast::ExistentialQuantification(yystack_[2].value.as < std::vector<std::string> > (), *yystack_[0].value.as < ast::Assertion* > ()); /*print<std::string>($2);*/ }
+#line 1205 "/home/ferhat/git/vc-gen/recognizer/vcgen-parser.cpp"
     break;
 
   case 53:
-#line 263 "/home/ferhat/git/vc-gen/vcgen-parser.yy"
+#line 254 "/home/ferhat/git/vc-gen/vcgen-parser.yy"
     { yylhs.value.as < ast::Assertion* > () = yystack_[1].value.as < ast::Assertion* > (); }
-#line 1220 "/home/ferhat/git/vc-gen/recognizer/vcgen-parser.cpp"
+#line 1211 "/home/ferhat/git/vc-gen/recognizer/vcgen-parser.cpp"
     break;
 
   case 54:
-#line 264 "/home/ferhat/git/vc-gen/vcgen-parser.yy"
+#line 255 "/home/ferhat/git/vc-gen/vcgen-parser.yy"
     {  }
-#line 1226 "/home/ferhat/git/vc-gen/recognizer/vcgen-parser.cpp"
+#line 1217 "/home/ferhat/git/vc-gen/recognizer/vcgen-parser.cpp"
     break;
 
   case 55:
-#line 268 "/home/ferhat/git/vc-gen/vcgen-parser.yy"
+#line 259 "/home/ferhat/git/vc-gen/vcgen-parser.yy"
     { yylhs.value.as < std::vector<std::string> > () = {yystack_[0].value.as < std::string > ()}; }
-#line 1232 "/home/ferhat/git/vc-gen/recognizer/vcgen-parser.cpp"
+#line 1223 "/home/ferhat/git/vc-gen/recognizer/vcgen-parser.cpp"
     break;
 
   case 56:
-#line 269 "/home/ferhat/git/vc-gen/vcgen-parser.yy"
+#line 260 "/home/ferhat/git/vc-gen/vcgen-parser.yy"
     { yylhs.value.as < std::vector<std::string> > () = enlist(yystack_[1].value.as < std::vector<std::string> > (), yystack_[0].value.as < std::string > ()); }
-#line 1238 "/home/ferhat/git/vc-gen/recognizer/vcgen-parser.cpp"
+#line 1229 "/home/ferhat/git/vc-gen/recognizer/vcgen-parser.cpp"
     break;
 
 
-#line 1242 "/home/ferhat/git/vc-gen/recognizer/vcgen-parser.cpp"
+#line 1233 "/home/ferhat/git/vc-gen/recognizer/vcgen-parser.cpp"
 
             default:
               break;
@@ -1678,12 +1669,12 @@ namespace yy {
   const unsigned short
   vcgen_parser::yyrline_[] =
   {
-       0,   169,   169,   170,   171,   172,   173,   174,   175,   176,
-     177,   178,   181,   184,   188,   189,   190,   191,   192,   196,
-     197,   198,   199,   200,   201,   205,   206,   207,   208,   209,
-     210,   213,   217,   218,   221,   224,   228,   229,   233,   235,
-     240,   241,   244,   248,   249,   252,   256,   257,   258,   259,
-     260,   261,   262,   263,   264,   268,   269
+       0,   160,   160,   161,   162,   163,   164,   165,   166,   167,
+     168,   169,   172,   175,   179,   180,   181,   182,   183,   187,
+     188,   189,   190,   191,   192,   196,   197,   198,   199,   200,
+     201,   204,   208,   209,   212,   215,   219,   220,   224,   226,
+     231,   232,   235,   239,   240,   243,   247,   248,   249,   250,
+     251,   252,   253,   254,   255,   259,   260
   };
 
   // Print the state stack on the debug stream.
@@ -1717,9 +1708,9 @@ namespace yy {
 
 
 } // yy
-#line 1721 "/home/ferhat/git/vc-gen/recognizer/vcgen-parser.cpp"
+#line 1712 "/home/ferhat/git/vc-gen/recognizer/vcgen-parser.cpp"
 
-#line 271 "/home/ferhat/git/vc-gen/vcgen-parser.yy"
+#line 262 "/home/ferhat/git/vc-gen/vcgen-parser.yy"
 
 
 void

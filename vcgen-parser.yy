@@ -54,15 +54,6 @@ void print(std::vector<T>& v){
   }
 }
 
-template <typename T> ostream& operator<<(ostream& out, const vector<T*>& v) {
-    if (!v.empty()) {
-        out << '[';
-        std::copy(v.begin(), v.end(), std::ostream_iterator<T>(out, ", "));
-        out << "\b\b]";
-    }
-    return out;
-}
-
 ast::Program *program; /* the top level root node of our final AST */
 
 void clear_stack ();
@@ -258,8 +249,8 @@ assertion:
     | assertion "||" assertion                  { $$ = new ast::Disjunction(*$1, *$3); }
     | assertion "&&" assertion                  { $$ = new ast::Conjunction(*$1, *$3); }
     | assertion "==>" assertion                 { $$ = new ast::Implication(*$1, *$3); }
-    | "forall" identifier_list "," assertion    { $$ = new ast::UniversalQuantification($2, *$4); print<std::string>($2); }
-    | "exists" identifier_list "," assertion    { $$ = new ast::ExistentialQuantification($2, *$4); print<std::string>($2); }
+    | "forall" identifier_list "," assertion    { $$ = new ast::UniversalQuantification($2, *$4); /*print<std::string>($2);*/ }
+    | "exists" identifier_list "," assertion    { $$ = new ast::ExistentialQuantification($2, *$4); /*print<std::string>($2);*/ }
     | "(" assertion ")"                         { $$ = $2; }
     | "(" error ")"                             {  }
     ;

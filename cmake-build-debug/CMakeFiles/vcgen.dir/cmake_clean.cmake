@@ -5,6 +5,7 @@ file(REMOVE_RECURSE
   "CMakeFiles/vcgen.dir/ast.cpp.o"
   "CMakeFiles/vcgen.dir/recognizer/vcgen-parser.cpp.o"
   "CMakeFiles/vcgen.dir/recognizer/vcgen-scanner.cpp.o"
+  "CMakeFiles/vcgen.dir/tools.cpp.o"
   "CMakeFiles/vcgen.dir/vcgen-driver.cpp.o"
   "CMakeFiles/vcgen.dir/vcgen.cpp.o"
   "vcgen"

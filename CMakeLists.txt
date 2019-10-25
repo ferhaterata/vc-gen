@@ -21,4 +21,6 @@ add_executable(vcgen
         vcgen.cpp
         ${BISON_MyParser_OUTPUTS}
         ${FLEX_MyScanner_OUTPUTS}
-        ast.cpp ast.hpp visitor.hpp abstract-visitor.hpp printer-visitor.hpp)
+        ast.cpp ast.hpp visitor.hpp abstract-visitor.hpp printer-visitor.hpp
+        tools.cpp
+        tools.hpp)

@@ -313,10 +313,10 @@ class ArrayAssignmentStatement : public Statement {
 
 class IfThenStatement : public Statement {
   public:
-    const BooleanExpression& exp;
+    const BooleanExpression& condition;
     const Block& thenBlock;
-    IfThenStatement(BooleanExpression& exp, Block& thenBlock)
-        : exp(exp), thenBlock(thenBlock) {}
+    IfThenStatement(BooleanExpression& condition, Block& thenBlock)
+        : condition(condition), thenBlock(thenBlock) {}
 };
 
 class IfThenElseStatement : public Statement {

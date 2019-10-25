@@ -5,8 +5,28 @@
 // -----------------------------------------------------------------------------
 
 #include "ast.hpp"
-//ostream& ast::ArithmeticExpression::print(ostream& out) {
-//    out << " ]>top\n";
-//    return out;
-//}
+using namespace ast;
 
+inline ostream& operator<<(ostream& os, const ArithmeticExpression& exp) {
+    return os << typeid(ArithmeticExpression).name();
+}
+
+inline ostream& operator<<(ostream& os, const Assertion& assertion) {
+    return os << typeid(Assertion).name();
+}
+
+inline ostream& operator<<(ostream& os, const BooleanExpression& assertion) {
+    return os << typeid(BooleanExpression).name();
+}
+
+inline ostream& operator<<(ostream& os, const Statement& assertion) {
+    return os << typeid(Statement).name();
+}
+
+inline ostream& operator<<(ostream& os, const Program& assertion) {
+    return os << typeid(Program).name();
+}
+
+inline ostream& operator<<(ostream& os, const Invariant& assertion) {
+    return os << typeid(Invariant).name();
+}

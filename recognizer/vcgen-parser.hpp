@@ -48,11 +48,12 @@
 
 #include <string>
 #include <vector>
+#include <stack>
 #include <iterator>
 #include "ast.hpp"
 class vcgen_driver;
 
-#line 56 "/home/ferhat/git/vc-gen/recognizer/vcgen-parser.hpp"
+#line 57 "/home/ferhat/git/vc-gen/recognizer/vcgen-parser.hpp"
 
 # include <cassert>
 # include <cstdlib> // std::abort
@@ -167,7 +168,7 @@ class vcgen_driver;
 #endif
 
 namespace yy {
-#line 171 "/home/ferhat/git/vc-gen/recognizer/vcgen-parser.hpp"
+#line 172 "/home/ferhat/git/vc-gen/recognizer/vcgen-parser.hpp"
 
 
 
@@ -851,55 +852,55 @@ namespace yy {
         // Type destructor.
 switch (yytype)
     {
-      case 41: // aexp
+      case 42: // aexp
         value.template destroy< ast::ArithmeticExpression* > ();
         break;
 
-      case 57: // assertion
+      case 58: // assertion
         value.template destroy< ast::Assertion* > ();
         break;
 
-      case 50: // block
+      case 51: // block
         value.template destroy< ast::Block* > ();
         break;
 
-      case 44: // bexp
+      case 45: // bexp
         value.template destroy< ast::BooleanExpression* > ();
         break;
 
-      case 45: // comp
+      case 46: // comp
         value.template destroy< ast::Comparison* > ();
         break;
 
-      case 43: // constant
+      case 44: // constant
         value.template destroy< ast::Constant* > ();
         break;
 
-      case 49: // inv
+      case 50: // inv
         value.template destroy< ast::Invariant* > ();
         break;
 
-      case 47: // location
+      case 48: // location
         value.template destroy< ast::Location* > ();
         break;
 
-      case 56: // post
+      case 57: // post
         value.template destroy< ast::PostCondition* > ();
         break;
 
-      case 54: // pre
+      case 55: // pre
         value.template destroy< ast::PreCondition* > ();
         break;
 
-      case 52: // prog
+      case 53: // prog
         value.template destroy< ast::Program* > ();
         break;
 
-      case 42: // reference
+      case 43: // reference
         value.template destroy< ast::Reference* > ();
         break;
 
-      case 46: // stmt
+      case 47: // stmt
         value.template destroy< ast::Statement* > ();
         break;
 
@@ -911,23 +912,23 @@ switch (yytype)
         value.template destroy< std::string > ();
         break;
 
-      case 48: // inv_list
+      case 49: // inv_list
         value.template destroy< std::vector<ast::Invariant*> > ();
         break;
 
-      case 55: // post_list
+      case 56: // post_list
         value.template destroy< std::vector<ast::PostCondition*> > ();
         break;
 
-      case 53: // pre_list
+      case 54: // pre_list
         value.template destroy< std::vector<ast::PreCondition*> > ();
         break;
 
-      case 51: // stmt_list
+      case 52: // stmt_list
         value.template destroy< std::vector<ast::Statement*> > ();
         break;
 
-      case 58: // identifier_list
+      case 59: // identifier_list
         value.template destroy< std::vector<std::string> > ();
         break;
 
@@ -1010,13 +1011,13 @@ switch (yytype)
       symbol_type (int tok, location_type l)
         : super_type(token_type (tok), std::move (l))
       {
-        YYASSERT (tok == token::TOK_EOF || tok == token::TOK_PLUS || tok == token::TOK_MINUS || tok == token::TOK_STAR || tok == token::TOK_SLASH || tok == token::TOK_MOD || tok == token::TOK_LPAREN || tok == token::TOK_RPAREN || tok == token::TOK_EQUAL || tok == token::TOK_NEQUAL || tok == token::TOK_LEQ || tok == token::TOK_GEQ || tok == token::TOK_LT || tok == token::TOK_GT || tok == token::TOK_NOT || tok == token::TOK_OR || tok == token::TOK_AND || tok == token::TOK_ASSIGN || tok == token::TOK_SEMICOLON || tok == token::TOK_COMMA || tok == token::TOK_IF || tok == token::TOK_THEN || tok == token::TOK_ELSE || tok == token::TOK_END || tok == token::TOK_WHILE || tok == token::TOK_DO || tok == token::TOK_INV || tok == token::TOK_LSQUARE || tok == token::TOK_RSQUARE || tok == token::TOK_PROGRAM || tok == token::TOK_PRE || tok == token::TOK_POST || tok == token::TOK_IS || tok == token::TOK_IMPLY || tok == token::TOK_ALL || tok == token::TOK_SOME);
+        YYASSERT (tok == token::TOK_EOF || tok == token::TOK_PLUS || tok == token::TOK_MINUS || tok == token::TOK_STAR || tok == token::TOK_SLASH || tok == token::TOK_MOD || tok == token::TOK_LPAREN || tok == token::TOK_RPAREN || tok == token::TOK_EQUAL || tok == token::TOK_NEQUAL || tok == token::TOK_LEQ || tok == token::TOK_GEQ || tok == token::TOK_LT || tok == token::TOK_GT || tok == token::TOK_NOT || tok == token::TOK_OR || tok == token::TOK_AND || tok == token::TOK_ASSIGN || tok == token::TOK_SEMICOLON || tok == token::TOK_COMMA || tok == token::TOK_IF || tok == token::TOK_THEN || tok == token::TOK_ELSE || tok == token::TOK_END || tok == token::TOK_WHILE || tok == token::TOK_DO || tok == token::TOK_INV || tok == token::TOK_LSQUARE || tok == token::TOK_RSQUARE || tok == token::TOK_PROGRAM || tok == token::TOK_PRE || tok == token::TOK_POST || tok == token::TOK_IS || tok == token::TOK_IMPLY || tok == token::TOK_ALL || tok == token::TOK_SOME || tok == 295);
       }
 #else
       symbol_type (int tok, const location_type& l)
         : super_type(token_type (tok), l)
       {
-        YYASSERT (tok == token::TOK_EOF || tok == token::TOK_PLUS || tok == token::TOK_MINUS || tok == token::TOK_STAR || tok == token::TOK_SLASH || tok == token::TOK_MOD || tok == token::TOK_LPAREN || tok == token::TOK_RPAREN || tok == token::TOK_EQUAL || tok == token::TOK_NEQUAL || tok == token::TOK_LEQ || tok == token::TOK_GEQ || tok == token::TOK_LT || tok == token::TOK_GT || tok == token::TOK_NOT || tok == token::TOK_OR || tok == token::TOK_AND || tok == token::TOK_ASSIGN || tok == token::TOK_SEMICOLON || tok == token::TOK_COMMA || tok == token::TOK_IF || tok == token::TOK_THEN || tok == token::TOK_ELSE || tok == token::TOK_END || tok == token::TOK_WHILE || tok == token::TOK_DO || tok == token::TOK_INV || tok == token::TOK_LSQUARE || tok == token::TOK_RSQUARE || tok == token::TOK_PROGRAM || tok == token::TOK_PRE || tok == token::TOK_POST || tok == token::TOK_IS || tok == token::TOK_IMPLY || tok == token::TOK_ALL || tok == token::TOK_SOME);
+        YYASSERT (tok == token::TOK_EOF || tok == token::TOK_PLUS || tok == token::TOK_MINUS || tok == token::TOK_STAR || tok == token::TOK_SLASH || tok == token::TOK_MOD || tok == token::TOK_LPAREN || tok == token::TOK_RPAREN || tok == token::TOK_EQUAL || tok == token::TOK_NEQUAL || tok == token::TOK_LEQ || tok == token::TOK_GEQ || tok == token::TOK_LT || tok == token::TOK_GT || tok == token::TOK_NOT || tok == token::TOK_OR || tok == token::TOK_AND || tok == token::TOK_ASSIGN || tok == token::TOK_SEMICOLON || tok == token::TOK_COMMA || tok == token::TOK_IF || tok == token::TOK_THEN || tok == token::TOK_ELSE || tok == token::TOK_END || tok == token::TOK_WHILE || tok == token::TOK_DO || tok == token::TOK_INV || tok == token::TOK_LSQUARE || tok == token::TOK_RSQUARE || tok == token::TOK_PROGRAM || tok == token::TOK_PRE || tok == token::TOK_POST || tok == token::TOK_IS || tok == token::TOK_IMPLY || tok == token::TOK_ALL || tok == token::TOK_SOME || tok == 295);
       }
 #endif
 #if 201103L <= YY_CPLUSPLUS
@@ -1708,7 +1709,7 @@ switch (yytype)
   // number is the opposite.  If YYTABLE_NINF, syntax error.
   static const unsigned char yytable_[];
 
-  static const unsigned char yycheck_[];
+  static const signed char yycheck_[];
 
   // YYSTOS[STATE-NUM] -- The (internal number of the) accessing
   // symbol of state STATE-NUM.
@@ -1729,7 +1730,7 @@ switch (yytype)
     static const char* const yytname_[];
 #if YYDEBUG
   // YYRLINE[YYN] -- Source line where rule number YYN was defined.
-  static const unsigned char yyrline_[];
+  static const unsigned short yyrline_[];
     /// Report on the debug stream that the rule \a r is going to be reduced.
     virtual void yy_reduce_print_ (int r);
     /// Print the state stack on the debug stream.
@@ -1958,12 +1959,12 @@ switch (yytype)
     enum
     {
       yyeof_ = 0,
-      yylast_ = 190,     ///< Last index in yytable_.
+      yylast_ = 202,     ///< Last index in yytable_.
       yynnts_ = 19,  ///< Number of nonterminal symbols.
-      yyfinal_ = 4, ///< Termination state number.
+      yyfinal_ = 6, ///< Termination state number.
       yyterror_ = 1,
       yyerrcode_ = 256,
-      yyntokens_ = 40  ///< Number of tokens.
+      yyntokens_ = 41  ///< Number of tokens.
     };
 
 
@@ -2010,9 +2011,9 @@ switch (yytype)
        5,     6,     7,     8,     9,    10,    11,    12,    13,    14,
       15,    16,    17,    18,    19,    20,    21,    22,    23,    24,
       25,    26,    27,    28,    29,    30,    31,    32,    33,    34,
-      35,    36,    37,    38,    39
+      35,    36,    37,    38,    39,    40
     };
-    const unsigned user_token_number_max_ = 294;
+    const unsigned user_token_number_max_ = 295;
     const token_number_type undef_token_ = 2;
 
     if (static_cast<int> (t) <= yyeof_)
@@ -2033,55 +2034,55 @@ switch (yytype)
   {
     switch (this->type_get ())
     {
-      case 41: // aexp
+      case 42: // aexp
         value.move< ast::ArithmeticExpression* > (std::move (that.value));
         break;
 
-      case 57: // assertion
+      case 58: // assertion
         value.move< ast::Assertion* > (std::move (that.value));
         break;
 
-      case 50: // block
+      case 51: // block
         value.move< ast::Block* > (std::move (that.value));
         break;
 
-      case 44: // bexp
+      case 45: // bexp
         value.move< ast::BooleanExpression* > (std::move (that.value));
         break;
 
-      case 45: // comp
+      case 46: // comp
         value.move< ast::Comparison* > (std::move (that.value));
         break;
 
-      case 43: // constant
+      case 44: // constant
         value.move< ast::Constant* > (std::move (that.value));
         break;
 
-      case 49: // inv
+      case 50: // inv
         value.move< ast::Invariant* > (std::move (that.value));
         break;
 
-      case 47: // location
+      case 48: // location
         value.move< ast::Location* > (std::move (that.value));
         break;
 
-      case 56: // post
+      case 57: // post
         value.move< ast::PostCondition* > (std::move (that.value));
         break;
 
-      case 54: // pre
+      case 55: // pre
         value.move< ast::PreCondition* > (std::move (that.value));
         break;
 
-      case 52: // prog
+      case 53: // prog
         value.move< ast::Program* > (std::move (that.value));
         break;
 
-      case 42: // reference
+      case 43: // reference
         value.move< ast::Reference* > (std::move (that.value));
         break;
 
-      case 46: // stmt
+      case 47: // stmt
         value.move< ast::Statement* > (std::move (that.value));
         break;
 
@@ -2093,23 +2094,23 @@ switch (yytype)
         value.move< std::string > (std::move (that.value));
         break;
 
-      case 48: // inv_list
+      case 49: // inv_list
         value.move< std::vector<ast::Invariant*> > (std::move (that.value));
         break;
 
-      case 55: // post_list
+      case 56: // post_list
         value.move< std::vector<ast::PostCondition*> > (std::move (that.value));
         break;
 
-      case 53: // pre_list
+      case 54: // pre_list
         value.move< std::vector<ast::PreCondition*> > (std::move (that.value));
         break;
 
-      case 51: // stmt_list
+      case 52: // stmt_list
         value.move< std::vector<ast::Statement*> > (std::move (that.value));
         break;
 
-      case 58: // identifier_list
+      case 59: // identifier_list
         value.move< std::vector<std::string> > (std::move (that.value));
         break;
 
@@ -2128,55 +2129,55 @@ switch (yytype)
   {
     switch (this->type_get ())
     {
-      case 41: // aexp
+      case 42: // aexp
         value.copy< ast::ArithmeticExpression* > (YY_MOVE (that.value));
         break;
 
-      case 57: // assertion
+      case 58: // assertion
         value.copy< ast::Assertion* > (YY_MOVE (that.value));
         break;
 
-      case 50: // block
+      case 51: // block
         value.copy< ast::Block* > (YY_MOVE (that.value));
         break;
 
-      case 44: // bexp
+      case 45: // bexp
         value.copy< ast::BooleanExpression* > (YY_MOVE (that.value));
         break;
 
-      case 45: // comp
+      case 46: // comp
         value.copy< ast::Comparison* > (YY_MOVE (that.value));
         break;
 
-      case 43: // constant
+      case 44: // constant
         value.copy< ast::Constant* > (YY_MOVE (that.value));
         break;
 
-      case 49: // inv
+      case 50: // inv
         value.copy< ast::Invariant* > (YY_MOVE (that.value));
         break;
 
-      case 47: // location
+      case 48: // location
         value.copy< ast::Location* > (YY_MOVE (that.value));
         break;
 
-      case 56: // post
+      case 57: // post
         value.copy< ast::PostCondition* > (YY_MOVE (that.value));
         break;
 
-      case 54: // pre
+      case 55: // pre
         value.copy< ast::PreCondition* > (YY_MOVE (that.value));
         break;
 
-      case 52: // prog
+      case 53: // prog
         value.copy< ast::Program* > (YY_MOVE (that.value));
         break;
 
-      case 42: // reference
+      case 43: // reference
         value.copy< ast::Reference* > (YY_MOVE (that.value));
         break;
 
-      case 46: // stmt
+      case 47: // stmt
         value.copy< ast::Statement* > (YY_MOVE (that.value));
         break;
 
@@ -2188,23 +2189,23 @@ switch (yytype)
         value.copy< std::string > (YY_MOVE (that.value));
         break;
 
-      case 48: // inv_list
+      case 49: // inv_list
         value.copy< std::vector<ast::Invariant*> > (YY_MOVE (that.value));
         break;
 
-      case 55: // post_list
+      case 56: // post_list
         value.copy< std::vector<ast::PostCondition*> > (YY_MOVE (that.value));
         break;
 
-      case 53: // pre_list
+      case 54: // pre_list
         value.copy< std::vector<ast::PreCondition*> > (YY_MOVE (that.value));
         break;
 
-      case 51: // stmt_list
+      case 52: // stmt_list
         value.copy< std::vector<ast::Statement*> > (YY_MOVE (that.value));
         break;
 
-      case 58: // identifier_list
+      case 59: // identifier_list
         value.copy< std::vector<std::string> > (YY_MOVE (that.value));
         break;
 
@@ -2230,55 +2231,55 @@ switch (yytype)
     super_type::move (s);
     switch (this->type_get ())
     {
-      case 41: // aexp
+      case 42: // aexp
         value.move< ast::ArithmeticExpression* > (YY_MOVE (s.value));
         break;
 
-      case 57: // assertion
+      case 58: // assertion
         value.move< ast::Assertion* > (YY_MOVE (s.value));
         break;
 
-      case 50: // block
+      case 51: // block
         value.move< ast::Block* > (YY_MOVE (s.value));
         break;
 
-      case 44: // bexp
+      case 45: // bexp
         value.move< ast::BooleanExpression* > (YY_MOVE (s.value));
         break;
 
-      case 45: // comp
+      case 46: // comp
         value.move< ast::Comparison* > (YY_MOVE (s.value));
         break;
 
-      case 43: // constant
+      case 44: // constant
         value.move< ast::Constant* > (YY_MOVE (s.value));
         break;
 
-      case 49: // inv
+      case 50: // inv
         value.move< ast::Invariant* > (YY_MOVE (s.value));
         break;
 
-      case 47: // location
+      case 48: // location
         value.move< ast::Location* > (YY_MOVE (s.value));
         break;
 
-      case 56: // post
+      case 57: // post
         value.move< ast::PostCondition* > (YY_MOVE (s.value));
         break;
 
-      case 54: // pre
+      case 55: // pre
         value.move< ast::PreCondition* > (YY_MOVE (s.value));
         break;
 
-      case 52: // prog
+      case 53: // prog
         value.move< ast::Program* > (YY_MOVE (s.value));
         break;
 
-      case 42: // reference
+      case 43: // reference
         value.move< ast::Reference* > (YY_MOVE (s.value));
         break;
 
-      case 46: // stmt
+      case 47: // stmt
         value.move< ast::Statement* > (YY_MOVE (s.value));
         break;
 
@@ -2290,23 +2291,23 @@ switch (yytype)
         value.move< std::string > (YY_MOVE (s.value));
         break;
 
-      case 48: // inv_list
+      case 49: // inv_list
         value.move< std::vector<ast::Invariant*> > (YY_MOVE (s.value));
         break;
 
-      case 55: // post_list
+      case 56: // post_list
         value.move< std::vector<ast::PostCondition*> > (YY_MOVE (s.value));
         break;
 
-      case 53: // pre_list
+      case 54: // pre_list
         value.move< std::vector<ast::PreCondition*> > (YY_MOVE (s.value));
         break;
 
-      case 51: // stmt_list
+      case 52: // stmt_list
         value.move< std::vector<ast::Statement*> > (YY_MOVE (s.value));
         break;
 
-      case 58: // identifier_list
+      case 59: // identifier_list
         value.move< std::vector<std::string> > (YY_MOVE (s.value));
         break;
 
@@ -2377,13 +2378,14 @@ switch (yytype)
        0,   256,   257,   258,   259,   260,   261,   262,   263,   264,
      265,   266,   267,   268,   269,   270,   271,   272,   273,   274,
      275,   276,   277,   278,   279,   280,   281,   282,   283,   284,
-     285,   286,   287,   288,   289,   290,   291,   292,   293,   294
+     285,   286,   287,   288,   289,   290,   291,   292,   293,   294,
+     295
     };
     return token_type (yytoken_number_[type]);
   }
 
 } // yy
-#line 2387 "/home/ferhat/git/vc-gen/recognizer/vcgen-parser.hpp"
+#line 2389 "/home/ferhat/git/vc-gen/recognizer/vcgen-parser.hpp"
 
 
 

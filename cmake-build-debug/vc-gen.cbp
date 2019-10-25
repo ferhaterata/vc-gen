@@ -88,6 +88,9 @@
 				</MakeCommands>
 			</Target>
 		</Build>
+		<Unit filename="/home/ferhat/git/vc-gen/abstract-visitor.hpp">
+			<Option target="vcgen"/>
+		</Unit>
 		<Unit filename="/home/ferhat/git/vc-gen/ast.cpp">
 			<Option target="vcgen"/>
 		</Unit>
@@ -116,6 +119,9 @@
 			<Option target="vcgen"/>
 		</Unit>
 		<Unit filename="/home/ferhat/git/vc-gen/vcgen.cpp">
+			<Option target="vcgen"/>
+		</Unit>
+		<Unit filename="/home/ferhat/git/vc-gen/visitor.hpp">
 			<Option target="vcgen"/>
 		</Unit>
 		<Unit filename="/home/ferhat/git/vc-gen/CMakeLists.txt">

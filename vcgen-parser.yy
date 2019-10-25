@@ -15,6 +15,7 @@
 {
 #include <string>
 #include <vector>
+#include <stack>
 #include <iterator>
 #include "ast.hpp"
 class vcgen_driver;
@@ -53,8 +54,19 @@ void print(std::vector<T>& v){
   }
 }
 
+template <typename T> ostream& operator<<(ostream& out, const vector<T*>& v) {
+    if (!v.empty()) {
+        out << '[';
+        std::copy(v.begin(), v.end(), std::ostream_iterator<T>(out, ", "));
+        out << "\b\b]";
+    }
+    return out;
+}
+
 ast::Program *program; /* the top level root node of our final AST */
 
+void clear_stack ();
+stack <ast::Node*> nodes;
 }
 
 %define api.token.prefix {TOK_}
@@ -138,7 +150,7 @@ ast::Program *program; /* the top level root node of our final AST */
 %type <std::vector<ast::Statement*>>     stmt_list;
 %type <std::vector<ast::PreCondition*>>  pre_list;
 %type <std::vector<ast::PostCondition*>> post_list;
-%type <std::vector<std::string>>        identifier_list;
+%type <std::vector<std::string>>         identifier_list;
 
 
 //%printer { yyoutput << $$; } <*>;
@@ -215,10 +227,13 @@ block: stmt_list        { $$ = new ast::Block($1); /*print<ast::Statement>($1);*
 stmt_list:
       stmt              { $$ = {$1};}
     | stmt_list stmt    { $$ = enlist($1, $2); }
+//  | error "\n"        { }
     ;
 
 prog: "program" "identifier" pre_list post_list "is" block "end"
       { $$ = new ast::Program($2, $3, $4, *$6); driver.program = $$;}
+    | error "\n"
+      { clear_stack (); }
     ;
 
 pre_list:
@@ -246,6 +261,7 @@ assertion:
     | "forall" identifier_list "," assertion    { $$ = new ast::UniversalQuantification($2, *$4); print<std::string>($2); }
     | "exists" identifier_list "," assertion    { $$ = new ast::ExistentialQuantification($2, *$4); print<std::string>($2); }
     | "(" assertion ")"                         { $$ = $2; }
+    | "(" error ")"                             {  }
     ;
 
 identifier_list:
@@ -258,4 +274,14 @@ void
 yy::vcgen_parser::error (const location_type& l, const std::string& m)
 {
   driver.error (l, m);
+}
+
+// Deletes all the nodes that were allocated
+void
+clear_stack ()
+{
+  while (!nodes.empty ()) {
+    delete nodes.top ();
+    nodes.pop ();
+  }
 }

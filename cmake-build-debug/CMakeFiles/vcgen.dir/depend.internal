@@ -5,12 +5,14 @@ CMakeFiles/vcgen.dir/ast.cpp.o
 CMakeFiles/vcgen.dir/recognizer/vcgen-parser.cpp.o
  ../ast.hpp
  ../vcgen-driver.hpp
+ ../visitor.hpp
  /home/ferhat/git/vc-gen/recognizer/location.hh
  /home/ferhat/git/vc-gen/recognizer/vcgen-parser.cpp
  /home/ferhat/git/vc-gen/recognizer/vcgen-parser.hpp
 CMakeFiles/vcgen.dir/recognizer/vcgen-scanner.cpp.o
  ../ast.hpp
  ../vcgen-driver.hpp
+ ../visitor.hpp
  /home/ferhat/git/vc-gen/recognizer/location.hh
  /home/ferhat/git/vc-gen/recognizer/vcgen-parser.hpp
  /home/ferhat/git/vc-gen/recognizer/vcgen-scanner.cpp
@@ -18,11 +20,14 @@ CMakeFiles/vcgen.dir/vcgen-driver.cpp.o
  ../ast.hpp
  ../recognizer/location.hh
  ../recognizer/vcgen-parser.hpp
+ ../visitor.hpp
  /home/ferhat/git/vc-gen/vcgen-driver.cpp
  /home/ferhat/git/vc-gen/vcgen-driver.hpp
 CMakeFiles/vcgen.dir/vcgen.cpp.o
- ../ast.hpp
  ../recognizer/location.hh
  ../recognizer/vcgen-parser.hpp
+ /home/ferhat/git/vc-gen/abstract-visitor.hpp
+ /home/ferhat/git/vc-gen/ast.hpp
  /home/ferhat/git/vc-gen/vcgen-driver.hpp
  /home/ferhat/git/vc-gen/vcgen.cpp
+ /home/ferhat/git/vc-gen/visitor.hpp

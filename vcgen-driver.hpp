@@ -26,7 +26,6 @@ class vcgen_driver {
 
     std::map<std::string, int> variables;
 
-    int result;
     // Handling the scanner.
     void scan_begin();
     void scan_end();

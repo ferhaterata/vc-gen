@@ -7,10 +7,10 @@
 #ifndef VC_GEN_AST_HPP
 #define VC_GEN_AST_HPP
 
+#include "visitor.hpp"
 #include <iterator>
 #include <map>
 #include <string>
-#include <utility>
 #include <vector>
 
 using namespace std;
@@ -21,10 +21,13 @@ class Node {
   public:
     Node() = default;
     virtual ~Node() = default;
-    //    virtual ostream& print(ostream& out) const = 0;
+    virtual void accept(class Visitor*) = 0;
 };
 
-class BooleanExpression : public Node {};
+class BooleanExpression : public Node {
+  public:
+    void accept(Visitor* v) { v->visit(this); }
+};
 
 class NotExpression : public BooleanExpression {
   public:
@@ -50,9 +53,15 @@ class AndExpression : public BooleanExpression {
         : left(left), right(right) {}
 };
 
-class Assertion : public Node {};
+class Assertion : public Node {
+  public:
+    void accept(Visitor* v) { v->visit(this); }
+};
 
-class Statement : public Node {};
+class Statement : public Node {
+  public:
+    void accept(Visitor* v) { v->visit(this); }
+};
 
 class Location : public Statement {
   public:
@@ -64,37 +73,43 @@ class Invariant : public Node {
   public:
     const Assertion& assertion;
     explicit Invariant(Assertion& assertion) : assertion(assertion) {}
+    void accept(Visitor* v) { v->visit(this); }
 };
 
 class Block : public Node {
   public:
     vector<Statement*> stmts;
     explicit Block(vector<Statement*> stmts) : stmts(std::move(stmts)) {}
+    void accept(Visitor* v) { v->visit(this); }
 };
 
 class PreCondition : public Node {
   public:
     const Assertion& assertion;
     explicit PreCondition(Assertion& assertion) : assertion(assertion) {}
+    void accept(Visitor* v) { v->visit(this); }
 };
 
 class PostCondition : public Node {
   public:
     const Assertion& assertion;
     explicit PostCondition(Assertion& assertion) : assertion(assertion) {}
+    void accept(Visitor* v) { v->visit(this); }
 };
 
 class Program : public Node {
+  public:
     const string identifier;
-    vector<PreCondition*> preConditions;
-    vector<PostCondition*> postConditions;
+    const vector<PreCondition*> preConditions;
+    const vector<PostCondition*> postConditions;
     const Block& block;
 
-  public:
     Program(string& identifier, vector<PreCondition*> preConditions,
             vector<PostCondition*> postConditions, Block& block)
         : identifier(identifier), preConditions(std::move(preConditions)),
           postConditions(std::move(postConditions)), block(block) {}
+
+    void accept(Visitor* v) { v->visit(this); }
 };
 
 class Negation : public Assertion {
@@ -140,7 +155,10 @@ class ExistentialQuantification : public Assertion {
         : variables(std::move(variables)), body(body) {}
 };
 
-class ArithmeticExpression : public Node {};
+class ArithmeticExpression : public Node {
+  public:
+    void accept(Visitor* v) { v->visit(this); }
+};
 
 class Reference : public ArithmeticExpression {
   public:
@@ -209,7 +227,10 @@ class Mod : public ArithmeticExpression {
         : left(left), right(right) {}
 };
 
-class Comparison : public BooleanExpression, public Assertion {};
+class Comparison : public BooleanExpression, public Assertion {
+  public:
+    void accept(Visitor* v) { v->visit(this); }
+};
 
 class EqualComparison : public Comparison {
   public:
@@ -319,20 +340,16 @@ class WhileStatement : public Statement {
           block(block) {}
 };
 
-} // namespace ast
-
-// inline ostream& operator<<(ostream& out, ast::Node& node) {
-//    return node.print(out);
-//}
-
-template <typename T>
-std::ostream& operator<<(std::ostream& out, const std::vector<T>& v) {
+template <typename T> ostream& print(ostream& out, std::vector<T*>& v) {
     if (!v.empty()) {
         out << '[';
-        std::copy(v.begin(), v.end(), std::ostream_iterator<T>(out, ", "));
+        std::copy(v.begin(), v.end(), std::ostream_iterator<T*>(out, ", "));
         out << "\b\b]";
     }
     return out;
 }
+
+
+} // namespace ast
 
 #endif // VC_GEN_AST_HPP

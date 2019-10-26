@@ -54,10 +54,8 @@ void print(std::vector<T>& v){
   }
 }
 
-ast::Program *program; /* the top level root node of our final AST */
+ast::Program *program;              /* the top level root node of our final AST */
 
-void clear_stack ();
-stack <ast::Node*> nodes;
 }
 
 %define api.token.prefix {TOK_}
@@ -223,8 +221,6 @@ stmt_list:
 
 prog: "program" "identifier" pre_list post_list "is" block "end"
       { $$ = new ast::Program($2, $3, $4, *$6); driver.program = $$;}
-    | error "\n"
-      { clear_stack (); }
     ;
 
 pre_list:
@@ -265,14 +261,4 @@ void
 yy::vcgen_parser::error (const location_type& l, const std::string& m)
 {
   driver.error (l, m);
-}
-
-// Deletes all the nodes that were allocated
-void
-clear_stack ()
-{
-  while (!nodes.empty ()) {
-    delete nodes.top ();
-    nodes.pop ();
-  }
 }

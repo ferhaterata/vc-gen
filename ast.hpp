@@ -1,5 +1,5 @@
 //  ----------------------------------------------------------------------------
-//  Declaration of AST classes.                                          ast.cpp
+//  Declaration and Definition of AST classes.                           ast.cpp
 //  Created by Ferhat Erata <ferhat.erata@yale.edu> on October 23, 2019.
 //  Copyright (c) 2019 Yale University. All rights reserved.
 // -----------------------------------------------------------------------------
@@ -24,7 +24,6 @@ class Node {
     virtual ~Node() = default;
     //    virtual void accept(class Visitor<Node>*) = 0;
 };
-ostream& operator<<(ostream& os, const Node& node);
 
 // -----------------------------------------------------------------------------
 class BooleanExpression : public Node {
@@ -36,10 +35,9 @@ class BooleanExpression : public Node {
         Comparison,
     };
     const Type type;
-    BooleanExpression(const Type type) : type(type) {}
+    explicit BooleanExpression(const Type type) : type(type) {}
     //    void accept(Visitor* v) { v->visit(this); }
 };
-ostream& operator<<(ostream& os, const BooleanExpression& expr);
 
 // -----------------------------------------------------------------------------
 class NotExpression : public BooleanExpression {
@@ -49,12 +47,11 @@ class NotExpression : public BooleanExpression {
     explicit NotExpression(BooleanExpression& expression)
         : expression(expression), BooleanExpression(Type::NotExpression) {}
 
-    ~NotExpression() {
+    ~NotExpression() override {
         std::cout << "\n Deleting NotExpression 0x" << this << dec << "...";
         delete &expression;
     }
 };
-ostream& operator<<(ostream& os, const NotExpression& expression);
 
 // -----------------------------------------------------------------------------
 class OrExpression : public BooleanExpression {
@@ -65,13 +62,12 @@ class OrExpression : public BooleanExpression {
     OrExpression(BooleanExpression& left, BooleanExpression& right)
         : left(left), right(right), BooleanExpression(Type::OrExpression) {}
 
-    ~OrExpression() {
+    ~OrExpression() override {
         std::cout << "\n Deleting OrExpression 0x" << this << dec << "...";
         delete &left;
         delete &right;
     }
 };
-ostream& operator<<(ostream& os, const OrExpression& expression);
 
 // -----------------------------------------------------------------------------
 class AndExpression : public BooleanExpression {
@@ -82,13 +78,12 @@ class AndExpression : public BooleanExpression {
     AndExpression(BooleanExpression& left, BooleanExpression& right)
         : left(left), right(right), BooleanExpression(Type::AndExpression) {}
 
-    ~AndExpression() {
+    ~AndExpression() override {
         std::cout << "\n Deleting AndExpression 0x" << this << dec << "...";
         delete &left;
         delete &right;
     }
 };
-ostream& operator<<(ostream& os, const AndExpression& expression);
 
 // -----------------------------------------------------------------------------
 class Assertion : public Node {
@@ -103,10 +98,9 @@ class Assertion : public Node {
         Comparison,
     };
     const Type type;
-    Assertion(Type type) : type(type) {}
+    explicit Assertion(Type type) : type(type) {}
     //    void accept(Visitor* v) { v->visit(this); }
 };
-ostream& operator<<(ostream& os, const Assertion& assertion);
 
 // -----------------------------------------------------------------------------
 class Statement : public Node {
@@ -120,10 +114,9 @@ class Statement : public Node {
         WhileStatement
     };
     Type type;
-    Statement(Type type) : type(type) {}
+    explicit Statement(Type type) : type(type) {}
     //    void accept(Visitor<Node>* v) { v->visit(this); }
 };
-ostream& operator<<(ostream& os, const Statement& statement);
 
 // -----------------------------------------------------------------------------
 class Location : public Node {
@@ -132,11 +125,10 @@ class Location : public Node {
 
     explicit Location(string identifier) : identifier(std::move(identifier)) {}
 
-    ~Location() {
+    ~Location() override {
         std::cout << "\n Deleting Location 0x" << this << dec << "...";
     }
 };
-ostream& operator<<(ostream& os, const Location& location);
 
 // -----------------------------------------------------------------------------
 class Invariant : public Node {
@@ -145,13 +137,12 @@ class Invariant : public Node {
 
     explicit Invariant(Assertion& assertion) : assertion(assertion) {}
 
-    ~Invariant() {
+    ~Invariant() override {
         std::cout << "\n Deleting Invariant 0x" << this << dec << "...";
         delete &assertion;
     }
     //    void accept(Visitor<Node>* v) { v->visit(this); }
 };
-ostream& operator<<(ostream& os, const Invariant& invariant);
 
 // -----------------------------------------------------------------------------
 class Block : public Node {
@@ -160,14 +151,13 @@ class Block : public Node {
 
     explicit Block(vector<Statement*> stmts) : stmts(std::move(stmts)) {}
 
-    ~Block() {
+    ~Block() override {
         std::cout << "\n Deleting Block 0x" << this << dec << "...";
         for (auto s : stmts)
             delete s;
     }
     //    void accept(Visitor<Node>* v) { v->visit(this); }
 };
-ostream& operator<<(ostream& os, const Block& block);
 
 // -----------------------------------------------------------------------------
 class PreCondition : public Node {
@@ -176,13 +166,12 @@ class PreCondition : public Node {
 
     explicit PreCondition(Assertion& assertion) : assertion(assertion) {}
 
-    ~PreCondition() {
+    ~PreCondition() override {
         std::cout << "\n Deleting PreCondition 0x" << this << dec << "...";
         delete &assertion;
     }
     //    void accept(Visitor<Node>* v) { v->visit(this); }
 };
-ostream& operator<<(ostream& os, const PreCondition& condition);
 
 // -----------------------------------------------------------------------------
 class PostCondition : public Node {
@@ -191,13 +180,12 @@ class PostCondition : public Node {
 
     explicit PostCondition(Assertion& assertion) : assertion(assertion) {}
 
-    ~PostCondition() {
+    ~PostCondition() override {
         std::cout << "\n Deleting PostCondition 0x" << this << dec << "...";
         delete &assertion;
     }
     //    void accept(Visitor<Node>* v) { v->visit(this); }
 };
-ostream& operator<<(ostream& os, const PostCondition& condition);
 
 // -----------------------------------------------------------------------------
 class Program : public Node {
@@ -212,7 +200,7 @@ class Program : public Node {
         : identifier(identifier), preConditions(std::move(preConditions)),
           postConditions(std::move(postConditions)), block(block) {}
 
-    ~Program() {
+    ~Program() override {
         std::cout << "\n Deleting Program 0x" << this << dec << "...";
         delete &block;
         for (auto p : preConditions)
@@ -222,7 +210,6 @@ class Program : public Node {
     }
     //    void accept(Visitor<Node>* v) { v->visit(this); }
 };
-ostream& operator<<(ostream& os, const Program& program);
 
 // -----------------------------------------------------------------------------
 class Negation : public Assertion {
@@ -232,12 +219,11 @@ class Negation : public Assertion {
     explicit Negation(Assertion& assertion)
         : assertion(assertion), Assertion(Type::Negation) {}
 
-    ~Negation() {
+    ~Negation() override {
         std::cout << "\n Deleting Negation 0x" << this << dec << "...";
         delete &assertion;
     }
 };
-ostream& operator<<(ostream& os, const Negation& negation);
 
 // -----------------------------------------------------------------------------
 class Disjunction : public Assertion {
@@ -248,13 +234,12 @@ class Disjunction : public Assertion {
     Disjunction(Assertion& left, Assertion& right)
         : left(left), right(right), Assertion(Type::Disjunction) {}
 
-    ~Disjunction() {
+    ~Disjunction() override {
         std::cout << "\n Deleting Disjunction 0x" << this << dec << "...";
         delete &left;
         delete &right;
     }
 };
-ostream& operator<<(ostream& os, const Disjunction& disjunction);
 
 // -----------------------------------------------------------------------------
 class Conjunction : public Assertion {
@@ -265,13 +250,12 @@ class Conjunction : public Assertion {
     Conjunction(Assertion& left, Assertion& right)
         : left(left), right(right), Assertion(Type::Conjunction) {}
 
-    ~Conjunction() {
+    ~Conjunction() override {
         std::cout << "\n Deleting Conjunction 0x" << this << dec << "...";
         delete &left;
         delete &right;
     }
 };
-ostream& operator<<(ostream& os, const Conjunction& conjunction);
 
 // -----------------------------------------------------------------------------
 class Implication : public Assertion {
@@ -282,13 +266,12 @@ class Implication : public Assertion {
     Implication(Assertion& left, Assertion& right)
         : left(left), right(right), Assertion(Type::Implication) {}
 
-    ~Implication() {
+    ~Implication() override {
         std::cout << "\n Deleting Implication 0x" << this << dec << "...";
         delete &left;
         delete &right;
     }
 };
-ostream& operator<<(ostream& os, const Implication& implication);
 
 // -----------------------------------------------------------------------------
 class UniversalQuantification : public Assertion {
@@ -300,13 +283,12 @@ class UniversalQuantification : public Assertion {
         : variables(std::move(variables)), body(body),
           Assertion(Type::UniversalQuantification) {}
 
-    ~UniversalQuantification() {
+    ~UniversalQuantification() override {
         std::cout << "\n Deleting UniversalQuantification 0x" << this << dec
                   << "...";
         delete &body;
     }
 };
-ostream& operator<<(ostream& os, const UniversalQuantification& quant);
 
 // -----------------------------------------------------------------------------
 class ExistentialQuantification : public Assertion {
@@ -318,13 +300,12 @@ class ExistentialQuantification : public Assertion {
         : variables(std::move(variables)), body(body),
           Assertion(Type::ExistentialQuantification) {}
 
-    ~ExistentialQuantification() {
+    ~ExistentialQuantification() override {
         std::cout << "\n Deleting ExistentialQuantification 0x" << this << dec
                   << "...";
         delete &body;
     }
 };
-ostream& operator<<(ostream& os, const ExistentialQuantification& q);
 
 // -----------------------------------------------------------------------------
 class ArithmeticExpression : public Node {
@@ -342,10 +323,9 @@ class ArithmeticExpression : public Node {
         Mod,
     };
     Type type;
-    ArithmeticExpression(Type type) : type(type) {}
+    explicit ArithmeticExpression(Type type) : type(type) {}
     //    void accept(Visitor* v) { v->visit(this); }
 };
-ostream& operator<<(ostream& os, const ArithmeticExpression& e);
 
 // -----------------------------------------------------------------------------
 class Reference : public ArithmeticExpression {
@@ -356,11 +336,10 @@ class Reference : public ArithmeticExpression {
         : identifier(std::move(identifier)),
           ArithmeticExpression::ArithmeticExpression(Type::Reference) {}
 
-    ~Reference() {
+    ~Reference() override {
         std::cout << "\n Deleting Reference 0x" << this << dec << "...";
     }
 };
-ostream& operator<<(ostream& os, const Reference& reference);
 
 // -----------------------------------------------------------------------------
 class Constant : public ArithmeticExpression {
@@ -370,11 +349,10 @@ class Constant : public ArithmeticExpression {
     explicit Constant(const int number)
         : number(number), ArithmeticExpression(Type::Constant) {}
 
-    ~Constant() {
+    ~Constant() override {
         std::cout << "\n Deleting Constant 0x" << this << dec << "...";
     }
 };
-ostream& operator<<(ostream& os, const Constant& constant);
 
 // -----------------------------------------------------------------------------
 class ArrayReference : public ArithmeticExpression {
@@ -386,13 +364,12 @@ class ArrayReference : public ArithmeticExpression {
         : reference(reference), index(index),
           ArithmeticExpression(Type::ArrayReference) {}
 
-    ~ArrayReference() {
+    ~ArrayReference() override {
         std::cout << "\n Deleting ArrayReference 0x" << this << dec << "...";
         delete &index;
         delete &reference;
     }
 };
-ostream& operator<<(ostream& os, const ArrayReference& reference);
 
 // -----------------------------------------------------------------------------
 class Negate : public ArithmeticExpression {
@@ -402,12 +379,11 @@ class Negate : public ArithmeticExpression {
     explicit Negate(ArithmeticExpression& expression)
         : expression(expression), ArithmeticExpression(Type::Negate) {}
 
-    ~Negate() {
+    ~Negate() override {
         std::cout << "\n Deleting Negate 0x" << this << dec << "...";
         delete &expression;
     }
 };
-ostream& operator<<(ostream& os, const Negate& negate);
 
 // -----------------------------------------------------------------------------
 class Sum : public ArithmeticExpression {
@@ -418,13 +394,12 @@ class Sum : public ArithmeticExpression {
     Sum(ArithmeticExpression& left, ArithmeticExpression& right)
         : left(left), right(right), ArithmeticExpression(Type::Sum) {}
 
-    ~Sum() {
+    ~Sum() override {
         std::cout << "\n Deleting Sum 0x" << this << dec << "...";
         delete &left;
         delete &right;
     }
 };
-ostream& operator<<(ostream& os, const Sum& sum);
 
 // -----------------------------------------------------------------------------
 class Subtract : public ArithmeticExpression {
@@ -435,13 +410,12 @@ class Subtract : public ArithmeticExpression {
     Subtract(ArithmeticExpression& left, ArithmeticExpression& right)
         : left(left), right(right), ArithmeticExpression(Type::Subtract) {}
 
-    ~Subtract() {
+    ~Subtract() override {
         std::cout << "\n Deleting Subtract 0x" << this << dec << "...";
         delete &left;
         delete &right;
     }
 };
-ostream& operator<<(ostream& os, const Subtract& subtract);
 
 // -----------------------------------------------------------------------------
 class Multiply : public ArithmeticExpression {
@@ -452,13 +426,12 @@ class Multiply : public ArithmeticExpression {
     Multiply(ArithmeticExpression& left, ArithmeticExpression& right)
         : left(left), right(right), ArithmeticExpression(Type::Multiply) {}
 
-    ~Multiply() {
+    ~Multiply() override {
         std::cout << "\n Deleting Multiply 0x" << this << dec << "...";
         delete &left;
         delete &right;
     }
 };
-ostream& operator<<(ostream& os, const Multiply& multiply);
 
 // -----------------------------------------------------------------------------
 class Divide : public ArithmeticExpression {
@@ -469,13 +442,12 @@ class Divide : public ArithmeticExpression {
     Divide(ArithmeticExpression& left, ArithmeticExpression& right)
         : left(left), right(right), ArithmeticExpression(Type::Divide) {}
 
-    ~Divide() {
+    ~Divide() override {
         std::cout << "\n Deleting Divide 0x" << this << dec << "...";
         delete &left;
         delete &right;
     }
 };
-ostream& operator<<(ostream& os, const Divide& divide);
 
 // -----------------------------------------------------------------------------
 class Mod : public ArithmeticExpression {
@@ -486,13 +458,12 @@ class Mod : public ArithmeticExpression {
     Mod(ArithmeticExpression& left, ArithmeticExpression& right)
         : left(left), right(right), ArithmeticExpression(Type::Mod) {}
 
-    ~Mod() {
+    ~Mod() override {
         std::cout << "\n Deleting Mod 0x" << this << dec << "...";
         delete &left;
         delete &right;
     }
 };
-ostream& operator<<(ostream& os, const Mod& mod);
 
 // -----------------------------------------------------------------------------
 class Comparison : public BooleanExpression, public Assertion {
@@ -507,12 +478,11 @@ class Comparison : public BooleanExpression, public Assertion {
     };
     Type type;
 
-    Comparison(Comparison::Type type)
+    explicit Comparison(Comparison::Type type)
         : type(type), Assertion(Assertion::Type::Comparison),
           BooleanExpression(BooleanExpression::Type::Comparison) {}
     //    void accept(Visitor<Node>* v) { v->visit(this); }
 };
-ostream& operator<<(ostream& os, const Comparison& comparison);
 
 // -----------------------------------------------------------------------------
 class EqualComparison : public Comparison {
@@ -524,13 +494,12 @@ class EqualComparison : public Comparison {
         : left(left), right(right),
           Comparison(Comparison::Type::EqualComparison) {}
 
-    ~EqualComparison() {
+    ~EqualComparison() override {
         std::cout << "\n Deleting EqualComparison 0x" << this << dec << "...";
         delete &left;
         delete &right;
     }
 };
-ostream& operator<<(ostream& os, const EqualComparison& comparison);
 
 // -----------------------------------------------------------------------------
 class NotEqualComparison : public Comparison {
@@ -542,14 +511,13 @@ class NotEqualComparison : public Comparison {
         : left(left), right(right),
           Comparison(Comparison::Type::NotEqualComparison) {}
 
-    ~NotEqualComparison() {
+    ~NotEqualComparison() override {
         std::cout << "\n Deleting NotEqualComparison 0x" << this << dec
                   << "...";
         delete &left;
         delete &right;
     }
 };
-ostream& operator<<(ostream& os, const NotEqualComparison& comparison);
 
 // -----------------------------------------------------------------------------
 class LeqComparison : public Comparison {
@@ -561,13 +529,12 @@ class LeqComparison : public Comparison {
         : left(left), right(right),
           Comparison(Comparison::Type::LeqComparison) {}
 
-    ~LeqComparison() {
+    ~LeqComparison() override {
         std::cout << "\n Deleting LeqComparison 0x" << this << dec << "...";
         delete &left;
         delete &right;
     }
 };
-ostream& operator<<(ostream& os, const LeqComparison& comparison);
 
 // -----------------------------------------------------------------------------
 class GeqComparison : public Comparison {
@@ -579,13 +546,12 @@ class GeqComparison : public Comparison {
         : left(left), right(right),
           Comparison(Comparison::Type::GeqComparison) {}
 
-    ~GeqComparison() {
+    ~GeqComparison() override {
         std::cout << "\n Deleting GeqComparison 0x" << this << dec << "...";
         delete &left;
         delete &right;
     }
 };
-ostream& operator<<(ostream& os, const GeqComparison& comparison);
 
 // -----------------------------------------------------------------------------
 class LtComparison : public Comparison {
@@ -597,13 +563,12 @@ class LtComparison : public Comparison {
         : left(left), right(right), Comparison(Comparison::Type::LtComparison) {
     }
 
-    ~LtComparison() {
+    ~LtComparison() override {
         std::cout << "\n Deleting LtComparison 0x" << this << dec << "...";
         delete &left;
         delete &right;
     }
 };
-ostream& operator<<(ostream& os, const LtComparison& comparison);
 
 // -----------------------------------------------------------------------------
 class GtComparison : public Comparison {
@@ -615,13 +580,12 @@ class GtComparison : public Comparison {
         : left(left), right(right), Comparison(Comparison::Type::GtComparison) {
     }
 
-    ~GtComparison() {
+    ~GtComparison() override {
         std::cout << "\n Deleting GtComparison 0x" << this << dec << "...";
         delete &left;
         delete &right;
     }
 };
-ostream& operator<<(ostream& os, const GtComparison& comparison);
 
 // -----------------------------------------------------------------------------
 class AssignmentStatement : public Statement {
@@ -633,14 +597,13 @@ class AssignmentStatement : public Statement {
         : loc(loc), expr(expr),
           Statement(Statement::Type::AssignmentStatement) {}
 
-    ~AssignmentStatement() {
+    ~AssignmentStatement() override {
         std::cout << "\n Deleting AssignmentStatement 0x" << this << dec
                   << "...";
         delete &loc;
         delete &expr;
     }
 };
-ostream& operator<<(ostream& os, const AssignmentStatement& s);
 
 // -----------------------------------------------------------------------------
 class MultipleAssignmentStatement : public Statement {
@@ -657,7 +620,7 @@ class MultipleAssignmentStatement : public Statement {
           exprSecond(exprSecond),
           Statement(Statement::Type::MultipleAssignmentStatement) {}
 
-    ~MultipleAssignmentStatement() {
+    ~MultipleAssignmentStatement() override {
         std::cout << "\n Deleting MultipleAssignmentStatement 0x" << this << dec
                   << "...";
         delete &locFirst;
@@ -666,7 +629,6 @@ class MultipleAssignmentStatement : public Statement {
         delete &exprSecond;
     }
 };
-ostream& operator<<(ostream& os, const MultipleAssignmentStatement& s);
 
 // -----------------------------------------------------------------------------
 class ArrayAssignmentStatement : public Statement {
@@ -680,7 +642,7 @@ class ArrayAssignmentStatement : public Statement {
         : loc(loc), index(index), exp(exp),
           Statement(Statement::Type::ArrayAssignmentStatement) {}
 
-    ~ArrayAssignmentStatement() {
+    ~ArrayAssignmentStatement() override {
         std::cout << "\n Deleting ArrayAssignmentStatement 0x" << this << dec
                   << "...";
         delete &loc;
@@ -688,7 +650,6 @@ class ArrayAssignmentStatement : public Statement {
         delete &exp;
     }
 };
-ostream& operator<<(ostream& os, const ArrayAssignmentStatement& s);
 
 // -----------------------------------------------------------------------------
 class IfThenStatement : public Statement {
@@ -700,13 +661,12 @@ class IfThenStatement : public Statement {
         : condition(condition), thenBlock(thenBlock),
           Statement(Statement::Type::IfThenStatement) {}
 
-    ~IfThenStatement() {
+    ~IfThenStatement() override {
         std::cout << "\n Deleting IfThenStatement 0x" << this << dec << "...";
         delete &condition;
         delete &thenBlock;
     }
 };
-ostream& operator<<(ostream& os, const IfThenStatement& statement);
 
 // -----------------------------------------------------------------------------
 class IfThenElseStatement : public Statement {
@@ -720,7 +680,7 @@ class IfThenElseStatement : public Statement {
         : condition(condition), thenBlock(thenBlock), elseBlock(elseBlock),
           Statement(Statement::Type::IfThenElseStatement) {}
 
-    ~IfThenElseStatement() {
+    ~IfThenElseStatement() override {
         std::cout << "\n Deleting IfThenElseStatement 0x" << this << dec
                   << "...";
         delete &condition;
@@ -728,7 +688,6 @@ class IfThenElseStatement : public Statement {
         delete &elseBlock;
     }
 };
-ostream& operator<<(ostream& os, const IfThenElseStatement& s);
 
 // -----------------------------------------------------------------------------
 class WhileStatement : public Statement {
@@ -742,7 +701,7 @@ class WhileStatement : public Statement {
         : condition(condition), invariants(std::move(invariants)), block(block),
           Statement(Statement::Type::WhileStatement) {}
 
-    ~WhileStatement() {
+    ~WhileStatement() override {
         std::cout << "\n Deleting WhileStatement 0x" << this << dec << "...";
         delete &condition;
         for (auto item : invariants) {
@@ -751,7 +710,6 @@ class WhileStatement : public Statement {
         delete &block;
     }
 };
-ostream& operator<<(ostream& os, const WhileStatement& statement);
 
 } // namespace ast
 

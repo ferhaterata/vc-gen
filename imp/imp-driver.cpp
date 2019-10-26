@@ -9,9 +9,6 @@
 #include "imp-parser.hpp"
 #include <fstream>
 
-extern imp::ast::Program* program;
-
-
 imp_driver::imp_driver() : trace_scanning(false), trace_parsing(false) {
     variables["one"] = 1;
     variables["two"] = 2;

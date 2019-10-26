@@ -41,8 +41,9 @@
 
 #include "imp-parser.hpp"
 
+
 // Unqualified %code blocks.
-#line 40 "imp/imp-parser.yy"
+#line 40 "/home/ferhat/git/vc-gen/imp/imp-parser.yy"
 
 # include "imp-driver.hpp"
 
@@ -62,10 +63,8 @@ void print(std::vector<T>& v){
   }
 }
 
-imp::ast::Program *program;              /* the top level root node of our final AST */
 
-
-#line 70 "imp-parser.tab.cc"
+#line 68 "/home/ferhat/git/vc-gen/imp/recognizer/imp-parser.cpp"
 
 
 #ifndef YY_
@@ -158,9 +157,9 @@ imp::ast::Program *program;              /* the top level root node of our final
 #define YYERROR         goto yyerrorlab
 #define YYRECOVERING()  (!!yyerrstatus_)
 
-#line 9 "imp/imp-parser.yy"
+#line 9 "/home/ferhat/git/vc-gen/imp/imp-parser.yy"
 namespace imp {
-#line 165 "imp-parser.tab.cc"
+#line 163 "/home/ferhat/git/vc-gen/imp/recognizer/imp-parser.cpp"
 
 
   /* Return YYSTR after stripping away unnecessary quotes and
@@ -690,13 +689,13 @@ namespace imp {
 
 
     // User initialization code.
-#line 31 "imp/imp-parser.yy"
+#line 31 "/home/ferhat/git/vc-gen/imp/imp-parser.yy"
 {
   // Initialize the initial location.
   yyla.location.begin.filename = yyla.location.end.filename = &driver.file;
 }
 
-#line 701 "imp-parser.tab.cc"
+#line 699 "/home/ferhat/git/vc-gen/imp/recognizer/imp-parser.cpp"
 
 
     /* Initialize the stack.  The initial state will be set in
@@ -899,331 +898,331 @@ namespace imp {
           switch (yyn)
             {
   case 2:
-#line 160 "imp/imp-parser.yy"
+#line 158 "/home/ferhat/git/vc-gen/imp/imp-parser.yy"
     { yylhs.value.as < imp::ast::ArithmeticExpression* > () = yystack_[0].value.as < imp::ast::Reference* > (); }
-#line 906 "imp-parser.tab.cc"
+#line 904 "/home/ferhat/git/vc-gen/imp/recognizer/imp-parser.cpp"
     break;
 
   case 3:
-#line 161 "imp/imp-parser.yy"
+#line 159 "/home/ferhat/git/vc-gen/imp/imp-parser.yy"
     { yylhs.value.as < imp::ast::ArithmeticExpression* > () = new imp::ast::ArrayReference(*yystack_[3].value.as < imp::ast::Reference* > (), *yystack_[1].value.as < imp::ast::ArithmeticExpression* > ()); }
-#line 912 "imp-parser.tab.cc"
+#line 910 "/home/ferhat/git/vc-gen/imp/recognizer/imp-parser.cpp"
     break;
 
   case 4:
-#line 162 "imp/imp-parser.yy"
+#line 160 "/home/ferhat/git/vc-gen/imp/imp-parser.yy"
     { yylhs.value.as < imp::ast::ArithmeticExpression* > () = yystack_[0].value.as < imp::ast::Constant* > (); }
-#line 918 "imp-parser.tab.cc"
+#line 916 "/home/ferhat/git/vc-gen/imp/recognizer/imp-parser.cpp"
     break;
 
   case 5:
-#line 163 "imp/imp-parser.yy"
+#line 161 "/home/ferhat/git/vc-gen/imp/imp-parser.yy"
     { yylhs.value.as < imp::ast::ArithmeticExpression* > () = new imp::ast::Negate(*yystack_[0].value.as < imp::ast::ArithmeticExpression* > ()); }
-#line 924 "imp-parser.tab.cc"
+#line 922 "/home/ferhat/git/vc-gen/imp/recognizer/imp-parser.cpp"
     break;
 
   case 6:
-#line 164 "imp/imp-parser.yy"
+#line 162 "/home/ferhat/git/vc-gen/imp/imp-parser.yy"
     { yylhs.value.as < imp::ast::ArithmeticExpression* > () = new imp::ast::Sum(*yystack_[2].value.as < imp::ast::ArithmeticExpression* > (), *yystack_[0].value.as < imp::ast::ArithmeticExpression* > ());}
-#line 930 "imp-parser.tab.cc"
+#line 928 "/home/ferhat/git/vc-gen/imp/recognizer/imp-parser.cpp"
     break;
 
   case 7:
-#line 165 "imp/imp-parser.yy"
+#line 163 "/home/ferhat/git/vc-gen/imp/imp-parser.yy"
     { yylhs.value.as < imp::ast::ArithmeticExpression* > () = new imp::ast::Subtract(*yystack_[2].value.as < imp::ast::ArithmeticExpression* > (), *yystack_[0].value.as < imp::ast::ArithmeticExpression* > ()); }
-#line 936 "imp-parser.tab.cc"
+#line 934 "/home/ferhat/git/vc-gen/imp/recognizer/imp-parser.cpp"
     break;
 
   case 8:
-#line 166 "imp/imp-parser.yy"
+#line 164 "/home/ferhat/git/vc-gen/imp/imp-parser.yy"
     { yylhs.value.as < imp::ast::ArithmeticExpression* > () = new imp::ast::Multiply(*yystack_[2].value.as < imp::ast::ArithmeticExpression* > (), *yystack_[0].value.as < imp::ast::ArithmeticExpression* > ()); }
-#line 942 "imp-parser.tab.cc"
+#line 940 "/home/ferhat/git/vc-gen/imp/recognizer/imp-parser.cpp"
     break;
 
   case 9:
-#line 167 "imp/imp-parser.yy"
+#line 165 "/home/ferhat/git/vc-gen/imp/imp-parser.yy"
     { yylhs.value.as < imp::ast::ArithmeticExpression* > () = new imp::ast::Divide(*yystack_[2].value.as < imp::ast::ArithmeticExpression* > (), *yystack_[0].value.as < imp::ast::ArithmeticExpression* > ()); }
-#line 948 "imp-parser.tab.cc"
+#line 946 "/home/ferhat/git/vc-gen/imp/recognizer/imp-parser.cpp"
     break;
 
   case 10:
-#line 168 "imp/imp-parser.yy"
+#line 166 "/home/ferhat/git/vc-gen/imp/imp-parser.yy"
     { yylhs.value.as < imp::ast::ArithmeticExpression* > () = new imp::ast::Mod(*yystack_[2].value.as < imp::ast::ArithmeticExpression* > (), *yystack_[0].value.as < imp::ast::ArithmeticExpression* > ()); }
-#line 954 "imp-parser.tab.cc"
+#line 952 "/home/ferhat/git/vc-gen/imp/recognizer/imp-parser.cpp"
     break;
 
   case 11:
-#line 169 "imp/imp-parser.yy"
+#line 167 "/home/ferhat/git/vc-gen/imp/imp-parser.yy"
     { yylhs.value.as < imp::ast::ArithmeticExpression* > () = yystack_[1].value.as < imp::ast::ArithmeticExpression* > ();}
-#line 960 "imp-parser.tab.cc"
+#line 958 "/home/ferhat/git/vc-gen/imp/recognizer/imp-parser.cpp"
     break;
 
   case 12:
-#line 172 "imp/imp-parser.yy"
+#line 170 "/home/ferhat/git/vc-gen/imp/imp-parser.yy"
     { yylhs.value.as < imp::ast::Reference* > () = new imp::ast::Reference(yystack_[0].value.as < std::string > ()); }
-#line 966 "imp-parser.tab.cc"
+#line 964 "/home/ferhat/git/vc-gen/imp/recognizer/imp-parser.cpp"
     break;
 
   case 13:
-#line 175 "imp/imp-parser.yy"
+#line 173 "/home/ferhat/git/vc-gen/imp/imp-parser.yy"
     { yylhs.value.as < imp::ast::Constant* > () = new imp::ast::Constant(yystack_[0].value.as < int > ()); }
-#line 972 "imp-parser.tab.cc"
+#line 970 "/home/ferhat/git/vc-gen/imp/recognizer/imp-parser.cpp"
     break;
 
   case 14:
-#line 179 "imp/imp-parser.yy"
+#line 177 "/home/ferhat/git/vc-gen/imp/imp-parser.yy"
     { yylhs.value.as < imp::ast::BooleanExpression* > () = yystack_[0].value.as < imp::ast::Comparison* > (); }
-#line 978 "imp-parser.tab.cc"
+#line 976 "/home/ferhat/git/vc-gen/imp/recognizer/imp-parser.cpp"
     break;
 
   case 15:
-#line 180 "imp/imp-parser.yy"
+#line 178 "/home/ferhat/git/vc-gen/imp/imp-parser.yy"
     { yylhs.value.as < imp::ast::BooleanExpression* > () = new imp::ast::NotExpression(*yystack_[0].value.as < imp::ast::BooleanExpression* > ()); }
-#line 984 "imp-parser.tab.cc"
+#line 982 "/home/ferhat/git/vc-gen/imp/recognizer/imp-parser.cpp"
     break;
 
   case 16:
-#line 181 "imp/imp-parser.yy"
+#line 179 "/home/ferhat/git/vc-gen/imp/imp-parser.yy"
     { yylhs.value.as < imp::ast::BooleanExpression* > () = new imp::ast::OrExpression(*yystack_[2].value.as < imp::ast::BooleanExpression* > (), *yystack_[0].value.as < imp::ast::BooleanExpression* > ()); }
-#line 990 "imp-parser.tab.cc"
+#line 988 "/home/ferhat/git/vc-gen/imp/recognizer/imp-parser.cpp"
     break;
 
   case 17:
-#line 182 "imp/imp-parser.yy"
+#line 180 "/home/ferhat/git/vc-gen/imp/imp-parser.yy"
     { yylhs.value.as < imp::ast::BooleanExpression* > () = new imp::ast::AndExpression(*yystack_[2].value.as < imp::ast::BooleanExpression* > (), *yystack_[0].value.as < imp::ast::BooleanExpression* > ()); }
-#line 996 "imp-parser.tab.cc"
+#line 994 "/home/ferhat/git/vc-gen/imp/recognizer/imp-parser.cpp"
     break;
 
   case 18:
-#line 183 "imp/imp-parser.yy"
+#line 181 "/home/ferhat/git/vc-gen/imp/imp-parser.yy"
     { yylhs.value.as < imp::ast::BooleanExpression* > () = yystack_[1].value.as < imp::ast::BooleanExpression* > ();}
-#line 1002 "imp-parser.tab.cc"
+#line 1000 "/home/ferhat/git/vc-gen/imp/recognizer/imp-parser.cpp"
     break;
 
   case 19:
-#line 187 "imp/imp-parser.yy"
+#line 185 "/home/ferhat/git/vc-gen/imp/imp-parser.yy"
     { yylhs.value.as < imp::ast::Comparison* > () = new imp::ast::EqualComparison(*yystack_[2].value.as < imp::ast::ArithmeticExpression* > (), *yystack_[0].value.as < imp::ast::ArithmeticExpression* > ()); }
-#line 1008 "imp-parser.tab.cc"
+#line 1006 "/home/ferhat/git/vc-gen/imp/recognizer/imp-parser.cpp"
     break;
 
   case 20:
-#line 188 "imp/imp-parser.yy"
+#line 186 "/home/ferhat/git/vc-gen/imp/imp-parser.yy"
     { yylhs.value.as < imp::ast::Comparison* > () = new imp::ast::NotEqualComparison(*yystack_[2].value.as < imp::ast::ArithmeticExpression* > (), *yystack_[0].value.as < imp::ast::ArithmeticExpression* > ()); }
-#line 1014 "imp-parser.tab.cc"
+#line 1012 "/home/ferhat/git/vc-gen/imp/recognizer/imp-parser.cpp"
     break;
 
   case 21:
-#line 189 "imp/imp-parser.yy"
+#line 187 "/home/ferhat/git/vc-gen/imp/imp-parser.yy"
     { yylhs.value.as < imp::ast::Comparison* > () = new imp::ast::LeqComparison(*yystack_[2].value.as < imp::ast::ArithmeticExpression* > (), *yystack_[0].value.as < imp::ast::ArithmeticExpression* > ()); }
-#line 1020 "imp-parser.tab.cc"
+#line 1018 "/home/ferhat/git/vc-gen/imp/recognizer/imp-parser.cpp"
     break;
 
   case 22:
-#line 190 "imp/imp-parser.yy"
+#line 188 "/home/ferhat/git/vc-gen/imp/imp-parser.yy"
     { yylhs.value.as < imp::ast::Comparison* > () = new imp::ast::GeqComparison(*yystack_[2].value.as < imp::ast::ArithmeticExpression* > (), *yystack_[0].value.as < imp::ast::ArithmeticExpression* > ()); }
-#line 1026 "imp-parser.tab.cc"
+#line 1024 "/home/ferhat/git/vc-gen/imp/recognizer/imp-parser.cpp"
     break;
 
   case 23:
-#line 191 "imp/imp-parser.yy"
+#line 189 "/home/ferhat/git/vc-gen/imp/imp-parser.yy"
     { yylhs.value.as < imp::ast::Comparison* > () = new imp::ast::LtComparison(*yystack_[2].value.as < imp::ast::ArithmeticExpression* > (), *yystack_[0].value.as < imp::ast::ArithmeticExpression* > ()); }
-#line 1032 "imp-parser.tab.cc"
+#line 1030 "/home/ferhat/git/vc-gen/imp/recognizer/imp-parser.cpp"
     break;
 
   case 24:
-#line 192 "imp/imp-parser.yy"
+#line 190 "/home/ferhat/git/vc-gen/imp/imp-parser.yy"
     { yylhs.value.as < imp::ast::Comparison* > () = new imp::ast::GtComparison(*yystack_[2].value.as < imp::ast::ArithmeticExpression* > (), *yystack_[0].value.as < imp::ast::ArithmeticExpression* > ()); }
-#line 1038 "imp-parser.tab.cc"
+#line 1036 "/home/ferhat/git/vc-gen/imp/recognizer/imp-parser.cpp"
     break;
 
   case 25:
-#line 196 "imp/imp-parser.yy"
+#line 194 "/home/ferhat/git/vc-gen/imp/imp-parser.yy"
     { yylhs.value.as < imp::ast::Statement* > () = new imp::ast::AssignmentStatement(*yystack_[3].value.as < imp::ast::Location* > (), *yystack_[1].value.as < imp::ast::ArithmeticExpression* > ());}
-#line 1044 "imp-parser.tab.cc"
+#line 1042 "/home/ferhat/git/vc-gen/imp/recognizer/imp-parser.cpp"
     break;
 
   case 26:
-#line 197 "imp/imp-parser.yy"
+#line 195 "/home/ferhat/git/vc-gen/imp/imp-parser.yy"
     { yylhs.value.as < imp::ast::Statement* > () = new imp::ast::MultipleAssignmentStatement(*yystack_[7].value.as < imp::ast::Location* > (), *yystack_[5].value.as < imp::ast::Location* > (), *yystack_[3].value.as < imp::ast::ArithmeticExpression* > (), *yystack_[1].value.as < imp::ast::ArithmeticExpression* > ());}
-#line 1050 "imp-parser.tab.cc"
+#line 1048 "/home/ferhat/git/vc-gen/imp/recognizer/imp-parser.cpp"
     break;
 
   case 27:
-#line 198 "imp/imp-parser.yy"
+#line 196 "/home/ferhat/git/vc-gen/imp/imp-parser.yy"
     { yylhs.value.as < imp::ast::Statement* > () = new imp::ast::ArrayAssignmentStatement(*yystack_[6].value.as < imp::ast::Location* > (), *yystack_[4].value.as < imp::ast::ArithmeticExpression* > (), *yystack_[1].value.as < imp::ast::ArithmeticExpression* > ());}
-#line 1056 "imp-parser.tab.cc"
+#line 1054 "/home/ferhat/git/vc-gen/imp/recognizer/imp-parser.cpp"
     break;
 
   case 28:
-#line 199 "imp/imp-parser.yy"
+#line 197 "/home/ferhat/git/vc-gen/imp/imp-parser.yy"
     { yylhs.value.as < imp::ast::Statement* > () = new imp::ast::IfThenElseStatement(*yystack_[5].value.as < imp::ast::BooleanExpression* > (), *yystack_[3].value.as < imp::ast::Block* > (), *yystack_[1].value.as < imp::ast::Block* > ());}
-#line 1062 "imp-parser.tab.cc"
+#line 1060 "/home/ferhat/git/vc-gen/imp/recognizer/imp-parser.cpp"
     break;
 
   case 29:
-#line 200 "imp/imp-parser.yy"
+#line 198 "/home/ferhat/git/vc-gen/imp/imp-parser.yy"
     { yylhs.value.as < imp::ast::Statement* > () = new imp::ast::IfThenStatement(*yystack_[3].value.as < imp::ast::BooleanExpression* > (), *yystack_[1].value.as < imp::ast::Block* > ());}
-#line 1068 "imp-parser.tab.cc"
+#line 1066 "/home/ferhat/git/vc-gen/imp/recognizer/imp-parser.cpp"
     break;
 
   case 30:
-#line 201 "imp/imp-parser.yy"
+#line 199 "/home/ferhat/git/vc-gen/imp/imp-parser.yy"
     { yylhs.value.as < imp::ast::Statement* > () = new imp::ast::WhileStatement(*yystack_[4].value.as < imp::ast::BooleanExpression* > (), yystack_[3].value.as < std::vector<imp::ast::Invariant*> > (), *yystack_[1].value.as < imp::ast::Block* > ());}
-#line 1074 "imp-parser.tab.cc"
+#line 1072 "/home/ferhat/git/vc-gen/imp/recognizer/imp-parser.cpp"
     break;
 
   case 31:
-#line 204 "imp/imp-parser.yy"
+#line 202 "/home/ferhat/git/vc-gen/imp/imp-parser.yy"
     { yylhs.value.as < imp::ast::Location* > () = new imp::ast::Location(yystack_[0].value.as < std::string > ()); }
-#line 1080 "imp-parser.tab.cc"
+#line 1078 "/home/ferhat/git/vc-gen/imp/recognizer/imp-parser.cpp"
     break;
 
   case 32:
-#line 208 "imp/imp-parser.yy"
+#line 206 "/home/ferhat/git/vc-gen/imp/imp-parser.yy"
     { yylhs.value.as < std::vector<imp::ast::Invariant*> > () = {yystack_[0].value.as < imp::ast::Invariant* > ()}; }
-#line 1086 "imp-parser.tab.cc"
+#line 1084 "/home/ferhat/git/vc-gen/imp/recognizer/imp-parser.cpp"
     break;
 
   case 33:
-#line 209 "imp/imp-parser.yy"
+#line 207 "/home/ferhat/git/vc-gen/imp/imp-parser.yy"
     { yylhs.value.as < std::vector<imp::ast::Invariant*> > () = enlist(yystack_[1].value.as < std::vector<imp::ast::Invariant*> > (), yystack_[0].value.as < imp::ast::Invariant* > ()); }
-#line 1092 "imp-parser.tab.cc"
+#line 1090 "/home/ferhat/git/vc-gen/imp/recognizer/imp-parser.cpp"
     break;
 
   case 34:
-#line 212 "imp/imp-parser.yy"
+#line 210 "/home/ferhat/git/vc-gen/imp/imp-parser.yy"
     { yylhs.value.as < imp::ast::Invariant* > () = new imp::ast::Invariant(*yystack_[0].value.as < imp::ast::Assertion* > ()); }
-#line 1098 "imp-parser.tab.cc"
+#line 1096 "/home/ferhat/git/vc-gen/imp/recognizer/imp-parser.cpp"
     break;
 
   case 35:
-#line 215 "imp/imp-parser.yy"
+#line 213 "/home/ferhat/git/vc-gen/imp/imp-parser.yy"
     { yylhs.value.as < imp::ast::Block* > () = new imp::ast::Block(yystack_[0].value.as < std::vector<imp::ast::Statement*> > ()); /*print<imp::ast::Statement>($1);*/}
-#line 1104 "imp-parser.tab.cc"
+#line 1102 "/home/ferhat/git/vc-gen/imp/recognizer/imp-parser.cpp"
     break;
 
   case 36:
-#line 219 "imp/imp-parser.yy"
+#line 217 "/home/ferhat/git/vc-gen/imp/imp-parser.yy"
     { yylhs.value.as < std::vector<imp::ast::Statement*> > () = {yystack_[0].value.as < imp::ast::Statement* > ()};}
-#line 1110 "imp-parser.tab.cc"
+#line 1108 "/home/ferhat/git/vc-gen/imp/recognizer/imp-parser.cpp"
     break;
 
   case 37:
-#line 220 "imp/imp-parser.yy"
+#line 218 "/home/ferhat/git/vc-gen/imp/imp-parser.yy"
     { yylhs.value.as < std::vector<imp::ast::Statement*> > () = enlist(yystack_[1].value.as < std::vector<imp::ast::Statement*> > (), yystack_[0].value.as < imp::ast::Statement* > ()); }
-#line 1116 "imp-parser.tab.cc"
+#line 1114 "/home/ferhat/git/vc-gen/imp/recognizer/imp-parser.cpp"
     break;
 
   case 38:
-#line 225 "imp/imp-parser.yy"
+#line 223 "/home/ferhat/git/vc-gen/imp/imp-parser.yy"
     { yylhs.value.as < imp::ast::Program* > () = new imp::ast::Program(yystack_[5].value.as < std::string > (), yystack_[4].value.as < std::vector<imp::ast::PreCondition*> > (), yystack_[3].value.as < std::vector<imp::ast::PostCondition*> > (), *yystack_[1].value.as < imp::ast::Block* > ()); driver.program = yylhs.value.as < imp::ast::Program* > ();}
-#line 1122 "imp-parser.tab.cc"
+#line 1120 "/home/ferhat/git/vc-gen/imp/recognizer/imp-parser.cpp"
     break;
 
   case 39:
-#line 229 "imp/imp-parser.yy"
+#line 227 "/home/ferhat/git/vc-gen/imp/imp-parser.yy"
     { yylhs.value.as < std::vector<imp::ast::PreCondition*> > () = {yystack_[0].value.as < imp::ast::PreCondition* > ()}; }
-#line 1128 "imp-parser.tab.cc"
+#line 1126 "/home/ferhat/git/vc-gen/imp/recognizer/imp-parser.cpp"
     break;
 
   case 40:
-#line 230 "imp/imp-parser.yy"
+#line 228 "/home/ferhat/git/vc-gen/imp/imp-parser.yy"
     { yylhs.value.as < std::vector<imp::ast::PreCondition*> > () = enlist(yystack_[1].value.as < std::vector<imp::ast::PreCondition*> > (), yystack_[0].value.as < imp::ast::PreCondition* > ()); }
-#line 1134 "imp-parser.tab.cc"
+#line 1132 "/home/ferhat/git/vc-gen/imp/recognizer/imp-parser.cpp"
     break;
 
   case 41:
-#line 233 "imp/imp-parser.yy"
+#line 231 "/home/ferhat/git/vc-gen/imp/imp-parser.yy"
     { yylhs.value.as < imp::ast::PreCondition* > () = new imp::ast::PreCondition(*yystack_[0].value.as < imp::ast::Assertion* > ()); }
-#line 1140 "imp-parser.tab.cc"
+#line 1138 "/home/ferhat/git/vc-gen/imp/recognizer/imp-parser.cpp"
     break;
 
   case 42:
-#line 237 "imp/imp-parser.yy"
+#line 235 "/home/ferhat/git/vc-gen/imp/imp-parser.yy"
     { yylhs.value.as < std::vector<imp::ast::PostCondition*> > () = {yystack_[0].value.as < imp::ast::PostCondition* > ()}; }
-#line 1146 "imp-parser.tab.cc"
+#line 1144 "/home/ferhat/git/vc-gen/imp/recognizer/imp-parser.cpp"
     break;
 
   case 43:
-#line 238 "imp/imp-parser.yy"
+#line 236 "/home/ferhat/git/vc-gen/imp/imp-parser.yy"
     { yylhs.value.as < std::vector<imp::ast::PostCondition*> > () = enlist(yystack_[1].value.as < std::vector<imp::ast::PostCondition*> > (), yystack_[0].value.as < imp::ast::PostCondition* > ()); }
-#line 1152 "imp-parser.tab.cc"
+#line 1150 "/home/ferhat/git/vc-gen/imp/recognizer/imp-parser.cpp"
     break;
 
   case 44:
-#line 241 "imp/imp-parser.yy"
+#line 239 "/home/ferhat/git/vc-gen/imp/imp-parser.yy"
     { yylhs.value.as < imp::ast::PostCondition* > () = new imp::ast::PostCondition(*yystack_[0].value.as < imp::ast::Assertion* > ()); }
-#line 1158 "imp-parser.tab.cc"
+#line 1156 "/home/ferhat/git/vc-gen/imp/recognizer/imp-parser.cpp"
     break;
 
   case 45:
-#line 245 "imp/imp-parser.yy"
+#line 243 "/home/ferhat/git/vc-gen/imp/imp-parser.yy"
     { yylhs.value.as < imp::ast::Assertion* > () = yystack_[0].value.as < imp::ast::Comparison* > (); }
-#line 1164 "imp-parser.tab.cc"
+#line 1162 "/home/ferhat/git/vc-gen/imp/recognizer/imp-parser.cpp"
     break;
 
   case 46:
-#line 246 "imp/imp-parser.yy"
+#line 244 "/home/ferhat/git/vc-gen/imp/imp-parser.yy"
     { yylhs.value.as < imp::ast::Assertion* > () = new imp::ast::Negation(*yystack_[0].value.as < imp::ast::Assertion* > ()); }
-#line 1170 "imp-parser.tab.cc"
+#line 1168 "/home/ferhat/git/vc-gen/imp/recognizer/imp-parser.cpp"
     break;
 
   case 47:
-#line 247 "imp/imp-parser.yy"
+#line 245 "/home/ferhat/git/vc-gen/imp/imp-parser.yy"
     { yylhs.value.as < imp::ast::Assertion* > () = new imp::ast::Disjunction(*yystack_[2].value.as < imp::ast::Assertion* > (), *yystack_[0].value.as < imp::ast::Assertion* > ()); }
-#line 1176 "imp-parser.tab.cc"
+#line 1174 "/home/ferhat/git/vc-gen/imp/recognizer/imp-parser.cpp"
     break;
 
   case 48:
-#line 248 "imp/imp-parser.yy"
+#line 246 "/home/ferhat/git/vc-gen/imp/imp-parser.yy"
     { yylhs.value.as < imp::ast::Assertion* > () = new imp::ast::Conjunction(*yystack_[2].value.as < imp::ast::Assertion* > (), *yystack_[0].value.as < imp::ast::Assertion* > ()); }
-#line 1182 "imp-parser.tab.cc"
+#line 1180 "/home/ferhat/git/vc-gen/imp/recognizer/imp-parser.cpp"
     break;
 
   case 49:
-#line 249 "imp/imp-parser.yy"
+#line 247 "/home/ferhat/git/vc-gen/imp/imp-parser.yy"
     { yylhs.value.as < imp::ast::Assertion* > () = new imp::ast::Implication(*yystack_[2].value.as < imp::ast::Assertion* > (), *yystack_[0].value.as < imp::ast::Assertion* > ()); }
-#line 1188 "imp-parser.tab.cc"
+#line 1186 "/home/ferhat/git/vc-gen/imp/recognizer/imp-parser.cpp"
     break;
 
   case 50:
-#line 250 "imp/imp-parser.yy"
+#line 248 "/home/ferhat/git/vc-gen/imp/imp-parser.yy"
     { yylhs.value.as < imp::ast::Assertion* > () = new imp::ast::UniversalQuantification(yystack_[2].value.as < std::vector<std::string> > (), *yystack_[0].value.as < imp::ast::Assertion* > ()); /*print<std::string>($2);*/ }
-#line 1194 "imp-parser.tab.cc"
+#line 1192 "/home/ferhat/git/vc-gen/imp/recognizer/imp-parser.cpp"
     break;
 
   case 51:
-#line 251 "imp/imp-parser.yy"
+#line 249 "/home/ferhat/git/vc-gen/imp/imp-parser.yy"
     { yylhs.value.as < imp::ast::Assertion* > () = new imp::ast::ExistentialQuantification(yystack_[2].value.as < std::vector<std::string> > (), *yystack_[0].value.as < imp::ast::Assertion* > ()); /*print<std::string>($2);*/ }
-#line 1200 "imp-parser.tab.cc"
+#line 1198 "/home/ferhat/git/vc-gen/imp/recognizer/imp-parser.cpp"
     break;
 
   case 52:
-#line 252 "imp/imp-parser.yy"
+#line 250 "/home/ferhat/git/vc-gen/imp/imp-parser.yy"
     { yylhs.value.as < imp::ast::Assertion* > () = yystack_[1].value.as < imp::ast::Assertion* > (); }
-#line 1206 "imp-parser.tab.cc"
+#line 1204 "/home/ferhat/git/vc-gen/imp/recognizer/imp-parser.cpp"
     break;
 
   case 53:
-#line 253 "imp/imp-parser.yy"
+#line 251 "/home/ferhat/git/vc-gen/imp/imp-parser.yy"
     {  }
-#line 1212 "imp-parser.tab.cc"
+#line 1210 "/home/ferhat/git/vc-gen/imp/recognizer/imp-parser.cpp"
     break;
 
   case 54:
-#line 257 "imp/imp-parser.yy"
+#line 255 "/home/ferhat/git/vc-gen/imp/imp-parser.yy"
     { yylhs.value.as < std::vector<std::string> > () = {yystack_[0].value.as < std::string > ()}; }
-#line 1218 "imp-parser.tab.cc"
+#line 1216 "/home/ferhat/git/vc-gen/imp/recognizer/imp-parser.cpp"
     break;
 
   case 55:
-#line 258 "imp/imp-parser.yy"
+#line 256 "/home/ferhat/git/vc-gen/imp/imp-parser.yy"
     { yylhs.value.as < std::vector<std::string> > () = enlist(yystack_[1].value.as < std::vector<std::string> > (), yystack_[0].value.as < std::string > ()); }
-#line 1224 "imp-parser.tab.cc"
+#line 1222 "/home/ferhat/git/vc-gen/imp/recognizer/imp-parser.cpp"
     break;
 
 
-#line 1228 "imp-parser.tab.cc"
+#line 1226 "/home/ferhat/git/vc-gen/imp/recognizer/imp-parser.cpp"
 
             default:
               break;
@@ -1663,12 +1662,12 @@ namespace imp {
   const unsigned short
   imp_parser::yyrline_[] =
   {
-       0,   160,   160,   161,   162,   163,   164,   165,   166,   167,
-     168,   169,   172,   175,   179,   180,   181,   182,   183,   187,
-     188,   189,   190,   191,   192,   196,   197,   198,   199,   200,
-     201,   204,   208,   209,   212,   215,   219,   220,   224,   229,
-     230,   233,   237,   238,   241,   245,   246,   247,   248,   249,
-     250,   251,   252,   253,   257,   258
+       0,   158,   158,   159,   160,   161,   162,   163,   164,   165,
+     166,   167,   170,   173,   177,   178,   179,   180,   181,   185,
+     186,   187,   188,   189,   190,   194,   195,   196,   197,   198,
+     199,   202,   206,   207,   210,   213,   217,   218,   222,   227,
+     228,   231,   235,   236,   239,   243,   244,   245,   246,   247,
+     248,   249,   250,   251,   255,   256
   };
 
   // Print the state stack on the debug stream.
@@ -1701,11 +1700,11 @@ namespace imp {
 #endif // IMPDEBUG
 
 
-#line 9 "imp/imp-parser.yy"
+#line 9 "/home/ferhat/git/vc-gen/imp/imp-parser.yy"
 } // imp
-#line 1708 "imp-parser.tab.cc"
+#line 1706 "/home/ferhat/git/vc-gen/imp/recognizer/imp-parser.cpp"
 
-#line 260 "imp/imp-parser.yy"
+#line 258 "/home/ferhat/git/vc-gen/imp/imp-parser.yy"
 
 
 void

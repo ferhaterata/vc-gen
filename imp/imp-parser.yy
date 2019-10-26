@@ -23,7 +23,7 @@
 class imp_driver;
 }
 
-%param { imp_driver& driver }     /* The parsing context. */
+%param { imp_driver& driver }       /* The parsing context. */
 
 %locations                          /* we request location tracking. */
 
@@ -55,8 +55,6 @@ void print(std::vector<T>& v){
     cout << "\b\b]";
   }
 }
-
-imp::ast::Program *program;              /* the top level root node of our final AST */
 
 }
 

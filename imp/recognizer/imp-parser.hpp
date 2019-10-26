@@ -32,7 +32,7 @@
 
 
 /**
- ** \file imp-parser.tab.hh
+ ** \file /home/ferhat/git/vc-gen/imp/recognizer/imp-parser.hpp
  ** Define the imp::parser class.
  */
 
@@ -41,10 +41,10 @@
 // Undocumented macros, especially those whose name start with YY_,
 // are private implementation details.  Do not rely on them.
 
-#ifndef YY_IMP_IMP_PARSER_TAB_HH_INCLUDED
-# define YY_IMP_IMP_PARSER_TAB_HH_INCLUDED
+#ifndef YY_IMP_HOME_FERHAT_GIT_VC_GEN_IMP_RECOGNIZER_IMP_PARSER_HPP_INCLUDED
+# define YY_IMP_HOME_FERHAT_GIT_VC_GEN_IMP_RECOGNIZER_IMP_PARSER_HPP_INCLUDED
 // //                    "%code requires" blocks.
-#line 17 "imp/imp-parser.yy"
+#line 17 "/home/ferhat/git/vc-gen/imp/imp-parser.yy"
 
 #include <string>
 #include <vector>
@@ -53,7 +53,7 @@
 #include "imp.hpp"
 class imp_driver;
 
-#line 57 "imp-parser.tab.hh"
+#line 57 "/home/ferhat/git/vc-gen/imp/recognizer/imp-parser.hpp"
 
 # include <cassert>
 # include <cstdlib> // std::abort
@@ -98,7 +98,7 @@ class imp_driver;
 #else
 # define YY_CONSTEXPR
 #endif
-# include "location.hpp"
+# include "location.hh"
 #include <typeinfo>
 #ifndef YYASSERT
 # include <cassert>
@@ -175,9 +175,9 @@ class imp_driver;
 # endif /* ! defined YYDEBUG */
 #endif  /* ! defined IMPDEBUG */
 
-#line 9 "imp/imp-parser.yy"
+#line 9 "/home/ferhat/git/vc-gen/imp/imp-parser.yy"
 namespace imp {
-#line 181 "imp-parser.tab.hh"
+#line 181 "/home/ferhat/git/vc-gen/imp/recognizer/imp-parser.hpp"
 
 
 
@@ -2392,12 +2392,12 @@ switch (yytype)
     return token_type (yytoken_number_[type]);
   }
 
-#line 9 "imp/imp-parser.yy"
+#line 9 "/home/ferhat/git/vc-gen/imp/imp-parser.yy"
 } // imp
-#line 2398 "imp-parser.tab.hh"
+#line 2398 "/home/ferhat/git/vc-gen/imp/recognizer/imp-parser.hpp"
 
 
 
 
 
-#endif // !YY_IMP_IMP_PARSER_TAB_HH_INCLUDED
+#endif // !YY_IMP_HOME_FERHAT_GIT_VC_GEN_IMP_RECOGNIZER_IMP_PARSER_HPP_INCLUDED

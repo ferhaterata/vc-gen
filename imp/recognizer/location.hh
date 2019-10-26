@@ -54,8 +54,9 @@
 #  endif
 # endif
 
+#line 9 "/home/ferhat/git/vc-gen/imp/vcgen-parser.yy"
 namespace imp {
-#line 59 "/home/ferhat/git/vc-gen/imp/recognizer/location.hh"
+#line 60 "/home/ferhat/git/vc-gen/imp/recognizer/location.hh"
 
   /// A point in a source file.
   class position
@@ -316,7 +317,8 @@ namespace imp {
     return ostr;
   }
 
+#line 9 "/home/ferhat/git/vc-gen/imp/vcgen-parser.yy"
 } // imp
-#line 321 "/home/ferhat/git/vc-gen/imp/recognizer/location.hh"
+#line 323 "/home/ferhat/git/vc-gen/imp/recognizer/location.hh"
 
 #endif // !YY_IMP_HOME_FERHAT_GIT_VC_GEN_IMP_RECOGNIZER_LOCATION_HH_INCLUDED

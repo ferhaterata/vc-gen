@@ -44,13 +44,13 @@
 #ifndef YY_IMP_HOME_FERHAT_GIT_VC_GEN_IMP_RECOGNIZER_VCGEN_PARSER_HPP_INCLUDED
 # define YY_IMP_HOME_FERHAT_GIT_VC_GEN_IMP_RECOGNIZER_VCGEN_PARSER_HPP_INCLUDED
 // //                    "%code requires" blocks.
-#line 16 "/home/ferhat/git/vc-gen/imp/vcgen-parser.yy"
+#line 17 "/home/ferhat/git/vc-gen/imp/vcgen-parser.yy"
 
-#include "imp.hpp"
-#include <iterator>
-#include <stack>
 #include <string>
 #include <vector>
+#include <stack>
+#include <iterator>
+#include "imp.hpp"
 class vcgen_driver;
 
 #line 57 "/home/ferhat/git/vc-gen/imp/recognizer/vcgen-parser.hpp"
@@ -175,8 +175,9 @@ class vcgen_driver;
 # endif /* ! defined YYDEBUG */
 #endif  /* ! defined IMPDEBUG */
 
+#line 9 "/home/ferhat/git/vc-gen/imp/vcgen-parser.yy"
 namespace imp {
-#line 180 "/home/ferhat/git/vc-gen/imp/recognizer/vcgen-parser.hpp"
+#line 181 "/home/ferhat/git/vc-gen/imp/recognizer/vcgen-parser.hpp"
 
 
 
@@ -2391,8 +2392,9 @@ switch (yytype)
     return token_type (yytoken_number_[type]);
   }
 
+#line 9 "/home/ferhat/git/vc-gen/imp/vcgen-parser.yy"
 } // imp
-#line 2396 "/home/ferhat/git/vc-gen/imp/recognizer/vcgen-parser.hpp"
+#line 2398 "/home/ferhat/git/vc-gen/imp/recognizer/vcgen-parser.hpp"
 
 
 

@@ -6,6 +6,7 @@
 
 %defines
 %define api.parser.class {vcgen_parser}
+%define api.namespace {imp}
 %define api.prefix {imp}
 %define api.token.constructor
 %define api.value.type variant
@@ -18,7 +19,7 @@
 #include <vector>
 #include <stack>
 #include <iterator>
-#include "ast.hpp"
+#include "imp.hpp"
 class vcgen_driver;
 }
 

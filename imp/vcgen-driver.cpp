@@ -5,10 +5,12 @@
 // -----------------------------------------------------------------------------
 
 #include "vcgen-driver.hpp"
+#include "imp.hpp"
 #include "vcgen-parser.hpp"
 #include <fstream>
 
 extern imp::ast::Program* program;
+
 
 vcgen_driver::vcgen_driver() : trace_scanning(false), trace_parsing(false) {
     variables["one"] = 1;
@@ -55,3 +57,4 @@ std::string vcgen_driver::getLine(unsigned lineno) {
         std::cout << "Unable to open stream" << std::endl;
     return line;
 }
+

@@ -44,4 +44,5 @@ class vcgen_driver {
 
     std::string getLine(unsigned lineno);
 };
+
 #endif // VCGEN_DRIVER_HHP

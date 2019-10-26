@@ -826,10 +826,10 @@ int yy_flex_debug = 1;
 
 static const flex_int16_t yy_rule_linenum[40] =
     {   0,
-       38,   39,   40,   41,   42,   43,   44,   45,   47,   48,
-       49,   50,   51,   52,   54,   55,   56,   58,   59,   60,
-       61,   62,   63,   64,   65,   66,   67,   68,   69,   71,
-       72,   73,   74,   76,   77,   78,   80,   88,   89
+       40,   41,   42,   43,   44,   45,   46,   47,   49,   50,
+       51,   52,   53,   54,   56,   57,   58,   60,   61,   62,
+       63,   64,   65,   66,   67,   68,   69,   70,   71,   73,
+       74,   75,   76,   78,   79,   80,   82,   90,   91
     } ;
 
 /* The intent behind this definition is that it'll catch
@@ -860,7 +860,7 @@ char *yytext;
 static imp::location loc;
 #line 862 "/home/ferhat/git/vc-gen/imp/recognizer/vcgen-scanner.cpp"
 #define YY_NO_INPUT 1
-#line 26 "imp/vcgen-scanner.ll"
+#line 28 "imp/vcgen-scanner.ll"
   // Code run each time a pattern is matched.
   # define YY_USER_ACTION  loc.columns (yyleng);
 #line 867 "/home/ferhat/git/vc-gen/imp/recognizer/vcgen-scanner.cpp"
@@ -1142,11 +1142,11 @@ YY_DECL
 
 	{
 /* %% [7.0] user's declarations go here */
-#line 30 "imp/vcgen-scanner.ll"
+#line 32 "imp/vcgen-scanner.ll"
 
 
 
-#line 34 "imp/vcgen-scanner.ll"
+#line 36 "imp/vcgen-scanner.ll"
   // Code run each time yylex is called.
   loc.step ();
 
@@ -1229,188 +1229,188 @@ do_action:	/* This label is used only to access EOF actions. */
 
 case 1:
 YY_RULE_SETUP
-#line 38 "imp/vcgen-scanner.ll"
+#line 40 "imp/vcgen-scanner.ll"
 loc.step ();
 	YY_BREAK
 case 2:
 /* rule 2 can match eol */
 YY_RULE_SETUP
-#line 39 "imp/vcgen-scanner.ll"
+#line 41 "imp/vcgen-scanner.ll"
 loc.lines (yyleng); loc.step ();
 	YY_BREAK
 case 3:
 YY_RULE_SETUP
-#line 40 "imp/vcgen-scanner.ll"
+#line 42 "imp/vcgen-scanner.ll"
 return imp::vcgen_parser::make_MINUS(loc);
 	YY_BREAK
 case 4:
 YY_RULE_SETUP
-#line 41 "imp/vcgen-scanner.ll"
+#line 43 "imp/vcgen-scanner.ll"
 return imp::vcgen_parser::make_PLUS(loc);
 	YY_BREAK
 case 5:
 YY_RULE_SETUP
-#line 42 "imp/vcgen-scanner.ll"
+#line 44 "imp/vcgen-scanner.ll"
 return imp::vcgen_parser::make_STAR(loc);
 	YY_BREAK
 case 6:
 YY_RULE_SETUP
-#line 43 "imp/vcgen-scanner.ll"
+#line 45 "imp/vcgen-scanner.ll"
 return imp::vcgen_parser::make_SLASH(loc);
 	YY_BREAK
 case 7:
 YY_RULE_SETUP
-#line 44 "imp/vcgen-scanner.ll"
+#line 46 "imp/vcgen-scanner.ll"
 return imp::vcgen_parser::make_LPAREN(loc);
 	YY_BREAK
 case 8:
 YY_RULE_SETUP
-#line 45 "imp/vcgen-scanner.ll"
+#line 47 "imp/vcgen-scanner.ll"
 return imp::vcgen_parser::make_RPAREN(loc);
 	YY_BREAK
 case 9:
 YY_RULE_SETUP
-#line 47 "imp/vcgen-scanner.ll"
+#line 49 "imp/vcgen-scanner.ll"
 return imp::vcgen_parser::make_EQUAL(loc);
 	YY_BREAK
 case 10:
 YY_RULE_SETUP
-#line 48 "imp/vcgen-scanner.ll"
+#line 50 "imp/vcgen-scanner.ll"
 return imp::vcgen_parser::make_NEQUAL(loc);
 	YY_BREAK
 case 11:
 YY_RULE_SETUP
-#line 49 "imp/vcgen-scanner.ll"
+#line 51 "imp/vcgen-scanner.ll"
 return imp::vcgen_parser::make_LEQ(loc);
 	YY_BREAK
 case 12:
 YY_RULE_SETUP
-#line 50 "imp/vcgen-scanner.ll"
+#line 52 "imp/vcgen-scanner.ll"
 return imp::vcgen_parser::make_GEQ(loc);
 	YY_BREAK
 case 13:
 YY_RULE_SETUP
-#line 51 "imp/vcgen-scanner.ll"
+#line 53 "imp/vcgen-scanner.ll"
 return imp::vcgen_parser::make_LT(loc);
 	YY_BREAK
 case 14:
 YY_RULE_SETUP
-#line 52 "imp/vcgen-scanner.ll"
+#line 54 "imp/vcgen-scanner.ll"
 return imp::vcgen_parser::make_GT(loc);
 	YY_BREAK
 case 15:
 YY_RULE_SETUP
-#line 54 "imp/vcgen-scanner.ll"
+#line 56 "imp/vcgen-scanner.ll"
 return imp::vcgen_parser::make_NOT(loc);
 	YY_BREAK
 case 16:
 YY_RULE_SETUP
-#line 55 "imp/vcgen-scanner.ll"
+#line 57 "imp/vcgen-scanner.ll"
 return imp::vcgen_parser::make_OR(loc);
 	YY_BREAK
 case 17:
 YY_RULE_SETUP
-#line 56 "imp/vcgen-scanner.ll"
+#line 58 "imp/vcgen-scanner.ll"
 return imp::vcgen_parser::make_AND(loc);
 	YY_BREAK
 case 18:
 YY_RULE_SETUP
-#line 58 "imp/vcgen-scanner.ll"
+#line 60 "imp/vcgen-scanner.ll"
 return imp::vcgen_parser::make_ASSIGN(loc);
 	YY_BREAK
 case 19:
 YY_RULE_SETUP
-#line 59 "imp/vcgen-scanner.ll"
+#line 61 "imp/vcgen-scanner.ll"
 return imp::vcgen_parser::make_SEMICOLON(loc);
 	YY_BREAK
 case 20:
 YY_RULE_SETUP
-#line 60 "imp/vcgen-scanner.ll"
+#line 62 "imp/vcgen-scanner.ll"
 return imp::vcgen_parser::make_COMMA(loc);
 	YY_BREAK
 case 21:
 YY_RULE_SETUP
-#line 61 "imp/vcgen-scanner.ll"
+#line 63 "imp/vcgen-scanner.ll"
 return imp::vcgen_parser::make_IF(loc);
 	YY_BREAK
 case 22:
 YY_RULE_SETUP
-#line 62 "imp/vcgen-scanner.ll"
+#line 64 "imp/vcgen-scanner.ll"
 return imp::vcgen_parser::make_THEN(loc);
 	YY_BREAK
 case 23:
 YY_RULE_SETUP
-#line 63 "imp/vcgen-scanner.ll"
+#line 65 "imp/vcgen-scanner.ll"
 return imp::vcgen_parser::make_ELSE(loc);
 	YY_BREAK
 case 24:
 YY_RULE_SETUP
-#line 64 "imp/vcgen-scanner.ll"
+#line 66 "imp/vcgen-scanner.ll"
 return imp::vcgen_parser::make_END(loc);
 	YY_BREAK
 case 25:
 YY_RULE_SETUP
-#line 65 "imp/vcgen-scanner.ll"
+#line 67 "imp/vcgen-scanner.ll"
 return imp::vcgen_parser::make_WHILE(loc);
 	YY_BREAK
 case 26:
 YY_RULE_SETUP
-#line 66 "imp/vcgen-scanner.ll"
+#line 68 "imp/vcgen-scanner.ll"
 return imp::vcgen_parser::make_DO(loc);
 	YY_BREAK
 case 27:
 YY_RULE_SETUP
-#line 67 "imp/vcgen-scanner.ll"
+#line 69 "imp/vcgen-scanner.ll"
 return imp::vcgen_parser::make_INV(loc);
 	YY_BREAK
 case 28:
 YY_RULE_SETUP
-#line 68 "imp/vcgen-scanner.ll"
+#line 70 "imp/vcgen-scanner.ll"
 return imp::vcgen_parser::make_LSQUARE(loc);
 	YY_BREAK
 case 29:
 YY_RULE_SETUP
-#line 69 "imp/vcgen-scanner.ll"
+#line 71 "imp/vcgen-scanner.ll"
 return imp::vcgen_parser::make_RSQUARE(loc);
 	YY_BREAK
 case 30:
 YY_RULE_SETUP
-#line 71 "imp/vcgen-scanner.ll"
+#line 73 "imp/vcgen-scanner.ll"
 return imp::vcgen_parser::make_PROGRAM(loc);
 	YY_BREAK
 case 31:
 YY_RULE_SETUP
-#line 72 "imp/vcgen-scanner.ll"
+#line 74 "imp/vcgen-scanner.ll"
 return imp::vcgen_parser::make_PRE(loc);
 	YY_BREAK
 case 32:
 YY_RULE_SETUP
-#line 73 "imp/vcgen-scanner.ll"
+#line 75 "imp/vcgen-scanner.ll"
 return imp::vcgen_parser::make_POST(loc);
 	YY_BREAK
 case 33:
 YY_RULE_SETUP
-#line 74 "imp/vcgen-scanner.ll"
+#line 76 "imp/vcgen-scanner.ll"
 return imp::vcgen_parser::make_IS(loc);
 	YY_BREAK
 case 34:
 YY_RULE_SETUP
-#line 76 "imp/vcgen-scanner.ll"
+#line 78 "imp/vcgen-scanner.ll"
 return imp::vcgen_parser::make_IMPLY(loc);
 	YY_BREAK
 case 35:
 YY_RULE_SETUP
-#line 77 "imp/vcgen-scanner.ll"
+#line 79 "imp/vcgen-scanner.ll"
 return imp::vcgen_parser::make_ALL(loc);
 	YY_BREAK
 case 36:
 YY_RULE_SETUP
-#line 78 "imp/vcgen-scanner.ll"
+#line 80 "imp/vcgen-scanner.ll"
 return imp::vcgen_parser::make_SOME(loc);
 	YY_BREAK
 case 37:
 YY_RULE_SETUP
-#line 80 "imp/vcgen-scanner.ll"
+#line 82 "imp/vcgen-scanner.ll"
 {
   errno = 0;
   long n = strtol (yytext, NULL, 10);
@@ -1421,21 +1421,21 @@ YY_RULE_SETUP
 	YY_BREAK
 case 38:
 YY_RULE_SETUP
-#line 88 "imp/vcgen-scanner.ll"
+#line 90 "imp/vcgen-scanner.ll"
 return imp::vcgen_parser::make_IDENTIFIER(yytext, loc);
 	YY_BREAK
 case 39:
 YY_RULE_SETUP
-#line 89 "imp/vcgen-scanner.ll"
+#line 91 "imp/vcgen-scanner.ll"
 driver.error (loc, "invalid character");
 	YY_BREAK
 case YY_STATE_EOF(INITIAL):
-#line 90 "imp/vcgen-scanner.ll"
+#line 92 "imp/vcgen-scanner.ll"
 return imp::vcgen_parser::make_EOF(loc);
 	YY_BREAK
 case 40:
 YY_RULE_SETUP
-#line 91 "imp/vcgen-scanner.ll"
+#line 93 "imp/vcgen-scanner.ll"
 ECHO;
 	YY_BREAK
 #line 1442 "/home/ferhat/git/vc-gen/imp/recognizer/vcgen-scanner.cpp"
@@ -2543,7 +2543,7 @@ void yyfree (void * ptr )
 
 /* %ok-for-header */
 
-#line 91 "imp/vcgen-scanner.ll"
+#line 93 "imp/vcgen-scanner.ll"
 
 
 void

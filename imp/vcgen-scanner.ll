@@ -16,8 +16,10 @@
 // The location of the current token.
 static imp::location loc;
 %}
+
 %option noyywrap nounput batch debug noinput
 %option prefix="imp"
+
 id    [a-zA-Z][a-zA-Z_0-9]*
 int   [0-9]+
 blank [ \t]

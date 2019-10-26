@@ -1,6 +1,6 @@
-#line 2 "/home/ferhat/git/vc-gen/recognizer/vcgen-scanner.cpp"
+#line 2 "/home/ferhat/git/vc-gen/gc/recognizer/gc-scanner.cpp"
 
-#line 4 "/home/ferhat/git/vc-gen/recognizer/vcgen-scanner.cpp"
+#line 4 "/home/ferhat/git/vc-gen/gc/recognizer/gc-scanner.cpp"
 
 #define  YY_INT_ALIGNED short int
 
@@ -583,14 +583,14 @@ static const flex_int16_t yy_rule_linenum[40] =
 #define YY_MORE_ADJ 0
 #define YY_RESTORE_YY_MORE_OFFSET
 char *yytext;
-#line 1 "vcgen-scanner.ll"
-#line 2 "vcgen-scanner.ll"
+#line 1 "gc/gc-scanner.ll"
+#line 2 "gc/gc-scanner.ll"
 # include <cerrno>
 # include <climits>
 # include <cstdlib>
 # include <string>
-# include "vcgen-driver.hpp"
-# include "vcgen-parser.hpp"
+# include "gc-driver.hpp"
+# include "gc-parser.hpp"
 
 // Work around an incompatibility in flex (at least versions
 // 2.5.31 through 2.5.33): it generates code that does
@@ -601,13 +601,13 @@ char *yytext;
 
 // The location of the current token.
 static yy::location loc;
-#line 605 "/home/ferhat/git/vc-gen/recognizer/vcgen-scanner.cpp"
+#line 605 "/home/ferhat/git/vc-gen/gc/recognizer/gc-scanner.cpp"
 #define YY_NO_INPUT 1
-#line 25 "vcgen-scanner.ll"
+#line 25 "gc/gc-scanner.ll"
   // Code run each time a pattern is matched.
   # define YY_USER_ACTION  loc.columns (yyleng);
-#line 610 "/home/ferhat/git/vc-gen/recognizer/vcgen-scanner.cpp"
-#line 611 "/home/ferhat/git/vc-gen/recognizer/vcgen-scanner.cpp"
+#line 610 "/home/ferhat/git/vc-gen/gc/recognizer/gc-scanner.cpp"
+#line 611 "/home/ferhat/git/vc-gen/gc/recognizer/gc-scanner.cpp"
 
 #define INITIAL 0
 
@@ -885,16 +885,16 @@ YY_DECL
 
 	{
 /* %% [7.0] user's declarations go here */
-#line 29 "vcgen-scanner.ll"
+#line 29 "gc/gc-scanner.ll"
 
 
 
-#line 33 "vcgen-scanner.ll"
+#line 33 "gc/gc-scanner.ll"
   // Code run each time yylex is called.
   loc.step ();
 
 
-#line 898 "/home/ferhat/git/vc-gen/recognizer/vcgen-scanner.cpp"
+#line 898 "/home/ferhat/git/vc-gen/gc/recognizer/gc-scanner.cpp"
 
 	while ( /*CONSTCOND*/1 )		/* loops until end-of-file is reached */
 		{
@@ -972,188 +972,188 @@ do_action:	/* This label is used only to access EOF actions. */
 
 case 1:
 YY_RULE_SETUP
-#line 37 "vcgen-scanner.ll"
+#line 37 "gc/gc-scanner.ll"
 loc.step ();
 	YY_BREAK
 case 2:
 /* rule 2 can match eol */
 YY_RULE_SETUP
-#line 38 "vcgen-scanner.ll"
+#line 38 "gc/gc-scanner.ll"
 loc.lines (yyleng); loc.step ();
 	YY_BREAK
 case 3:
 YY_RULE_SETUP
-#line 39 "vcgen-scanner.ll"
-return yy::vcgen_parser::make_MINUS(loc);
+#line 39 "gc/gc-scanner.ll"
+return gc::vcgen_parser::make_MINUS(loc);
 	YY_BREAK
 case 4:
 YY_RULE_SETUP
-#line 40 "vcgen-scanner.ll"
-return yy::vcgen_parser::make_PLUS(loc);
+#line 40 "gc/gc-scanner.ll"
+return gc::vcgen_parser::make_PLUS(loc);
 	YY_BREAK
 case 5:
 YY_RULE_SETUP
-#line 41 "vcgen-scanner.ll"
-return yy::vcgen_parser::make_STAR(loc);
+#line 41 "gc/gc-scanner.ll"
+return gc::vcgen_parser::make_STAR(loc);
 	YY_BREAK
 case 6:
 YY_RULE_SETUP
-#line 42 "vcgen-scanner.ll"
-return yy::vcgen_parser::make_SLASH(loc);
+#line 42 "gc/gc-scanner.ll"
+return gc::vcgen_parser::make_SLASH(loc);
 	YY_BREAK
 case 7:
 YY_RULE_SETUP
-#line 43 "vcgen-scanner.ll"
-return yy::vcgen_parser::make_LPAREN(loc);
+#line 43 "gc/gc-scanner.ll"
+return gc::vcgen_parser::make_LPAREN(loc);
 	YY_BREAK
 case 8:
 YY_RULE_SETUP
-#line 44 "vcgen-scanner.ll"
-return yy::vcgen_parser::make_RPAREN(loc);
+#line 44 "gc/gc-scanner.ll"
+return gc::vcgen_parser::make_RPAREN(loc);
 	YY_BREAK
 case 9:
 YY_RULE_SETUP
-#line 46 "vcgen-scanner.ll"
-return yy::vcgen_parser::make_EQUAL(loc);
+#line 46 "gc/gc-scanner.ll"
+return gc::vcgen_parser::make_EQUAL(loc);
 	YY_BREAK
 case 10:
 YY_RULE_SETUP
-#line 47 "vcgen-scanner.ll"
-return yy::vcgen_parser::make_NEQUAL(loc);
+#line 47 "gc/gc-scanner.ll"
+return gc::vcgen_parser::make_NEQUAL(loc);
 	YY_BREAK
 case 11:
 YY_RULE_SETUP
-#line 48 "vcgen-scanner.ll"
-return yy::vcgen_parser::make_LEQ(loc);
+#line 48 "gc/gc-scanner.ll"
+return gc::vcgen_parser::make_LEQ(loc);
 	YY_BREAK
 case 12:
 YY_RULE_SETUP
-#line 49 "vcgen-scanner.ll"
-return yy::vcgen_parser::make_GEQ(loc);
+#line 49 "gc/gc-scanner.ll"
+return gc::vcgen_parser::make_GEQ(loc);
 	YY_BREAK
 case 13:
 YY_RULE_SETUP
-#line 50 "vcgen-scanner.ll"
-return yy::vcgen_parser::make_LT(loc);
+#line 50 "gc/gc-scanner.ll"
+return gc::vcgen_parser::make_LT(loc);
 	YY_BREAK
 case 14:
 YY_RULE_SETUP
-#line 51 "vcgen-scanner.ll"
-return yy::vcgen_parser::make_GT(loc);
+#line 51 "gc/gc-scanner.ll"
+return gc::vcgen_parser::make_GT(loc);
 	YY_BREAK
 case 15:
 YY_RULE_SETUP
-#line 53 "vcgen-scanner.ll"
-return yy::vcgen_parser::make_NOT(loc);
+#line 53 "gc/gc-scanner.ll"
+return gc::vcgen_parser::make_NOT(loc);
 	YY_BREAK
 case 16:
 YY_RULE_SETUP
-#line 54 "vcgen-scanner.ll"
-return yy::vcgen_parser::make_OR(loc);
+#line 54 "gc/gc-scanner.ll"
+return gc::vcgen_parser::make_OR(loc);
 	YY_BREAK
 case 17:
 YY_RULE_SETUP
-#line 55 "vcgen-scanner.ll"
-return yy::vcgen_parser::make_AND(loc);
+#line 55 "gc/gc-scanner.ll"
+return gc::vcgen_parser::make_AND(loc);
 	YY_BREAK
 case 18:
 YY_RULE_SETUP
-#line 57 "vcgen-scanner.ll"
-return yy::vcgen_parser::make_ASSIGN(loc);
+#line 57 "gc/gc-scanner.ll"
+return gc::vcgen_parser::make_ASSIGN(loc);
 	YY_BREAK
 case 19:
 YY_RULE_SETUP
-#line 58 "vcgen-scanner.ll"
-return yy::vcgen_parser::make_SEMICOLON(loc);
+#line 58 "gc/gc-scanner.ll"
+return gc::vcgen_parser::make_SEMICOLON(loc);
 	YY_BREAK
 case 20:
 YY_RULE_SETUP
-#line 59 "vcgen-scanner.ll"
-return yy::vcgen_parser::make_COMMA(loc);
+#line 59 "gc/gc-scanner.ll"
+return gc::vcgen_parser::make_COMMA(loc);
 	YY_BREAK
 case 21:
 YY_RULE_SETUP
-#line 60 "vcgen-scanner.ll"
-return yy::vcgen_parser::make_IF(loc);
+#line 60 "gc/gc-scanner.ll"
+return gc::vcgen_parser::make_IF(loc);
 	YY_BREAK
 case 22:
 YY_RULE_SETUP
-#line 61 "vcgen-scanner.ll"
-return yy::vcgen_parser::make_THEN(loc);
+#line 61 "gc/gc-scanner.ll"
+return gc::vcgen_parser::make_THEN(loc);
 	YY_BREAK
 case 23:
 YY_RULE_SETUP
-#line 62 "vcgen-scanner.ll"
-return yy::vcgen_parser::make_ELSE(loc);
+#line 62 "gc/gc-scanner.ll"
+return gc::vcgen_parser::make_ELSE(loc);
 	YY_BREAK
 case 24:
 YY_RULE_SETUP
-#line 63 "vcgen-scanner.ll"
-return yy::vcgen_parser::make_END(loc);
+#line 63 "gc/gc-scanner.ll"
+return gc::vcgen_parser::make_END(loc);
 	YY_BREAK
 case 25:
 YY_RULE_SETUP
-#line 64 "vcgen-scanner.ll"
-return yy::vcgen_parser::make_WHILE(loc);
+#line 64 "gc/gc-scanner.ll"
+return gc::vcgen_parser::make_WHILE(loc);
 	YY_BREAK
 case 26:
 YY_RULE_SETUP
-#line 65 "vcgen-scanner.ll"
-return yy::vcgen_parser::make_DO(loc);
+#line 65 "gc/gc-scanner.ll"
+return gc::vcgen_parser::make_DO(loc);
 	YY_BREAK
 case 27:
 YY_RULE_SETUP
-#line 66 "vcgen-scanner.ll"
-return yy::vcgen_parser::make_INV(loc);
+#line 66 "gc/gc-scanner.ll"
+return gc::vcgen_parser::make_INV(loc);
 	YY_BREAK
 case 28:
 YY_RULE_SETUP
-#line 67 "vcgen-scanner.ll"
-return yy::vcgen_parser::make_LSQUARE(loc);
+#line 67 "gc/gc-scanner.ll"
+return gc::vcgen_parser::make_LSQUARE(loc);
 	YY_BREAK
 case 29:
 YY_RULE_SETUP
-#line 68 "vcgen-scanner.ll"
-return yy::vcgen_parser::make_RSQUARE(loc);
+#line 68 "gc/gc-scanner.ll"
+return gc::vcgen_parser::make_RSQUARE(loc);
 	YY_BREAK
 case 30:
 YY_RULE_SETUP
-#line 70 "vcgen-scanner.ll"
-return yy::vcgen_parser::make_PROGRAM(loc);
+#line 70 "gc/gc-scanner.ll"
+return gc::vcgen_parser::make_PROGRAM(loc);
 	YY_BREAK
 case 31:
 YY_RULE_SETUP
-#line 71 "vcgen-scanner.ll"
-return yy::vcgen_parser::make_PRE(loc);
+#line 71 "gc/gc-scanner.ll"
+return gc::vcgen_parser::make_PRE(loc);
 	YY_BREAK
 case 32:
 YY_RULE_SETUP
-#line 72 "vcgen-scanner.ll"
-return yy::vcgen_parser::make_POST(loc);
+#line 72 "gc/gc-scanner.ll"
+return gc::vcgen_parser::make_POST(loc);
 	YY_BREAK
 case 33:
 YY_RULE_SETUP
-#line 73 "vcgen-scanner.ll"
-return yy::vcgen_parser::make_IS(loc);
+#line 73 "gc/gc-scanner.ll"
+return gc::vcgen_parser::make_IS(loc);
 	YY_BREAK
 case 34:
 YY_RULE_SETUP
-#line 75 "vcgen-scanner.ll"
-return yy::vcgen_parser::make_IMPLY(loc);
+#line 75 "gc/gc-scanner.ll"
+return gc::vcgen_parser::make_IMPLY(loc);
 	YY_BREAK
 case 35:
 YY_RULE_SETUP
-#line 76 "vcgen-scanner.ll"
-return yy::vcgen_parser::make_ALL(loc);
+#line 76 "gc/gc-scanner.ll"
+return gc::vcgen_parser::make_ALL(loc);
 	YY_BREAK
 case 36:
 YY_RULE_SETUP
-#line 77 "vcgen-scanner.ll"
-return yy::vcgen_parser::make_SOME(loc);
+#line 77 "gc/gc-scanner.ll"
+return gc::vcgen_parser::make_SOME(loc);
 	YY_BREAK
 case 37:
 YY_RULE_SETUP
-#line 79 "vcgen-scanner.ll"
+#line 79 "gc/gc-scanner.ll"
 {
   errno = 0;
   long n = strtol (yytext, NULL, 10);
@@ -1164,24 +1164,24 @@ YY_RULE_SETUP
 	YY_BREAK
 case 38:
 YY_RULE_SETUP
-#line 87 "vcgen-scanner.ll"
-return yy::vcgen_parser::make_IDENTIFIER(yytext, loc);
+#line 87 "gc/gc-scanner.ll"
+return gc::vcgen_parser::make_IDENTIFIER(yytext, loc);
 	YY_BREAK
 case 39:
 YY_RULE_SETUP
-#line 88 "vcgen-scanner.ll"
+#line 88 "gc/gc-scanner.ll"
 driver.error (loc, "invalid character");
 	YY_BREAK
 case YY_STATE_EOF(INITIAL):
-#line 89 "vcgen-scanner.ll"
-return yy::vcgen_parser::make_EOF(loc);
+#line 89 "gc/gc-scanner.ll"
+return gc::vcgen_parser::make_EOF(loc);
 	YY_BREAK
 case 40:
 YY_RULE_SETUP
-#line 90 "vcgen-scanner.ll"
+#line 90 "gc/gc-scanner.ll"
 ECHO;
 	YY_BREAK
-#line 1185 "/home/ferhat/git/vc-gen/recognizer/vcgen-scanner.cpp"
+#line 1185 "/home/ferhat/git/vc-gen/gc/recognizer/gc-scanner.cpp"
 
 	case YY_END_OF_BUFFER:
 		{
@@ -2286,11 +2286,11 @@ void yyfree (void * ptr )
 
 /* %ok-for-header */
 
-#line 90 "vcgen-scanner.ll"
+#line 90 "gc/gc-scanner.ll"
 
 
 void
-vcgen_driver::scan_begin ()
+gc::gc_driver::scan_begin ()
 {
   yy_flex_debug = trace_scanning;
   if (file.empty () || file == "-")
@@ -2305,7 +2305,7 @@ vcgen_driver::scan_begin ()
 
 
 void
-vcgen_driver::scan_end ()
+gc::gc_driver::scan_end ()
 {
   fclose (yyin);
 }

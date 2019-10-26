@@ -4,14 +4,14 @@
 //  Copyright (c) 2019 Yale University. All rights reserved.
 // -----------------------------------------------------------------------------
 
-#ifndef VCGEN_DRIVER_HH
-#define VCGEN_DRIVER_HH
+#ifndef VCGEN_DRIVER_HHP
+#define VCGEN_DRIVER_HHP
 
 #include "vcgen-parser.hpp"
 #include <map>
 #include <string>
 // Tell Flex the lexer's prototype ...
-#define YY_DECL yy::vcgen_parser::symbol_type yylex(vcgen_driver& driver)
+#define YY_DECL imp::vcgen_parser::symbol_type implex(vcgen_driver& driver)
 
 // ... and declare it for the parser's sake.
 YY_DECL;
@@ -20,7 +20,7 @@ YY_DECL;
 class vcgen_driver {
   public:
     /* the top level root node of our final AST */
-    ast::Program* program = nullptr;
+    imp::ast::Program* program = nullptr;
     vcgen_driver();
     virtual ~vcgen_driver();
 
@@ -39,9 +39,9 @@ class vcgen_driver {
     // Whether parser traces should be generated.
     bool trace_parsing;
     // Error handling.
-    void error(const yy::location& l, const std::string& m);
+    void error(const imp::location& l, const std::string& m);
     void error(const std::string& m);
 
     std::string getLine(unsigned lineno);
 };
-#endif // VCGEN_DRIVER_HH
+#endif // VCGEN_DRIVER_HHP

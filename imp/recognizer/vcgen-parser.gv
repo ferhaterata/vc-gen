@@ -2,7 +2,7 @@
 // Report bugs to <bug-bison@gnu.org>.
 // Home page: <http://www.gnu.org/software/bison/>.
 
-digraph "/home/ferhat/git/vc-gen/vcgen-parser.yy"
+digraph "/home/ferhat/git/vc-gen/imp/vcgen-parser.yy"
 {
   node [fontname = courier, shape = box, colorscheme = paired6]
   edge [fontname = courier]

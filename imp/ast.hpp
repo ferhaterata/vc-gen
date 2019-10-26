@@ -15,7 +15,7 @@
 
 using namespace std;
 
-namespace ast {
+namespace imp::ast {
 
 // -----------------------------------------------------------------------------
 class Node {

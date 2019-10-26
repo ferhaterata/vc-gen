@@ -28,7 +28,7 @@ int main(int argc, char* argv[]) {
 }
 
 void run(vcgen_driver& driver) {
-    ast::PrinterVisitor visitor(driver.program);
+    imp::ast::PrinterVisitor visitor(driver.program);
     std::cout << visitor.getOutput() << std::endl;
     cout << "---------------------------------------------------------------\n";
     delete driver.program;

@@ -1,0 +1,1847 @@
+State 27 conflicts: 1 shift/reduce
+State 31 conflicts: 1 shift/reduce
+State 60 conflicts: 1 shift/reduce
+State 61 conflicts: 1 shift/reduce
+State 62 conflicts: 1 shift/reduce
+State 63 conflicts: 1 shift/reduce
+State 64 conflicts: 5 shift/reduce
+State 72 conflicts: 2 shift/reduce
+State 73 conflicts: 2 shift/reduce
+State 74 conflicts: 3 shift/reduce
+State 82 conflicts: 3 shift/reduce
+State 83 conflicts: 3 shift/reduce
+State 107 conflicts: 1 shift/reduce
+State 108 conflicts: 1 shift/reduce
+
+
+Grammar
+
+    0 $accept: prog "end of file"
+
+    1 aexp: reference
+    2     | reference "[" aexp "]"
+    3     | constant
+    4     | "-" aexp
+    5     | aexp "+" aexp
+    6     | aexp "-" aexp
+    7     | aexp "*" aexp
+    8     | aexp "/" aexp
+    9     | aexp "%" aexp
+   10     | "(" aexp ")"
+
+   11 reference: "identifier"
+
+   12 constant: "number"
+
+   13 bexp: comp
+   14     | "!" bexp
+   15     | bexp "||" bexp
+   16     | bexp "&&" bexp
+   17     | "(" bexp ")"
+
+   18 comp: aexp "=" aexp
+   19     | aexp "!=" aexp
+   20     | aexp "<=" aexp
+   21     | aexp ">=" aexp
+   22     | aexp "<" aexp
+   23     | aexp ">" aexp
+
+   24 stmt: location ":=" aexp ";"
+   25     | location "," location ":=" aexp "," aexp ";"
+   26     | location "[" aexp "]" ":=" aexp ";"
+   27     | "if" bexp "then" block "else" block "end"
+   28     | "if" bexp "then" block "end"
+   29     | "while" bexp inv_list "do" block "end"
+
+   30 location: "identifier"
+
+   31 inv_list: inv
+   32         | inv_list inv
+
+   33 inv: "inv" assertion
+
+   34 block: stmt_list
+
+   35 stmt_list: stmt
+   36          | stmt_list stmt
+
+   37 prog: "program" "identifier" pre_list post_list "is" block "end"
+   38     | error "\n"
+
+   39 pre_list: pre
+   40         | pre_list pre
+
+   41 pre: "pre" assertion
+
+   42 post_list: post
+   43          | post_list post
+
+   44 post: "post" assertion
+
+   45 assertion: comp
+   46          | "!" assertion
+   47          | assertion "||" assertion
+   48          | assertion "&&" assertion
+   49          | assertion "==>" assertion
+   50          | "forall" identifier_list "," assertion
+   51          | "exists" identifier_list "," assertion
+   52          | "(" assertion ")"
+   53          | "(" error ")"
+
+   54 identifier_list: "identifier"
+   55                | identifier_list "identifier"
+
+
+Terminals, with rules where they appear
+
+    "end of file" (0) 0
+    error (256) 38 53
+    "+" (258) 5
+    "-" (259) 4 6
+    "*" (260) 7
+    "/" (261) 8
+    "%" (262) 9
+    "(" (263) 10 17 52 53
+    ")" (264) 10 17 52 53
+    "=" (265) 18
+    "!=" (266) 19
+    "<=" (267) 20
+    ">=" (268) 21
+    "<" (269) 22
+    ">" (270) 23
+    "!" (271) 14 46
+    "||" (272) 15 47
+    "&&" (273) 16 48
+    ":=" (274) 24 25 26
+    ";" (275) 24 25 26
+    "," (276) 25 50 51
+    "if" (277) 27 28
+    "then" (278) 27 28
+    "else" (279) 27
+    "end" (280) 27 28 29 37
+    "while" (281) 29
+    "do" (282) 29
+    "inv" (283) 33
+    "[" (284) 2 26
+    "]" (285) 2 26
+    "program" (286) 37
+    "pre" (287) 41
+    "post" (288) 44
+    "is" (289) 37
+    "==>" (290) 49
+    "forall" (291) 50
+    "exists" (292) 51
+    "identifier" <std::string> (293) 11 30 37 54 55
+    "number" <int> (294) 12
+    "\n" (295) 38
+
+
+Nonterminals, with rules where they appear
+
+    $accept (41)
+        on left: 0
+    aexp <gc::ArithmeticExpression*> (42)
+        on left: 1 2 3 4 5 6 7 8 9 10
+        on right: 2 4 5 6 7 8 9 10 18 19 20 21 22 23 24 25 26
+    reference <gc::Reference*> (43)
+        on left: 11
+        on right: 1 2
+    constant <gc::Constant*> (44)
+        on left: 12
+        on right: 3
+    bexp <gc::BooleanExpression*> (45)
+        on left: 13 14 15 16 17
+        on right: 14 15 16 17 27 28 29
+    comp <gc::Comparison*> (46)
+        on left: 18 19 20 21 22 23
+        on right: 13 45
+    stmt <gc::Statement*> (47)
+        on left: 24 25 26 27 28 29
+        on right: 35 36
+    location <gc::Location*> (48)
+        on left: 30
+        on right: 24 25 26
+    inv_list <std::vector<gc::Invariant*>> (49)
+        on left: 31 32
+        on right: 29 32
+    inv <gc::Invariant*> (50)
+        on left: 33
+        on right: 31 32
+    block <gc::Block*> (51)
+        on left: 34
+        on right: 27 28 29 37
+    stmt_list <std::vector<gc::Statement*>> (52)
+        on left: 35 36
+        on right: 34 36
+    prog <gc::Program*> (53)
+        on left: 37 38
+        on right: 0
+    pre_list <std::vector<gc::PreCondition*>> (54)
+        on left: 39 40
+        on right: 37 40
+    pre <gc::PreCondition*> (55)
+        on left: 41
+        on right: 39 40
+    post_list <std::vector<gc::PostCondition*>> (56)
+        on left: 42 43
+        on right: 37 43
+    post <gc::PostCondition*> (57)
+        on left: 44
+        on right: 42 43
+    assertion <gc::Assertion*> (58)
+        on left: 45 46 47 48 49 50 51 52 53
+        on right: 33 41 44 46 47 48 49 50 51 52
+    identifier_list <std::vector<std::string>> (59)
+        on left: 54 55
+        on right: 50 51 55
+
+
+State 0
+
+    0 $accept: . prog "end of file"
+
+    error      shift, and go to state 1
+    "program"  shift, and go to state 2
+
+    prog  go to state 3
+
+
+State 1
+
+   38 prog: error . "\n"
+
+    "\n"  shift, and go to state 4
+
+
+State 2
+
+   37 prog: "program" . "identifier" pre_list post_list "is" block "end"
+
+    "identifier"  shift, and go to state 5
+
+
+State 3
+
+    0 $accept: prog . "end of file"
+
+    "end of file"  shift, and go to state 6
+
+
+State 4
+
+   38 prog: error "\n" .
+
+    $default  reduce using rule 38 (prog)
+
+
+State 5
+
+   37 prog: "program" "identifier" . pre_list post_list "is" block "end"
+
+    "pre"  shift, and go to state 7
+
+    pre_list  go to state 8
+    pre       go to state 9
+
+
+State 6
+
+    0 $accept: prog "end of file" .
+
+    $default  accept
+
+
+State 7
+
+   41 pre: "pre" . assertion
+
+    "-"           shift, and go to state 10
+    "("           shift, and go to state 11
+    "!"           shift, and go to state 12
+    "forall"      shift, and go to state 13
+    "exists"      shift, and go to state 14
+    "identifier"  shift, and go to state 15
+    "number"      shift, and go to state 16
+
+    aexp       go to state 17
+    reference  go to state 18
+    constant   go to state 19
+    comp       go to state 20
+    assertion  go to state 21
+
+
+State 8
+
+   37 prog: "program" "identifier" pre_list . post_list "is" block "end"
+   40 pre_list: pre_list . pre
+
+    "pre"   shift, and go to state 7
+    "post"  shift, and go to state 22
+
+    pre        go to state 23
+    post_list  go to state 24
+    post       go to state 25
+
+
+State 9
+
+   39 pre_list: pre .
+
+    $default  reduce using rule 39 (pre_list)
+
+
+State 10
+
+    4 aexp: "-" . aexp
+
+    "-"           shift, and go to state 10
+    "("           shift, and go to state 26
+    "identifier"  shift, and go to state 15
+    "number"      shift, and go to state 16
+
+    aexp       go to state 27
+    reference  go to state 18
+    constant   go to state 19
+
+
+State 11
+
+   10 aexp: "(" . aexp ")"
+   52 assertion: "(" . assertion ")"
+   53          | "(" . error ")"
+
+    error         shift, and go to state 28
+    "-"           shift, and go to state 10
+    "("           shift, and go to state 11
+    "!"           shift, and go to state 12
+    "forall"      shift, and go to state 13
+    "exists"      shift, and go to state 14
+    "identifier"  shift, and go to state 15
+    "number"      shift, and go to state 16
+
+    aexp       go to state 29
+    reference  go to state 18
+    constant   go to state 19
+    comp       go to state 20
+    assertion  go to state 30
+
+
+State 12
+
+   46 assertion: "!" . assertion
+
+    "-"           shift, and go to state 10
+    "("           shift, and go to state 11
+    "!"           shift, and go to state 12
+    "forall"      shift, and go to state 13
+    "exists"      shift, and go to state 14
+    "identifier"  shift, and go to state 15
+    "number"      shift, and go to state 16
+
+    aexp       go to state 17
+    reference  go to state 18
+    constant   go to state 19
+    comp       go to state 20
+    assertion  go to state 31
+
+
+State 13
+
+   50 assertion: "forall" . identifier_list "," assertion
+
+    "identifier"  shift, and go to state 32
+
+    identifier_list  go to state 33
+
+
+State 14
+
+   51 assertion: "exists" . identifier_list "," assertion
+
+    "identifier"  shift, and go to state 32
+
+    identifier_list  go to state 34
+
+
+State 15
+
+   11 reference: "identifier" .
+
+    $default  reduce using rule 11 (reference)
+
+
+State 16
+
+   12 constant: "number" .
+
+    $default  reduce using rule 12 (constant)
+
+
+State 17
+
+    5 aexp: aexp . "+" aexp
+    6     | aexp . "-" aexp
+    7     | aexp . "*" aexp
+    8     | aexp . "/" aexp
+    9     | aexp . "%" aexp
+   18 comp: aexp . "=" aexp
+   19     | aexp . "!=" aexp
+   20     | aexp . "<=" aexp
+   21     | aexp . ">=" aexp
+   22     | aexp . "<" aexp
+   23     | aexp . ">" aexp
+
+    "+"   shift, and go to state 35
+    "-"   shift, and go to state 36
+    "*"   shift, and go to state 37
+    "/"   shift, and go to state 38
+    "%"   shift, and go to state 39
+    "="   shift, and go to state 40
+    "!="  shift, and go to state 41
+    "<="  shift, and go to state 42
+    ">="  shift, and go to state 43
+    "<"   shift, and go to state 44
+    ">"   shift, and go to state 45
+
+
+State 18
+
+    1 aexp: reference .
+    2     | reference . "[" aexp "]"
+
+    "["  shift, and go to state 46
+
+    $default  reduce using rule 1 (aexp)
+
+
+State 19
+
+    3 aexp: constant .
+
+    $default  reduce using rule 3 (aexp)
+
+
+State 20
+
+   45 assertion: comp .
+
+    $default  reduce using rule 45 (assertion)
+
+
+State 21
+
+   41 pre: "pre" assertion .
+   47 assertion: assertion . "||" assertion
+   48          | assertion . "&&" assertion
+   49          | assertion . "==>" assertion
+
+    "||"   shift, and go to state 47
+    "&&"   shift, and go to state 48
+    "==>"  shift, and go to state 49
+
+    $default  reduce using rule 41 (pre)
+
+
+State 22
+
+   44 post: "post" . assertion
+
+    "-"           shift, and go to state 10
+    "("           shift, and go to state 11
+    "!"           shift, and go to state 12
+    "forall"      shift, and go to state 13
+    "exists"      shift, and go to state 14
+    "identifier"  shift, and go to state 15
+    "number"      shift, and go to state 16
+
+    aexp       go to state 17
+    reference  go to state 18
+    constant   go to state 19
+    comp       go to state 20
+    assertion  go to state 50
+
+
+State 23
+
+   40 pre_list: pre_list pre .
+
+    $default  reduce using rule 40 (pre_list)
+
+
+State 24
+
+   37 prog: "program" "identifier" pre_list post_list . "is" block "end"
+   43 post_list: post_list . post
+
+    "post"  shift, and go to state 22
+    "is"    shift, and go to state 51
+
+    post  go to state 52
+
+
+State 25
+
+   42 post_list: post .
+
+    $default  reduce using rule 42 (post_list)
+
+
+State 26
+
+   10 aexp: "(" . aexp ")"
+
+    "-"           shift, and go to state 10
+    "("           shift, and go to state 26
+    "identifier"  shift, and go to state 15
+    "number"      shift, and go to state 16
+
+    aexp       go to state 53
+    reference  go to state 18
+    constant   go to state 19
+
+
+State 27
+
+    4 aexp: "-" aexp .
+    5     | aexp . "+" aexp
+    6     | aexp . "-" aexp
+    7     | aexp . "*" aexp
+    8     | aexp . "/" aexp
+    9     | aexp . "%" aexp
+
+    "*"  shift, and go to state 37
+    "/"  shift, and go to state 38
+    "%"  shift, and go to state 39
+
+    "%"       [reduce using rule 4 (aexp)]
+    $default  reduce using rule 4 (aexp)
+
+
+State 28
+
+   53 assertion: "(" error . ")"
+
+    ")"  shift, and go to state 54
+
+
+State 29
+
+    5 aexp: aexp . "+" aexp
+    6     | aexp . "-" aexp
+    7     | aexp . "*" aexp
+    8     | aexp . "/" aexp
+    9     | aexp . "%" aexp
+   10     | "(" aexp . ")"
+   18 comp: aexp . "=" aexp
+   19     | aexp . "!=" aexp
+   20     | aexp . "<=" aexp
+   21     | aexp . ">=" aexp
+   22     | aexp . "<" aexp
+   23     | aexp . ">" aexp
+
+    "+"   shift, and go to state 35
+    "-"   shift, and go to state 36
+    "*"   shift, and go to state 37
+    "/"   shift, and go to state 38
+    "%"   shift, and go to state 39
+    ")"   shift, and go to state 55
+    "="   shift, and go to state 40
+    "!="  shift, and go to state 41
+    "<="  shift, and go to state 42
+    ">="  shift, and go to state 43
+    "<"   shift, and go to state 44
+    ">"   shift, and go to state 45
+
+
+State 30
+
+   47 assertion: assertion . "||" assertion
+   48          | assertion . "&&" assertion
+   49          | assertion . "==>" assertion
+   52          | "(" assertion . ")"
+
+    ")"    shift, and go to state 56
+    "||"   shift, and go to state 47
+    "&&"   shift, and go to state 48
+    "==>"  shift, and go to state 49
+
+
+State 31
+
+   46 assertion: "!" assertion .
+   47          | assertion . "||" assertion
+   48          | assertion . "&&" assertion
+   49          | assertion . "==>" assertion
+
+    "||"   shift, and go to state 47
+    "&&"   shift, and go to state 48
+    "==>"  shift, and go to state 49
+
+    "==>"     [reduce using rule 46 (assertion)]
+    $default  reduce using rule 46 (assertion)
+
+
+State 32
+
+   54 identifier_list: "identifier" .
+
+    $default  reduce using rule 54 (identifier_list)
+
+
+State 33
+
+   50 assertion: "forall" identifier_list . "," assertion
+   55 identifier_list: identifier_list . "identifier"
+
+    ","           shift, and go to state 57
+    "identifier"  shift, and go to state 58
+
+
+State 34
+
+   51 assertion: "exists" identifier_list . "," assertion
+   55 identifier_list: identifier_list . "identifier"
+
+    ","           shift, and go to state 59
+    "identifier"  shift, and go to state 58
+
+
+State 35
+
+    5 aexp: aexp "+" . aexp
+
+    "-"           shift, and go to state 10
+    "("           shift, and go to state 26
+    "identifier"  shift, and go to state 15
+    "number"      shift, and go to state 16
+
+    aexp       go to state 60
+    reference  go to state 18
+    constant   go to state 19
+
+
+State 36
+
+    6 aexp: aexp "-" . aexp
+
+    "-"           shift, and go to state 10
+    "("           shift, and go to state 26
+    "identifier"  shift, and go to state 15
+    "number"      shift, and go to state 16
+
+    aexp       go to state 61
+    reference  go to state 18
+    constant   go to state 19
+
+
+State 37
+
+    7 aexp: aexp "*" . aexp
+
+    "-"           shift, and go to state 10
+    "("           shift, and go to state 26
+    "identifier"  shift, and go to state 15
+    "number"      shift, and go to state 16
+
+    aexp       go to state 62
+    reference  go to state 18
+    constant   go to state 19
+
+
+State 38
+
+    8 aexp: aexp "/" . aexp
+
+    "-"           shift, and go to state 10
+    "("           shift, and go to state 26
+    "identifier"  shift, and go to state 15
+    "number"      shift, and go to state 16
+
+    aexp       go to state 63
+    reference  go to state 18
+    constant   go to state 19
+
+
+State 39
+
+    9 aexp: aexp "%" . aexp
+
+    "-"           shift, and go to state 10
+    "("           shift, and go to state 26
+    "identifier"  shift, and go to state 15
+    "number"      shift, and go to state 16
+
+    aexp       go to state 64
+    reference  go to state 18
+    constant   go to state 19
+
+
+State 40
+
+   18 comp: aexp "=" . aexp
+
+    "-"           shift, and go to state 10
+    "("           shift, and go to state 26
+    "identifier"  shift, and go to state 15
+    "number"      shift, and go to state 16
+
+    aexp       go to state 65
+    reference  go to state 18
+    constant   go to state 19
+
+
+State 41
+
+   19 comp: aexp "!=" . aexp
+
+    "-"           shift, and go to state 10
+    "("           shift, and go to state 26
+    "identifier"  shift, and go to state 15
+    "number"      shift, and go to state 16
+
+    aexp       go to state 66
+    reference  go to state 18
+    constant   go to state 19
+
+
+State 42
+
+   20 comp: aexp "<=" . aexp
+
+    "-"           shift, and go to state 10
+    "("           shift, and go to state 26
+    "identifier"  shift, and go to state 15
+    "number"      shift, and go to state 16
+
+    aexp       go to state 67
+    reference  go to state 18
+    constant   go to state 19
+
+
+State 43
+
+   21 comp: aexp ">=" . aexp
+
+    "-"           shift, and go to state 10
+    "("           shift, and go to state 26
+    "identifier"  shift, and go to state 15
+    "number"      shift, and go to state 16
+
+    aexp       go to state 68
+    reference  go to state 18
+    constant   go to state 19
+
+
+State 44
+
+   22 comp: aexp "<" . aexp
+
+    "-"           shift, and go to state 10
+    "("           shift, and go to state 26
+    "identifier"  shift, and go to state 15
+    "number"      shift, and go to state 16
+
+    aexp       go to state 69
+    reference  go to state 18
+    constant   go to state 19
+
+
+State 45
+
+   23 comp: aexp ">" . aexp
+
+    "-"           shift, and go to state 10
+    "("           shift, and go to state 26
+    "identifier"  shift, and go to state 15
+    "number"      shift, and go to state 16
+
+    aexp       go to state 70
+    reference  go to state 18
+    constant   go to state 19
+
+
+State 46
+
+    2 aexp: reference "[" . aexp "]"
+
+    "-"           shift, and go to state 10
+    "("           shift, and go to state 26
+    "identifier"  shift, and go to state 15
+    "number"      shift, and go to state 16
+
+    aexp       go to state 71
+    reference  go to state 18
+    constant   go to state 19
+
+
+State 47
+
+   47 assertion: assertion "||" . assertion
+
+    "-"           shift, and go to state 10
+    "("           shift, and go to state 11
+    "!"           shift, and go to state 12
+    "forall"      shift, and go to state 13
+    "exists"      shift, and go to state 14
+    "identifier"  shift, and go to state 15
+    "number"      shift, and go to state 16
+
+    aexp       go to state 17
+    reference  go to state 18
+    constant   go to state 19
+    comp       go to state 20
+    assertion  go to state 72
+
+
+State 48
+
+   48 assertion: assertion "&&" . assertion
+
+    "-"           shift, and go to state 10
+    "("           shift, and go to state 11
+    "!"           shift, and go to state 12
+    "forall"      shift, and go to state 13
+    "exists"      shift, and go to state 14
+    "identifier"  shift, and go to state 15
+    "number"      shift, and go to state 16
+
+    aexp       go to state 17
+    reference  go to state 18
+    constant   go to state 19
+    comp       go to state 20
+    assertion  go to state 73
+
+
+State 49
+
+   49 assertion: assertion "==>" . assertion
+
+    "-"           shift, and go to state 10
+    "("           shift, and go to state 11
+    "!"           shift, and go to state 12
+    "forall"      shift, and go to state 13
+    "exists"      shift, and go to state 14
+    "identifier"  shift, and go to state 15
+    "number"      shift, and go to state 16
+
+    aexp       go to state 17
+    reference  go to state 18
+    constant   go to state 19
+    comp       go to state 20
+    assertion  go to state 74
+
+
+State 50
+
+   44 post: "post" assertion .
+   47 assertion: assertion . "||" assertion
+   48          | assertion . "&&" assertion
+   49          | assertion . "==>" assertion
+
+    "||"   shift, and go to state 47
+    "&&"   shift, and go to state 48
+    "==>"  shift, and go to state 49
+
+    $default  reduce using rule 44 (post)
+
+
+State 51
+
+   37 prog: "program" "identifier" pre_list post_list "is" . block "end"
+
+    "if"          shift, and go to state 75
+    "while"       shift, and go to state 76
+    "identifier"  shift, and go to state 77
+
+    stmt       go to state 78
+    location   go to state 79
+    block      go to state 80
+    stmt_list  go to state 81
+
+
+State 52
+
+   43 post_list: post_list post .
+
+    $default  reduce using rule 43 (post_list)
+
+
+State 53
+
+    5 aexp: aexp . "+" aexp
+    6     | aexp . "-" aexp
+    7     | aexp . "*" aexp
+    8     | aexp . "/" aexp
+    9     | aexp . "%" aexp
+   10     | "(" aexp . ")"
+
+    "+"  shift, and go to state 35
+    "-"  shift, and go to state 36
+    "*"  shift, and go to state 37
+    "/"  shift, and go to state 38
+    "%"  shift, and go to state 39
+    ")"  shift, and go to state 55
+
+
+State 54
+
+   53 assertion: "(" error ")" .
+
+    $default  reduce using rule 53 (assertion)
+
+
+State 55
+
+   10 aexp: "(" aexp ")" .
+
+    $default  reduce using rule 10 (aexp)
+
+
+State 56
+
+   52 assertion: "(" assertion ")" .
+
+    $default  reduce using rule 52 (assertion)
+
+
+State 57
+
+   50 assertion: "forall" identifier_list "," . assertion
+
+    "-"           shift, and go to state 10
+    "("           shift, and go to state 11
+    "!"           shift, and go to state 12
+    "forall"      shift, and go to state 13
+    "exists"      shift, and go to state 14
+    "identifier"  shift, and go to state 15
+    "number"      shift, and go to state 16
+
+    aexp       go to state 17
+    reference  go to state 18
+    constant   go to state 19
+    comp       go to state 20
+    assertion  go to state 82
+
+
+State 58
+
+   55 identifier_list: identifier_list "identifier" .
+
+    $default  reduce using rule 55 (identifier_list)
+
+
+State 59
+
+   51 assertion: "exists" identifier_list "," . assertion
+
+    "-"           shift, and go to state 10
+    "("           shift, and go to state 11
+    "!"           shift, and go to state 12
+    "forall"      shift, and go to state 13
+    "exists"      shift, and go to state 14
+    "identifier"  shift, and go to state 15
+    "number"      shift, and go to state 16
+
+    aexp       go to state 17
+    reference  go to state 18
+    constant   go to state 19
+    comp       go to state 20
+    assertion  go to state 83
+
+
+State 60
+
+    5 aexp: aexp . "+" aexp
+    5     | aexp "+" aexp .
+    6     | aexp . "-" aexp
+    7     | aexp . "*" aexp
+    8     | aexp . "/" aexp
+    9     | aexp . "%" aexp
+
+    "*"  shift, and go to state 37
+    "/"  shift, and go to state 38
+    "%"  shift, and go to state 39
+
+    "%"       [reduce using rule 5 (aexp)]
+    $default  reduce using rule 5 (aexp)
+
+
+State 61
+
+    5 aexp: aexp . "+" aexp
+    6     | aexp . "-" aexp
+    6     | aexp "-" aexp .
+    7     | aexp . "*" aexp
+    8     | aexp . "/" aexp
+    9     | aexp . "%" aexp
+
+    "*"  shift, and go to state 37
+    "/"  shift, and go to state 38
+    "%"  shift, and go to state 39
+
+    "%"       [reduce using rule 6 (aexp)]
+    $default  reduce using rule 6 (aexp)
+
+
+State 62
+
+    5 aexp: aexp . "+" aexp
+    6     | aexp . "-" aexp
+    7     | aexp . "*" aexp
+    7     | aexp "*" aexp .
+    8     | aexp . "/" aexp
+    9     | aexp . "%" aexp
+
+    "%"  shift, and go to state 39
+
+    "%"       [reduce using rule 7 (aexp)]
+    $default  reduce using rule 7 (aexp)
+
+
+State 63
+
+    5 aexp: aexp . "+" aexp
+    6     | aexp . "-" aexp
+    7     | aexp . "*" aexp
+    8     | aexp . "/" aexp
+    8     | aexp "/" aexp .
+    9     | aexp . "%" aexp
+
+    "%"  shift, and go to state 39
+
+    "%"       [reduce using rule 8 (aexp)]
+    $default  reduce using rule 8 (aexp)
+
+
+State 64
+
+    5 aexp: aexp . "+" aexp
+    6     | aexp . "-" aexp
+    7     | aexp . "*" aexp
+    8     | aexp . "/" aexp
+    9     | aexp . "%" aexp
+    9     | aexp "%" aexp .
+
+    "+"  shift, and go to state 35
+    "-"  shift, and go to state 36
+    "*"  shift, and go to state 37
+    "/"  shift, and go to state 38
+    "%"  shift, and go to state 39
+
+    "+"       [reduce using rule 9 (aexp)]
+    "-"       [reduce using rule 9 (aexp)]
+    "*"       [reduce using rule 9 (aexp)]
+    "/"       [reduce using rule 9 (aexp)]
+    "%"       [reduce using rule 9 (aexp)]
+    $default  reduce using rule 9 (aexp)
+
+
+State 65
+
+    5 aexp: aexp . "+" aexp
+    6     | aexp . "-" aexp
+    7     | aexp . "*" aexp
+    8     | aexp . "/" aexp
+    9     | aexp . "%" aexp
+   18 comp: aexp "=" aexp .
+
+    "+"  shift, and go to state 35
+    "-"  shift, and go to state 36
+    "*"  shift, and go to state 37
+    "/"  shift, and go to state 38
+    "%"  shift, and go to state 39
+
+    $default  reduce using rule 18 (comp)
+
+
+State 66
+
+    5 aexp: aexp . "+" aexp
+    6     | aexp . "-" aexp
+    7     | aexp . "*" aexp
+    8     | aexp . "/" aexp
+    9     | aexp . "%" aexp
+   19 comp: aexp "!=" aexp .
+
+    "+"  shift, and go to state 35
+    "-"  shift, and go to state 36
+    "*"  shift, and go to state 37
+    "/"  shift, and go to state 38
+    "%"  shift, and go to state 39
+
+    $default  reduce using rule 19 (comp)
+
+
+State 67
+
+    5 aexp: aexp . "+" aexp
+    6     | aexp . "-" aexp
+    7     | aexp . "*" aexp
+    8     | aexp . "/" aexp
+    9     | aexp . "%" aexp
+   20 comp: aexp "<=" aexp .
+
+    "+"  shift, and go to state 35
+    "-"  shift, and go to state 36
+    "*"  shift, and go to state 37
+    "/"  shift, and go to state 38
+    "%"  shift, and go to state 39
+
+    $default  reduce using rule 20 (comp)
+
+
+State 68
+
+    5 aexp: aexp . "+" aexp
+    6     | aexp . "-" aexp
+    7     | aexp . "*" aexp
+    8     | aexp . "/" aexp
+    9     | aexp . "%" aexp
+   21 comp: aexp ">=" aexp .
+
+    "+"  shift, and go to state 35
+    "-"  shift, and go to state 36
+    "*"  shift, and go to state 37
+    "/"  shift, and go to state 38
+    "%"  shift, and go to state 39
+
+    $default  reduce using rule 21 (comp)
+
+
+State 69
+
+    5 aexp: aexp . "+" aexp
+    6     | aexp . "-" aexp
+    7     | aexp . "*" aexp
+    8     | aexp . "/" aexp
+    9     | aexp . "%" aexp
+   22 comp: aexp "<" aexp .
+
+    "+"  shift, and go to state 35
+    "-"  shift, and go to state 36
+    "*"  shift, and go to state 37
+    "/"  shift, and go to state 38
+    "%"  shift, and go to state 39
+
+    $default  reduce using rule 22 (comp)
+
+
+State 70
+
+    5 aexp: aexp . "+" aexp
+    6     | aexp . "-" aexp
+    7     | aexp . "*" aexp
+    8     | aexp . "/" aexp
+    9     | aexp . "%" aexp
+   23 comp: aexp ">" aexp .
+
+    "+"  shift, and go to state 35
+    "-"  shift, and go to state 36
+    "*"  shift, and go to state 37
+    "/"  shift, and go to state 38
+    "%"  shift, and go to state 39
+
+    $default  reduce using rule 23 (comp)
+
+
+State 71
+
+    2 aexp: reference "[" aexp . "]"
+    5     | aexp . "+" aexp
+    6     | aexp . "-" aexp
+    7     | aexp . "*" aexp
+    8     | aexp . "/" aexp
+    9     | aexp . "%" aexp
+
+    "+"  shift, and go to state 35
+    "-"  shift, and go to state 36
+    "*"  shift, and go to state 37
+    "/"  shift, and go to state 38
+    "%"  shift, and go to state 39
+    "]"  shift, and go to state 84
+
+
+State 72
+
+   47 assertion: assertion . "||" assertion
+   47          | assertion "||" assertion .
+   48          | assertion . "&&" assertion
+   49          | assertion . "==>" assertion
+
+    "||"   shift, and go to state 47
+    "==>"  shift, and go to state 49
+
+    "||"      [reduce using rule 47 (assertion)]
+    "==>"     [reduce using rule 47 (assertion)]
+    $default  reduce using rule 47 (assertion)
+
+
+State 73
+
+   47 assertion: assertion . "||" assertion
+   48          | assertion . "&&" assertion
+   48          | assertion "&&" assertion .
+   49          | assertion . "==>" assertion
+
+    "||"   shift, and go to state 47
+    "&&"   shift, and go to state 48
+    "==>"  shift, and go to state 49
+
+    "&&"      [reduce using rule 48 (assertion)]
+    "==>"     [reduce using rule 48 (assertion)]
+    $default  reduce using rule 48 (assertion)
+
+
+State 74
+
+   47 assertion: assertion . "||" assertion
+   48          | assertion . "&&" assertion
+   49          | assertion . "==>" assertion
+   49          | assertion "==>" assertion .
+
+    "||"   shift, and go to state 47
+    "&&"   shift, and go to state 48
+    "==>"  shift, and go to state 49
+
+    "||"      [reduce using rule 49 (assertion)]
+    "&&"      [reduce using rule 49 (assertion)]
+    "==>"     [reduce using rule 49 (assertion)]
+    $default  reduce using rule 49 (assertion)
+
+
+State 75
+
+   27 stmt: "if" . bexp "then" block "else" block "end"
+   28     | "if" . bexp "then" block "end"
+
+    "-"           shift, and go to state 10
+    "("           shift, and go to state 85
+    "!"           shift, and go to state 86
+    "identifier"  shift, and go to state 15
+    "number"      shift, and go to state 16
+
+    aexp       go to state 17
+    reference  go to state 18
+    constant   go to state 19
+    bexp       go to state 87
+    comp       go to state 88
+
+
+State 76
+
+   29 stmt: "while" . bexp inv_list "do" block "end"
+
+    "-"           shift, and go to state 10
+    "("           shift, and go to state 85
+    "!"           shift, and go to state 86
+    "identifier"  shift, and go to state 15
+    "number"      shift, and go to state 16
+
+    aexp       go to state 17
+    reference  go to state 18
+    constant   go to state 19
+    bexp       go to state 89
+    comp       go to state 88
+
+
+State 77
+
+   30 location: "identifier" .
+
+    $default  reduce using rule 30 (location)
+
+
+State 78
+
+   35 stmt_list: stmt .
+
+    $default  reduce using rule 35 (stmt_list)
+
+
+State 79
+
+   24 stmt: location . ":=" aexp ";"
+   25     | location . "," location ":=" aexp "," aexp ";"
+   26     | location . "[" aexp "]" ":=" aexp ";"
+
+    ":="  shift, and go to state 90
+    ","   shift, and go to state 91
+    "["   shift, and go to state 92
+
+
+State 80
+
+   37 prog: "program" "identifier" pre_list post_list "is" block . "end"
+
+    "end"  shift, and go to state 93
+
+
+State 81
+
+   34 block: stmt_list .
+   36 stmt_list: stmt_list . stmt
+
+    "if"          shift, and go to state 75
+    "while"       shift, and go to state 76
+    "identifier"  shift, and go to state 77
+
+    $default  reduce using rule 34 (block)
+
+    stmt      go to state 94
+    location  go to state 79
+
+
+State 82
+
+   47 assertion: assertion . "||" assertion
+   48          | assertion . "&&" assertion
+   49          | assertion . "==>" assertion
+   50          | "forall" identifier_list "," assertion .
+
+    "||"   shift, and go to state 47
+    "&&"   shift, and go to state 48
+    "==>"  shift, and go to state 49
+
+    "||"      [reduce using rule 50 (assertion)]
+    "&&"      [reduce using rule 50 (assertion)]
+    "==>"     [reduce using rule 50 (assertion)]
+    $default  reduce using rule 50 (assertion)
+
+
+State 83
+
+   47 assertion: assertion . "||" assertion
+   48          | assertion . "&&" assertion
+   49          | assertion . "==>" assertion
+   51          | "exists" identifier_list "," assertion .
+
+    "||"   shift, and go to state 47
+    "&&"   shift, and go to state 48
+    "==>"  shift, and go to state 49
+
+    "||"      [reduce using rule 51 (assertion)]
+    "&&"      [reduce using rule 51 (assertion)]
+    "==>"     [reduce using rule 51 (assertion)]
+    $default  reduce using rule 51 (assertion)
+
+
+State 84
+
+    2 aexp: reference "[" aexp "]" .
+
+    $default  reduce using rule 2 (aexp)
+
+
+State 85
+
+   10 aexp: "(" . aexp ")"
+   17 bexp: "(" . bexp ")"
+
+    "-"           shift, and go to state 10
+    "("           shift, and go to state 85
+    "!"           shift, and go to state 86
+    "identifier"  shift, and go to state 15
+    "number"      shift, and go to state 16
+
+    aexp       go to state 29
+    reference  go to state 18
+    constant   go to state 19
+    bexp       go to state 95
+    comp       go to state 88
+
+
+State 86
+
+   14 bexp: "!" . bexp
+
+    "-"           shift, and go to state 10
+    "("           shift, and go to state 85
+    "!"           shift, and go to state 86
+    "identifier"  shift, and go to state 15
+    "number"      shift, and go to state 16
+
+    aexp       go to state 17
+    reference  go to state 18
+    constant   go to state 19
+    bexp       go to state 96
+    comp       go to state 88
+
+
+State 87
+
+   15 bexp: bexp . "||" bexp
+   16     | bexp . "&&" bexp
+   27 stmt: "if" bexp . "then" block "else" block "end"
+   28     | "if" bexp . "then" block "end"
+
+    "||"    shift, and go to state 97
+    "&&"    shift, and go to state 98
+    "then"  shift, and go to state 99
+
+
+State 88
+
+   13 bexp: comp .
+
+    $default  reduce using rule 13 (bexp)
+
+
+State 89
+
+   15 bexp: bexp . "||" bexp
+   16     | bexp . "&&" bexp
+   29 stmt: "while" bexp . inv_list "do" block "end"
+
+    "||"   shift, and go to state 97
+    "&&"   shift, and go to state 98
+    "inv"  shift, and go to state 100
+
+    inv_list  go to state 101
+    inv       go to state 102
+
+
+State 90
+
+   24 stmt: location ":=" . aexp ";"
+
+    "-"           shift, and go to state 10
+    "("           shift, and go to state 26
+    "identifier"  shift, and go to state 15
+    "number"      shift, and go to state 16
+
+    aexp       go to state 103
+    reference  go to state 18
+    constant   go to state 19
+
+
+State 91
+
+   25 stmt: location "," . location ":=" aexp "," aexp ";"
+
+    "identifier"  shift, and go to state 77
+
+    location  go to state 104
+
+
+State 92
+
+   26 stmt: location "[" . aexp "]" ":=" aexp ";"
+
+    "-"           shift, and go to state 10
+    "("           shift, and go to state 26
+    "identifier"  shift, and go to state 15
+    "number"      shift, and go to state 16
+
+    aexp       go to state 105
+    reference  go to state 18
+    constant   go to state 19
+
+
+State 93
+
+   37 prog: "program" "identifier" pre_list post_list "is" block "end" .
+
+    $default  reduce using rule 37 (prog)
+
+
+State 94
+
+   36 stmt_list: stmt_list stmt .
+
+    $default  reduce using rule 36 (stmt_list)
+
+
+State 95
+
+   15 bexp: bexp . "||" bexp
+   16     | bexp . "&&" bexp
+   17     | "(" bexp . ")"
+
+    ")"   shift, and go to state 106
+    "||"  shift, and go to state 97
+    "&&"  shift, and go to state 98
+
+
+State 96
+
+   14 bexp: "!" bexp .
+   15     | bexp . "||" bexp
+   16     | bexp . "&&" bexp
+
+    "||"  shift, and go to state 97
+    "&&"  shift, and go to state 98
+
+    $default  reduce using rule 14 (bexp)
+
+
+State 97
+
+   15 bexp: bexp "||" . bexp
+
+    "-"           shift, and go to state 10
+    "("           shift, and go to state 85
+    "!"           shift, and go to state 86
+    "identifier"  shift, and go to state 15
+    "number"      shift, and go to state 16
+
+    aexp       go to state 17
+    reference  go to state 18
+    constant   go to state 19
+    bexp       go to state 107
+    comp       go to state 88
+
+
+State 98
+
+   16 bexp: bexp "&&" . bexp
+
+    "-"           shift, and go to state 10
+    "("           shift, and go to state 85
+    "!"           shift, and go to state 86
+    "identifier"  shift, and go to state 15
+    "number"      shift, and go to state 16
+
+    aexp       go to state 17
+    reference  go to state 18
+    constant   go to state 19
+    bexp       go to state 108
+    comp       go to state 88
+
+
+State 99
+
+   27 stmt: "if" bexp "then" . block "else" block "end"
+   28     | "if" bexp "then" . block "end"
+
+    "if"          shift, and go to state 75
+    "while"       shift, and go to state 76
+    "identifier"  shift, and go to state 77
+
+    stmt       go to state 78
+    location   go to state 79
+    block      go to state 109
+    stmt_list  go to state 81
+
+
+State 100
+
+   33 inv: "inv" . assertion
+
+    "-"           shift, and go to state 10
+    "("           shift, and go to state 11
+    "!"           shift, and go to state 12
+    "forall"      shift, and go to state 13
+    "exists"      shift, and go to state 14
+    "identifier"  shift, and go to state 15
+    "number"      shift, and go to state 16
+
+    aexp       go to state 17
+    reference  go to state 18
+    constant   go to state 19
+    comp       go to state 20
+    assertion  go to state 110
+
+
+State 101
+
+   29 stmt: "while" bexp inv_list . "do" block "end"
+   32 inv_list: inv_list . inv
+
+    "do"   shift, and go to state 111
+    "inv"  shift, and go to state 100
+
+    inv  go to state 112
+
+
+State 102
+
+   31 inv_list: inv .
+
+    $default  reduce using rule 31 (inv_list)
+
+
+State 103
+
+    5 aexp: aexp . "+" aexp
+    6     | aexp . "-" aexp
+    7     | aexp . "*" aexp
+    8     | aexp . "/" aexp
+    9     | aexp . "%" aexp
+   24 stmt: location ":=" aexp . ";"
+
+    "+"  shift, and go to state 35
+    "-"  shift, and go to state 36
+    "*"  shift, and go to state 37
+    "/"  shift, and go to state 38
+    "%"  shift, and go to state 39
+    ";"  shift, and go to state 113
+
+
+State 104
+
+   25 stmt: location "," location . ":=" aexp "," aexp ";"
+
+    ":="  shift, and go to state 114
+
+
+State 105
+
+    5 aexp: aexp . "+" aexp
+    6     | aexp . "-" aexp
+    7     | aexp . "*" aexp
+    8     | aexp . "/" aexp
+    9     | aexp . "%" aexp
+   26 stmt: location "[" aexp . "]" ":=" aexp ";"
+
+    "+"  shift, and go to state 35
+    "-"  shift, and go to state 36
+    "*"  shift, and go to state 37
+    "/"  shift, and go to state 38
+    "%"  shift, and go to state 39
+    "]"  shift, and go to state 115
+
+
+State 106
+
+   17 bexp: "(" bexp ")" .
+
+    $default  reduce using rule 17 (bexp)
+
+
+State 107
+
+   15 bexp: bexp . "||" bexp
+   15     | bexp "||" bexp .
+   16     | bexp . "&&" bexp
+
+    "||"  shift, and go to state 97
+
+    "||"      [reduce using rule 15 (bexp)]
+    $default  reduce using rule 15 (bexp)
+
+
+State 108
+
+   15 bexp: bexp . "||" bexp
+   16     | bexp . "&&" bexp
+   16     | bexp "&&" bexp .
+
+    "||"  shift, and go to state 97
+    "&&"  shift, and go to state 98
+
+    "&&"      [reduce using rule 16 (bexp)]
+    $default  reduce using rule 16 (bexp)
+
+
+State 109
+
+   27 stmt: "if" bexp "then" block . "else" block "end"
+   28     | "if" bexp "then" block . "end"
+
+    "else"  shift, and go to state 116
+    "end"   shift, and go to state 117
+
+
+State 110
+
+   33 inv: "inv" assertion .
+   47 assertion: assertion . "||" assertion
+   48          | assertion . "&&" assertion
+   49          | assertion . "==>" assertion
+
+    "||"   shift, and go to state 47
+    "&&"   shift, and go to state 48
+    "==>"  shift, and go to state 49
+
+    $default  reduce using rule 33 (inv)
+
+
+State 111
+
+   29 stmt: "while" bexp inv_list "do" . block "end"
+
+    "if"          shift, and go to state 75
+    "while"       shift, and go to state 76
+    "identifier"  shift, and go to state 77
+
+    stmt       go to state 78
+    location   go to state 79
+    block      go to state 118
+    stmt_list  go to state 81
+
+
+State 112
+
+   32 inv_list: inv_list inv .
+
+    $default  reduce using rule 32 (inv_list)
+
+
+State 113
+
+   24 stmt: location ":=" aexp ";" .
+
+    $default  reduce using rule 24 (stmt)
+
+
+State 114
+
+   25 stmt: location "," location ":=" . aexp "," aexp ";"
+
+    "-"           shift, and go to state 10
+    "("           shift, and go to state 26
+    "identifier"  shift, and go to state 15
+    "number"      shift, and go to state 16
+
+    aexp       go to state 119
+    reference  go to state 18
+    constant   go to state 19
+
+
+State 115
+
+   26 stmt: location "[" aexp "]" . ":=" aexp ";"
+
+    ":="  shift, and go to state 120
+
+
+State 116
+
+   27 stmt: "if" bexp "then" block "else" . block "end"
+
+    "if"          shift, and go to state 75
+    "while"       shift, and go to state 76
+    "identifier"  shift, and go to state 77
+
+    stmt       go to state 78
+    location   go to state 79
+    block      go to state 121
+    stmt_list  go to state 81
+
+
+State 117
+
+   28 stmt: "if" bexp "then" block "end" .
+
+    $default  reduce using rule 28 (stmt)
+
+
+State 118
+
+   29 stmt: "while" bexp inv_list "do" block . "end"
+
+    "end"  shift, and go to state 122
+
+
+State 119
+
+    5 aexp: aexp . "+" aexp
+    6     | aexp . "-" aexp
+    7     | aexp . "*" aexp
+    8     | aexp . "/" aexp
+    9     | aexp . "%" aexp
+   25 stmt: location "," location ":=" aexp . "," aexp ";"
+
+    "+"  shift, and go to state 35
+    "-"  shift, and go to state 36
+    "*"  shift, and go to state 37
+    "/"  shift, and go to state 38
+    "%"  shift, and go to state 39
+    ","  shift, and go to state 123
+
+
+State 120
+
+   26 stmt: location "[" aexp "]" ":=" . aexp ";"
+
+    "-"           shift, and go to state 10
+    "("           shift, and go to state 26
+    "identifier"  shift, and go to state 15
+    "number"      shift, and go to state 16
+
+    aexp       go to state 124
+    reference  go to state 18
+    constant   go to state 19
+
+
+State 121
+
+   27 stmt: "if" bexp "then" block "else" block . "end"
+
+    "end"  shift, and go to state 125
+
+
+State 122
+
+   29 stmt: "while" bexp inv_list "do" block "end" .
+
+    $default  reduce using rule 29 (stmt)
+
+
+State 123
+
+   25 stmt: location "," location ":=" aexp "," . aexp ";"
+
+    "-"           shift, and go to state 10
+    "("           shift, and go to state 26
+    "identifier"  shift, and go to state 15
+    "number"      shift, and go to state 16
+
+    aexp       go to state 126
+    reference  go to state 18
+    constant   go to state 19
+
+
+State 124
+
+    5 aexp: aexp . "+" aexp
+    6     | aexp . "-" aexp
+    7     | aexp . "*" aexp
+    8     | aexp . "/" aexp
+    9     | aexp . "%" aexp
+   26 stmt: location "[" aexp "]" ":=" aexp . ";"
+
+    "+"  shift, and go to state 35
+    "-"  shift, and go to state 36
+    "*"  shift, and go to state 37
+    "/"  shift, and go to state 38
+    "%"  shift, and go to state 39
+    ";"  shift, and go to state 127
+
+
+State 125
+
+   27 stmt: "if" bexp "then" block "else" block "end" .
+
+    $default  reduce using rule 27 (stmt)
+
+
+State 126
+
+    5 aexp: aexp . "+" aexp
+    6     | aexp . "-" aexp
+    7     | aexp . "*" aexp
+    8     | aexp . "/" aexp
+    9     | aexp . "%" aexp
+   25 stmt: location "," location ":=" aexp "," aexp . ";"
+
+    "+"  shift, and go to state 35
+    "-"  shift, and go to state 36
+    "*"  shift, and go to state 37
+    "/"  shift, and go to state 38
+    "%"  shift, and go to state 39
+    ";"  shift, and go to state 128
+
+
+State 127
+
+   26 stmt: location "[" aexp "]" ":=" aexp ";" .
+
+    $default  reduce using rule 26 (stmt)
+
+
+State 128
+
+   25 stmt: location "," location ":=" aexp "," aexp ";" .
+
+    $default  reduce using rule 25 (stmt)

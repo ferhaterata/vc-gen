@@ -138,55 +138,55 @@ Nonterminals, with rules where they appear
 
     $accept (40)
         on left: 0
-    aexp <ast::ArithmeticExpression*> (41)
+    aexp <imp::ast::ArithmeticExpression*> (41)
         on left: 1 2 3 4 5 6 7 8 9 10
         on right: 2 4 5 6 7 8 9 10 18 19 20 21 22 23 24 25 26
-    reference <ast::Reference*> (42)
+    reference <imp::ast::Reference*> (42)
         on left: 11
         on right: 1 2
-    constant <ast::Constant*> (43)
+    constant <imp::ast::Constant*> (43)
         on left: 12
         on right: 3
-    bexp <ast::BooleanExpression*> (44)
+    bexp <imp::ast::BooleanExpression*> (44)
         on left: 13 14 15 16 17
         on right: 14 15 16 17 27 28 29
-    comp <ast::Comparison*> (45)
+    comp <imp::ast::Comparison*> (45)
         on left: 18 19 20 21 22 23
         on right: 13 44
-    stmt <ast::Statement*> (46)
+    stmt <imp::ast::Statement*> (46)
         on left: 24 25 26 27 28 29
         on right: 35 36
-    location <ast::Location*> (47)
+    location <imp::ast::Location*> (47)
         on left: 30
         on right: 24 25 26
-    inv_list <std::vector<ast::Invariant*>> (48)
+    inv_list <std::vector<imp::ast::Invariant*>> (48)
         on left: 31 32
         on right: 29 32
-    inv <ast::Invariant*> (49)
+    inv <imp::ast::Invariant*> (49)
         on left: 33
         on right: 31 32
-    block <ast::Block*> (50)
+    block <imp::ast::Block*> (50)
         on left: 34
         on right: 27 28 29 37
-    stmt_list <std::vector<ast::Statement*>> (51)
+    stmt_list <std::vector<imp::ast::Statement*>> (51)
         on left: 35 36
         on right: 34 36
-    prog <ast::Program*> (52)
+    prog <imp::ast::Program*> (52)
         on left: 37
         on right: 0
-    pre_list <std::vector<ast::PreCondition*>> (53)
+    pre_list <std::vector<imp::ast::PreCondition*>> (53)
         on left: 38 39
         on right: 37 39
-    pre <ast::PreCondition*> (54)
+    pre <imp::ast::PreCondition*> (54)
         on left: 40
         on right: 38 39
-    post_list <std::vector<ast::PostCondition*>> (55)
+    post_list <std::vector<imp::ast::PostCondition*>> (55)
         on left: 41 42
         on right: 37 42
-    post <ast::PostCondition*> (56)
+    post <imp::ast::PostCondition*> (56)
         on left: 43
         on right: 41 42
-    assertion <ast::Assertion*> (57)
+    assertion <imp::ast::Assertion*> (57)
         on left: 44 45 46 47 48 49 50 51 52
         on right: 33 40 43 45 46 47 48 49 50 51
     identifier_list <std::vector<std::string>> (58)

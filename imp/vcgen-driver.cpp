@@ -8,7 +8,7 @@
 #include "vcgen-parser.hpp"
 #include <fstream>
 
-extern ast::Program* program;
+extern imp::ast::Program* program;
 
 vcgen_driver::vcgen_driver() : trace_scanning(false), trace_parsing(false) {
     variables["one"] = 1;
@@ -20,14 +20,14 @@ vcgen_driver::~vcgen_driver() {}
 int vcgen_driver::parse(const std::string& f) {
     file = f;
     scan_begin();
-    yy::vcgen_parser parser(*this);
+    imp::vcgen_parser parser(*this);
     parser.set_debug_level(trace_parsing);
     int res = parser.parse();
     scan_end();
     return res;
 }
 
-void vcgen_driver::error(const yy::location& l, const std::string& m) {
+void vcgen_driver::error(const imp::location& l, const std::string& m) {
     std::cerr << l << ": " << m << std::endl;
     // For undefined tokens, bison currently just tells us something
     // like 'unexpected $undefined' without printing the offending

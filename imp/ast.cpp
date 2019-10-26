@@ -6,7 +6,7 @@
 
 #include "ast.hpp"
 
-namespace ast {
+namespace imp::ast {
 
 template <typename T> ostream& operator<<(ostream& out, const vector<T*>& v) {
     if (!v.empty()) {

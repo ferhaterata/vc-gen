@@ -31,12 +31,12 @@
 // version 2.2 of Bison.
 
 /**
- ** \file /home/ferhat/git/vc-gen/recognizer/location.hh
- ** Define the yy::location class.
+ ** \file /home/ferhat/git/vc-gen/gc/recognizer/location.hh
+ ** Define the gc::location class.
  */
 
-#ifndef YY_YY_HOME_FERHAT_GIT_VC_GEN_RECOGNIZER_LOCATION_HH_INCLUDED
-# define YY_YY_HOME_FERHAT_GIT_VC_GEN_RECOGNIZER_LOCATION_HH_INCLUDED
+#ifndef YY_YY_HOME_FERHAT_GIT_VC_GEN_GC_RECOGNIZER_LOCATION_HH_INCLUDED
+# define YY_YY_HOME_FERHAT_GIT_VC_GEN_GC_RECOGNIZER_LOCATION_HH_INCLUDED
 
 # include <algorithm> // std::max
 # include <iostream>
@@ -54,8 +54,9 @@
 #  endif
 # endif
 
-namespace yy {
-#line 59 "/home/ferhat/git/vc-gen/recognizer/location.hh"
+#line 8 "/home/ferhat/git/vc-gen/gc/gc-parser.yy"
+namespace gc {
+#line 60 "/home/ferhat/git/vc-gen/gc/recognizer/location.hh"
 
   /// A point in a source file.
   class position
@@ -316,7 +317,8 @@ namespace yy {
     return ostr;
   }
 
-} // yy
-#line 321 "/home/ferhat/git/vc-gen/recognizer/location.hh"
+#line 8 "/home/ferhat/git/vc-gen/gc/gc-parser.yy"
+} // gc
+#line 323 "/home/ferhat/git/vc-gen/gc/recognizer/location.hh"
 
-#endif // !YY_YY_HOME_FERHAT_GIT_VC_GEN_RECOGNIZER_LOCATION_HH_INCLUDED
+#endif // !YY_YY_HOME_FERHAT_GIT_VC_GEN_GC_RECOGNIZER_LOCATION_HH_INCLUDED

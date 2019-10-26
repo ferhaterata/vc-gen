@@ -1,6 +1,6 @@
-#line 2 "/home/ferhat/git/vc-gen/recognizer/vcgen-scanner.cpp"
+#line 2 "/home/ferhat/git/vc-gen/imp/recognizer/vcgen-scanner.cpp"
 
-#line 4 "/home/ferhat/git/vc-gen/recognizer/vcgen-scanner.cpp"
+#line 4 "/home/ferhat/git/vc-gen/imp/recognizer/vcgen-scanner.cpp"
 
 #define  YY_INT_ALIGNED short int
 
@@ -9,6 +9,30 @@
 /* %not-for-header */
 /* %if-c-only */
 /* %if-not-reentrant */
+#define yy_create_buffer gc_create_buffer
+#define yy_delete_buffer gc_delete_buffer
+#define yy_scan_buffer gc_scan_buffer
+#define yy_scan_string gc_scan_string
+#define yy_scan_bytes gc_scan_bytes
+#define yy_init_buffer gc_init_buffer
+#define yy_flush_buffer gc_flush_buffer
+#define yy_load_buffer_state gc_load_buffer_state
+#define yy_switch_to_buffer gc_switch_to_buffer
+#define yypush_buffer_state gcpush_buffer_state
+#define yypop_buffer_state gcpop_buffer_state
+#define yyensure_buffer_stack gcensure_buffer_stack
+#define yy_flex_debug gc_flex_debug
+#define yyin gcin
+#define yyleng gcleng
+#define yylex gclex
+#define yylineno gclineno
+#define yyout gcout
+#define yyrestart gcrestart
+#define yytext gctext
+#define yywrap gcwrap
+#define yyalloc gcalloc
+#define yyrealloc gcrealloc
+#define yyfree gcfree
 
 /* %endif */
 /* %endif */
@@ -26,10 +50,243 @@
 /* %endif */
 
 /* %if-c-only */
+#ifdef yy_create_buffer
+#define gc_create_buffer_ALREADY_DEFINED
+#else
+#define yy_create_buffer gc_create_buffer
+#endif
+
+#ifdef yy_delete_buffer
+#define gc_delete_buffer_ALREADY_DEFINED
+#else
+#define yy_delete_buffer gc_delete_buffer
+#endif
+
+#ifdef yy_scan_buffer
+#define gc_scan_buffer_ALREADY_DEFINED
+#else
+#define yy_scan_buffer gc_scan_buffer
+#endif
+
+#ifdef yy_scan_string
+#define gc_scan_string_ALREADY_DEFINED
+#else
+#define yy_scan_string gc_scan_string
+#endif
+
+#ifdef yy_scan_bytes
+#define gc_scan_bytes_ALREADY_DEFINED
+#else
+#define yy_scan_bytes gc_scan_bytes
+#endif
+
+#ifdef yy_init_buffer
+#define gc_init_buffer_ALREADY_DEFINED
+#else
+#define yy_init_buffer gc_init_buffer
+#endif
+
+#ifdef yy_flush_buffer
+#define gc_flush_buffer_ALREADY_DEFINED
+#else
+#define yy_flush_buffer gc_flush_buffer
+#endif
+
+#ifdef yy_load_buffer_state
+#define gc_load_buffer_state_ALREADY_DEFINED
+#else
+#define yy_load_buffer_state gc_load_buffer_state
+#endif
+
+#ifdef yy_switch_to_buffer
+#define gc_switch_to_buffer_ALREADY_DEFINED
+#else
+#define yy_switch_to_buffer gc_switch_to_buffer
+#endif
+
+#ifdef yypush_buffer_state
+#define gcpush_buffer_state_ALREADY_DEFINED
+#else
+#define yypush_buffer_state gcpush_buffer_state
+#endif
+
+#ifdef yypop_buffer_state
+#define gcpop_buffer_state_ALREADY_DEFINED
+#else
+#define yypop_buffer_state gcpop_buffer_state
+#endif
+
+#ifdef yyensure_buffer_stack
+#define gcensure_buffer_stack_ALREADY_DEFINED
+#else
+#define yyensure_buffer_stack gcensure_buffer_stack
+#endif
+
+#ifdef yylex
+#define gclex_ALREADY_DEFINED
+#else
+#define yylex gclex
+#endif
+
+#ifdef yyrestart
+#define gcrestart_ALREADY_DEFINED
+#else
+#define yyrestart gcrestart
+#endif
+
+#ifdef yylex_init
+#define gclex_init_ALREADY_DEFINED
+#else
+#define yylex_init gclex_init
+#endif
+
+#ifdef yylex_init_extra
+#define gclex_init_extra_ALREADY_DEFINED
+#else
+#define yylex_init_extra gclex_init_extra
+#endif
+
+#ifdef yylex_destroy
+#define gclex_destroy_ALREADY_DEFINED
+#else
+#define yylex_destroy gclex_destroy
+#endif
+
+#ifdef yyget_debug
+#define gcget_debug_ALREADY_DEFINED
+#else
+#define yyget_debug gcget_debug
+#endif
+
+#ifdef yyset_debug
+#define gcset_debug_ALREADY_DEFINED
+#else
+#define yyset_debug gcset_debug
+#endif
+
+#ifdef yyget_extra
+#define gcget_extra_ALREADY_DEFINED
+#else
+#define yyget_extra gcget_extra
+#endif
+
+#ifdef yyset_extra
+#define gcset_extra_ALREADY_DEFINED
+#else
+#define yyset_extra gcset_extra
+#endif
+
+#ifdef yyget_in
+#define gcget_in_ALREADY_DEFINED
+#else
+#define yyget_in gcget_in
+#endif
+
+#ifdef yyset_in
+#define gcset_in_ALREADY_DEFINED
+#else
+#define yyset_in gcset_in
+#endif
+
+#ifdef yyget_out
+#define gcget_out_ALREADY_DEFINED
+#else
+#define yyget_out gcget_out
+#endif
+
+#ifdef yyset_out
+#define gcset_out_ALREADY_DEFINED
+#else
+#define yyset_out gcset_out
+#endif
+
+#ifdef yyget_leng
+#define gcget_leng_ALREADY_DEFINED
+#else
+#define yyget_leng gcget_leng
+#endif
+
+#ifdef yyget_text
+#define gcget_text_ALREADY_DEFINED
+#else
+#define yyget_text gcget_text
+#endif
+
+#ifdef yyget_lineno
+#define gcget_lineno_ALREADY_DEFINED
+#else
+#define yyget_lineno gcget_lineno
+#endif
+
+#ifdef yyset_lineno
+#define gcset_lineno_ALREADY_DEFINED
+#else
+#define yyset_lineno gcset_lineno
+#endif
+
+#ifdef yywrap
+#define gcwrap_ALREADY_DEFINED
+#else
+#define yywrap gcwrap
+#endif
 
 /* %endif */
 
+#ifdef yyalloc
+#define gcalloc_ALREADY_DEFINED
+#else
+#define yyalloc gcalloc
+#endif
+
+#ifdef yyrealloc
+#define gcrealloc_ALREADY_DEFINED
+#else
+#define yyrealloc gcrealloc
+#endif
+
+#ifdef yyfree
+#define gcfree_ALREADY_DEFINED
+#else
+#define yyfree gcfree
+#endif
+
 /* %if-c-only */
+
+#ifdef yytext
+#define gctext_ALREADY_DEFINED
+#else
+#define yytext gctext
+#endif
+
+#ifdef yyleng
+#define gcleng_ALREADY_DEFINED
+#else
+#define yyleng gcleng
+#endif
+
+#ifdef yyin
+#define gcin_ALREADY_DEFINED
+#else
+#define yyin gcin
+#endif
+
+#ifdef yyout
+#define gcout_ALREADY_DEFINED
+#else
+#define yyout gcout
+#endif
+
+#ifdef yy_flex_debug
+#define gc_flex_debug_ALREADY_DEFINED
+#else
+#define yy_flex_debug gc_flex_debug
+#endif
+
+#ifdef yylineno
+#define gclineno_ALREADY_DEFINED
+#else
+#define yylineno gclineno
+#endif
 
 /* %endif */
 
@@ -392,7 +649,7 @@ void yyfree ( void *  );
 /* %% [1.0] yytext/yyin/yyout/yy_state_type/yylineno etc. def's & init go here */
 /* Begin user sect3 */
 
-#define yywrap() (/*CONSTCOND*/1)
+#define gcwrap() (/*CONSTCOND*/1)
 #define YY_SKIP_YYWRAP
 
 #define FLEX_DEBUG
@@ -569,10 +826,10 @@ int yy_flex_debug = 1;
 
 static const flex_int16_t yy_rule_linenum[40] =
     {   0,
-       37,   38,   39,   40,   41,   42,   43,   44,   46,   47,
-       48,   49,   50,   51,   53,   54,   55,   57,   58,   59,
-       60,   61,   62,   63,   64,   65,   66,   67,   68,   70,
-       71,   72,   73,   75,   76,   77,   79,   87,   88
+       38,   39,   40,   41,   42,   43,   44,   45,   47,   48,
+       49,   50,   51,   52,   54,   55,   56,   58,   59,   60,
+       61,   62,   63,   64,   65,   66,   67,   68,   69,   71,
+       72,   73,   74,   76,   77,   78,   80,   88,   89
     } ;
 
 /* The intent behind this definition is that it'll catch
@@ -583,8 +840,8 @@ static const flex_int16_t yy_rule_linenum[40] =
 #define YY_MORE_ADJ 0
 #define YY_RESTORE_YY_MORE_OFFSET
 char *yytext;
-#line 1 "vcgen-scanner.ll"
-#line 2 "vcgen-scanner.ll"
+#line 1 "imp/vcgen-scanner.ll"
+#line 2 "imp/vcgen-scanner.ll"
 # include <cerrno>
 # include <climits>
 # include <cstdlib>
@@ -601,13 +858,13 @@ char *yytext;
 
 // The location of the current token.
 static imp::location loc;
-#line 605 "/home/ferhat/git/vc-gen/recognizer/vcgen-scanner.cpp"
+#line 862 "/home/ferhat/git/vc-gen/imp/recognizer/vcgen-scanner.cpp"
 #define YY_NO_INPUT 1
-#line 25 "vcgen-scanner.ll"
+#line 26 "imp/vcgen-scanner.ll"
   // Code run each time a pattern is matched.
   # define YY_USER_ACTION  loc.columns (yyleng);
-#line 610 "/home/ferhat/git/vc-gen/recognizer/vcgen-scanner.cpp"
-#line 611 "/home/ferhat/git/vc-gen/recognizer/vcgen-scanner.cpp"
+#line 867 "/home/ferhat/git/vc-gen/imp/recognizer/vcgen-scanner.cpp"
+#line 868 "/home/ferhat/git/vc-gen/imp/recognizer/vcgen-scanner.cpp"
 
 #define INITIAL 0
 
@@ -885,16 +1142,16 @@ YY_DECL
 
 	{
 /* %% [7.0] user's declarations go here */
-#line 29 "vcgen-scanner.ll"
+#line 30 "imp/vcgen-scanner.ll"
 
 
 
-#line 33 "vcgen-scanner.ll"
+#line 34 "imp/vcgen-scanner.ll"
   // Code run each time yylex is called.
   loc.step ();
 
 
-#line 898 "/home/ferhat/git/vc-gen/recognizer/vcgen-scanner.cpp"
+#line 1155 "/home/ferhat/git/vc-gen/imp/recognizer/vcgen-scanner.cpp"
 
 	while ( /*CONSTCOND*/1 )		/* loops until end-of-file is reached */
 		{
@@ -972,188 +1229,188 @@ do_action:	/* This label is used only to access EOF actions. */
 
 case 1:
 YY_RULE_SETUP
-#line 37 "vcgen-scanner.ll"
+#line 38 "imp/vcgen-scanner.ll"
 loc.step ();
 	YY_BREAK
 case 2:
 /* rule 2 can match eol */
 YY_RULE_SETUP
-#line 38 "vcgen-scanner.ll"
+#line 39 "imp/vcgen-scanner.ll"
 loc.lines (yyleng); loc.step ();
 	YY_BREAK
 case 3:
 YY_RULE_SETUP
-#line 39 "vcgen-scanner.ll"
+#line 40 "imp/vcgen-scanner.ll"
 return imp::vcgen_parser::make_MINUS(loc);
 	YY_BREAK
 case 4:
 YY_RULE_SETUP
-#line 40 "vcgen-scanner.ll"
+#line 41 "imp/vcgen-scanner.ll"
 return imp::vcgen_parser::make_PLUS(loc);
 	YY_BREAK
 case 5:
 YY_RULE_SETUP
-#line 41 "vcgen-scanner.ll"
+#line 42 "imp/vcgen-scanner.ll"
 return imp::vcgen_parser::make_STAR(loc);
 	YY_BREAK
 case 6:
 YY_RULE_SETUP
-#line 42 "vcgen-scanner.ll"
+#line 43 "imp/vcgen-scanner.ll"
 return imp::vcgen_parser::make_SLASH(loc);
 	YY_BREAK
 case 7:
 YY_RULE_SETUP
-#line 43 "vcgen-scanner.ll"
+#line 44 "imp/vcgen-scanner.ll"
 return imp::vcgen_parser::make_LPAREN(loc);
 	YY_BREAK
 case 8:
 YY_RULE_SETUP
-#line 44 "vcgen-scanner.ll"
+#line 45 "imp/vcgen-scanner.ll"
 return imp::vcgen_parser::make_RPAREN(loc);
 	YY_BREAK
 case 9:
 YY_RULE_SETUP
-#line 46 "vcgen-scanner.ll"
+#line 47 "imp/vcgen-scanner.ll"
 return imp::vcgen_parser::make_EQUAL(loc);
 	YY_BREAK
 case 10:
 YY_RULE_SETUP
-#line 47 "vcgen-scanner.ll"
+#line 48 "imp/vcgen-scanner.ll"
 return imp::vcgen_parser::make_NEQUAL(loc);
 	YY_BREAK
 case 11:
 YY_RULE_SETUP
-#line 48 "vcgen-scanner.ll"
+#line 49 "imp/vcgen-scanner.ll"
 return imp::vcgen_parser::make_LEQ(loc);
 	YY_BREAK
 case 12:
 YY_RULE_SETUP
-#line 49 "vcgen-scanner.ll"
+#line 50 "imp/vcgen-scanner.ll"
 return imp::vcgen_parser::make_GEQ(loc);
 	YY_BREAK
 case 13:
 YY_RULE_SETUP
-#line 50 "vcgen-scanner.ll"
+#line 51 "imp/vcgen-scanner.ll"
 return imp::vcgen_parser::make_LT(loc);
 	YY_BREAK
 case 14:
 YY_RULE_SETUP
-#line 51 "vcgen-scanner.ll"
+#line 52 "imp/vcgen-scanner.ll"
 return imp::vcgen_parser::make_GT(loc);
 	YY_BREAK
 case 15:
 YY_RULE_SETUP
-#line 53 "vcgen-scanner.ll"
+#line 54 "imp/vcgen-scanner.ll"
 return imp::vcgen_parser::make_NOT(loc);
 	YY_BREAK
 case 16:
 YY_RULE_SETUP
-#line 54 "vcgen-scanner.ll"
+#line 55 "imp/vcgen-scanner.ll"
 return imp::vcgen_parser::make_OR(loc);
 	YY_BREAK
 case 17:
 YY_RULE_SETUP
-#line 55 "vcgen-scanner.ll"
+#line 56 "imp/vcgen-scanner.ll"
 return imp::vcgen_parser::make_AND(loc);
 	YY_BREAK
 case 18:
 YY_RULE_SETUP
-#line 57 "vcgen-scanner.ll"
+#line 58 "imp/vcgen-scanner.ll"
 return imp::vcgen_parser::make_ASSIGN(loc);
 	YY_BREAK
 case 19:
 YY_RULE_SETUP
-#line 58 "vcgen-scanner.ll"
+#line 59 "imp/vcgen-scanner.ll"
 return imp::vcgen_parser::make_SEMICOLON(loc);
 	YY_BREAK
 case 20:
 YY_RULE_SETUP
-#line 59 "vcgen-scanner.ll"
+#line 60 "imp/vcgen-scanner.ll"
 return imp::vcgen_parser::make_COMMA(loc);
 	YY_BREAK
 case 21:
 YY_RULE_SETUP
-#line 60 "vcgen-scanner.ll"
+#line 61 "imp/vcgen-scanner.ll"
 return imp::vcgen_parser::make_IF(loc);
 	YY_BREAK
 case 22:
 YY_RULE_SETUP
-#line 61 "vcgen-scanner.ll"
+#line 62 "imp/vcgen-scanner.ll"
 return imp::vcgen_parser::make_THEN(loc);
 	YY_BREAK
 case 23:
 YY_RULE_SETUP
-#line 62 "vcgen-scanner.ll"
+#line 63 "imp/vcgen-scanner.ll"
 return imp::vcgen_parser::make_ELSE(loc);
 	YY_BREAK
 case 24:
 YY_RULE_SETUP
-#line 63 "vcgen-scanner.ll"
+#line 64 "imp/vcgen-scanner.ll"
 return imp::vcgen_parser::make_END(loc);
 	YY_BREAK
 case 25:
 YY_RULE_SETUP
-#line 64 "vcgen-scanner.ll"
+#line 65 "imp/vcgen-scanner.ll"
 return imp::vcgen_parser::make_WHILE(loc);
 	YY_BREAK
 case 26:
 YY_RULE_SETUP
-#line 65 "vcgen-scanner.ll"
+#line 66 "imp/vcgen-scanner.ll"
 return imp::vcgen_parser::make_DO(loc);
 	YY_BREAK
 case 27:
 YY_RULE_SETUP
-#line 66 "vcgen-scanner.ll"
+#line 67 "imp/vcgen-scanner.ll"
 return imp::vcgen_parser::make_INV(loc);
 	YY_BREAK
 case 28:
 YY_RULE_SETUP
-#line 67 "vcgen-scanner.ll"
+#line 68 "imp/vcgen-scanner.ll"
 return imp::vcgen_parser::make_LSQUARE(loc);
 	YY_BREAK
 case 29:
 YY_RULE_SETUP
-#line 68 "vcgen-scanner.ll"
+#line 69 "imp/vcgen-scanner.ll"
 return imp::vcgen_parser::make_RSQUARE(loc);
 	YY_BREAK
 case 30:
 YY_RULE_SETUP
-#line 70 "vcgen-scanner.ll"
+#line 71 "imp/vcgen-scanner.ll"
 return imp::vcgen_parser::make_PROGRAM(loc);
 	YY_BREAK
 case 31:
 YY_RULE_SETUP
-#line 71 "vcgen-scanner.ll"
+#line 72 "imp/vcgen-scanner.ll"
 return imp::vcgen_parser::make_PRE(loc);
 	YY_BREAK
 case 32:
 YY_RULE_SETUP
-#line 72 "vcgen-scanner.ll"
+#line 73 "imp/vcgen-scanner.ll"
 return imp::vcgen_parser::make_POST(loc);
 	YY_BREAK
 case 33:
 YY_RULE_SETUP
-#line 73 "vcgen-scanner.ll"
+#line 74 "imp/vcgen-scanner.ll"
 return imp::vcgen_parser::make_IS(loc);
 	YY_BREAK
 case 34:
 YY_RULE_SETUP
-#line 75 "vcgen-scanner.ll"
+#line 76 "imp/vcgen-scanner.ll"
 return imp::vcgen_parser::make_IMPLY(loc);
 	YY_BREAK
 case 35:
 YY_RULE_SETUP
-#line 76 "vcgen-scanner.ll"
+#line 77 "imp/vcgen-scanner.ll"
 return imp::vcgen_parser::make_ALL(loc);
 	YY_BREAK
 case 36:
 YY_RULE_SETUP
-#line 77 "vcgen-scanner.ll"
+#line 78 "imp/vcgen-scanner.ll"
 return imp::vcgen_parser::make_SOME(loc);
 	YY_BREAK
 case 37:
 YY_RULE_SETUP
-#line 79 "vcgen-scanner.ll"
+#line 80 "imp/vcgen-scanner.ll"
 {
   errno = 0;
   long n = strtol (yytext, NULL, 10);
@@ -1164,24 +1421,24 @@ YY_RULE_SETUP
 	YY_BREAK
 case 38:
 YY_RULE_SETUP
-#line 87 "vcgen-scanner.ll"
+#line 88 "imp/vcgen-scanner.ll"
 return imp::vcgen_parser::make_IDENTIFIER(yytext, loc);
 	YY_BREAK
 case 39:
 YY_RULE_SETUP
-#line 88 "vcgen-scanner.ll"
+#line 89 "imp/vcgen-scanner.ll"
 driver.error (loc, "invalid character");
 	YY_BREAK
 case YY_STATE_EOF(INITIAL):
-#line 89 "vcgen-scanner.ll"
+#line 90 "imp/vcgen-scanner.ll"
 return imp::vcgen_parser::make_EOF(loc);
 	YY_BREAK
 case 40:
 YY_RULE_SETUP
-#line 90 "vcgen-scanner.ll"
+#line 91 "imp/vcgen-scanner.ll"
 ECHO;
 	YY_BREAK
-#line 1185 "/home/ferhat/git/vc-gen/recognizer/vcgen-scanner.cpp"
+#line 1442 "/home/ferhat/git/vc-gen/imp/recognizer/vcgen-scanner.cpp"
 
 	case YY_END_OF_BUFFER:
 		{
@@ -2286,7 +2543,7 @@ void yyfree (void * ptr )
 
 /* %ok-for-header */
 
-#line 90 "vcgen-scanner.ll"
+#line 91 "imp/vcgen-scanner.ll"
 
 
 void

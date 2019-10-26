@@ -7,12 +7,12 @@
 #ifndef VC_GEN_PRINTER_VISITOR_HPP
 #define VC_GEN_PRINTER_VISITOR_HPP
 
-#include "abstract-visitor.hpp"
 #include <sstream>
+#include "visitor.hpp"
 
 using namespace std;
 
-namespace ast {
+namespace gc::ast {
 
 class PrinterVisitor : public Visitor<string> {
   private:

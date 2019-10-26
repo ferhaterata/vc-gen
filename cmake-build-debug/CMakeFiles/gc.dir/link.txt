@@ -1,0 +1,1 @@
+/usr/bin/c++  -g   CMakeFiles/gc.dir/gc/test.cpp.o CMakeFiles/gc.dir/tools.cpp.o CMakeFiles/gc.dir/gc/gc-driver.cpp.o CMakeFiles/gc.dir/gc/recognizer/gc-parser.cpp.o CMakeFiles/gc.dir/gc/recognizer/gc-scanner.cpp.o CMakeFiles/gc.dir/gc/gc.cpp.o  -o gc 

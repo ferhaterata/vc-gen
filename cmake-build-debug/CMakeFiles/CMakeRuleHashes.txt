@@ -1,3 +1,5 @@
 # Hashes of file build rules.
-132262ee397c1c9917e47ea56c511103 ../recognizer/vcgen-parser.cpp
-d7d07de7b90eb299db0615f4b6c1682d ../recognizer/vcgen-scanner.cpp
+e5306917ec86d5a1bef70feff4835470 ../gc/recognizer/gc-parser.cpp
+23216be5280ad6122bb33a7b41c11d85 ../gc/recognizer/gc-scanner.cpp
+a0096dc386d9e72151318211b4f0b0b2 ../imp/recognizer/imp-parser.cpp
+2a1da1ebcd9be9df5377fa35dc035a39 ../imp/recognizer/imp-scanner.cpp

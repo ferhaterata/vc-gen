@@ -7,9 +7,9 @@
 #ifndef VC_GEN_VISITOR_HPP
 #define VC_GEN_VISITOR_HPP
 
-#include "ast.hpp"
+#include "gc.hpp"
 
-namespace ast {
+namespace gc::ast {
 
 class Statement;
 class BooleanExpression;

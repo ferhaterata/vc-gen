@@ -123,86 +123,273 @@ vcgen/fast:
 	$(MAKE) -f CMakeFiles/vcgen.dir/build.make CMakeFiles/vcgen.dir/build
 .PHONY : vcgen/fast
 
-ast.o: ast.cpp.o
+#=============================================================================
+# Target rules for targets named gc
 
-.PHONY : ast.o
+# Build rule for target.
+gc: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 gc
+.PHONY : gc
 
-# target to build an object file
-ast.cpp.o:
-	$(MAKE) -f CMakeFiles/vcgen.dir/build.make CMakeFiles/vcgen.dir/ast.cpp.o
-.PHONY : ast.cpp.o
+# fast build rule for target.
+gc/fast:
+	$(MAKE) -f CMakeFiles/gc.dir/build.make CMakeFiles/gc.dir/build
+.PHONY : gc/fast
 
-ast.i: ast.cpp.i
+gc/gc-driver.o: gc/gc-driver.cpp.o
 
-.PHONY : ast.i
-
-# target to preprocess a source file
-ast.cpp.i:
-	$(MAKE) -f CMakeFiles/vcgen.dir/build.make CMakeFiles/vcgen.dir/ast.cpp.i
-.PHONY : ast.cpp.i
-
-ast.s: ast.cpp.s
-
-.PHONY : ast.s
-
-# target to generate assembly for a file
-ast.cpp.s:
-	$(MAKE) -f CMakeFiles/vcgen.dir/build.make CMakeFiles/vcgen.dir/ast.cpp.s
-.PHONY : ast.cpp.s
-
-recognizer/vcgen-parser.o: recognizer/vcgen-parser.cpp.o
-
-.PHONY : recognizer/vcgen-parser.o
+.PHONY : gc/gc-driver.o
 
 # target to build an object file
-recognizer/vcgen-parser.cpp.o:
-	$(MAKE) -f CMakeFiles/vcgen.dir/build.make CMakeFiles/vcgen.dir/recognizer/vcgen-parser.cpp.o
-.PHONY : recognizer/vcgen-parser.cpp.o
+gc/gc-driver.cpp.o:
+	$(MAKE) -f CMakeFiles/vcgen.dir/build.make CMakeFiles/vcgen.dir/gc/gc-driver.cpp.o
+	$(MAKE) -f CMakeFiles/gc.dir/build.make CMakeFiles/gc.dir/gc/gc-driver.cpp.o
+.PHONY : gc/gc-driver.cpp.o
 
-recognizer/vcgen-parser.i: recognizer/vcgen-parser.cpp.i
+gc/gc-driver.i: gc/gc-driver.cpp.i
 
-.PHONY : recognizer/vcgen-parser.i
+.PHONY : gc/gc-driver.i
 
 # target to preprocess a source file
-recognizer/vcgen-parser.cpp.i:
-	$(MAKE) -f CMakeFiles/vcgen.dir/build.make CMakeFiles/vcgen.dir/recognizer/vcgen-parser.cpp.i
-.PHONY : recognizer/vcgen-parser.cpp.i
+gc/gc-driver.cpp.i:
+	$(MAKE) -f CMakeFiles/vcgen.dir/build.make CMakeFiles/vcgen.dir/gc/gc-driver.cpp.i
+	$(MAKE) -f CMakeFiles/gc.dir/build.make CMakeFiles/gc.dir/gc/gc-driver.cpp.i
+.PHONY : gc/gc-driver.cpp.i
 
-recognizer/vcgen-parser.s: recognizer/vcgen-parser.cpp.s
+gc/gc-driver.s: gc/gc-driver.cpp.s
 
-.PHONY : recognizer/vcgen-parser.s
+.PHONY : gc/gc-driver.s
 
 # target to generate assembly for a file
-recognizer/vcgen-parser.cpp.s:
-	$(MAKE) -f CMakeFiles/vcgen.dir/build.make CMakeFiles/vcgen.dir/recognizer/vcgen-parser.cpp.s
-.PHONY : recognizer/vcgen-parser.cpp.s
+gc/gc-driver.cpp.s:
+	$(MAKE) -f CMakeFiles/vcgen.dir/build.make CMakeFiles/vcgen.dir/gc/gc-driver.cpp.s
+	$(MAKE) -f CMakeFiles/gc.dir/build.make CMakeFiles/gc.dir/gc/gc-driver.cpp.s
+.PHONY : gc/gc-driver.cpp.s
 
-recognizer/vcgen-scanner.o: recognizer/vcgen-scanner.cpp.o
+gc/gc.o: gc/gc.cpp.o
 
-.PHONY : recognizer/vcgen-scanner.o
+.PHONY : gc/gc.o
 
 # target to build an object file
-recognizer/vcgen-scanner.cpp.o:
-	$(MAKE) -f CMakeFiles/vcgen.dir/build.make CMakeFiles/vcgen.dir/recognizer/vcgen-scanner.cpp.o
-.PHONY : recognizer/vcgen-scanner.cpp.o
+gc/gc.cpp.o:
+	$(MAKE) -f CMakeFiles/vcgen.dir/build.make CMakeFiles/vcgen.dir/gc/gc.cpp.o
+	$(MAKE) -f CMakeFiles/gc.dir/build.make CMakeFiles/gc.dir/gc/gc.cpp.o
+.PHONY : gc/gc.cpp.o
 
-recognizer/vcgen-scanner.i: recognizer/vcgen-scanner.cpp.i
+gc/gc.i: gc/gc.cpp.i
 
-.PHONY : recognizer/vcgen-scanner.i
+.PHONY : gc/gc.i
 
 # target to preprocess a source file
-recognizer/vcgen-scanner.cpp.i:
-	$(MAKE) -f CMakeFiles/vcgen.dir/build.make CMakeFiles/vcgen.dir/recognizer/vcgen-scanner.cpp.i
-.PHONY : recognizer/vcgen-scanner.cpp.i
+gc/gc.cpp.i:
+	$(MAKE) -f CMakeFiles/vcgen.dir/build.make CMakeFiles/vcgen.dir/gc/gc.cpp.i
+	$(MAKE) -f CMakeFiles/gc.dir/build.make CMakeFiles/gc.dir/gc/gc.cpp.i
+.PHONY : gc/gc.cpp.i
 
-recognizer/vcgen-scanner.s: recognizer/vcgen-scanner.cpp.s
+gc/gc.s: gc/gc.cpp.s
 
-.PHONY : recognizer/vcgen-scanner.s
+.PHONY : gc/gc.s
 
 # target to generate assembly for a file
-recognizer/vcgen-scanner.cpp.s:
-	$(MAKE) -f CMakeFiles/vcgen.dir/build.make CMakeFiles/vcgen.dir/recognizer/vcgen-scanner.cpp.s
-.PHONY : recognizer/vcgen-scanner.cpp.s
+gc/gc.cpp.s:
+	$(MAKE) -f CMakeFiles/vcgen.dir/build.make CMakeFiles/vcgen.dir/gc/gc.cpp.s
+	$(MAKE) -f CMakeFiles/gc.dir/build.make CMakeFiles/gc.dir/gc/gc.cpp.s
+.PHONY : gc/gc.cpp.s
+
+gc/recognizer/gc-parser.o: gc/recognizer/gc-parser.cpp.o
+
+.PHONY : gc/recognizer/gc-parser.o
+
+# target to build an object file
+gc/recognizer/gc-parser.cpp.o:
+	$(MAKE) -f CMakeFiles/vcgen.dir/build.make CMakeFiles/vcgen.dir/gc/recognizer/gc-parser.cpp.o
+	$(MAKE) -f CMakeFiles/gc.dir/build.make CMakeFiles/gc.dir/gc/recognizer/gc-parser.cpp.o
+.PHONY : gc/recognizer/gc-parser.cpp.o
+
+gc/recognizer/gc-parser.i: gc/recognizer/gc-parser.cpp.i
+
+.PHONY : gc/recognizer/gc-parser.i
+
+# target to preprocess a source file
+gc/recognizer/gc-parser.cpp.i:
+	$(MAKE) -f CMakeFiles/vcgen.dir/build.make CMakeFiles/vcgen.dir/gc/recognizer/gc-parser.cpp.i
+	$(MAKE) -f CMakeFiles/gc.dir/build.make CMakeFiles/gc.dir/gc/recognizer/gc-parser.cpp.i
+.PHONY : gc/recognizer/gc-parser.cpp.i
+
+gc/recognizer/gc-parser.s: gc/recognizer/gc-parser.cpp.s
+
+.PHONY : gc/recognizer/gc-parser.s
+
+# target to generate assembly for a file
+gc/recognizer/gc-parser.cpp.s:
+	$(MAKE) -f CMakeFiles/vcgen.dir/build.make CMakeFiles/vcgen.dir/gc/recognizer/gc-parser.cpp.s
+	$(MAKE) -f CMakeFiles/gc.dir/build.make CMakeFiles/gc.dir/gc/recognizer/gc-parser.cpp.s
+.PHONY : gc/recognizer/gc-parser.cpp.s
+
+gc/recognizer/gc-scanner.o: gc/recognizer/gc-scanner.cpp.o
+
+.PHONY : gc/recognizer/gc-scanner.o
+
+# target to build an object file
+gc/recognizer/gc-scanner.cpp.o:
+	$(MAKE) -f CMakeFiles/vcgen.dir/build.make CMakeFiles/vcgen.dir/gc/recognizer/gc-scanner.cpp.o
+	$(MAKE) -f CMakeFiles/gc.dir/build.make CMakeFiles/gc.dir/gc/recognizer/gc-scanner.cpp.o
+.PHONY : gc/recognizer/gc-scanner.cpp.o
+
+gc/recognizer/gc-scanner.i: gc/recognizer/gc-scanner.cpp.i
+
+.PHONY : gc/recognizer/gc-scanner.i
+
+# target to preprocess a source file
+gc/recognizer/gc-scanner.cpp.i:
+	$(MAKE) -f CMakeFiles/vcgen.dir/build.make CMakeFiles/vcgen.dir/gc/recognizer/gc-scanner.cpp.i
+	$(MAKE) -f CMakeFiles/gc.dir/build.make CMakeFiles/gc.dir/gc/recognizer/gc-scanner.cpp.i
+.PHONY : gc/recognizer/gc-scanner.cpp.i
+
+gc/recognizer/gc-scanner.s: gc/recognizer/gc-scanner.cpp.s
+
+.PHONY : gc/recognizer/gc-scanner.s
+
+# target to generate assembly for a file
+gc/recognizer/gc-scanner.cpp.s:
+	$(MAKE) -f CMakeFiles/vcgen.dir/build.make CMakeFiles/vcgen.dir/gc/recognizer/gc-scanner.cpp.s
+	$(MAKE) -f CMakeFiles/gc.dir/build.make CMakeFiles/gc.dir/gc/recognizer/gc-scanner.cpp.s
+.PHONY : gc/recognizer/gc-scanner.cpp.s
+
+gc/test.o: gc/test.cpp.o
+
+.PHONY : gc/test.o
+
+# target to build an object file
+gc/test.cpp.o:
+	$(MAKE) -f CMakeFiles/gc.dir/build.make CMakeFiles/gc.dir/gc/test.cpp.o
+.PHONY : gc/test.cpp.o
+
+gc/test.i: gc/test.cpp.i
+
+.PHONY : gc/test.i
+
+# target to preprocess a source file
+gc/test.cpp.i:
+	$(MAKE) -f CMakeFiles/gc.dir/build.make CMakeFiles/gc.dir/gc/test.cpp.i
+.PHONY : gc/test.cpp.i
+
+gc/test.s: gc/test.cpp.s
+
+.PHONY : gc/test.s
+
+# target to generate assembly for a file
+gc/test.cpp.s:
+	$(MAKE) -f CMakeFiles/gc.dir/build.make CMakeFiles/gc.dir/gc/test.cpp.s
+.PHONY : gc/test.cpp.s
+
+imp/imp-driver.o: imp/imp-driver.cpp.o
+
+.PHONY : imp/imp-driver.o
+
+# target to build an object file
+imp/imp-driver.cpp.o:
+	$(MAKE) -f CMakeFiles/vcgen.dir/build.make CMakeFiles/vcgen.dir/imp/imp-driver.cpp.o
+.PHONY : imp/imp-driver.cpp.o
+
+imp/imp-driver.i: imp/imp-driver.cpp.i
+
+.PHONY : imp/imp-driver.i
+
+# target to preprocess a source file
+imp/imp-driver.cpp.i:
+	$(MAKE) -f CMakeFiles/vcgen.dir/build.make CMakeFiles/vcgen.dir/imp/imp-driver.cpp.i
+.PHONY : imp/imp-driver.cpp.i
+
+imp/imp-driver.s: imp/imp-driver.cpp.s
+
+.PHONY : imp/imp-driver.s
+
+# target to generate assembly for a file
+imp/imp-driver.cpp.s:
+	$(MAKE) -f CMakeFiles/vcgen.dir/build.make CMakeFiles/vcgen.dir/imp/imp-driver.cpp.s
+.PHONY : imp/imp-driver.cpp.s
+
+imp/imp.o: imp/imp.cpp.o
+
+.PHONY : imp/imp.o
+
+# target to build an object file
+imp/imp.cpp.o:
+	$(MAKE) -f CMakeFiles/vcgen.dir/build.make CMakeFiles/vcgen.dir/imp/imp.cpp.o
+.PHONY : imp/imp.cpp.o
+
+imp/imp.i: imp/imp.cpp.i
+
+.PHONY : imp/imp.i
+
+# target to preprocess a source file
+imp/imp.cpp.i:
+	$(MAKE) -f CMakeFiles/vcgen.dir/build.make CMakeFiles/vcgen.dir/imp/imp.cpp.i
+.PHONY : imp/imp.cpp.i
+
+imp/imp.s: imp/imp.cpp.s
+
+.PHONY : imp/imp.s
+
+# target to generate assembly for a file
+imp/imp.cpp.s:
+	$(MAKE) -f CMakeFiles/vcgen.dir/build.make CMakeFiles/vcgen.dir/imp/imp.cpp.s
+.PHONY : imp/imp.cpp.s
+
+imp/recognizer/imp-parser.o: imp/recognizer/imp-parser.cpp.o
+
+.PHONY : imp/recognizer/imp-parser.o
+
+# target to build an object file
+imp/recognizer/imp-parser.cpp.o:
+	$(MAKE) -f CMakeFiles/vcgen.dir/build.make CMakeFiles/vcgen.dir/imp/recognizer/imp-parser.cpp.o
+.PHONY : imp/recognizer/imp-parser.cpp.o
+
+imp/recognizer/imp-parser.i: imp/recognizer/imp-parser.cpp.i
+
+.PHONY : imp/recognizer/imp-parser.i
+
+# target to preprocess a source file
+imp/recognizer/imp-parser.cpp.i:
+	$(MAKE) -f CMakeFiles/vcgen.dir/build.make CMakeFiles/vcgen.dir/imp/recognizer/imp-parser.cpp.i
+.PHONY : imp/recognizer/imp-parser.cpp.i
+
+imp/recognizer/imp-parser.s: imp/recognizer/imp-parser.cpp.s
+
+.PHONY : imp/recognizer/imp-parser.s
+
+# target to generate assembly for a file
+imp/recognizer/imp-parser.cpp.s:
+	$(MAKE) -f CMakeFiles/vcgen.dir/build.make CMakeFiles/vcgen.dir/imp/recognizer/imp-parser.cpp.s
+.PHONY : imp/recognizer/imp-parser.cpp.s
+
+imp/recognizer/imp-scanner.o: imp/recognizer/imp-scanner.cpp.o
+
+.PHONY : imp/recognizer/imp-scanner.o
+
+# target to build an object file
+imp/recognizer/imp-scanner.cpp.o:
+	$(MAKE) -f CMakeFiles/vcgen.dir/build.make CMakeFiles/vcgen.dir/imp/recognizer/imp-scanner.cpp.o
+.PHONY : imp/recognizer/imp-scanner.cpp.o
+
+imp/recognizer/imp-scanner.i: imp/recognizer/imp-scanner.cpp.i
+
+.PHONY : imp/recognizer/imp-scanner.i
+
+# target to preprocess a source file
+imp/recognizer/imp-scanner.cpp.i:
+	$(MAKE) -f CMakeFiles/vcgen.dir/build.make CMakeFiles/vcgen.dir/imp/recognizer/imp-scanner.cpp.i
+.PHONY : imp/recognizer/imp-scanner.cpp.i
+
+imp/recognizer/imp-scanner.s: imp/recognizer/imp-scanner.cpp.s
+
+.PHONY : imp/recognizer/imp-scanner.s
+
+# target to generate assembly for a file
+imp/recognizer/imp-scanner.cpp.s:
+	$(MAKE) -f CMakeFiles/vcgen.dir/build.make CMakeFiles/vcgen.dir/imp/recognizer/imp-scanner.cpp.s
+.PHONY : imp/recognizer/imp-scanner.cpp.s
 
 tools.o: tools.cpp.o
 
@@ -211,6 +398,7 @@ tools.o: tools.cpp.o
 # target to build an object file
 tools.cpp.o:
 	$(MAKE) -f CMakeFiles/vcgen.dir/build.make CMakeFiles/vcgen.dir/tools.cpp.o
+	$(MAKE) -f CMakeFiles/gc.dir/build.make CMakeFiles/gc.dir/tools.cpp.o
 .PHONY : tools.cpp.o
 
 tools.i: tools.cpp.i
@@ -220,6 +408,7 @@ tools.i: tools.cpp.i
 # target to preprocess a source file
 tools.cpp.i:
 	$(MAKE) -f CMakeFiles/vcgen.dir/build.make CMakeFiles/vcgen.dir/tools.cpp.i
+	$(MAKE) -f CMakeFiles/gc.dir/build.make CMakeFiles/gc.dir/tools.cpp.i
 .PHONY : tools.cpp.i
 
 tools.s: tools.cpp.s
@@ -229,34 +418,8 @@ tools.s: tools.cpp.s
 # target to generate assembly for a file
 tools.cpp.s:
 	$(MAKE) -f CMakeFiles/vcgen.dir/build.make CMakeFiles/vcgen.dir/tools.cpp.s
+	$(MAKE) -f CMakeFiles/gc.dir/build.make CMakeFiles/gc.dir/tools.cpp.s
 .PHONY : tools.cpp.s
-
-vcgen-driver.o: vcgen-driver.cpp.o
-
-.PHONY : vcgen-driver.o
-
-# target to build an object file
-vcgen-driver.cpp.o:
-	$(MAKE) -f CMakeFiles/vcgen.dir/build.make CMakeFiles/vcgen.dir/vcgen-driver.cpp.o
-.PHONY : vcgen-driver.cpp.o
-
-vcgen-driver.i: vcgen-driver.cpp.i
-
-.PHONY : vcgen-driver.i
-
-# target to preprocess a source file
-vcgen-driver.cpp.i:
-	$(MAKE) -f CMakeFiles/vcgen.dir/build.make CMakeFiles/vcgen.dir/vcgen-driver.cpp.i
-.PHONY : vcgen-driver.cpp.i
-
-vcgen-driver.s: vcgen-driver.cpp.s
-
-.PHONY : vcgen-driver.s
-
-# target to generate assembly for a file
-vcgen-driver.cpp.s:
-	$(MAKE) -f CMakeFiles/vcgen.dir/build.make CMakeFiles/vcgen.dir/vcgen-driver.cpp.s
-.PHONY : vcgen-driver.cpp.s
 
 vcgen.o: vcgen.cpp.o
 
@@ -292,23 +455,39 @@ help:
 	@echo "... clean"
 	@echo "... depend"
 	@echo "... rebuild_cache"
-	@echo "... vcgen"
 	@echo "... edit_cache"
-	@echo "... ast.o"
-	@echo "... ast.i"
-	@echo "... ast.s"
-	@echo "... recognizer/vcgen-parser.o"
-	@echo "... recognizer/vcgen-parser.i"
-	@echo "... recognizer/vcgen-parser.s"
-	@echo "... recognizer/vcgen-scanner.o"
-	@echo "... recognizer/vcgen-scanner.i"
-	@echo "... recognizer/vcgen-scanner.s"
+	@echo "... vcgen"
+	@echo "... gc"
+	@echo "... gc/gc-driver.o"
+	@echo "... gc/gc-driver.i"
+	@echo "... gc/gc-driver.s"
+	@echo "... gc/gc.o"
+	@echo "... gc/gc.i"
+	@echo "... gc/gc.s"
+	@echo "... gc/recognizer/gc-parser.o"
+	@echo "... gc/recognizer/gc-parser.i"
+	@echo "... gc/recognizer/gc-parser.s"
+	@echo "... gc/recognizer/gc-scanner.o"
+	@echo "... gc/recognizer/gc-scanner.i"
+	@echo "... gc/recognizer/gc-scanner.s"
+	@echo "... gc/test.o"
+	@echo "... gc/test.i"
+	@echo "... gc/test.s"
+	@echo "... imp/imp-driver.o"
+	@echo "... imp/imp-driver.i"
+	@echo "... imp/imp-driver.s"
+	@echo "... imp/imp.o"
+	@echo "... imp/imp.i"
+	@echo "... imp/imp.s"
+	@echo "... imp/recognizer/imp-parser.o"
+	@echo "... imp/recognizer/imp-parser.i"
+	@echo "... imp/recognizer/imp-parser.s"
+	@echo "... imp/recognizer/imp-scanner.o"
+	@echo "... imp/recognizer/imp-scanner.i"
+	@echo "... imp/recognizer/imp-scanner.s"
 	@echo "... tools.o"
 	@echo "... tools.i"
 	@echo "... tools.s"
-	@echo "... vcgen-driver.o"
-	@echo "... vcgen-driver.i"
-	@echo "... vcgen-driver.s"
 	@echo "... vcgen.o"
 	@echo "... vcgen.i"
 	@echo "... vcgen.s"

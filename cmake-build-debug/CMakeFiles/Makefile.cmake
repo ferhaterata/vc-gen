@@ -53,4 +53,5 @@ set(CMAKE_MAKEFILE_PRODUCTS
 # Dependency information for all targets:
 set(CMAKE_DEPEND_INFO_FILES
   "CMakeFiles/vcgen.dir/DependInfo.cmake"
+  "CMakeFiles/gc.dir/DependInfo.cmake"
   )

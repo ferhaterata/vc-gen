@@ -35,8 +35,8 @@
  ** Define the gc::location class.
  */
 
-#ifndef YY_YY_HOME_FERHAT_GIT_VC_GEN_GC_RECOGNIZER_LOCATION_HH_INCLUDED
-# define YY_YY_HOME_FERHAT_GIT_VC_GEN_GC_RECOGNIZER_LOCATION_HH_INCLUDED
+#ifndef YY_GC_HOME_FERHAT_GIT_VC_GEN_GC_RECOGNIZER_LOCATION_HH_INCLUDED
+# define YY_GC_HOME_FERHAT_GIT_VC_GEN_GC_RECOGNIZER_LOCATION_HH_INCLUDED
 
 # include <algorithm> // std::max
 # include <iostream>
@@ -321,4 +321,4 @@ namespace gc {
 } // gc
 #line 323 "/home/ferhat/git/vc-gen/gc/recognizer/location.hh"
 
-#endif // !YY_YY_HOME_FERHAT_GIT_VC_GEN_GC_RECOGNIZER_LOCATION_HH_INCLUDED
+#endif // !YY_GC_HOME_FERHAT_GIT_VC_GEN_GC_RECOGNIZER_LOCATION_HH_INCLUDED

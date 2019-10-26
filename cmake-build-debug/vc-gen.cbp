@@ -27,6 +27,16 @@
 					<DistClean command="/usr/bin/make -j4 -f &quot;/home/ferhat/git/vc-gen/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
+			<Target title="edit_cache">
+				<Option working_dir="/home/ferhat/git/vc-gen/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/ferhat/git/vc-gen/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/ferhat/git/vc-gen/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/ferhat/git/vc-gen/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/ferhat/git/vc-gen/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
 			<Target title="vcgen">
 				<Option output="/home/ferhat/git/vc-gen/cmake-build-debug/vcgen" prefix_auto="0" extension_auto="0"/>
 				<Option working_dir="/home/ferhat/git/vc-gen/cmake-build-debug"/>
@@ -35,7 +45,10 @@
 				<Option compiler="gcc"/>
 				<Compiler>
 					<Add directory="/home/ferhat/git/vc-gen/."/>
-					<Add directory="/home/ferhat/git/vc-gen/recognizer"/>
+					<Add directory="/home/ferhat/git/vc-gen/imp"/>
+					<Add directory="/home/ferhat/git/vc-gen/imp/recognizer"/>
+					<Add directory="/home/ferhat/git/vc-gen/gc"/>
+					<Add directory="/home/ferhat/git/vc-gen/gc/recognizer"/>
 					<Add directory="/usr/include/c++/7"/>
 					<Add directory="/usr/include/x86_64-linux-gnu/c++/7"/>
 					<Add directory="/usr/include/c++/7/backward"/>
@@ -60,7 +73,10 @@
 				<Option compiler="gcc"/>
 				<Compiler>
 					<Add directory="/home/ferhat/git/vc-gen/."/>
-					<Add directory="/home/ferhat/git/vc-gen/recognizer"/>
+					<Add directory="/home/ferhat/git/vc-gen/imp"/>
+					<Add directory="/home/ferhat/git/vc-gen/imp/recognizer"/>
+					<Add directory="/home/ferhat/git/vc-gen/gc"/>
+					<Add directory="/home/ferhat/git/vc-gen/gc/recognizer"/>
 					<Add directory="/usr/include/c++/7"/>
 					<Add directory="/usr/include/x86_64-linux-gnu/c++/7"/>
 					<Add directory="/usr/include/c++/7/backward"/>
@@ -77,60 +93,155 @@
 					<DistClean command="/usr/bin/make -j4 -f &quot;/home/ferhat/git/vc-gen/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
-			<Target title="edit_cache">
+			<Target title="gc">
+				<Option output="/home/ferhat/git/vc-gen/cmake-build-debug/gc" prefix_auto="0" extension_auto="0"/>
 				<Option working_dir="/home/ferhat/git/vc-gen/cmake-build-debug"/>
-				<Option type="4"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/ferhat/git/vc-gen/."/>
+					<Add directory="/home/ferhat/git/vc-gen/imp"/>
+					<Add directory="/home/ferhat/git/vc-gen/imp/recognizer"/>
+					<Add directory="/home/ferhat/git/vc-gen/gc"/>
+					<Add directory="/home/ferhat/git/vc-gen/gc/recognizer"/>
+					<Add directory="/usr/include/c++/7"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/7"/>
+					<Add directory="/usr/include/c++/7/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/7/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j4 -f &quot;/home/ferhat/git/vc-gen/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/ferhat/git/vc-gen/cmake-build-debug/Makefile&quot;  VERBOSE=1 gc"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/ferhat/git/vc-gen/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/ferhat/git/vc-gen/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/ferhat/git/vc-gen/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="gc/fast">
+				<Option output="/home/ferhat/git/vc-gen/cmake-build-debug/gc" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/ferhat/git/vc-gen/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/ferhat/git/vc-gen/."/>
+					<Add directory="/home/ferhat/git/vc-gen/imp"/>
+					<Add directory="/home/ferhat/git/vc-gen/imp/recognizer"/>
+					<Add directory="/home/ferhat/git/vc-gen/gc"/>
+					<Add directory="/home/ferhat/git/vc-gen/gc/recognizer"/>
+					<Add directory="/usr/include/c++/7"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/7"/>
+					<Add directory="/usr/include/c++/7/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/7/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/ferhat/git/vc-gen/cmake-build-debug/Makefile&quot;  VERBOSE=1 gc/fast"/>
 					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/ferhat/git/vc-gen/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
 					<Clean command="/usr/bin/make -j4 -f &quot;/home/ferhat/git/vc-gen/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 					<DistClean command="/usr/bin/make -j4 -f &quot;/home/ferhat/git/vc-gen/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 		</Build>
-		<Unit filename="/home/ferhat/git/vc-gen/abstract-visitor.hpp">
+		<Unit filename="/home/ferhat/git/vc-gen/gc/gc-driver.cpp">
+			<Option target="vcgen"/>
+			<Option target="gc"/>
+		</Unit>
+		<Unit filename="/home/ferhat/git/vc-gen/gc/gc-driver.hpp">
+			<Option target="vcgen"/>
+			<Option target="gc"/>
+		</Unit>
+		<Unit filename="/home/ferhat/git/vc-gen/gc/gc.cpp">
+			<Option target="vcgen"/>
+			<Option target="gc"/>
+		</Unit>
+		<Unit filename="/home/ferhat/git/vc-gen/gc/gc.hpp">
+			<Option target="vcgen"/>
+			<Option target="gc"/>
+		</Unit>
+		<Unit filename="/home/ferhat/git/vc-gen/gc/printer-visitor.hpp">
+			<Option target="vcgen"/>
+			<Option target="gc"/>
+		</Unit>
+		<Unit filename="/home/ferhat/git/vc-gen/gc/recognizer/gc-parser.cpp">
+			<Option target="vcgen"/>
+			<Option target="gc"/>
+		</Unit>
+		<Unit filename="/home/ferhat/git/vc-gen/gc/recognizer/gc-parser.cpp.rule">
+			<Option target="vcgen"/>
+			<Option target="gc"/>
+		</Unit>
+		<Unit filename="/home/ferhat/git/vc-gen/gc/recognizer/gc-parser.hpp">
+			<Option target="vcgen"/>
+			<Option target="gc"/>
+		</Unit>
+		<Unit filename="/home/ferhat/git/vc-gen/gc/recognizer/gc-scanner.cpp">
+			<Option target="vcgen"/>
+			<Option target="gc"/>
+		</Unit>
+		<Unit filename="/home/ferhat/git/vc-gen/gc/recognizer/gc-scanner.cpp.rule">
+			<Option target="vcgen"/>
+			<Option target="gc"/>
+		</Unit>
+		<Unit filename="/home/ferhat/git/vc-gen/gc/test.cpp">
+			<Option target="gc"/>
+		</Unit>
+		<Unit filename="/home/ferhat/git/vc-gen/gc/visitor.hpp">
+			<Option target="vcgen"/>
+			<Option target="gc"/>
+		</Unit>
+		<Unit filename="/home/ferhat/git/vc-gen/imp/abstract-visitor.hpp">
 			<Option target="vcgen"/>
 		</Unit>
-		<Unit filename="/home/ferhat/git/vc-gen/ast.cpp">
+		<Unit filename="/home/ferhat/git/vc-gen/imp/imp-driver.cpp">
 			<Option target="vcgen"/>
 		</Unit>
-		<Unit filename="/home/ferhat/git/vc-gen/ast.hpp">
+		<Unit filename="/home/ferhat/git/vc-gen/imp/imp-driver.hpp">
 			<Option target="vcgen"/>
 		</Unit>
-		<Unit filename="/home/ferhat/git/vc-gen/printer-visitor.hpp">
+		<Unit filename="/home/ferhat/git/vc-gen/imp/imp.cpp">
 			<Option target="vcgen"/>
 		</Unit>
-		<Unit filename="/home/ferhat/git/vc-gen/recognizer/vcgen-parser.cpp">
+		<Unit filename="/home/ferhat/git/vc-gen/imp/imp.hpp">
 			<Option target="vcgen"/>
 		</Unit>
-		<Unit filename="/home/ferhat/git/vc-gen/recognizer/vcgen-parser.cpp.rule">
+		<Unit filename="/home/ferhat/git/vc-gen/imp/printer-visitor.hpp">
 			<Option target="vcgen"/>
 		</Unit>
-		<Unit filename="/home/ferhat/git/vc-gen/recognizer/vcgen-parser.hpp">
+		<Unit filename="/home/ferhat/git/vc-gen/imp/recognizer/imp-parser.cpp">
 			<Option target="vcgen"/>
 		</Unit>
-		<Unit filename="/home/ferhat/git/vc-gen/recognizer/vcgen-scanner.cpp">
+		<Unit filename="/home/ferhat/git/vc-gen/imp/recognizer/imp-parser.cpp.rule">
 			<Option target="vcgen"/>
 		</Unit>
-		<Unit filename="/home/ferhat/git/vc-gen/recognizer/vcgen-scanner.cpp.rule">
+		<Unit filename="/home/ferhat/git/vc-gen/imp/recognizer/imp-parser.hpp">
+			<Option target="vcgen"/>
+		</Unit>
+		<Unit filename="/home/ferhat/git/vc-gen/imp/recognizer/imp-scanner.cpp">
+			<Option target="vcgen"/>
+		</Unit>
+		<Unit filename="/home/ferhat/git/vc-gen/imp/recognizer/imp-scanner.cpp.rule">
+			<Option target="vcgen"/>
+		</Unit>
+		<Unit filename="/home/ferhat/git/vc-gen/imp/visitor.hpp">
 			<Option target="vcgen"/>
 		</Unit>
 		<Unit filename="/home/ferhat/git/vc-gen/tools.cpp">
 			<Option target="vcgen"/>
+			<Option target="gc"/>
 		</Unit>
 		<Unit filename="/home/ferhat/git/vc-gen/tools.hpp">
 			<Option target="vcgen"/>
-		</Unit>
-		<Unit filename="/home/ferhat/git/vc-gen/vcgen-driver.cpp">
-			<Option target="vcgen"/>
-		</Unit>
-		<Unit filename="/home/ferhat/git/vc-gen/vcgen-driver.hpp">
-			<Option target="vcgen"/>
+			<Option target="gc"/>
 		</Unit>
 		<Unit filename="/home/ferhat/git/vc-gen/vcgen.cpp">
-			<Option target="vcgen"/>
-		</Unit>
-		<Unit filename="/home/ferhat/git/vc-gen/visitor.hpp">
 			<Option target="vcgen"/>
 		</Unit>
 		<Unit filename="/home/ferhat/git/vc-gen/CMakeLists.txt">

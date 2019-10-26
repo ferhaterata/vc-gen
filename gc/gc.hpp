@@ -7,8 +7,6 @@
 #ifndef VC_GEN_GC_HPP
 #define VC_GEN_GC_HPP
 
-
-#include "visitor.hpp"
 #include <iostream>
 #include <map>
 #include <string>
@@ -23,66 +21,52 @@ class Node {
   public:
     Node() = default;
     virtual ~Node() = default;
-    //    virtual void accept(class Visitor<Node>*) = 0;
 };
 
 // -----------------------------------------------------------------------------
-class BooleanExpression : public Node {
+class Command : public Node {
   public:
     enum class Type {
-        NotExpression,
-        OrExpression,
-        AndExpression,
-        Comparison,
+        Assume,
+        Assert,
+        Havoc,
+        Choice,
     };
     const Type type;
-    explicit BooleanExpression(const Type type) : type(type) {}
-    //    void accept(Visitor* v) { v->visit(this); }
+
+    Command(const Type type) : type(type) {}
 };
 
 // -----------------------------------------------------------------------------
-class NotExpression : public BooleanExpression {
+class Expression : public Node {
+
   public:
-    const BooleanExpression& expression;
-
-    explicit NotExpression(BooleanExpression& expression)
-        : expression(expression), BooleanExpression(Type::NotExpression) {}
-
-    ~NotExpression() override {
-        std::cout << "\n Deleting NotExpression 0x" << this << dec << "...";
-        delete &expression;
-    }
+    enum class Type {
+        ArrayLocation,
+        Constant,
+        Negate,
+        Sum,
+        Subtract,
+        Multiply,
+        Divide,
+        Mod,
+        Location,
+    };
+    Type type;
+    explicit Expression(Type type) : type(type) {}
 };
 
 // -----------------------------------------------------------------------------
-class OrExpression : public BooleanExpression {
+class Location : public Expression {
   public:
-    const BooleanExpression& left;
-    const BooleanExpression& right;
+    const string identifier;
 
-    OrExpression(BooleanExpression& left, BooleanExpression& right)
-        : left(left), right(right), BooleanExpression(Type::OrExpression) {}
+    Location(string identifier)
+        : Expression(Expression::Type::Location),
+          identifier(std::move(identifier)) {}
 
-    ~OrExpression() override {
-        std::cout << "\n Deleting OrExpression 0x" << this << dec << "...";
-        delete &left;
-        delete &right;
-    }
-};
-
-// -----------------------------------------------------------------------------
-class AndExpression : public BooleanExpression {
-  public:
-    const BooleanExpression& left;
-    const BooleanExpression& right;
-
-    AndExpression(BooleanExpression& left, BooleanExpression& right)
-        : left(left), right(right), BooleanExpression(Type::AndExpression) {}
-
-    ~AndExpression() override {
-        std::cout << "\n Deleting AndExpression 0x" << this << dec << "...";
-        delete &left;
-        delete &right;
+    ~Location() override {
+        std::cout << "\n Deleting Location 0x" << this << dec << "...";
     }
 };
 
@@ -97,119 +81,84 @@ class Assertion : public Node {
         UniversalQuantification,
         ExistentialQuantification,
         Comparison,
+        True,
+        False,
     };
     const Type type;
     explicit Assertion(Type type) : type(type) {}
-    //    void accept(Visitor* v) { v->visit(this); }
 };
 
 // -----------------------------------------------------------------------------
-class Statement : public Node {
-  public:
-    enum class Type {
-        AssignmentStatement,
-        MultipleAssignmentStatement,
-        ArrayAssignmentStatement,
-        IfThenElseStatement,
-        IfThenStatement,
-        WhileStatement
-    };
-    Type type;
-    explicit Statement(Type type) : type(type) {}
-    //    void accept(Visitor<Node>* v) { v->visit(this); }
-};
-
-// -----------------------------------------------------------------------------
-class Location : public Node {
-  public:
-    const string identifier;
-
-    explicit Location(string identifier) : identifier(std::move(identifier)) {}
-
-    ~Location() override {
-        std::cout << "\n Deleting Location 0x" << this << dec << "...";
-    }
-};
-
-// -----------------------------------------------------------------------------
-class Invariant : public Node {
+class Assume : public Command {
   public:
     const Assertion& assertion;
 
-    explicit Invariant(Assertion& assertion) : assertion(assertion) {}
+    Assume(Assertion& assertion)
+        : Command(Command::Type::Assume), assertion(assertion) {}
 
-    ~Invariant() override {
-        std::cout << "\n Deleting Invariant 0x" << this << dec << "...";
+    ~Assume() override {
+        std::cout << "\n Deleting Assume 0x" << this << dec << "...";
         delete &assertion;
     }
-    //    void accept(Visitor<Node>* v) { v->visit(this); }
 };
 
 // -----------------------------------------------------------------------------
-class Block : public Node {
-  public:
-    vector<Statement*> stmts;
-
-    explicit Block(vector<Statement*> stmts) : stmts(std::move(stmts)) {}
-
-    ~Block() override {
-        std::cout << "\n Deleting Block 0x" << this << dec << "...";
-        for (auto s : stmts)
-            delete s;
-    }
-    //    void accept(Visitor<Node>* v) { v->visit(this); }
-};
-
-// -----------------------------------------------------------------------------
-class PreCondition : public Node {
+class Assert : public Command {
   public:
     const Assertion& assertion;
 
-    explicit PreCondition(Assertion& assertion) : assertion(assertion) {}
+    Assert(const Assertion& assertion)
+        : Command(Command::Type::Assert), assertion(assertion) {}
 
-    ~PreCondition() override {
-        std::cout << "\n Deleting PreCondition 0x" << this << dec << "...";
+    ~Assert() {
+        std::cout << "\n Deleting Assert 0x" << this << dec << "...";
         delete &assertion;
     }
-    //    void accept(Visitor<Node>* v) { v->visit(this); }
 };
 
 // -----------------------------------------------------------------------------
-class PostCondition : public Node {
+class Havoc : public Command {
   public:
-    const Assertion& assertion;
+    const Location& location;
 
-    explicit PostCondition(Assertion& assertion) : assertion(assertion) {}
+    Havoc(const Location& location)
+        : Command(Command::Type::Havoc), location(location) {}
 
-    ~PostCondition() override {
-        std::cout << "\n Deleting PostCondition 0x" << this << dec << "...";
-        delete &assertion;
+    ~Havoc() {
+        std::cout << "\n Deleting Havoc 0x" << this << dec << "...";
+        delete &location;
     }
-    //    void accept(Visitor<Node>* v) { v->visit(this); }
+};
+
+// -----------------------------------------------------------------------------
+class Choice : public Command {
+
+  public:
+    const Command& left;
+    const Command& right;
+
+    Choice(const Command& left, const Command& right)
+        : Command(Command::Type::Choice), left(left), right(right) {}
+
+    ~Choice() {
+        std::cout << "\n Deleting Choice 0x" << this << dec << "...";
+        delete &left;
+        delete &right;
+    }
 };
 
 // -----------------------------------------------------------------------------
 class Program : public Node {
   public:
-    const string identifier;
-    const vector<PreCondition*> preConditions;
-    const vector<PostCondition*> postConditions;
-    const Block& block;
+    const vector<Command*> commands;
 
-    Program(string& identifier, vector<PreCondition*> preConditions,
-            vector<PostCondition*> postConditions, Block& block)
-        : identifier(identifier), preConditions(std::move(preConditions)),
-          postConditions(std::move(postConditions)), block(block) {}
+    Program(const vector<Command*>& commands) : commands(commands) {}
 
     ~Program() override {
         std::cout << "\n Deleting Program 0x" << this << dec << "...";
-        delete &block;
-        for (auto p : preConditions)
-            delete p;
-        for (auto p : postConditions)
-            delete p;
+        for (auto c : commands)
+            delete c;
     }
-    //    void accept(Visitor<Node>* v) { v->visit(this); }
 };
 
 // -----------------------------------------------------------------------------
@@ -223,6 +172,25 @@ class Negation : public Assertion {
     ~Negation() override {
         std::cout << "\n Deleting Negation 0x" << this << dec << "...";
         delete &assertion;
+    }
+};
+
+// -----------------------------------------------------------------------------
+class True : public Assertion {
+  public:
+    True() : Assertion(Assertion::Type::True) {}
+    ~True() override {
+        std::cout << "\n Deleting True 0x" << this << dec << "...";
+    }
+};
+
+// -----------------------------------------------------------------------------
+class False : public Assertion {
+  public:
+    False() : Assertion(Assertion::Type::False) {}
+
+    ~False() override {
+        std::cout << "\n Deleting False 0x" << this << dec << "...";
     }
 };
 
@@ -309,46 +277,12 @@ class ExistentialQuantification : public Assertion {
 };
 
 // -----------------------------------------------------------------------------
-class ArithmeticExpression : public Node {
-
-  public:
-    enum class Type {
-        Reference,
-        ArrayReference,
-        Constant,
-        Negate,
-        Sum,
-        Subtract,
-        Multiply,
-        Divide,
-        Mod,
-    };
-    Type type;
-    explicit ArithmeticExpression(Type type) : type(type) {}
-    //    void accept(Visitor* v) { v->visit(this); }
-};
-
-// -----------------------------------------------------------------------------
-class Reference : public ArithmeticExpression {
-  public:
-    const string identifier;
-
-    explicit Reference(string identifier)
-        : identifier(std::move(identifier)),
-          ArithmeticExpression::ArithmeticExpression(Type::Reference) {}
-
-    ~Reference() override {
-        std::cout << "\n Deleting Reference 0x" << this << dec << "...";
-    }
-};
-
-// -----------------------------------------------------------------------------
-class Constant : public ArithmeticExpression {
+class Constant : public Expression {
   public:
     const int number;
 
     explicit Constant(const int number)
-        : number(number), ArithmeticExpression(Type::Constant) {}
+        : number(number), Expression(Type::Constant) {}
 
     ~Constant() override {
         std::cout << "\n Deleting Constant 0x" << this << dec << "...";
@@ -356,29 +290,28 @@ class Constant : public ArithmeticExpression {
 };
 
 // -----------------------------------------------------------------------------
-class ArrayReference : public ArithmeticExpression {
+class ArrayLocation : public Expression {
   public:
-    const Reference& reference;
-    const ArithmeticExpression& index;
+    const Location& location;
+    const Expression& index;
 
-    ArrayReference(Reference& reference, ArithmeticExpression& index)
-        : reference(reference), index(index),
-          ArithmeticExpression(Type::ArrayReference) {}
+    ArrayLocation(Location& location, Expression& index)
+        : location(location), index(index), Expression(Type::ArrayLocation) {}
 
-    ~ArrayReference() override {
-        std::cout << "\n Deleting ArrayReference 0x" << this << dec << "...";
+    ~ArrayLocation() override {
+        std::cout << "\n Deleting ArrayLocation 0x" << this << dec << "...";
         delete &index;
-        delete &reference;
+        delete &location;
     }
 };
 
 // -----------------------------------------------------------------------------
-class Negate : public ArithmeticExpression {
+class Negate : public Expression {
   public:
-    const ArithmeticExpression& expression;
+    const Expression& expression;
 
-    explicit Negate(ArithmeticExpression& expression)
-        : expression(expression), ArithmeticExpression(Type::Negate) {}
+    explicit Negate(Expression& expression)
+        : expression(expression), Expression(Type::Negate) {}
 
     ~Negate() override {
         std::cout << "\n Deleting Negate 0x" << this << dec << "...";
@@ -387,13 +320,13 @@ class Negate : public ArithmeticExpression {
 };
 
 // -----------------------------------------------------------------------------
-class Sum : public ArithmeticExpression {
+class Sum : public Expression {
   public:
-    const ArithmeticExpression& left;
-    const ArithmeticExpression& right;
+    const Expression& left;
+    const Expression& right;
 
-    Sum(ArithmeticExpression& left, ArithmeticExpression& right)
-        : left(left), right(right), ArithmeticExpression(Type::Sum) {}
+    Sum(Expression& left, Expression& right)
+        : left(left), right(right), Expression(Type::Sum) {}
 
     ~Sum() override {
         std::cout << "\n Deleting Sum 0x" << this << dec << "...";
@@ -403,13 +336,13 @@ class Sum : public ArithmeticExpression {
 };
 
 // -----------------------------------------------------------------------------
-class Subtract : public ArithmeticExpression {
+class Subtract : public Expression {
   public:
-    const ArithmeticExpression& left;
-    const ArithmeticExpression& right;
+    const Expression& left;
+    const Expression& right;
 
-    Subtract(ArithmeticExpression& left, ArithmeticExpression& right)
-        : left(left), right(right), ArithmeticExpression(Type::Subtract) {}
+    Subtract(Expression& left, Expression& right)
+        : left(left), right(right), Expression(Type::Subtract) {}
 
     ~Subtract() override {
         std::cout << "\n Deleting Subtract 0x" << this << dec << "...";
@@ -419,13 +352,13 @@ class Subtract : public ArithmeticExpression {
 };
 
 // -----------------------------------------------------------------------------
-class Multiply : public ArithmeticExpression {
+class Multiply : public Expression {
   public:
-    const ArithmeticExpression& left;
-    const ArithmeticExpression& right;
+    const Expression& left;
+    const Expression& right;
 
-    Multiply(ArithmeticExpression& left, ArithmeticExpression& right)
-        : left(left), right(right), ArithmeticExpression(Type::Multiply) {}
+    Multiply(Expression& left, Expression& right)
+        : left(left), right(right), Expression(Type::Multiply) {}
 
     ~Multiply() override {
         std::cout << "\n Deleting Multiply 0x" << this << dec << "...";
@@ -435,13 +368,13 @@ class Multiply : public ArithmeticExpression {
 };
 
 // -----------------------------------------------------------------------------
-class Divide : public ArithmeticExpression {
+class Divide : public Expression {
   public:
-    const ArithmeticExpression& left;
-    const ArithmeticExpression& right;
+    const Expression& left;
+    const Expression& right;
 
-    Divide(ArithmeticExpression& left, ArithmeticExpression& right)
-        : left(left), right(right), ArithmeticExpression(Type::Divide) {}
+    Divide(Expression& left, Expression& right)
+        : left(left), right(right), Expression(Type::Divide) {}
 
     ~Divide() override {
         std::cout << "\n Deleting Divide 0x" << this << dec << "...";
@@ -451,13 +384,13 @@ class Divide : public ArithmeticExpression {
 };
 
 // -----------------------------------------------------------------------------
-class Mod : public ArithmeticExpression {
+class Mod : public Expression {
   public:
-    const ArithmeticExpression& left;
-    const ArithmeticExpression& right;
+    const Expression& left;
+    const Expression& right;
 
-    Mod(ArithmeticExpression& left, ArithmeticExpression& right)
-        : left(left), right(right), ArithmeticExpression(Type::Mod) {}
+    Mod(Expression& left, Expression& right)
+        : left(left), right(right), Expression(Type::Mod) {}
 
     ~Mod() override {
         std::cout << "\n Deleting Mod 0x" << this << dec << "...";
@@ -466,8 +399,9 @@ class Mod : public ArithmeticExpression {
     }
 };
 
+
 // -----------------------------------------------------------------------------
-class Comparison : public BooleanExpression, public Assertion {
+class Comparison : public Assertion {
   public:
     enum class Type {
         EqualComparison,
@@ -477,21 +411,19 @@ class Comparison : public BooleanExpression, public Assertion {
         LtComparison,
         GtComparison,
     };
-    Type type;
+    const Type type;
 
-    explicit Comparison(Comparison::Type type)
-        : type(type), Assertion(Assertion::Type::Comparison),
-          BooleanExpression(BooleanExpression::Type::Comparison) {}
-    //    void accept(Visitor<Node>* v) { v->visit(this); }
+    Comparison(Comparison::Type type)
+        : type(type), Assertion(Assertion::Type::Comparison) {}
 };
 
 // -----------------------------------------------------------------------------
 class EqualComparison : public Comparison {
   public:
-    const ArithmeticExpression& left;
-    const ArithmeticExpression& right;
+    const Expression& left;
+    const Expression& right;
 
-    EqualComparison(ArithmeticExpression& left, ArithmeticExpression& right)
+    EqualComparison(Expression& left, Expression& right)
         : left(left), right(right),
           Comparison(Comparison::Type::EqualComparison) {}
 
@@ -505,10 +437,10 @@ class EqualComparison : public Comparison {
 // -----------------------------------------------------------------------------
 class NotEqualComparison : public Comparison {
   public:
-    const ArithmeticExpression& left;
-    const ArithmeticExpression& right;
+    const Expression& left;
+    const Expression& right;
 
-    NotEqualComparison(ArithmeticExpression& left, ArithmeticExpression& right)
+    NotEqualComparison(Expression& left, Expression& right)
         : left(left), right(right),
           Comparison(Comparison::Type::NotEqualComparison) {}
 
@@ -523,10 +455,10 @@ class NotEqualComparison : public Comparison {
 // -----------------------------------------------------------------------------
 class LeqComparison : public Comparison {
   public:
-    const ArithmeticExpression& left;
-    const ArithmeticExpression& right;
+    const Expression& left;
+    const Expression& right;
 
-    LeqComparison(ArithmeticExpression& left, ArithmeticExpression& right)
+    LeqComparison(Expression& left, Expression& right)
         : left(left), right(right),
           Comparison(Comparison::Type::LeqComparison) {}
 
@@ -540,10 +472,10 @@ class LeqComparison : public Comparison {
 // -----------------------------------------------------------------------------
 class GeqComparison : public Comparison {
   public:
-    const ArithmeticExpression& left;
-    const ArithmeticExpression& right;
+    const Expression& left;
+    const Expression& right;
 
-    GeqComparison(ArithmeticExpression& left, ArithmeticExpression& right)
+    GeqComparison(Expression& left, Expression& right)
         : left(left), right(right),
           Comparison(Comparison::Type::GeqComparison) {}
 
@@ -557,10 +489,10 @@ class GeqComparison : public Comparison {
 // -----------------------------------------------------------------------------
 class LtComparison : public Comparison {
   public:
-    const ArithmeticExpression& left;
-    const ArithmeticExpression& right;
+    const Expression& left;
+    const Expression& right;
 
-    LtComparison(ArithmeticExpression& left, ArithmeticExpression& right)
+    LtComparison(Expression& left, Expression& right)
         : left(left), right(right), Comparison(Comparison::Type::LtComparison) {
     }
 
@@ -574,10 +506,10 @@ class LtComparison : public Comparison {
 // -----------------------------------------------------------------------------
 class GtComparison : public Comparison {
   public:
-    const ArithmeticExpression& left;
-    const ArithmeticExpression& right;
+    const Expression& left;
+    const Expression& right;
 
-    GtComparison(ArithmeticExpression& left, ArithmeticExpression& right)
+    GtComparison(Expression& left, Expression& right)
         : left(left), right(right), Comparison(Comparison::Type::GtComparison) {
     }
 
@@ -588,131 +520,6 @@ class GtComparison : public Comparison {
     }
 };
 
-// -----------------------------------------------------------------------------
-class AssignmentStatement : public Statement {
-  public:
-    const Location& loc;
-    const ArithmeticExpression& expr;
-
-    AssignmentStatement(Location& loc, ArithmeticExpression& expr)
-        : loc(loc), expr(expr),
-          Statement(Statement::Type::AssignmentStatement) {}
-
-    ~AssignmentStatement() override {
-        std::cout << "\n Deleting AssignmentStatement 0x" << this << dec
-                  << "...";
-        delete &loc;
-        delete &expr;
-    }
-};
-
-// -----------------------------------------------------------------------------
-class MultipleAssignmentStatement : public Statement {
-  public:
-    const Location& locFirst;
-    const Location& locSecond;
-    const ArithmeticExpression& exprFirst;
-    const ArithmeticExpression& exprSecond;
-
-    MultipleAssignmentStatement(Location& locFirst, Location& locSecond,
-                                ArithmeticExpression& exprFirst,
-                                ArithmeticExpression& exprSecond)
-        : locFirst(locFirst), locSecond(locSecond), exprFirst(exprFirst),
-          exprSecond(exprSecond),
-          Statement(Statement::Type::MultipleAssignmentStatement) {}
-
-    ~MultipleAssignmentStatement() override {
-        std::cout << "\n Deleting MultipleAssignmentStatement 0x" << this << dec
-                  << "...";
-        delete &locFirst;
-        delete &locSecond;
-        delete &exprFirst;
-        delete &exprSecond;
-    }
-};
-
-// -----------------------------------------------------------------------------
-class ArrayAssignmentStatement : public Statement {
-  public:
-    const Location& loc;
-    const ArithmeticExpression& index;
-    const ArithmeticExpression& exp;
-
-    ArrayAssignmentStatement(Location& loc, ArithmeticExpression& index,
-                             ArithmeticExpression& exp)
-        : loc(loc), index(index), exp(exp),
-          Statement(Statement::Type::ArrayAssignmentStatement) {}
-
-    ~ArrayAssignmentStatement() override {
-        std::cout << "\n Deleting ArrayAssignmentStatement 0x" << this << dec
-                  << "...";
-        delete &loc;
-        delete &index;
-        delete &exp;
-    }
-};
-
-// -----------------------------------------------------------------------------
-class IfThenStatement : public Statement {
-  public:
-    const BooleanExpression& condition;
-    const Block& thenBlock;
-
-    IfThenStatement(BooleanExpression& condition, Block& thenBlock)
-        : condition(condition), thenBlock(thenBlock),
-          Statement(Statement::Type::IfThenStatement) {}
-
-    ~IfThenStatement() override {
-        std::cout << "\n Deleting IfThenStatement 0x" << this << dec << "...";
-        delete &condition;
-        delete &thenBlock;
-    }
-};
-
-// -----------------------------------------------------------------------------
-class IfThenElseStatement : public Statement {
-  public:
-    const BooleanExpression& condition;
-    const Block& thenBlock;
-    const Block& elseBlock;
-
-    IfThenElseStatement(BooleanExpression& condition, Block& thenBlock,
-                        Block& elseBlock)
-        : condition(condition), thenBlock(thenBlock), elseBlock(elseBlock),
-          Statement(Statement::Type::IfThenElseStatement) {}
-
-    ~IfThenElseStatement() override {
-        std::cout << "\n Deleting IfThenElseStatement 0x" << this << dec
-                  << "...";
-        delete &condition;
-        delete &thenBlock;
-        delete &elseBlock;
-    }
-};
-
-// -----------------------------------------------------------------------------
-class WhileStatement : public Statement {
-  public:
-    const BooleanExpression& condition;
-    const vector<Invariant*> invariants;
-    const Block& block;
-
-    WhileStatement(BooleanExpression& condition, vector<Invariant*> invariants,
-                   Block& block)
-        : condition(condition), invariants(std::move(invariants)), block(block),
-          Statement(Statement::Type::WhileStatement) {}
-
-    ~WhileStatement() override {
-        std::cout << "\n Deleting WhileStatement 0x" << this << dec << "...";
-        delete &condition;
-        for (auto item : invariants) {
-            delete item;
-        }
-        delete &block;
-    }
-};
-
-
-} // namespace gc
+} // namespace gc::ast
 
 #endif // VC_GEN_GC_HPP

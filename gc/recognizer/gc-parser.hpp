@@ -381,65 +381,38 @@ namespace gc {
     /// An auxiliary type to compute the largest semantic type.
     union union_type
     {
-      // aexp
-      char dummy1[sizeof (gc::ast::ArithmeticExpression*)];
-
       // assertion
-      char dummy2[sizeof (gc::ast::Assertion*)];
+      char dummy1[sizeof (gc::ast::Assertion*)];
 
-      // block
-      char dummy3[sizeof (gc::ast::Block*)];
+      // command
+      char dummy2[sizeof (gc::ast::Command*)];
 
-      // bexp
-      char dummy4[sizeof (gc::ast::BooleanExpression*)];
-
-      // comp
-      char dummy5[sizeof (gc::ast::Comparison*)];
+      // comparison
+      char dummy3[sizeof (gc::ast::Comparison*)];
 
       // constant
-      char dummy6[sizeof (gc::ast::Constant*)];
+      char dummy4[sizeof (gc::ast::Constant*)];
 
-      // inv
-      char dummy7[sizeof (gc::ast::Invariant*)];
+      // expression
+      char dummy5[sizeof (gc::ast::Expression*)];
 
       // location
-      char dummy8[sizeof (gc::ast::Location*)];
-
-      // post
-      char dummy9[sizeof (gc::ast::PostCondition*)];
-
-      // pre
-      char dummy10[sizeof (gc::ast::PreCondition*)];
+      char dummy6[sizeof (gc::ast::Location*)];
 
       // prog
-      char dummy11[sizeof (gc::ast::Program*)];
-
-      // reference
-      char dummy12[sizeof (gc::ast::Reference*)];
-
-      // stmt
-      char dummy13[sizeof (gc::ast::Statement*)];
+      char dummy7[sizeof (gc::ast::Program*)];
 
       // "number"
-      char dummy14[sizeof (int)];
+      char dummy8[sizeof (int)];
 
       // "identifier"
-      char dummy15[sizeof (std::string)];
+      char dummy9[sizeof (std::string)];
 
-      // inv_list
-      char dummy16[sizeof (std::vector<gc::ast::Invariant*>)];
+      // commands
+      char dummy10[sizeof (std::vector<gc::ast::Command*>)];
 
-      // post_list
-      char dummy17[sizeof (std::vector<gc::ast::PostCondition*>)];
-
-      // pre_list
-      char dummy18[sizeof (std::vector<gc::ast::PreCondition*>)];
-
-      // stmt_list
-      char dummy19[sizeof (std::vector<gc::ast::Statement*>)];
-
-      // identifier_list
-      char dummy20[sizeof (std::vector<std::string>)];
+      // identifiers
+      char dummy11[sizeof (std::vector<std::string>)];
     };
 
     /// The size of the largest semantic type.
@@ -504,27 +477,17 @@ namespace gc {
         TOK_NOT = 271,
         TOK_OR = 272,
         TOK_AND = 273,
-        TOK_ASSIGN = 274,
-        TOK_SEMICOLON = 275,
-        TOK_COMMA = 276,
-        TOK_IF = 277,
-        TOK_THEN = 278,
-        TOK_ELSE = 279,
-        TOK_END = 280,
-        TOK_WHILE = 281,
-        TOK_DO = 282,
-        TOK_INV = 283,
-        TOK_LSQUARE = 284,
-        TOK_RSQUARE = 285,
-        TOK_PROGRAM = 286,
-        TOK_PRE = 287,
-        TOK_POST = 288,
-        TOK_IS = 289,
-        TOK_IMPLY = 290,
-        TOK_ALL = 291,
-        TOK_SOME = 292,
-        TOK_IDENTIFIER = 293,
-        TOK_NUMBER = 294
+        TOK_SEMICOLON = 274,
+        TOK_COMMA = 275,
+        TOK_LSQUARE = 276,
+        TOK_RSQUARE = 277,
+        TOK_IMPLY = 278,
+        TOK_ALL = 279,
+        TOK_SOME = 280,
+        TOK_TRUE = 281,
+        TOK_FALSE = 282,
+        TOK_IDENTIFIER = 283,
+        TOK_NUMBER = 284
       };
     };
 
@@ -579,19 +542,6 @@ namespace gc {
       {}
 #endif
 #if 201103L <= YY_CPLUSPLUS
-      basic_symbol (typename Base::kind_type t, gc::ast::ArithmeticExpression*&& v, location_type&& l)
-        : Base (t)
-        , value (std::move (v))
-        , location (std::move (l))
-      {}
-#else
-      basic_symbol (typename Base::kind_type t, const gc::ast::ArithmeticExpression*& v, const location_type& l)
-        : Base (t)
-        , value (v)
-        , location (l)
-      {}
-#endif
-#if 201103L <= YY_CPLUSPLUS
       basic_symbol (typename Base::kind_type t, gc::ast::Assertion*&& v, location_type&& l)
         : Base (t)
         , value (std::move (v))
@@ -605,26 +555,13 @@ namespace gc {
       {}
 #endif
 #if 201103L <= YY_CPLUSPLUS
-      basic_symbol (typename Base::kind_type t, gc::ast::Block*&& v, location_type&& l)
+      basic_symbol (typename Base::kind_type t, gc::ast::Command*&& v, location_type&& l)
         : Base (t)
         , value (std::move (v))
         , location (std::move (l))
       {}
 #else
-      basic_symbol (typename Base::kind_type t, const gc::ast::Block*& v, const location_type& l)
-        : Base (t)
-        , value (v)
-        , location (l)
-      {}
-#endif
-#if 201103L <= YY_CPLUSPLUS
-      basic_symbol (typename Base::kind_type t, gc::ast::BooleanExpression*&& v, location_type&& l)
-        : Base (t)
-        , value (std::move (v))
-        , location (std::move (l))
-      {}
-#else
-      basic_symbol (typename Base::kind_type t, const gc::ast::BooleanExpression*& v, const location_type& l)
+      basic_symbol (typename Base::kind_type t, const gc::ast::Command*& v, const location_type& l)
         : Base (t)
         , value (v)
         , location (l)
@@ -657,13 +594,13 @@ namespace gc {
       {}
 #endif
 #if 201103L <= YY_CPLUSPLUS
-      basic_symbol (typename Base::kind_type t, gc::ast::Invariant*&& v, location_type&& l)
+      basic_symbol (typename Base::kind_type t, gc::ast::Expression*&& v, location_type&& l)
         : Base (t)
         , value (std::move (v))
         , location (std::move (l))
       {}
 #else
-      basic_symbol (typename Base::kind_type t, const gc::ast::Invariant*& v, const location_type& l)
+      basic_symbol (typename Base::kind_type t, const gc::ast::Expression*& v, const location_type& l)
         : Base (t)
         , value (v)
         , location (l)
@@ -683,32 +620,6 @@ namespace gc {
       {}
 #endif
 #if 201103L <= YY_CPLUSPLUS
-      basic_symbol (typename Base::kind_type t, gc::ast::PostCondition*&& v, location_type&& l)
-        : Base (t)
-        , value (std::move (v))
-        , location (std::move (l))
-      {}
-#else
-      basic_symbol (typename Base::kind_type t, const gc::ast::PostCondition*& v, const location_type& l)
-        : Base (t)
-        , value (v)
-        , location (l)
-      {}
-#endif
-#if 201103L <= YY_CPLUSPLUS
-      basic_symbol (typename Base::kind_type t, gc::ast::PreCondition*&& v, location_type&& l)
-        : Base (t)
-        , value (std::move (v))
-        , location (std::move (l))
-      {}
-#else
-      basic_symbol (typename Base::kind_type t, const gc::ast::PreCondition*& v, const location_type& l)
-        : Base (t)
-        , value (v)
-        , location (l)
-      {}
-#endif
-#if 201103L <= YY_CPLUSPLUS
       basic_symbol (typename Base::kind_type t, gc::ast::Program*&& v, location_type&& l)
         : Base (t)
         , value (std::move (v))
@@ -716,32 +627,6 @@ namespace gc {
       {}
 #else
       basic_symbol (typename Base::kind_type t, const gc::ast::Program*& v, const location_type& l)
-        : Base (t)
-        , value (v)
-        , location (l)
-      {}
-#endif
-#if 201103L <= YY_CPLUSPLUS
-      basic_symbol (typename Base::kind_type t, gc::ast::Reference*&& v, location_type&& l)
-        : Base (t)
-        , value (std::move (v))
-        , location (std::move (l))
-      {}
-#else
-      basic_symbol (typename Base::kind_type t, const gc::ast::Reference*& v, const location_type& l)
-        : Base (t)
-        , value (v)
-        , location (l)
-      {}
-#endif
-#if 201103L <= YY_CPLUSPLUS
-      basic_symbol (typename Base::kind_type t, gc::ast::Statement*&& v, location_type&& l)
-        : Base (t)
-        , value (std::move (v))
-        , location (std::move (l))
-      {}
-#else
-      basic_symbol (typename Base::kind_type t, const gc::ast::Statement*& v, const location_type& l)
         : Base (t)
         , value (v)
         , location (l)
@@ -774,52 +659,13 @@ namespace gc {
       {}
 #endif
 #if 201103L <= YY_CPLUSPLUS
-      basic_symbol (typename Base::kind_type t, std::vector<gc::ast::Invariant*>&& v, location_type&& l)
+      basic_symbol (typename Base::kind_type t, std::vector<gc::ast::Command*>&& v, location_type&& l)
         : Base (t)
         , value (std::move (v))
         , location (std::move (l))
       {}
 #else
-      basic_symbol (typename Base::kind_type t, const std::vector<gc::ast::Invariant*>& v, const location_type& l)
-        : Base (t)
-        , value (v)
-        , location (l)
-      {}
-#endif
-#if 201103L <= YY_CPLUSPLUS
-      basic_symbol (typename Base::kind_type t, std::vector<gc::ast::PostCondition*>&& v, location_type&& l)
-        : Base (t)
-        , value (std::move (v))
-        , location (std::move (l))
-      {}
-#else
-      basic_symbol (typename Base::kind_type t, const std::vector<gc::ast::PostCondition*>& v, const location_type& l)
-        : Base (t)
-        , value (v)
-        , location (l)
-      {}
-#endif
-#if 201103L <= YY_CPLUSPLUS
-      basic_symbol (typename Base::kind_type t, std::vector<gc::ast::PreCondition*>&& v, location_type&& l)
-        : Base (t)
-        , value (std::move (v))
-        , location (std::move (l))
-      {}
-#else
-      basic_symbol (typename Base::kind_type t, const std::vector<gc::ast::PreCondition*>& v, const location_type& l)
-        : Base (t)
-        , value (v)
-        , location (l)
-      {}
-#endif
-#if 201103L <= YY_CPLUSPLUS
-      basic_symbol (typename Base::kind_type t, std::vector<gc::ast::Statement*>&& v, location_type&& l)
-        : Base (t)
-        , value (std::move (v))
-        , location (std::move (l))
-      {}
-#else
-      basic_symbol (typename Base::kind_type t, const std::vector<gc::ast::Statement*>& v, const location_type& l)
+      basic_symbol (typename Base::kind_type t, const std::vector<gc::ast::Command*>& v, const location_type& l)
         : Base (t)
         , value (v)
         , location (l)
@@ -861,83 +707,47 @@ namespace gc {
         // Type destructor.
 switch (yytype)
     {
-      case 41: // aexp
-        value.template destroy< gc::ast::ArithmeticExpression* > ();
-        break;
-
-      case 57: // assertion
+      case 38: // assertion
         value.template destroy< gc::ast::Assertion* > ();
         break;
 
-      case 50: // block
-        value.template destroy< gc::ast::Block* > ();
+      case 37: // command
+        value.template destroy< gc::ast::Command* > ();
         break;
 
-      case 44: // bexp
-        value.template destroy< gc::ast::BooleanExpression* > ();
-        break;
-
-      case 45: // comp
+      case 39: // comparison
         value.template destroy< gc::ast::Comparison* > ();
         break;
 
-      case 43: // constant
+      case 42: // constant
         value.template destroy< gc::ast::Constant* > ();
         break;
 
-      case 49: // inv
-        value.template destroy< gc::ast::Invariant* > ();
+      case 41: // expression
+        value.template destroy< gc::ast::Expression* > ();
         break;
 
-      case 47: // location
+      case 40: // location
         value.template destroy< gc::ast::Location* > ();
         break;
 
-      case 56: // post
-        value.template destroy< gc::ast::PostCondition* > ();
-        break;
-
-      case 54: // pre
-        value.template destroy< gc::ast::PreCondition* > ();
-        break;
-
-      case 52: // prog
+      case 35: // prog
         value.template destroy< gc::ast::Program* > ();
         break;
 
-      case 42: // reference
-        value.template destroy< gc::ast::Reference* > ();
-        break;
-
-      case 46: // stmt
-        value.template destroy< gc::ast::Statement* > ();
-        break;
-
-      case 39: // "number"
+      case 29: // "number"
         value.template destroy< int > ();
         break;
 
-      case 38: // "identifier"
+      case 28: // "identifier"
         value.template destroy< std::string > ();
         break;
 
-      case 48: // inv_list
-        value.template destroy< std::vector<gc::ast::Invariant*> > ();
+      case 36: // commands
+        value.template destroy< std::vector<gc::ast::Command*> > ();
         break;
 
-      case 55: // post_list
-        value.template destroy< std::vector<gc::ast::PostCondition*> > ();
-        break;
-
-      case 53: // pre_list
-        value.template destroy< std::vector<gc::ast::PreCondition*> > ();
-        break;
-
-      case 51: // stmt_list
-        value.template destroy< std::vector<gc::ast::Statement*> > ();
-        break;
-
-      case 58: // identifier_list
+      case 43: // identifiers
         value.template destroy< std::vector<std::string> > ();
         break;
 
@@ -1020,13 +830,13 @@ switch (yytype)
       symbol_type (int tok, location_type l)
         : super_type(token_type (tok), std::move (l))
       {
-        YYASSERT (tok == token::TOK_EOF || tok == token::TOK_PLUS || tok == token::TOK_MINUS || tok == token::TOK_STAR || tok == token::TOK_SLASH || tok == token::TOK_MOD || tok == token::TOK_LPAREN || tok == token::TOK_RPAREN || tok == token::TOK_EQUAL || tok == token::TOK_NEQUAL || tok == token::TOK_LEQ || tok == token::TOK_GEQ || tok == token::TOK_LT || tok == token::TOK_GT || tok == token::TOK_NOT || tok == token::TOK_OR || tok == token::TOK_AND || tok == token::TOK_ASSIGN || tok == token::TOK_SEMICOLON || tok == token::TOK_COMMA || tok == token::TOK_IF || tok == token::TOK_THEN || tok == token::TOK_ELSE || tok == token::TOK_END || tok == token::TOK_WHILE || tok == token::TOK_DO || tok == token::TOK_INV || tok == token::TOK_LSQUARE || tok == token::TOK_RSQUARE || tok == token::TOK_PROGRAM || tok == token::TOK_PRE || tok == token::TOK_POST || tok == token::TOK_IS || tok == token::TOK_IMPLY || tok == token::TOK_ALL || tok == token::TOK_SOME);
+        YYASSERT (tok == token::TOK_EOF || tok == token::TOK_PLUS || tok == token::TOK_MINUS || tok == token::TOK_STAR || tok == token::TOK_SLASH || tok == token::TOK_MOD || tok == token::TOK_LPAREN || tok == token::TOK_RPAREN || tok == token::TOK_EQUAL || tok == token::TOK_NEQUAL || tok == token::TOK_LEQ || tok == token::TOK_GEQ || tok == token::TOK_LT || tok == token::TOK_GT || tok == token::TOK_NOT || tok == token::TOK_OR || tok == token::TOK_AND || tok == token::TOK_SEMICOLON || tok == token::TOK_COMMA || tok == token::TOK_LSQUARE || tok == token::TOK_RSQUARE || tok == token::TOK_IMPLY || tok == token::TOK_ALL || tok == token::TOK_SOME || tok == token::TOK_TRUE || tok == token::TOK_FALSE || tok == 285 || tok == 286 || tok == 287 || tok == 288);
       }
 #else
       symbol_type (int tok, const location_type& l)
         : super_type(token_type (tok), l)
       {
-        YYASSERT (tok == token::TOK_EOF || tok == token::TOK_PLUS || tok == token::TOK_MINUS || tok == token::TOK_STAR || tok == token::TOK_SLASH || tok == token::TOK_MOD || tok == token::TOK_LPAREN || tok == token::TOK_RPAREN || tok == token::TOK_EQUAL || tok == token::TOK_NEQUAL || tok == token::TOK_LEQ || tok == token::TOK_GEQ || tok == token::TOK_LT || tok == token::TOK_GT || tok == token::TOK_NOT || tok == token::TOK_OR || tok == token::TOK_AND || tok == token::TOK_ASSIGN || tok == token::TOK_SEMICOLON || tok == token::TOK_COMMA || tok == token::TOK_IF || tok == token::TOK_THEN || tok == token::TOK_ELSE || tok == token::TOK_END || tok == token::TOK_WHILE || tok == token::TOK_DO || tok == token::TOK_INV || tok == token::TOK_LSQUARE || tok == token::TOK_RSQUARE || tok == token::TOK_PROGRAM || tok == token::TOK_PRE || tok == token::TOK_POST || tok == token::TOK_IS || tok == token::TOK_IMPLY || tok == token::TOK_ALL || tok == token::TOK_SOME);
+        YYASSERT (tok == token::TOK_EOF || tok == token::TOK_PLUS || tok == token::TOK_MINUS || tok == token::TOK_STAR || tok == token::TOK_SLASH || tok == token::TOK_MOD || tok == token::TOK_LPAREN || tok == token::TOK_RPAREN || tok == token::TOK_EQUAL || tok == token::TOK_NEQUAL || tok == token::TOK_LEQ || tok == token::TOK_GEQ || tok == token::TOK_LT || tok == token::TOK_GT || tok == token::TOK_NOT || tok == token::TOK_OR || tok == token::TOK_AND || tok == token::TOK_SEMICOLON || tok == token::TOK_COMMA || tok == token::TOK_LSQUARE || tok == token::TOK_RSQUARE || tok == token::TOK_IMPLY || tok == token::TOK_ALL || tok == token::TOK_SOME || tok == token::TOK_TRUE || tok == token::TOK_FALSE || tok == 285 || tok == 286 || tok == 287 || tok == 288);
       }
 #endif
 #if 201103L <= YY_CPLUSPLUS
@@ -1350,21 +1160,6 @@ switch (yytype)
 #if 201103L <= YY_CPLUSPLUS
       static
       symbol_type
-      make_ASSIGN (location_type l)
-      {
-        return symbol_type (token::TOK_ASSIGN, std::move (l));
-      }
-#else
-      static
-      symbol_type
-      make_ASSIGN (const location_type& l)
-      {
-        return symbol_type (token::TOK_ASSIGN, l);
-      }
-#endif
-#if 201103L <= YY_CPLUSPLUS
-      static
-      symbol_type
       make_SEMICOLON (location_type l)
       {
         return symbol_type (token::TOK_SEMICOLON, std::move (l));
@@ -1395,111 +1190,6 @@ switch (yytype)
 #if 201103L <= YY_CPLUSPLUS
       static
       symbol_type
-      make_IF (location_type l)
-      {
-        return symbol_type (token::TOK_IF, std::move (l));
-      }
-#else
-      static
-      symbol_type
-      make_IF (const location_type& l)
-      {
-        return symbol_type (token::TOK_IF, l);
-      }
-#endif
-#if 201103L <= YY_CPLUSPLUS
-      static
-      symbol_type
-      make_THEN (location_type l)
-      {
-        return symbol_type (token::TOK_THEN, std::move (l));
-      }
-#else
-      static
-      symbol_type
-      make_THEN (const location_type& l)
-      {
-        return symbol_type (token::TOK_THEN, l);
-      }
-#endif
-#if 201103L <= YY_CPLUSPLUS
-      static
-      symbol_type
-      make_ELSE (location_type l)
-      {
-        return symbol_type (token::TOK_ELSE, std::move (l));
-      }
-#else
-      static
-      symbol_type
-      make_ELSE (const location_type& l)
-      {
-        return symbol_type (token::TOK_ELSE, l);
-      }
-#endif
-#if 201103L <= YY_CPLUSPLUS
-      static
-      symbol_type
-      make_END (location_type l)
-      {
-        return symbol_type (token::TOK_END, std::move (l));
-      }
-#else
-      static
-      symbol_type
-      make_END (const location_type& l)
-      {
-        return symbol_type (token::TOK_END, l);
-      }
-#endif
-#if 201103L <= YY_CPLUSPLUS
-      static
-      symbol_type
-      make_WHILE (location_type l)
-      {
-        return symbol_type (token::TOK_WHILE, std::move (l));
-      }
-#else
-      static
-      symbol_type
-      make_WHILE (const location_type& l)
-      {
-        return symbol_type (token::TOK_WHILE, l);
-      }
-#endif
-#if 201103L <= YY_CPLUSPLUS
-      static
-      symbol_type
-      make_DO (location_type l)
-      {
-        return symbol_type (token::TOK_DO, std::move (l));
-      }
-#else
-      static
-      symbol_type
-      make_DO (const location_type& l)
-      {
-        return symbol_type (token::TOK_DO, l);
-      }
-#endif
-#if 201103L <= YY_CPLUSPLUS
-      static
-      symbol_type
-      make_INV (location_type l)
-      {
-        return symbol_type (token::TOK_INV, std::move (l));
-      }
-#else
-      static
-      symbol_type
-      make_INV (const location_type& l)
-      {
-        return symbol_type (token::TOK_INV, l);
-      }
-#endif
-#if 201103L <= YY_CPLUSPLUS
-      static
-      symbol_type
       make_LSQUARE (location_type l)
       {
         return symbol_type (token::TOK_LSQUARE, std::move (l));
@@ -1525,66 +1215,6 @@ switch (yytype)
       make_RSQUARE (const location_type& l)
       {
         return symbol_type (token::TOK_RSQUARE, l);
-      }
-#endif
-#if 201103L <= YY_CPLUSPLUS
-      static
-      symbol_type
-      make_PROGRAM (location_type l)
-      {
-        return symbol_type (token::TOK_PROGRAM, std::move (l));
-      }
-#else
-      static
-      symbol_type
-      make_PROGRAM (const location_type& l)
-      {
-        return symbol_type (token::TOK_PROGRAM, l);
-      }
-#endif
-#if 201103L <= YY_CPLUSPLUS
-      static
-      symbol_type
-      make_PRE (location_type l)
-      {
-        return symbol_type (token::TOK_PRE, std::move (l));
-      }
-#else
-      static
-      symbol_type
-      make_PRE (const location_type& l)
-      {
-        return symbol_type (token::TOK_PRE, l);
-      }
-#endif
-#if 201103L <= YY_CPLUSPLUS
-      static
-      symbol_type
-      make_POST (location_type l)
-      {
-        return symbol_type (token::TOK_POST, std::move (l));
-      }
-#else
-      static
-      symbol_type
-      make_POST (const location_type& l)
-      {
-        return symbol_type (token::TOK_POST, l);
-      }
-#endif
-#if 201103L <= YY_CPLUSPLUS
-      static
-      symbol_type
-      make_IS (location_type l)
-      {
-        return symbol_type (token::TOK_IS, std::move (l));
-      }
-#else
-      static
-      symbol_type
-      make_IS (const location_type& l)
-      {
-        return symbol_type (token::TOK_IS, l);
       }
 #endif
 #if 201103L <= YY_CPLUSPLUS
@@ -1630,6 +1260,36 @@ switch (yytype)
       make_SOME (const location_type& l)
       {
         return symbol_type (token::TOK_SOME, l);
+      }
+#endif
+#if 201103L <= YY_CPLUSPLUS
+      static
+      symbol_type
+      make_TRUE (location_type l)
+      {
+        return symbol_type (token::TOK_TRUE, std::move (l));
+      }
+#else
+      static
+      symbol_type
+      make_TRUE (const location_type& l)
+      {
+        return symbol_type (token::TOK_TRUE, l);
+      }
+#endif
+#if 201103L <= YY_CPLUSPLUS
+      static
+      symbol_type
+      make_FALSE (location_type l)
+      {
+        return symbol_type (token::TOK_FALSE, std::move (l));
+      }
+#else
+      static
+      symbol_type
+      make_FALSE (const location_type& l)
+      {
+        return symbol_type (token::TOK_FALSE, l);
       }
 #endif
 #if 201103L <= YY_CPLUSPLUS
@@ -1700,7 +1360,7 @@ switch (yytype)
     // Tables.
   // YYPACT[STATE-NUM] -- Index in YYTABLE of the portion describing
   // STATE-NUM.
-  static const short yypact_[];
+  static const signed char yypact_[];
 
   // YYDEFACT[STATE-NUM] -- Default reduction number in state STATE-NUM.
   // Performed when YYTABLE does not specify something else to do.  Zero
@@ -1708,7 +1368,7 @@ switch (yytype)
   static const unsigned char yydefact_[];
 
   // YYPGOTO[NTERM-NUM].
-  static const short yypgoto_[];
+  static const signed char yypgoto_[];
 
   // YYDEFGOTO[NTERM-NUM].
   static const signed char yydefgoto_[];
@@ -1739,7 +1399,7 @@ switch (yytype)
     static const char* const yytname_[];
 #if GCDEBUG
   // YYRLINE[YYN] -- Source line where rule number YYN was defined.
-  static const unsigned short yyrline_[];
+  static const unsigned char yyrline_[];
     /// Report on the debug stream that the rule \a r is going to be reduced.
     virtual void yy_reduce_print_ (int r);
     /// Print the state stack on the debug stream.
@@ -1968,12 +1628,12 @@ switch (yytype)
     enum
     {
       yyeof_ = 0,
-      yylast_ = 200,     ///< Last index in yytable_.
-      yynnts_ = 19,  ///< Number of nonterminal symbols.
-      yyfinal_ = 4, ///< Termination state number.
+      yylast_ = 130,     ///< Last index in yytable_.
+      yynnts_ = 10,  ///< Number of nonterminal symbols.
+      yyfinal_ = 25, ///< Termination state number.
       yyterror_ = 1,
       yyerrcode_ = 256,
-      yyntokens_ = 40  ///< Number of tokens.
+      yyntokens_ = 34  ///< Number of tokens.
     };
 
 
@@ -2019,10 +1679,9 @@ switch (yytype)
        2,     2,     2,     2,     2,     2,     1,     2,     3,     4,
        5,     6,     7,     8,     9,    10,    11,    12,    13,    14,
       15,    16,    17,    18,    19,    20,    21,    22,    23,    24,
-      25,    26,    27,    28,    29,    30,    31,    32,    33,    34,
-      35,    36,    37,    38,    39
+      25,    26,    27,    28,    29,    30,    31,    32,    33
     };
-    const unsigned user_token_number_max_ = 294;
+    const unsigned user_token_number_max_ = 288;
     const token_number_type undef_token_ = 2;
 
     if (static_cast<int> (t) <= yyeof_)
@@ -2043,83 +1702,47 @@ switch (yytype)
   {
     switch (this->type_get ())
     {
-      case 41: // aexp
-        value.move< gc::ast::ArithmeticExpression* > (std::move (that.value));
-        break;
-
-      case 57: // assertion
+      case 38: // assertion
         value.move< gc::ast::Assertion* > (std::move (that.value));
         break;
 
-      case 50: // block
-        value.move< gc::ast::Block* > (std::move (that.value));
+      case 37: // command
+        value.move< gc::ast::Command* > (std::move (that.value));
         break;
 
-      case 44: // bexp
-        value.move< gc::ast::BooleanExpression* > (std::move (that.value));
-        break;
-
-      case 45: // comp
+      case 39: // comparison
         value.move< gc::ast::Comparison* > (std::move (that.value));
         break;
 
-      case 43: // constant
+      case 42: // constant
         value.move< gc::ast::Constant* > (std::move (that.value));
         break;
 
-      case 49: // inv
-        value.move< gc::ast::Invariant* > (std::move (that.value));
+      case 41: // expression
+        value.move< gc::ast::Expression* > (std::move (that.value));
         break;
 
-      case 47: // location
+      case 40: // location
         value.move< gc::ast::Location* > (std::move (that.value));
         break;
 
-      case 56: // post
-        value.move< gc::ast::PostCondition* > (std::move (that.value));
-        break;
-
-      case 54: // pre
-        value.move< gc::ast::PreCondition* > (std::move (that.value));
-        break;
-
-      case 52: // prog
+      case 35: // prog
         value.move< gc::ast::Program* > (std::move (that.value));
         break;
 
-      case 42: // reference
-        value.move< gc::ast::Reference* > (std::move (that.value));
-        break;
-
-      case 46: // stmt
-        value.move< gc::ast::Statement* > (std::move (that.value));
-        break;
-
-      case 39: // "number"
+      case 29: // "number"
         value.move< int > (std::move (that.value));
         break;
 
-      case 38: // "identifier"
+      case 28: // "identifier"
         value.move< std::string > (std::move (that.value));
         break;
 
-      case 48: // inv_list
-        value.move< std::vector<gc::ast::Invariant*> > (std::move (that.value));
+      case 36: // commands
+        value.move< std::vector<gc::ast::Command*> > (std::move (that.value));
         break;
 
-      case 55: // post_list
-        value.move< std::vector<gc::ast::PostCondition*> > (std::move (that.value));
-        break;
-
-      case 53: // pre_list
-        value.move< std::vector<gc::ast::PreCondition*> > (std::move (that.value));
-        break;
-
-      case 51: // stmt_list
-        value.move< std::vector<gc::ast::Statement*> > (std::move (that.value));
-        break;
-
-      case 58: // identifier_list
+      case 43: // identifiers
         value.move< std::vector<std::string> > (std::move (that.value));
         break;
 
@@ -2138,83 +1761,47 @@ switch (yytype)
   {
     switch (this->type_get ())
     {
-      case 41: // aexp
-        value.copy< gc::ast::ArithmeticExpression* > (YY_MOVE (that.value));
-        break;
-
-      case 57: // assertion
+      case 38: // assertion
         value.copy< gc::ast::Assertion* > (YY_MOVE (that.value));
         break;
 
-      case 50: // block
-        value.copy< gc::ast::Block* > (YY_MOVE (that.value));
+      case 37: // command
+        value.copy< gc::ast::Command* > (YY_MOVE (that.value));
         break;
 
-      case 44: // bexp
-        value.copy< gc::ast::BooleanExpression* > (YY_MOVE (that.value));
-        break;
-
-      case 45: // comp
+      case 39: // comparison
         value.copy< gc::ast::Comparison* > (YY_MOVE (that.value));
         break;
 
-      case 43: // constant
+      case 42: // constant
         value.copy< gc::ast::Constant* > (YY_MOVE (that.value));
         break;
 
-      case 49: // inv
-        value.copy< gc::ast::Invariant* > (YY_MOVE (that.value));
+      case 41: // expression
+        value.copy< gc::ast::Expression* > (YY_MOVE (that.value));
         break;
 
-      case 47: // location
+      case 40: // location
         value.copy< gc::ast::Location* > (YY_MOVE (that.value));
         break;
 
-      case 56: // post
-        value.copy< gc::ast::PostCondition* > (YY_MOVE (that.value));
-        break;
-
-      case 54: // pre
-        value.copy< gc::ast::PreCondition* > (YY_MOVE (that.value));
-        break;
-
-      case 52: // prog
+      case 35: // prog
         value.copy< gc::ast::Program* > (YY_MOVE (that.value));
         break;
 
-      case 42: // reference
-        value.copy< gc::ast::Reference* > (YY_MOVE (that.value));
-        break;
-
-      case 46: // stmt
-        value.copy< gc::ast::Statement* > (YY_MOVE (that.value));
-        break;
-
-      case 39: // "number"
+      case 29: // "number"
         value.copy< int > (YY_MOVE (that.value));
         break;
 
-      case 38: // "identifier"
+      case 28: // "identifier"
         value.copy< std::string > (YY_MOVE (that.value));
         break;
 
-      case 48: // inv_list
-        value.copy< std::vector<gc::ast::Invariant*> > (YY_MOVE (that.value));
+      case 36: // commands
+        value.copy< std::vector<gc::ast::Command*> > (YY_MOVE (that.value));
         break;
 
-      case 55: // post_list
-        value.copy< std::vector<gc::ast::PostCondition*> > (YY_MOVE (that.value));
-        break;
-
-      case 53: // pre_list
-        value.copy< std::vector<gc::ast::PreCondition*> > (YY_MOVE (that.value));
-        break;
-
-      case 51: // stmt_list
-        value.copy< std::vector<gc::ast::Statement*> > (YY_MOVE (that.value));
-        break;
-
-      case 58: // identifier_list
+      case 43: // identifiers
         value.copy< std::vector<std::string> > (YY_MOVE (that.value));
         break;
 
@@ -2240,83 +1827,47 @@ switch (yytype)
     super_type::move (s);
     switch (this->type_get ())
     {
-      case 41: // aexp
-        value.move< gc::ast::ArithmeticExpression* > (YY_MOVE (s.value));
-        break;
-
-      case 57: // assertion
+      case 38: // assertion
         value.move< gc::ast::Assertion* > (YY_MOVE (s.value));
         break;
 
-      case 50: // block
-        value.move< gc::ast::Block* > (YY_MOVE (s.value));
+      case 37: // command
+        value.move< gc::ast::Command* > (YY_MOVE (s.value));
         break;
 
-      case 44: // bexp
-        value.move< gc::ast::BooleanExpression* > (YY_MOVE (s.value));
-        break;
-
-      case 45: // comp
+      case 39: // comparison
         value.move< gc::ast::Comparison* > (YY_MOVE (s.value));
         break;
 
-      case 43: // constant
+      case 42: // constant
         value.move< gc::ast::Constant* > (YY_MOVE (s.value));
         break;
 
-      case 49: // inv
-        value.move< gc::ast::Invariant* > (YY_MOVE (s.value));
+      case 41: // expression
+        value.move< gc::ast::Expression* > (YY_MOVE (s.value));
         break;
 
-      case 47: // location
+      case 40: // location
         value.move< gc::ast::Location* > (YY_MOVE (s.value));
         break;
 
-      case 56: // post
-        value.move< gc::ast::PostCondition* > (YY_MOVE (s.value));
-        break;
-
-      case 54: // pre
-        value.move< gc::ast::PreCondition* > (YY_MOVE (s.value));
-        break;
-
-      case 52: // prog
+      case 35: // prog
         value.move< gc::ast::Program* > (YY_MOVE (s.value));
         break;
 
-      case 42: // reference
-        value.move< gc::ast::Reference* > (YY_MOVE (s.value));
-        break;
-
-      case 46: // stmt
-        value.move< gc::ast::Statement* > (YY_MOVE (s.value));
-        break;
-
-      case 39: // "number"
+      case 29: // "number"
         value.move< int > (YY_MOVE (s.value));
         break;
 
-      case 38: // "identifier"
+      case 28: // "identifier"
         value.move< std::string > (YY_MOVE (s.value));
         break;
 
-      case 48: // inv_list
-        value.move< std::vector<gc::ast::Invariant*> > (YY_MOVE (s.value));
+      case 36: // commands
+        value.move< std::vector<gc::ast::Command*> > (YY_MOVE (s.value));
         break;
 
-      case 55: // post_list
-        value.move< std::vector<gc::ast::PostCondition*> > (YY_MOVE (s.value));
-        break;
-
-      case 53: // pre_list
-        value.move< std::vector<gc::ast::PreCondition*> > (YY_MOVE (s.value));
-        break;
-
-      case 51: // stmt_list
-        value.move< std::vector<gc::ast::Statement*> > (YY_MOVE (s.value));
-        break;
-
-      case 58: // identifier_list
+      case 43: // identifiers
         value.move< std::vector<std::string> > (YY_MOVE (s.value));
         break;
 
@@ -2387,14 +1938,14 @@ switch (yytype)
        0,   256,   257,   258,   259,   260,   261,   262,   263,   264,
      265,   266,   267,   268,   269,   270,   271,   272,   273,   274,
      275,   276,   277,   278,   279,   280,   281,   282,   283,   284,
-     285,   286,   287,   288,   289,   290,   291,   292,   293,   294
+     285,   286,   287,   288
     };
     return token_type (yytoken_number_[type]);
   }
 
 #line 8 "/home/ferhat/git/vc-gen/gc/gc-parser.yy"
 } // gc
-#line 2398 "/home/ferhat/git/vc-gen/gc/recognizer/gc-parser.hpp"
+#line 1949 "/home/ferhat/git/vc-gen/gc/recognizer/gc-parser.hpp"
 
 
 

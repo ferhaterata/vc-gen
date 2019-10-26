@@ -5,7 +5,7 @@
 // -----------------------------------------------------------------------------
 
 #include "gc-driver.hpp"
-#include "printer-visitor.hpp"
+//#include "printer-visitor.hpp"
 #include "tools.hpp"
 #include <iostream>
 
@@ -28,8 +28,8 @@ int main(int argc, char* argv[]) {
 }
 
 void run(gc_driver& driver) {
-    gc::ast::PrinterVisitor visitor(driver.program);
-    std::cout << visitor.getOutput() << std::endl;
-    cout << "---------------------------------------------------------------\n";
-    delete driver.program;
+//    gc::ast::PrinterVisitor visitor(driver.program);
+//    std::cout << visitor.getOutput() << std::endl;
+//    cout << "---------------------------------------------------------------\n";
+//    delete driver.program;
 }

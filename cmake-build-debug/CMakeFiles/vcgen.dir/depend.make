@@ -6,22 +6,18 @@ CMakeFiles/vcgen.dir/gc/gc-driver.cpp.o: ../gc/recognizer/location.hh
 CMakeFiles/vcgen.dir/gc/gc-driver.cpp.o: ../gc/gc-driver.cpp
 CMakeFiles/vcgen.dir/gc/gc-driver.cpp.o: ../gc/gc-driver.hpp
 CMakeFiles/vcgen.dir/gc/gc-driver.cpp.o: ../gc/gc.hpp
-CMakeFiles/vcgen.dir/gc/gc-driver.cpp.o: ../gc/visitor.hpp
 
 CMakeFiles/vcgen.dir/gc/gc.cpp.o: ../gc/gc.cpp
 CMakeFiles/vcgen.dir/gc/gc.cpp.o: ../gc/gc.hpp
-CMakeFiles/vcgen.dir/gc/gc.cpp.o: ../gc/visitor.hpp
 
 CMakeFiles/vcgen.dir/gc/recognizer/gc-parser.cpp.o: ../gc/gc-driver.hpp
 CMakeFiles/vcgen.dir/gc/recognizer/gc-parser.cpp.o: ../gc/gc.hpp
-CMakeFiles/vcgen.dir/gc/recognizer/gc-parser.cpp.o: ../gc/visitor.hpp
 CMakeFiles/vcgen.dir/gc/recognizer/gc-parser.cpp.o: ../gc/recognizer/gc-parser.cpp
 CMakeFiles/vcgen.dir/gc/recognizer/gc-parser.cpp.o: ../gc/recognizer/gc-parser.hpp
 CMakeFiles/vcgen.dir/gc/recognizer/gc-parser.cpp.o: ../gc/recognizer/location.hh
 
 CMakeFiles/vcgen.dir/gc/recognizer/gc-scanner.cpp.o: ../gc/gc-driver.hpp
 CMakeFiles/vcgen.dir/gc/recognizer/gc-scanner.cpp.o: ../gc/gc.hpp
-CMakeFiles/vcgen.dir/gc/recognizer/gc-scanner.cpp.o: ../gc/visitor.hpp
 CMakeFiles/vcgen.dir/gc/recognizer/gc-scanner.cpp.o: ../gc/recognizer/gc-parser.hpp
 CMakeFiles/vcgen.dir/gc/recognizer/gc-scanner.cpp.o: ../gc/recognizer/gc-scanner.cpp
 CMakeFiles/vcgen.dir/gc/recognizer/gc-scanner.cpp.o: ../gc/recognizer/location.hh

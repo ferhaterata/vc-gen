@@ -44,39 +44,23 @@ blank [ \t]
 "/"         return gc::gc_parser::make_SLASH(loc);
 "("         return gc::gc_parser::make_LPAREN(loc);
 ")"         return gc::gc_parser::make_RPAREN(loc);
-
 "="         return gc::gc_parser::make_EQUAL(loc);
 "!="        return gc::gc_parser::make_NEQUAL(loc);
 "<="        return gc::gc_parser::make_LEQ(loc);
 ">="        return gc::gc_parser::make_GEQ(loc);
 "<"         return gc::gc_parser::make_LT(loc);
 ">"         return gc::gc_parser::make_GT(loc);
-
 "!"         return gc::gc_parser::make_NOT(loc);
 "||"        return gc::gc_parser::make_OR(loc);
 "&&"        return gc::gc_parser::make_AND(loc);
-
-":="        return gc::gc_parser::make_ASSIGN(loc);
 ";"         return gc::gc_parser::make_SEMICOLON(loc);
-","         return gc::gc_parser::make_COMMA(loc);
-"if"        return gc::gc_parser::make_IF(loc);
-"then"      return gc::gc_parser::make_THEN(loc);
-"else"      return gc::gc_parser::make_ELSE(loc);
-"end"       return gc::gc_parser::make_END(loc);
-"while"     return gc::gc_parser::make_WHILE(loc);
-"do"        return gc::gc_parser::make_DO(loc);
-"inv"       return gc::gc_parser::make_INV(loc);
 "["         return gc::gc_parser::make_LSQUARE(loc);
 "]"         return gc::gc_parser::make_RSQUARE(loc);
-
-"program"   return gc::gc_parser::make_PROGRAM(loc);
-"pre"       return gc::gc_parser::make_PRE(loc);
-"post"      return gc::gc_parser::make_POST(loc);
-"is"        return gc::gc_parser::make_IS(loc);
-
 "==>"       return gc::gc_parser::make_IMPLY(loc);
 "forall"    return gc::gc_parser::make_ALL(loc);
 "exists"    return gc::gc_parser::make_SOME(loc);
+"true"      return gc::gc_parser::make_TRUE(loc);
+"false"     return gc::gc_parser::make_FALSE(loc);
 
 {int}      {
   errno = 0;
@@ -103,7 +87,6 @@ gc_driver::scan_begin ()
       exit (EXIT_FAILURE);
     }
 }
-
 
 
 void

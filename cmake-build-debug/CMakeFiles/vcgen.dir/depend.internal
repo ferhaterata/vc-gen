@@ -7,22 +7,18 @@ CMakeFiles/vcgen.dir/gc/gc-driver.cpp.o
  /home/ferhat/git/vc-gen/gc/gc-driver.cpp
  /home/ferhat/git/vc-gen/gc/gc-driver.hpp
  /home/ferhat/git/vc-gen/gc/gc.hpp
- /home/ferhat/git/vc-gen/gc/visitor.hpp
 CMakeFiles/vcgen.dir/gc/gc.cpp.o
  /home/ferhat/git/vc-gen/gc/gc.cpp
  /home/ferhat/git/vc-gen/gc/gc.hpp
- /home/ferhat/git/vc-gen/gc/visitor.hpp
 CMakeFiles/vcgen.dir/gc/recognizer/gc-parser.cpp.o
  ../gc/gc-driver.hpp
  ../gc/gc.hpp
- ../gc/visitor.hpp
  /home/ferhat/git/vc-gen/gc/recognizer/gc-parser.cpp
  /home/ferhat/git/vc-gen/gc/recognizer/gc-parser.hpp
  /home/ferhat/git/vc-gen/gc/recognizer/location.hh
 CMakeFiles/vcgen.dir/gc/recognizer/gc-scanner.cpp.o
  ../gc/gc-driver.hpp
  ../gc/gc.hpp
- ../gc/visitor.hpp
  /home/ferhat/git/vc-gen/gc/recognizer/gc-parser.hpp
  /home/ferhat/git/vc-gen/gc/recognizer/gc-scanner.cpp
  /home/ferhat/git/vc-gen/gc/recognizer/location.hh

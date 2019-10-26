@@ -7,22 +7,22 @@
 #ifndef VCGEN_DRIVER_HHP
 #define VCGEN_DRIVER_HHP
 
-#include "vcgen-parser.hpp"
+#include "imp-parser.hpp"
 #include <map>
 #include <string>
 // Tell Flex the lexer's prototype ...
-#define YY_DECL imp::vcgen_parser::symbol_type implex(vcgen_driver& driver)
+#define YY_DECL imp::imp_parser::symbol_type implex(imp_driver& driver)
 
 // ... and declare it for the parser's sake.
 YY_DECL;
-// Conducting the whole scanning and parsing of vcgen.
+// Conducting the whole scanning and parsing of imp.
 
-class vcgen_driver {
+class imp_driver {
   public:
     /* the top level root node of our final AST */
     imp::ast::Program* program = nullptr;
-    vcgen_driver();
-    virtual ~vcgen_driver();
+    imp_driver();
+    virtual ~imp_driver();
 
     std::map<std::string, int> variables;
 

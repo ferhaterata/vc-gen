@@ -5,7 +5,7 @@
 %verbose                            /* Generate the parser description file. */
 
 %defines
-%define api.parser.class {vcgen_parser}
+%define api.parser.class {imp_parser}
 %define api.namespace {imp}
 %define api.prefix {imp}
 %define api.token.constructor
@@ -20,10 +20,10 @@
 #include <stack>
 #include <iterator>
 #include "imp.hpp"
-class vcgen_driver;
+class imp_driver;
 }
 
-%param { vcgen_driver& driver }     /* The parsing context. */
+%param { imp_driver& driver }     /* The parsing context. */
 
 %locations                          /* we request location tracking. */
 
@@ -38,7 +38,7 @@ class vcgen_driver;
 
 %code
 {
-# include "vcgen-driver.hpp"
+# include "imp-driver.hpp"
 
 template <class T, class V>
 T&& enlist(T& t, V& v)
@@ -260,7 +260,7 @@ identifier_list:
 %%
 
 void
-imp::vcgen_parser::error (const location_type& l, const std::string& m)
+imp::imp_parser::error (const location_type& l, const std::string& m)
 {
   driver.error (l, m);
 }

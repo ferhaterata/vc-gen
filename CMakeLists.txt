@@ -13,15 +13,15 @@ find_package(BISON)
 find_package(FLEX)
 
 BISON_TARGET(
-        vcgen-parser
-        imp/vcgen-parser.yy
-        ${CMAKE_CURRENT_SOURCE_DIR}/imp/recognizer/vcgen-parser.cpp
+        imp-parser
+        imp/imp-parser.yy
+        ${CMAKE_CURRENT_SOURCE_DIR}/imp/recognizer/imp-parser.cpp
         COMPILE_FLAGS "--report=state --graph --warnings=all")
 FLEX_TARGET(
-        vcgen-scanner
-        imp/vcgen-scanner.ll
-        ${CMAKE_CURRENT_SOURCE_DIR}/imp/recognizer/vcgen-scanner.cpp)
-ADD_FLEX_BISON_DEPENDENCY(vcgen-scanner vcgen-parser)
+        imp-scanner
+        imp/imp-scanner.ll
+        ${CMAKE_CURRENT_SOURCE_DIR}/imp/recognizer/imp-scanner.cpp)
+ADD_FLEX_BISON_DEPENDENCY(imp-scanner imp-parser)
 
 #BISON_TARGET(gc-parser gc/gc-parser.yy ${CMAKE_CURRENT_SOURCE_DIR}/gc/recognizer/gc-parser.cpp
 #        COMPILE_FLAGS "--report=state --graph --warnings=all")
@@ -31,10 +31,10 @@ ADD_FLEX_BISON_DEPENDENCY(vcgen-scanner vcgen-parser)
 add_executable(vcgen
         vcgen.cpp
         ##########
-        imp/vcgen-driver.cpp
-        imp/vcgen-driver.hpp
-        ${BISON_vcgen-parser_OUTPUTS}
-        ${FLEX_vcgen-scanner_OUTPUTS}
+        imp/imp-driver.cpp
+        imp/imp-driver.hpp
+        ${BISON_imp-parser_OUTPUTS}
+        ${FLEX_imp-scanner_OUTPUTS}
         imp/imp.cpp
         imp/imp.hpp
         imp/visitor.hpp

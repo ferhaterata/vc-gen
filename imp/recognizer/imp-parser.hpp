@@ -32,7 +32,7 @@
 
 
 /**
- ** \file /home/ferhat/git/vc-gen/imp/recognizer/vcgen-parser.hpp
+ ** \file imp-parser.tab.hh
  ** Define the imp::parser class.
  */
 
@@ -41,19 +41,19 @@
 // Undocumented macros, especially those whose name start with YY_,
 // are private implementation details.  Do not rely on them.
 
-#ifndef YY_IMP_HOME_FERHAT_GIT_VC_GEN_IMP_RECOGNIZER_VCGEN_PARSER_HPP_INCLUDED
-# define YY_IMP_HOME_FERHAT_GIT_VC_GEN_IMP_RECOGNIZER_VCGEN_PARSER_HPP_INCLUDED
+#ifndef YY_IMP_IMP_PARSER_TAB_HH_INCLUDED
+# define YY_IMP_IMP_PARSER_TAB_HH_INCLUDED
 // //                    "%code requires" blocks.
-#line 17 "/home/ferhat/git/vc-gen/imp/vcgen-parser.yy"
+#line 17 "imp/imp-parser.yy"
 
 #include <string>
 #include <vector>
 #include <stack>
 #include <iterator>
 #include "imp.hpp"
-class vcgen_driver;
+class imp_driver;
 
-#line 57 "/home/ferhat/git/vc-gen/imp/recognizer/vcgen-parser.hpp"
+#line 57 "imp-parser.tab.hh"
 
 # include <cassert>
 # include <cstdlib> // std::abort
@@ -98,7 +98,7 @@ class vcgen_driver;
 #else
 # define YY_CONSTEXPR
 #endif
-# include "location.hh"
+# include "location.hpp"
 #include <typeinfo>
 #ifndef YYASSERT
 # include <cassert>
@@ -175,15 +175,15 @@ class vcgen_driver;
 # endif /* ! defined YYDEBUG */
 #endif  /* ! defined IMPDEBUG */
 
-#line 9 "/home/ferhat/git/vc-gen/imp/vcgen-parser.yy"
+#line 9 "imp/imp-parser.yy"
 namespace imp {
-#line 181 "/home/ferhat/git/vc-gen/imp/recognizer/vcgen-parser.hpp"
+#line 181 "imp-parser.tab.hh"
 
 
 
 
   /// A Bison parser.
-  class vcgen_parser
+  class imp_parser
   {
   public:
 #ifndef IMPSTYPE
@@ -1058,8 +1058,8 @@ switch (yytype)
     };
 
     /// Build a parser object.
-    vcgen_parser (vcgen_driver& driver_yyarg);
-    virtual ~vcgen_parser ();
+    imp_parser (imp_driver& driver_yyarg);
+    virtual ~imp_parser ();
 
     /// Parse.  An alias for parse ().
     /// \returns  0 iff parsing succeeded.
@@ -1666,8 +1666,8 @@ switch (yytype)
 
   private:
     /// This class is not copiable.
-    vcgen_parser (const vcgen_parser&);
-    vcgen_parser& operator= (const vcgen_parser&);
+    imp_parser (const imp_parser&);
+    imp_parser& operator= (const imp_parser&);
 
     /// State numbers.
     typedef int state_type;
@@ -1978,12 +1978,12 @@ switch (yytype)
 
 
     // User arguments.
-    vcgen_driver& driver;
+    imp_driver& driver;
   };
 
   inline
-  vcgen_parser::token_number_type
-  vcgen_parser::yytranslate_ (token_type t)
+  imp_parser::token_number_type
+  imp_parser::yytranslate_ (token_type t)
   {
     // YYTRANSLATE[TOKEN-NUM] -- Symbol number corresponding to
     // TOKEN-NUM as returned by yylex.
@@ -2036,7 +2036,7 @@ switch (yytype)
   // basic_symbol.
 #if 201103L <= YY_CPLUSPLUS
   template <typename Base>
-  vcgen_parser::basic_symbol<Base>::basic_symbol (basic_symbol&& that)
+  imp_parser::basic_symbol<Base>::basic_symbol (basic_symbol&& that)
     : Base (std::move (that))
     , value ()
     , location (std::move (that.location))
@@ -2131,7 +2131,7 @@ switch (yytype)
 #endif
 
   template <typename Base>
-  vcgen_parser::basic_symbol<Base>::basic_symbol (const basic_symbol& that)
+  imp_parser::basic_symbol<Base>::basic_symbol (const basic_symbol& that)
     : Base (that)
     , value ()
     , location (that.location)
@@ -2228,14 +2228,14 @@ switch (yytype)
 
   template <typename Base>
   bool
-  vcgen_parser::basic_symbol<Base>::empty () const YY_NOEXCEPT
+  imp_parser::basic_symbol<Base>::empty () const YY_NOEXCEPT
   {
     return Base::type_get () == empty_symbol;
   }
 
   template <typename Base>
   void
-  vcgen_parser::basic_symbol<Base>::move (basic_symbol& s)
+  imp_parser::basic_symbol<Base>::move (basic_symbol& s)
   {
     super_type::move (s);
     switch (this->type_get ())
@@ -2329,13 +2329,13 @@ switch (yytype)
 
   // by_type.
   inline
-  vcgen_parser::by_type::by_type ()
+  imp_parser::by_type::by_type ()
     : type (empty_symbol)
   {}
 
 #if 201103L <= YY_CPLUSPLUS
   inline
-  vcgen_parser::by_type::by_type (by_type&& that)
+  imp_parser::by_type::by_type (by_type&& that)
     : type (that.type)
   {
     that.clear ();
@@ -2343,25 +2343,25 @@ switch (yytype)
 #endif
 
   inline
-  vcgen_parser::by_type::by_type (const by_type& that)
+  imp_parser::by_type::by_type (const by_type& that)
     : type (that.type)
   {}
 
   inline
-  vcgen_parser::by_type::by_type (token_type t)
+  imp_parser::by_type::by_type (token_type t)
     : type (yytranslate_ (t))
   {}
 
   inline
   void
-  vcgen_parser::by_type::clear ()
+  imp_parser::by_type::clear ()
   {
     type = empty_symbol;
   }
 
   inline
   void
-  vcgen_parser::by_type::move (by_type& that)
+  imp_parser::by_type::move (by_type& that)
   {
     type = that.type;
     that.clear ();
@@ -2369,14 +2369,14 @@ switch (yytype)
 
   inline
   int
-  vcgen_parser::by_type::type_get () const YY_NOEXCEPT
+  imp_parser::by_type::type_get () const YY_NOEXCEPT
   {
     return type;
   }
 
   inline
-  vcgen_parser::token_type
-  vcgen_parser::by_type::token () const YY_NOEXCEPT
+  imp_parser::token_type
+  imp_parser::by_type::token () const YY_NOEXCEPT
   {
     // YYTOKNUM[NUM] -- (External) token number corresponding to the
     // (internal) symbol number NUM (which must be that of a token).  */
@@ -2392,12 +2392,12 @@ switch (yytype)
     return token_type (yytoken_number_[type]);
   }
 
-#line 9 "/home/ferhat/git/vc-gen/imp/vcgen-parser.yy"
+#line 9 "imp/imp-parser.yy"
 } // imp
-#line 2398 "/home/ferhat/git/vc-gen/imp/recognizer/vcgen-parser.hpp"
+#line 2398 "imp-parser.tab.hh"
 
 
 
 
 
-#endif // !YY_IMP_HOME_FERHAT_GIT_VC_GEN_IMP_RECOGNIZER_VCGEN_PARSER_HPP_INCLUDED
+#endif // !YY_IMP_IMP_PARSER_TAB_HH_INCLUDED

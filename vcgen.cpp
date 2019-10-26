@@ -1,19 +1,19 @@
 //  ----------------------------------------------------------------------------
-//  Header file for the vcgen class.                                   vcgen.cpp
+//  Header file for the imp class.                                     imp.cpp
 //  Created by Ferhat Erata <ferhat.erata@yale.edu> on October 23, 2019.
 //  Copyright (c) 2019 Yale University. All rights reserved.
 // -----------------------------------------------------------------------------
 
+#include "imp-driver.hpp"
 #include "printer-visitor.hpp"
 #include "tools.hpp"
-#include "vcgen-driver.hpp"
 #include <iostream>
 
-void run(vcgen_driver&);
+void run(imp_driver&);
 
 int main(int argc, char* argv[]) {
     banner();
-    vcgen_driver driver;
+    imp_driver driver;
     for (int i = 1; i < argc; ++i)
         if (argv[i] == std::string("-p"))
             driver.trace_parsing = true;
@@ -27,7 +27,7 @@ int main(int argc, char* argv[]) {
     return 0;
 }
 
-void run(vcgen_driver& driver) {
+void run(imp_driver& driver) {
     imp::ast::PrinterVisitor visitor(driver.program);
     std::cout << visitor.getOutput() << std::endl;
     cout << "---------------------------------------------------------------\n";

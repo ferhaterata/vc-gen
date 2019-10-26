@@ -1,35 +1,35 @@
 //  ----------------------------------------------------------------------------
-//  Implementation file for the vcgen-driver class.             vcgen-driver.cpp
+//  Implementation file for the imp-driver class.             imp-driver.cpp
 //  Created by Ferhat Erata <ferhat.erata@yale.edu> on October 23, 2019.
 //  Copyright (c) 2019 Yale University. All rights reserved.
 // -----------------------------------------------------------------------------
 
-#include "vcgen-driver.hpp"
+#include "imp-driver.hpp"
 #include "imp.hpp"
-#include "vcgen-parser.hpp"
+#include "imp-parser.hpp"
 #include <fstream>
 
 extern imp::ast::Program* program;
 
 
-vcgen_driver::vcgen_driver() : trace_scanning(false), trace_parsing(false) {
+imp_driver::imp_driver() : trace_scanning(false), trace_parsing(false) {
     variables["one"] = 1;
     variables["two"] = 2;
 }
 
-vcgen_driver::~vcgen_driver() {}
+imp_driver::~imp_driver() {}
 
-int vcgen_driver::parse(const std::string& f) {
+int imp_driver::parse(const std::string& f) {
     file = f;
     scan_begin();
-    imp::vcgen_parser parser(*this);
+    imp::imp_parser parser(*this);
     parser.set_debug_level(trace_parsing);
     int res = parser.parse();
     scan_end();
     return res;
 }
 
-void vcgen_driver::error(const imp::location& l, const std::string& m) {
+void imp_driver::error(const imp::location& l, const std::string& m) {
     std::cerr << l << ": " << m << std::endl;
     // For undefined tokens, bison currently just tells us something
     // like 'unexpected $undefined' without printing the offending
@@ -43,9 +43,9 @@ void vcgen_driver::error(const imp::location& l, const std::string& m) {
     std::cerr << std::string(len, '^') << std::endl;
 }
 
-void vcgen_driver::error(const std::string& m) { std::cerr << m << std::endl; }
+void imp_driver::error(const std::string& m) { std::cerr << m << std::endl; }
 
-std::string vcgen_driver::getLine(unsigned lineno) {
+std::string imp_driver::getLine(unsigned lineno) {
     std::ifstream is(file);
     std::string line;
     if (is.is_open()) {

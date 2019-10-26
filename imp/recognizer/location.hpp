@@ -31,12 +31,12 @@
 // version 2.2 of Bison.
 
 /**
- ** \file /home/ferhat/git/vc-gen/imp/recognizer/location.hh
+ ** \file location.hh
  ** Define the imp::location class.
  */
 
-#ifndef YY_IMP_HOME_FERHAT_GIT_VC_GEN_IMP_RECOGNIZER_LOCATION_HH_INCLUDED
-# define YY_IMP_HOME_FERHAT_GIT_VC_GEN_IMP_RECOGNIZER_LOCATION_HH_INCLUDED
+#ifndef YY_IMP_LOCATION_HH_INCLUDED
+# define YY_IMP_LOCATION_HH_INCLUDED
 
 # include <algorithm> // std::max
 # include <iostream>
@@ -54,9 +54,9 @@
 #  endif
 # endif
 
-#line 9 "/home/ferhat/git/vc-gen/imp/vcgen-parser.yy"
+#line 9 "imp/imp-parser.yy"
 namespace imp {
-#line 60 "/home/ferhat/git/vc-gen/imp/recognizer/location.hh"
+#line 60 "location.hh"
 
   /// A point in a source file.
   class position
@@ -317,8 +317,8 @@ namespace imp {
     return ostr;
   }
 
-#line 9 "/home/ferhat/git/vc-gen/imp/vcgen-parser.yy"
+#line 9 "imp/imp-parser.yy"
 } // imp
-#line 323 "/home/ferhat/git/vc-gen/imp/recognizer/location.hh"
+#line 323 "location.hh"
 
-#endif // !YY_IMP_HOME_FERHAT_GIT_VC_GEN_IMP_RECOGNIZER_LOCATION_HH_INCLUDED
+#endif // !YY_IMP_LOCATION_HH_INCLUDED

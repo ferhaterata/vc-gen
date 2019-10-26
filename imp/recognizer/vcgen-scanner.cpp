@@ -9,30 +9,30 @@
 /* %not-for-header */
 /* %if-c-only */
 /* %if-not-reentrant */
-#define yy_create_buffer gc_create_buffer
-#define yy_delete_buffer gc_delete_buffer
-#define yy_scan_buffer gc_scan_buffer
-#define yy_scan_string gc_scan_string
-#define yy_scan_bytes gc_scan_bytes
-#define yy_init_buffer gc_init_buffer
-#define yy_flush_buffer gc_flush_buffer
-#define yy_load_buffer_state gc_load_buffer_state
-#define yy_switch_to_buffer gc_switch_to_buffer
-#define yypush_buffer_state gcpush_buffer_state
-#define yypop_buffer_state gcpop_buffer_state
-#define yyensure_buffer_stack gcensure_buffer_stack
-#define yy_flex_debug gc_flex_debug
-#define yyin gcin
-#define yyleng gcleng
-#define yylex gclex
-#define yylineno gclineno
-#define yyout gcout
-#define yyrestart gcrestart
-#define yytext gctext
-#define yywrap gcwrap
-#define yyalloc gcalloc
-#define yyrealloc gcrealloc
-#define yyfree gcfree
+#define yy_create_buffer imp_create_buffer
+#define yy_delete_buffer imp_delete_buffer
+#define yy_scan_buffer imp_scan_buffer
+#define yy_scan_string imp_scan_string
+#define yy_scan_bytes imp_scan_bytes
+#define yy_init_buffer imp_init_buffer
+#define yy_flush_buffer imp_flush_buffer
+#define yy_load_buffer_state imp_load_buffer_state
+#define yy_switch_to_buffer imp_switch_to_buffer
+#define yypush_buffer_state imppush_buffer_state
+#define yypop_buffer_state imppop_buffer_state
+#define yyensure_buffer_stack impensure_buffer_stack
+#define yy_flex_debug imp_flex_debug
+#define yyin impin
+#define yyleng impleng
+#define yylex implex
+#define yylineno implineno
+#define yyout impout
+#define yyrestart imprestart
+#define yytext imptext
+#define yywrap impwrap
+#define yyalloc impalloc
+#define yyrealloc imprealloc
+#define yyfree impfree
 
 /* %endif */
 /* %endif */
@@ -51,241 +51,241 @@
 
 /* %if-c-only */
 #ifdef yy_create_buffer
-#define gc_create_buffer_ALREADY_DEFINED
+#define imp_create_buffer_ALREADY_DEFINED
 #else
-#define yy_create_buffer gc_create_buffer
+#define yy_create_buffer imp_create_buffer
 #endif
 
 #ifdef yy_delete_buffer
-#define gc_delete_buffer_ALREADY_DEFINED
+#define imp_delete_buffer_ALREADY_DEFINED
 #else
-#define yy_delete_buffer gc_delete_buffer
+#define yy_delete_buffer imp_delete_buffer
 #endif
 
 #ifdef yy_scan_buffer
-#define gc_scan_buffer_ALREADY_DEFINED
+#define imp_scan_buffer_ALREADY_DEFINED
 #else
-#define yy_scan_buffer gc_scan_buffer
+#define yy_scan_buffer imp_scan_buffer
 #endif
 
 #ifdef yy_scan_string
-#define gc_scan_string_ALREADY_DEFINED
+#define imp_scan_string_ALREADY_DEFINED
 #else
-#define yy_scan_string gc_scan_string
+#define yy_scan_string imp_scan_string
 #endif
 
 #ifdef yy_scan_bytes
-#define gc_scan_bytes_ALREADY_DEFINED
+#define imp_scan_bytes_ALREADY_DEFINED
 #else
-#define yy_scan_bytes gc_scan_bytes
+#define yy_scan_bytes imp_scan_bytes
 #endif
 
 #ifdef yy_init_buffer
-#define gc_init_buffer_ALREADY_DEFINED
+#define imp_init_buffer_ALREADY_DEFINED
 #else
-#define yy_init_buffer gc_init_buffer
+#define yy_init_buffer imp_init_buffer
 #endif
 
 #ifdef yy_flush_buffer
-#define gc_flush_buffer_ALREADY_DEFINED
+#define imp_flush_buffer_ALREADY_DEFINED
 #else
-#define yy_flush_buffer gc_flush_buffer
+#define yy_flush_buffer imp_flush_buffer
 #endif
 
 #ifdef yy_load_buffer_state
-#define gc_load_buffer_state_ALREADY_DEFINED
+#define imp_load_buffer_state_ALREADY_DEFINED
 #else
-#define yy_load_buffer_state gc_load_buffer_state
+#define yy_load_buffer_state imp_load_buffer_state
 #endif
 
 #ifdef yy_switch_to_buffer
-#define gc_switch_to_buffer_ALREADY_DEFINED
+#define imp_switch_to_buffer_ALREADY_DEFINED
 #else
-#define yy_switch_to_buffer gc_switch_to_buffer
+#define yy_switch_to_buffer imp_switch_to_buffer
 #endif
 
 #ifdef yypush_buffer_state
-#define gcpush_buffer_state_ALREADY_DEFINED
+#define imppush_buffer_state_ALREADY_DEFINED
 #else
-#define yypush_buffer_state gcpush_buffer_state
+#define yypush_buffer_state imppush_buffer_state
 #endif
 
 #ifdef yypop_buffer_state
-#define gcpop_buffer_state_ALREADY_DEFINED
+#define imppop_buffer_state_ALREADY_DEFINED
 #else
-#define yypop_buffer_state gcpop_buffer_state
+#define yypop_buffer_state imppop_buffer_state
 #endif
 
 #ifdef yyensure_buffer_stack
-#define gcensure_buffer_stack_ALREADY_DEFINED
+#define impensure_buffer_stack_ALREADY_DEFINED
 #else
-#define yyensure_buffer_stack gcensure_buffer_stack
+#define yyensure_buffer_stack impensure_buffer_stack
 #endif
 
 #ifdef yylex
-#define gclex_ALREADY_DEFINED
+#define implex_ALREADY_DEFINED
 #else
-#define yylex gclex
+#define yylex implex
 #endif
 
 #ifdef yyrestart
-#define gcrestart_ALREADY_DEFINED
+#define imprestart_ALREADY_DEFINED
 #else
-#define yyrestart gcrestart
+#define yyrestart imprestart
 #endif
 
 #ifdef yylex_init
-#define gclex_init_ALREADY_DEFINED
+#define implex_init_ALREADY_DEFINED
 #else
-#define yylex_init gclex_init
+#define yylex_init implex_init
 #endif
 
 #ifdef yylex_init_extra
-#define gclex_init_extra_ALREADY_DEFINED
+#define implex_init_extra_ALREADY_DEFINED
 #else
-#define yylex_init_extra gclex_init_extra
+#define yylex_init_extra implex_init_extra
 #endif
 
 #ifdef yylex_destroy
-#define gclex_destroy_ALREADY_DEFINED
+#define implex_destroy_ALREADY_DEFINED
 #else
-#define yylex_destroy gclex_destroy
+#define yylex_destroy implex_destroy
 #endif
 
 #ifdef yyget_debug
-#define gcget_debug_ALREADY_DEFINED
+#define impget_debug_ALREADY_DEFINED
 #else
-#define yyget_debug gcget_debug
+#define yyget_debug impget_debug
 #endif
 
 #ifdef yyset_debug
-#define gcset_debug_ALREADY_DEFINED
+#define impset_debug_ALREADY_DEFINED
 #else
-#define yyset_debug gcset_debug
+#define yyset_debug impset_debug
 #endif
 
 #ifdef yyget_extra
-#define gcget_extra_ALREADY_DEFINED
+#define impget_extra_ALREADY_DEFINED
 #else
-#define yyget_extra gcget_extra
+#define yyget_extra impget_extra
 #endif
 
 #ifdef yyset_extra
-#define gcset_extra_ALREADY_DEFINED
+#define impset_extra_ALREADY_DEFINED
 #else
-#define yyset_extra gcset_extra
+#define yyset_extra impset_extra
 #endif
 
 #ifdef yyget_in
-#define gcget_in_ALREADY_DEFINED
+#define impget_in_ALREADY_DEFINED
 #else
-#define yyget_in gcget_in
+#define yyget_in impget_in
 #endif
 
 #ifdef yyset_in
-#define gcset_in_ALREADY_DEFINED
+#define impset_in_ALREADY_DEFINED
 #else
-#define yyset_in gcset_in
+#define yyset_in impset_in
 #endif
 
 #ifdef yyget_out
-#define gcget_out_ALREADY_DEFINED
+#define impget_out_ALREADY_DEFINED
 #else
-#define yyget_out gcget_out
+#define yyget_out impget_out
 #endif
 
 #ifdef yyset_out
-#define gcset_out_ALREADY_DEFINED
+#define impset_out_ALREADY_DEFINED
 #else
-#define yyset_out gcset_out
+#define yyset_out impset_out
 #endif
 
 #ifdef yyget_leng
-#define gcget_leng_ALREADY_DEFINED
+#define impget_leng_ALREADY_DEFINED
 #else
-#define yyget_leng gcget_leng
+#define yyget_leng impget_leng
 #endif
 
 #ifdef yyget_text
-#define gcget_text_ALREADY_DEFINED
+#define impget_text_ALREADY_DEFINED
 #else
-#define yyget_text gcget_text
+#define yyget_text impget_text
 #endif
 
 #ifdef yyget_lineno
-#define gcget_lineno_ALREADY_DEFINED
+#define impget_lineno_ALREADY_DEFINED
 #else
-#define yyget_lineno gcget_lineno
+#define yyget_lineno impget_lineno
 #endif
 
 #ifdef yyset_lineno
-#define gcset_lineno_ALREADY_DEFINED
+#define impset_lineno_ALREADY_DEFINED
 #else
-#define yyset_lineno gcset_lineno
+#define yyset_lineno impset_lineno
 #endif
 
 #ifdef yywrap
-#define gcwrap_ALREADY_DEFINED
+#define impwrap_ALREADY_DEFINED
 #else
-#define yywrap gcwrap
+#define yywrap impwrap
 #endif
 
 /* %endif */
 
 #ifdef yyalloc
-#define gcalloc_ALREADY_DEFINED
+#define impalloc_ALREADY_DEFINED
 #else
-#define yyalloc gcalloc
+#define yyalloc impalloc
 #endif
 
 #ifdef yyrealloc
-#define gcrealloc_ALREADY_DEFINED
+#define imprealloc_ALREADY_DEFINED
 #else
-#define yyrealloc gcrealloc
+#define yyrealloc imprealloc
 #endif
 
 #ifdef yyfree
-#define gcfree_ALREADY_DEFINED
+#define impfree_ALREADY_DEFINED
 #else
-#define yyfree gcfree
+#define yyfree impfree
 #endif
 
 /* %if-c-only */
 
 #ifdef yytext
-#define gctext_ALREADY_DEFINED
+#define imptext_ALREADY_DEFINED
 #else
-#define yytext gctext
+#define yytext imptext
 #endif
 
 #ifdef yyleng
-#define gcleng_ALREADY_DEFINED
+#define impleng_ALREADY_DEFINED
 #else
-#define yyleng gcleng
+#define yyleng impleng
 #endif
 
 #ifdef yyin
-#define gcin_ALREADY_DEFINED
+#define impin_ALREADY_DEFINED
 #else
-#define yyin gcin
+#define yyin impin
 #endif
 
 #ifdef yyout
-#define gcout_ALREADY_DEFINED
+#define impout_ALREADY_DEFINED
 #else
-#define yyout gcout
+#define yyout impout
 #endif
 
 #ifdef yy_flex_debug
-#define gc_flex_debug_ALREADY_DEFINED
+#define imp_flex_debug_ALREADY_DEFINED
 #else
-#define yy_flex_debug gc_flex_debug
+#define yy_flex_debug imp_flex_debug
 #endif
 
 #ifdef yylineno
-#define gclineno_ALREADY_DEFINED
+#define implineno_ALREADY_DEFINED
 #else
-#define yylineno gclineno
+#define yylineno implineno
 #endif
 
 /* %endif */
@@ -649,7 +649,7 @@ void yyfree ( void *  );
 /* %% [1.0] yytext/yyin/yyout/yy_state_type/yylineno etc. def's & init go here */
 /* Begin user sect3 */
 
-#define gcwrap() (/*CONSTCOND*/1)
+#define impwrap() (/*CONSTCOND*/1)
 #define YY_SKIP_YYWRAP
 
 #define FLEX_DEBUG

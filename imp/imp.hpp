@@ -4,8 +4,8 @@
 //  Copyright (c) 2019 Yale University. All rights reserved.
 // -----------------------------------------------------------------------------
 
-#ifndef VC_GEN_AST_HPP
-#define VC_GEN_AST_HPP
+#ifndef VC_GEN_IMP_HPP
+#define VC_GEN_IMP_HPP
 
 #include "visitor.hpp"
 #include <iostream>
@@ -713,4 +713,4 @@ class WhileStatement : public Statement {
 
 } // namespace ast
 
-#endif // VC_GEN_AST_HPP
+#endif // VC_GEN_IMP_HPP

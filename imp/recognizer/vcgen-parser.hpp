@@ -46,11 +46,11 @@
 // //                    "%code requires" blocks.
 #line 16 "/home/ferhat/git/vc-gen/imp/vcgen-parser.yy"
 
+#include "imp.hpp"
+#include <iterator>
+#include <stack>
 #include <string>
 #include <vector>
-#include <stack>
-#include <iterator>
-#include "ast.hpp"
 class vcgen_driver;
 
 #line 57 "/home/ferhat/git/vc-gen/imp/recognizer/vcgen-parser.hpp"

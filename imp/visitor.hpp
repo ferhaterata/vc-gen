@@ -7,7 +7,7 @@
 #ifndef VC_GEN_VISITOR_HPP
 #define VC_GEN_VISITOR_HPP
 
-#include "ast.hpp"
+#include "imp.hpp"
 
 namespace imp::ast {
 

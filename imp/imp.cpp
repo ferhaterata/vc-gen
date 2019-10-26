@@ -4,7 +4,7 @@
 //  Copyright (c) 2019 Yale University. All rights reserved.
 // -----------------------------------------------------------------------------
 
-#include "ast.hpp"
+#include "imp.hpp"
 
 namespace imp::ast {
 

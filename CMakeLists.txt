@@ -35,8 +35,8 @@ add_executable(vcgen
         imp/vcgen-driver.hpp
         ${BISON_vcgen-parser_OUTPUTS}
         ${FLEX_vcgen-scanner_OUTPUTS}
-        imp/ast.cpp
-        imp/ast.hpp
+        imp/imp.cpp
+        imp/imp.hpp
         imp/visitor.hpp
         imp/abstract-visitor.hpp
         imp/printer-visitor.hpp

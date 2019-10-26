@@ -6,7 +6,7 @@
 
 #ifndef VC_GEN_ABSTRACT_VISITOR_HPP
 #define VC_GEN_ABSTRACT_VISITOR_HPP
-#include "ast.hpp"
+#include "imp.hpp"
 #include <iostream>
 
 namespace ast {

@@ -186,6 +186,8 @@ stmt:
     | "if" bexp "then" block "else" block "end"     { $$ = new imp::ast::IfThenElseStatement(*$2, *$4, *$6);}
     | "if" bexp "then" block "end"                  { $$ = new imp::ast::IfThenStatement(*$2, *$4);}
     | "while" bexp inv_list "do" block "end"        { $$ = new imp::ast::WhileStatement(*$2, $3, *$5);}
+    | "while" bexp "do" block "end"                 { std::vector<imp::ast::Invariant*> inv;
+                                                      $$ = new imp::ast::WhileStatement(*$2, inv, *$4);}
     ;
 
 location: "identifier"  { $$ = new imp::ast::Location($1, driver.fresh($1));}

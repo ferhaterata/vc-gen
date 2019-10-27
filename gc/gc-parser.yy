@@ -121,20 +121,20 @@ void print(std::vector<T>& v){
 %left "+" "-";
 %left "*" "/";
 
-prog: commands                              { std::cout << "prog: commands\n";}
+prog: commands                              { $$ = new gc::ast::Program($1); driver.program = $$;}
     ;
 
 commands:
-      command                               { $$ = {$1};}
+      command                               { $$ = {$1}; }
     | commands command                      { $$ = enlist($1, $2); }
-    | commands "[]" commands                {std::cout << "[]\n"; }
+    | commands "[]" commands                { $$ = {new gc::ast::Choice($1, $3)}; }
     ;
 
 command:
       "assume" assertion ";"                { $$ = new gc::ast::Assert(*$2); }
     | "assert" assertion ";"                { $$ = new gc::ast::Assume(*$2); }
     | "havoc" location   ";"                { $$ = new gc::ast::Havoc(*$2); }
-    | "(" commands ")"                      { $$ = }
+    | "(" commands ")"                      { $$ = new gc::ast::List($2); }
 
     ;
 

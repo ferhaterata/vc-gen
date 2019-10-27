@@ -32,6 +32,7 @@ class Command : public Node {
         Assert,
         Havoc,
         Choice,
+        List,
     };
     const Type type;
 
@@ -128,6 +129,22 @@ class Havoc : public Command {
     ~Havoc() override {
         std::cout << "\n Deleting Havoc 0x" << this << dec << "...";
         delete &location;
+    }
+};
+
+// -----------------------------------------------------------------------------
+class List : public Command {
+  public:
+    const vector<Command*> commands;
+
+    explicit List(vector<Command*> commands)
+        : Command(Command::Type::List), commands(std::move(commands)) {}
+
+    ~List() override {
+        std::cout << "\n Deleting Command List 0x" << this << dec << "...";
+        for (auto c : commands) {
+            delete c;
+        }
     }
 };
 

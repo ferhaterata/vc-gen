@@ -755,49 +755,49 @@ namespace gc {
             {
   case 2:
 #line 124 "/home/ferhat/git/vc-gen/gc/gc-parser.yy"
-    { std::cout << "prog: commands\n";}
+    { yylhs.value.as < gc::ast::Program* > () = new gc::ast::Program(yystack_[0].value.as < std::vector<gc::ast::Command*> > ()); driver.program = yylhs.value.as < gc::ast::Program* > ();}
 #line 760 "/home/ferhat/git/vc-gen/gc/recognizer/gc-parser.cpp"
     break;
 
   case 3:
 #line 128 "/home/ferhat/git/vc-gen/gc/gc-parser.yy"
-    { std::cout << "command\n";}
+    { yylhs.value.as < std::vector<gc::ast::Command*> > () = {yystack_[0].value.as < gc::ast::Command* > ()}; }
 #line 766 "/home/ferhat/git/vc-gen/gc/recognizer/gc-parser.cpp"
     break;
 
   case 4:
 #line 129 "/home/ferhat/git/vc-gen/gc/gc-parser.yy"
-    { std::cout << "commands command\n";}
+    { yylhs.value.as < std::vector<gc::ast::Command*> > () = enlist(yystack_[1].value.as < std::vector<gc::ast::Command*> > (), yystack_[0].value.as < gc::ast::Command* > ()); }
 #line 772 "/home/ferhat/git/vc-gen/gc/recognizer/gc-parser.cpp"
     break;
 
   case 5:
 #line 130 "/home/ferhat/git/vc-gen/gc/gc-parser.yy"
-    {std::cout << "[]\n"; }
+    { yylhs.value.as < std::vector<gc::ast::Command*> > () = {new gc::ast::Choice(yystack_[2].value.as < std::vector<gc::ast::Command*> > (), yystack_[0].value.as < std::vector<gc::ast::Command*> > ())}; }
 #line 778 "/home/ferhat/git/vc-gen/gc/recognizer/gc-parser.cpp"
     break;
 
   case 6:
 #line 134 "/home/ferhat/git/vc-gen/gc/gc-parser.yy"
-    { std::cout << "assume\n"; }
+    { yylhs.value.as < gc::ast::Command* > () = new gc::ast::Assert(*yystack_[1].value.as < gc::ast::Assertion* > ()); }
 #line 784 "/home/ferhat/git/vc-gen/gc/recognizer/gc-parser.cpp"
     break;
 
   case 7:
 #line 135 "/home/ferhat/git/vc-gen/gc/gc-parser.yy"
-    {  std::cout << "assert\n"; }
+    { yylhs.value.as < gc::ast::Command* > () = new gc::ast::Assume(*yystack_[1].value.as < gc::ast::Assertion* > ()); }
 #line 790 "/home/ferhat/git/vc-gen/gc/recognizer/gc-parser.cpp"
     break;
 
   case 8:
 #line 136 "/home/ferhat/git/vc-gen/gc/gc-parser.yy"
-    {std::cout << "havoc\n";  }
+    { yylhs.value.as < gc::ast::Command* > () = new gc::ast::Havoc(*yystack_[1].value.as < gc::ast::Location* > ()); }
 #line 796 "/home/ferhat/git/vc-gen/gc/recognizer/gc-parser.cpp"
     break;
 
   case 9:
 #line 137 "/home/ferhat/git/vc-gen/gc/gc-parser.yy"
-    { std::cout << "( commands )\n";}
+    { yylhs.value.as < gc::ast::Command* > () = new gc::ast::List(yystack_[1].value.as < std::vector<gc::ast::Command*> > ()); }
 #line 802 "/home/ferhat/git/vc-gen/gc/recognizer/gc-parser.cpp"
     break;
 

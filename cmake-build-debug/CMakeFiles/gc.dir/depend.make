@@ -27,7 +27,9 @@ CMakeFiles/gc.dir/gc/test.cpp.o: ../gc/recognizer/gc-parser.hpp
 CMakeFiles/gc.dir/gc/test.cpp.o: ../gc/recognizer/location.hh
 CMakeFiles/gc.dir/gc/test.cpp.o: ../tools.hpp
 CMakeFiles/gc.dir/gc/test.cpp.o: ../gc/gc-driver.hpp
+CMakeFiles/gc.dir/gc/test.cpp.o: ../gc/printer-visitor.hpp
 CMakeFiles/gc.dir/gc/test.cpp.o: ../gc/test.cpp
+CMakeFiles/gc.dir/gc/test.cpp.o: ../gc/visitor.hpp
 
 CMakeFiles/gc.dir/tools.cpp.o: ../tools.cpp
 CMakeFiles/gc.dir/tools.cpp.o: ../tools.hpp

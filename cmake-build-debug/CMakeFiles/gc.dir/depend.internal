@@ -28,7 +28,9 @@ CMakeFiles/gc.dir/gc/test.cpp.o
  ../gc/recognizer/location.hh
  ../tools.hpp
  /home/ferhat/git/vc-gen/gc/gc-driver.hpp
+ /home/ferhat/git/vc-gen/gc/printer-visitor.hpp
  /home/ferhat/git/vc-gen/gc/test.cpp
+ /home/ferhat/git/vc-gen/gc/visitor.hpp
 CMakeFiles/gc.dir/tools.cpp.o
  /home/ferhat/git/vc-gen/tools.cpp
  /home/ferhat/git/vc-gen/tools.hpp

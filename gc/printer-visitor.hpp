@@ -7,8 +7,8 @@
 #ifndef VC_GEN_PRINTER_VISITOR_HPP
 #define VC_GEN_PRINTER_VISITOR_HPP
 
-#include <sstream>
 #include "visitor.hpp"
+#include <sstream>
 
 using namespace std;
 
@@ -26,44 +26,78 @@ class PrinterVisitor : public Visitor<string> {
         output = visit(prog);
     }
 
-    string visit(const Node* node) override {}
-
-    string visit(const BooleanExpression* expression) override {
+    string visit(const Command* command) override {
         stringstream ss;
-        switch (expression->type) {
-        case BooleanExpression::Type::NotExpression:
-            ss << visit(dynamic_cast<const NotExpression*>(expression));
+        switch (command->type) {
+        case Command::Type::Assume:
+            ss << visit(dynamic_cast<const Assume*>(command));
             break;
-        case BooleanExpression::Type::OrExpression:
-            ss << visit(dynamic_cast<const OrExpression*>(expression));
+        case Command::Type::Assert:
+            ss << visit(dynamic_cast<const Assert*>(command));
             break;
-        case BooleanExpression::Type::AndExpression:
-            ss << visit(dynamic_cast<const AndExpression*>(expression));
+        case Command::Type::Havoc:
+            ss << visit(dynamic_cast<const Havoc*>(command));
             break;
-        case BooleanExpression::Type::Comparison:
-            ss << visit(dynamic_cast<const Comparison*>(expression));
+        case Command::Type::Choice:
+            ss << visit(dynamic_cast<const Choice*>(command));
+            break;
+        case Command::Type::List:
+            ss << visit(dynamic_cast<const List*>(command));
             break;
         }
         return ss.str();
     }
 
-    string visit(const NotExpression* expression) override {
+    string visit(const Assume* assume) override {
         stringstream ss;
-        ss << "(!" << visit(&expression->expression) << ")";
+        ss << "assume " << visit(&assume->assertion) << ";";
         return ss.str();
     }
 
-    string visit(const OrExpression* expression) override {
+    string visit(const Assert* assert) override {
         stringstream ss;
-        ss << "(" << visit(&expression->left) << " || "
-           << visit(&expression->right) << ")";
+        ss << "assert " << visit(&assert->assertion) << ";";
         return ss.str();
     }
 
-    string visit(const AndExpression* expression) override {
+    string visit(const Havoc* havoc) override {
         stringstream ss;
-        ss << "(" << visit(&expression->left) << " && "
-           << visit(&expression->right) << ")";
+        ss << "havoc " << visit(&havoc->location) << ";";
+        return ss.str();
+    }
+
+    string visit(const List* list) override {
+        stringstream ss;
+        for (auto command : list->commands) {
+            ss << visit(command) << " ";
+        }
+        ss << "\b";
+        return ss.str();
+    }
+
+    string visit(const Choice* choice) override {
+        stringstream ss;
+        ss << "(";
+        for (auto command : choice->left) {
+            ss << visit(command) << " ";
+        }
+        ss << "\b)\n";
+        ss << " []\n";
+        ss << "(";
+        for (auto command : choice->right) {
+            ss << visit(command) << " ";
+        }
+        ss << "\b)";
+        return ss.str();
+    }
+
+    string visit(const True* aTrue) override {
+        stringstream ss;
+        return ss.str();
+    }
+
+    string visit(const False* aFalse) override {
+        stringstream ss;
         return ss.str();
     }
 
@@ -82,6 +116,12 @@ class PrinterVisitor : public Visitor<string> {
         case Assertion::Type::Implication:
             ss << visit(dynamic_cast<const Implication*>(assertion));
             break;
+        case Assertion::Type::True:
+            ss << visit(dynamic_cast<const True*>(assertion));
+            break;
+        case Assertion::Type::False:
+            ss << visit(dynamic_cast<const False*>(assertion));
+            break;
         case Assertion::Type::UniversalQuantification:
             ss << visit(
                 dynamic_cast<const UniversalQuantification*>(assertion));
@@ -97,82 +137,17 @@ class PrinterVisitor : public Visitor<string> {
         return ss.str();
     }
 
-    string visit(const Statement* statement) override {
-        stringstream ss;
-        switch (statement->type) {
-        case Statement::Type::AssignmentStatement:
-            ss << visit(dynamic_cast<const AssignmentStatement*>(statement));
-            break;
-        case Statement::Type::MultipleAssignmentStatement:
-            ss << visit(
-                dynamic_cast<const MultipleAssignmentStatement*>(statement));
-            break;
-        case Statement::Type::ArrayAssignmentStatement:
-            ss << visit(
-                dynamic_cast<const ArrayAssignmentStatement*>(statement));
-            break;
-        case Statement::Type::IfThenElseStatement:
-            ss << visit(dynamic_cast<const IfThenElseStatement*>(statement));
-            break;
-        case Statement::Type::IfThenStatement:
-            ss << visit(dynamic_cast<const IfThenStatement*>(statement));
-            break;
-        case Statement::Type::WhileStatement:
-            ss << visit(dynamic_cast<const WhileStatement*>(statement));
-            break;
-        }
-        return ss.str();
-    }
-
     string visit(const Location* location) override {
         stringstream ss;
         ss << "" << location->identifier << "";
         return ss.str();
     }
 
-    string visit(const Invariant* invariant) override {
-        stringstream ss;
-        ss << "(invariant " << visit(&invariant->assertion) << ")";
-        return ss.str();
-    }
-
-    string visit(const Block* block) override {
-        stringstream ss;
-        ss << "(";
-        for (const auto& node : block->stmts) {
-            ss << visit(node) << "\n";
-        }
-        ss << "\b\b)";
-        return ss.str();
-    }
-
-    string visit(const PreCondition* condition) override {
-        stringstream ss;
-        ss << "(precondition ";
-        ss << visit(&condition->assertion) << ")";
-        return ss.str();
-    }
-
-    string visit(const PostCondition* condition) override {
-        stringstream ss;
-        ss << "(postcondition ";
-        ss << visit(&condition->assertion) << ")";
-        return ss.str();
-    }
-
     string visit(const Program* program) override {
         stringstream ss;
-        ss << "(program " << program->identifier << "\n  ";
-        for (const auto& node : program->preConditions) {
-            ss << visit(node);
+        for (const auto& node : program->commands) {
+            ss << visit(node) << "\n";
         }
-        ss << "\n  ";
-        for (const auto& node : program->postConditions) {
-            ss << visit(node);
-        }
-        ss << "\n";
-        ss << " is\n  ";
-        ss << visit(&program->block);
         return ss.str();
     }
 
@@ -225,43 +200,37 @@ class PrinterVisitor : public Visitor<string> {
         return ss.str();
     }
 
-    string visit(const ArithmeticExpression* expression) override {
+    string visit(const Expression* expression) override {
         stringstream ss;
         switch (expression->type) {
-        case ArithmeticExpression::Type::Reference:
-            ss << visit(dynamic_cast<const Reference*>(expression));
+        case Expression::Type::Location:
+            ss << visit(dynamic_cast<const Location*>(expression));
             break;
-        case ArithmeticExpression::Type::ArrayReference:
-            ss << visit(dynamic_cast<const ArrayReference*>(expression));
+        case Expression::Type::ArrayLocation:
+            ss << visit(dynamic_cast<const ArrayLocation*>(expression));
             break;
-        case ArithmeticExpression::Type::Constant:
+        case Expression::Type::Constant:
             ss << visit(dynamic_cast<const Constant*>(expression));
             break;
-        case ArithmeticExpression::Type::Negate:
+        case Expression::Type::Negate:
             ss << visit(dynamic_cast<const Negate*>(expression));
             break;
-        case ArithmeticExpression::Type::Sum:
+        case Expression::Type::Sum:
             ss << visit(dynamic_cast<const Sum*>(expression));
             break;
-        case ArithmeticExpression::Type::Subtract:
+        case Expression::Type::Subtract:
             ss << visit(dynamic_cast<const Subtract*>(expression));
             break;
-        case ArithmeticExpression::Type::Multiply:
+        case Expression::Type::Multiply:
             ss << visit(dynamic_cast<const Multiply*>(expression));
             break;
-        case ArithmeticExpression::Type::Divide:
+        case Expression::Type::Divide:
             ss << visit(dynamic_cast<const Divide*>(expression));
             break;
-        case ArithmeticExpression::Type::Mod:
+        case Expression::Type::Mod:
             ss << visit(dynamic_cast<const Mod*>(expression));
             break;
         }
-        return ss.str();
-    }
-
-    string visit(const Reference* expression) override {
-        stringstream ss;
-        ss << expression->identifier << "";
         return ss.str();
     }
 
@@ -271,9 +240,9 @@ class PrinterVisitor : public Visitor<string> {
         return ss.str();
     }
 
-    string visit(const ArrayReference* expression) override {
+    string visit(const ArrayLocation* expression) override {
         stringstream ss;
-        ss << visit(&expression->reference);
+        ss << visit(&expression->location);
         ss << "[" << visit(&expression->index) << "]";
         return ss.str();
     }
@@ -384,59 +353,6 @@ class PrinterVisitor : public Visitor<string> {
            << visit(&comparison->right) << ")";
         return ss.str();
     }
-
-    string visit(const AssignmentStatement* statement) override {
-        stringstream ss;
-        ss << "(" << visit(&statement->loc) << ":=" << visit(&statement->expr)
-           << ")";
-        return ss.str();
-    }
-
-    string visit(const MultipleAssignmentStatement* statement) override {
-        stringstream ss;
-        ss << "(";
-        ss << visit(&statement->locFirst) << ", ";
-        ss << visit(&statement->locSecond) << ":=";
-        ss << visit(&statement->exprFirst) << ", ";
-        ss << visit(&statement->exprSecond) << ")";
-        return ss.str();
-    }
-
-    string visit(const ArrayAssignmentStatement* statement) override {
-        stringstream ss;
-        ss << "(";
-        ss << visit(&statement->loc);
-        ss << "[" << visit(&statement->index) << "] := ";
-        ss << visit(&statement->exp) << ")";
-        return ss.str();
-    }
-
-    string visit(const IfThenStatement* statement) override {
-        stringstream ss;
-        ss << "(if " << visit(&statement->condition);
-        ss << " then " << visit(&statement->thenBlock) << ")";
-        return ss.str();
-    }
-
-    string visit(const IfThenElseStatement* statement) override {
-        stringstream ss;
-        ss << "(if " << visit(&statement->condition);
-        ss << " then " << visit(&statement->thenBlock);
-        ss << " else " << visit(&statement->elseBlock) << ")";
-        return ss.str();
-    }
-
-    string visit(const WhileStatement* statement) override {
-        stringstream ss;
-        ss << "(while " << visit(&statement->condition) << "\n";
-        for (const auto& invariant : statement->invariants) {
-            ss << "  " << visit(invariant) << "\n";
-        }
-        ss << " do\n  ";
-        ss << visit(&statement->block);
-        ss << ")";
-        return ss.str();
-    }
 };
-} // namespace ast
+} // namespace gc::ast
 #endif // VC_GEN_PRINTER_VISITOR_HPP

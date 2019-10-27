@@ -166,6 +166,10 @@
 			<Option target="vcgen"/>
 			<Option target="gc"/>
 		</Unit>
+		<Unit filename="/home/ferhat/git/vc-gen/gc/printer-visitor.hpp">
+			<Option target="vcgen"/>
+			<Option target="gc"/>
+		</Unit>
 		<Unit filename="/home/ferhat/git/vc-gen/gc/recognizer/gc-parser.cpp">
 			<Option target="vcgen"/>
 			<Option target="gc"/>
@@ -187,6 +191,10 @@
 			<Option target="gc"/>
 		</Unit>
 		<Unit filename="/home/ferhat/git/vc-gen/gc/test.cpp">
+			<Option target="gc"/>
+		</Unit>
+		<Unit filename="/home/ferhat/git/vc-gen/gc/visitor.hpp">
+			<Option target="vcgen"/>
 			<Option target="gc"/>
 		</Unit>
 		<Unit filename="/home/ferhat/git/vc-gen/imp/abstract-visitor.hpp">

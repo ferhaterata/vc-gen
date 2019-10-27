@@ -56,8 +56,8 @@ add_executable(vcgen
         ${FLEX_gc-scanner_OUTPUTS}
         gc/gc.hpp
         gc/gc.cpp
-#        gc/visitor.hpp
-#        gc/printer-visitor.hpp
+        gc/visitor.hpp
+        gc/printer-visitor.hpp
         )
 
 add_executable(gc
@@ -72,6 +72,6 @@ add_executable(gc
         ${FLEX_gc-scanner_OUTPUTS}
         gc/gc.hpp
         gc/gc.cpp
-#        gc/visitor.hpp
-#        gc/printer-visitor.hpp
+        gc/visitor.hpp
+        gc/printer-visitor.hpp
         )

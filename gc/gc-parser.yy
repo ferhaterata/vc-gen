@@ -19,6 +19,7 @@
 #include <vector>
 #include <stack>
 #include <iterator>
+#include <cstdio>
 #include "gc.hpp"
 class gc_driver;
 }
@@ -87,6 +88,10 @@ void print(std::vector<T>& v){
   SOME      "exists"
   TRUE      "true"
   FALSE     "false"
+  ASSUME    "assume"
+  ASSERT    "assert"
+  HAVOC     "havoc"
+  CHOICE    "[]"
 ;
 
 %token <std::string>    IDENTIFIER "identifier"
@@ -103,33 +108,34 @@ void print(std::vector<T>& v){
 %type <std::vector<gc::ast::Command*>>      commands;
 %type <std::vector<std::string>>            identifiers;
 
-
 //%printer { yyoutput << $$; } <*>;
 
 %%
 
 %start prog;
 
-%precedence "!";
+%left "[]";
 %precedence "&&";
 %precedence "||";
+%precedence "!";
 %left "+" "-";
 %left "*" "/";
 
-prog: commands                              { $$ = new gc::ast::Program($1); driver.program = $$;}
+prog: commands                              { std::cout << "prog: commands\n";}
     ;
 
 commands:
       command                               { $$ = {$1};}
     | commands command                      { $$ = enlist($1, $2); }
+    | commands "[]" commands                {std::cout << "[]\n"; }
     ;
 
 command:
-      "assume" assertion ";"                { $$ = new gc::ast::Assume(*$2); }
-    | "assert" assertion ";"                { $$ = new gc::ast::Assert(*$2); }
-    | "havoc" location ";"                  { $$ = new gc::ast::Havoc(*$2); }
-    | command "[]" command ";"              { $$ = new gc::ast::Choice(*$1, *$3);}
-    | "(" command ")"                       { $$ = $2; }
+      "assume" assertion ";"                { $$ = new gc::ast::Assert(*$2); }
+    | "assert" assertion ";"                { $$ = new gc::ast::Assume(*$2); }
+    | "havoc" location   ";"                { $$ = new gc::ast::Havoc(*$2); }
+    | "(" commands ")"                      { $$ = }
+
     ;
 
 assertion:

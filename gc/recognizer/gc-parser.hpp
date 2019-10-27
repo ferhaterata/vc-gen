@@ -50,10 +50,11 @@
 #include <vector>
 #include <stack>
 #include <iterator>
+#include <cstdio>
 #include "gc.hpp"
 class gc_driver;
 
-#line 57 "/home/ferhat/git/vc-gen/gc/recognizer/gc-parser.hpp"
+#line 58 "/home/ferhat/git/vc-gen/gc/recognizer/gc-parser.hpp"
 
 # include <cassert>
 # include <cstdlib> // std::abort
@@ -177,7 +178,7 @@ class gc_driver;
 
 #line 8 "/home/ferhat/git/vc-gen/gc/gc-parser.yy"
 namespace gc {
-#line 181 "/home/ferhat/git/vc-gen/gc/recognizer/gc-parser.hpp"
+#line 182 "/home/ferhat/git/vc-gen/gc/recognizer/gc-parser.hpp"
 
 
 
@@ -486,8 +487,12 @@ namespace gc {
         TOK_SOME = 280,
         TOK_TRUE = 281,
         TOK_FALSE = 282,
-        TOK_IDENTIFIER = 283,
-        TOK_NUMBER = 284
+        TOK_ASSUME = 283,
+        TOK_ASSERT = 284,
+        TOK_HAVOC = 285,
+        TOK_CHOICE = 286,
+        TOK_IDENTIFIER = 287,
+        TOK_NUMBER = 288
       };
     };
 
@@ -735,11 +740,11 @@ switch (yytype)
         value.template destroy< gc::ast::Program* > ();
         break;
 
-      case 29: // "number"
+      case 33: // "number"
         value.template destroy< int > ();
         break;
 
-      case 28: // "identifier"
+      case 32: // "identifier"
         value.template destroy< std::string > ();
         break;
 
@@ -830,13 +835,13 @@ switch (yytype)
       symbol_type (int tok, location_type l)
         : super_type(token_type (tok), std::move (l))
       {
-        YYASSERT (tok == token::TOK_EOF || tok == token::TOK_PLUS || tok == token::TOK_MINUS || tok == token::TOK_STAR || tok == token::TOK_SLASH || tok == token::TOK_MOD || tok == token::TOK_LPAREN || tok == token::TOK_RPAREN || tok == token::TOK_EQUAL || tok == token::TOK_NEQUAL || tok == token::TOK_LEQ || tok == token::TOK_GEQ || tok == token::TOK_LT || tok == token::TOK_GT || tok == token::TOK_NOT || tok == token::TOK_OR || tok == token::TOK_AND || tok == token::TOK_SEMICOLON || tok == token::TOK_COMMA || tok == token::TOK_LSQUARE || tok == token::TOK_RSQUARE || tok == token::TOK_IMPLY || tok == token::TOK_ALL || tok == token::TOK_SOME || tok == token::TOK_TRUE || tok == token::TOK_FALSE || tok == 285 || tok == 286 || tok == 287 || tok == 288);
+        YYASSERT (tok == token::TOK_EOF || tok == token::TOK_PLUS || tok == token::TOK_MINUS || tok == token::TOK_STAR || tok == token::TOK_SLASH || tok == token::TOK_MOD || tok == token::TOK_LPAREN || tok == token::TOK_RPAREN || tok == token::TOK_EQUAL || tok == token::TOK_NEQUAL || tok == token::TOK_LEQ || tok == token::TOK_GEQ || tok == token::TOK_LT || tok == token::TOK_GT || tok == token::TOK_NOT || tok == token::TOK_OR || tok == token::TOK_AND || tok == token::TOK_SEMICOLON || tok == token::TOK_COMMA || tok == token::TOK_LSQUARE || tok == token::TOK_RSQUARE || tok == token::TOK_IMPLY || tok == token::TOK_ALL || tok == token::TOK_SOME || tok == token::TOK_TRUE || tok == token::TOK_FALSE || tok == token::TOK_ASSUME || tok == token::TOK_ASSERT || tok == token::TOK_HAVOC || tok == token::TOK_CHOICE);
       }
 #else
       symbol_type (int tok, const location_type& l)
         : super_type(token_type (tok), l)
       {
-        YYASSERT (tok == token::TOK_EOF || tok == token::TOK_PLUS || tok == token::TOK_MINUS || tok == token::TOK_STAR || tok == token::TOK_SLASH || tok == token::TOK_MOD || tok == token::TOK_LPAREN || tok == token::TOK_RPAREN || tok == token::TOK_EQUAL || tok == token::TOK_NEQUAL || tok == token::TOK_LEQ || tok == token::TOK_GEQ || tok == token::TOK_LT || tok == token::TOK_GT || tok == token::TOK_NOT || tok == token::TOK_OR || tok == token::TOK_AND || tok == token::TOK_SEMICOLON || tok == token::TOK_COMMA || tok == token::TOK_LSQUARE || tok == token::TOK_RSQUARE || tok == token::TOK_IMPLY || tok == token::TOK_ALL || tok == token::TOK_SOME || tok == token::TOK_TRUE || tok == token::TOK_FALSE || tok == 285 || tok == 286 || tok == 287 || tok == 288);
+        YYASSERT (tok == token::TOK_EOF || tok == token::TOK_PLUS || tok == token::TOK_MINUS || tok == token::TOK_STAR || tok == token::TOK_SLASH || tok == token::TOK_MOD || tok == token::TOK_LPAREN || tok == token::TOK_RPAREN || tok == token::TOK_EQUAL || tok == token::TOK_NEQUAL || tok == token::TOK_LEQ || tok == token::TOK_GEQ || tok == token::TOK_LT || tok == token::TOK_GT || tok == token::TOK_NOT || tok == token::TOK_OR || tok == token::TOK_AND || tok == token::TOK_SEMICOLON || tok == token::TOK_COMMA || tok == token::TOK_LSQUARE || tok == token::TOK_RSQUARE || tok == token::TOK_IMPLY || tok == token::TOK_ALL || tok == token::TOK_SOME || tok == token::TOK_TRUE || tok == token::TOK_FALSE || tok == token::TOK_ASSUME || tok == token::TOK_ASSERT || tok == token::TOK_HAVOC || tok == token::TOK_CHOICE);
       }
 #endif
 #if 201103L <= YY_CPLUSPLUS
@@ -1295,6 +1300,66 @@ switch (yytype)
 #if 201103L <= YY_CPLUSPLUS
       static
       symbol_type
+      make_ASSUME (location_type l)
+      {
+        return symbol_type (token::TOK_ASSUME, std::move (l));
+      }
+#else
+      static
+      symbol_type
+      make_ASSUME (const location_type& l)
+      {
+        return symbol_type (token::TOK_ASSUME, l);
+      }
+#endif
+#if 201103L <= YY_CPLUSPLUS
+      static
+      symbol_type
+      make_ASSERT (location_type l)
+      {
+        return symbol_type (token::TOK_ASSERT, std::move (l));
+      }
+#else
+      static
+      symbol_type
+      make_ASSERT (const location_type& l)
+      {
+        return symbol_type (token::TOK_ASSERT, l);
+      }
+#endif
+#if 201103L <= YY_CPLUSPLUS
+      static
+      symbol_type
+      make_HAVOC (location_type l)
+      {
+        return symbol_type (token::TOK_HAVOC, std::move (l));
+      }
+#else
+      static
+      symbol_type
+      make_HAVOC (const location_type& l)
+      {
+        return symbol_type (token::TOK_HAVOC, l);
+      }
+#endif
+#if 201103L <= YY_CPLUSPLUS
+      static
+      symbol_type
+      make_CHOICE (location_type l)
+      {
+        return symbol_type (token::TOK_CHOICE, std::move (l));
+      }
+#else
+      static
+      symbol_type
+      make_CHOICE (const location_type& l)
+      {
+        return symbol_type (token::TOK_CHOICE, l);
+      }
+#endif
+#if 201103L <= YY_CPLUSPLUS
+      static
+      symbol_type
       make_IDENTIFIER (std::string v, location_type l)
       {
         return symbol_type (token::TOK_IDENTIFIER, std::move (v), std::move (l));
@@ -1360,7 +1425,7 @@ switch (yytype)
     // Tables.
   // YYPACT[STATE-NUM] -- Index in YYTABLE of the portion describing
   // STATE-NUM.
-  static const signed char yypact_[];
+  static const short yypact_[];
 
   // YYDEFACT[STATE-NUM] -- Default reduction number in state STATE-NUM.
   // Performed when YYTABLE does not specify something else to do.  Zero
@@ -1628,7 +1693,7 @@ switch (yytype)
     enum
     {
       yyeof_ = 0,
-      yylast_ = 130,     ///< Last index in yytable_.
+      yylast_ = 140,     ///< Last index in yytable_.
       yynnts_ = 10,  ///< Number of nonterminal symbols.
       yyfinal_ = 25, ///< Termination state number.
       yyterror_ = 1,
@@ -1730,11 +1795,11 @@ switch (yytype)
         value.move< gc::ast::Program* > (std::move (that.value));
         break;
 
-      case 29: // "number"
+      case 33: // "number"
         value.move< int > (std::move (that.value));
         break;
 
-      case 28: // "identifier"
+      case 32: // "identifier"
         value.move< std::string > (std::move (that.value));
         break;
 
@@ -1789,11 +1854,11 @@ switch (yytype)
         value.copy< gc::ast::Program* > (YY_MOVE (that.value));
         break;
 
-      case 29: // "number"
+      case 33: // "number"
         value.copy< int > (YY_MOVE (that.value));
         break;
 
-      case 28: // "identifier"
+      case 32: // "identifier"
         value.copy< std::string > (YY_MOVE (that.value));
         break;
 
@@ -1855,11 +1920,11 @@ switch (yytype)
         value.move< gc::ast::Program* > (YY_MOVE (s.value));
         break;
 
-      case 29: // "number"
+      case 33: // "number"
         value.move< int > (YY_MOVE (s.value));
         break;
 
-      case 28: // "identifier"
+      case 32: // "identifier"
         value.move< std::string > (YY_MOVE (s.value));
         break;
 
@@ -1945,7 +2010,7 @@ switch (yytype)
 
 #line 8 "/home/ferhat/git/vc-gen/gc/gc-parser.yy"
 } // gc
-#line 1949 "/home/ferhat/git/vc-gen/gc/recognizer/gc-parser.hpp"
+#line 2014 "/home/ferhat/git/vc-gen/gc/recognizer/gc-parser.hpp"
 
 
 

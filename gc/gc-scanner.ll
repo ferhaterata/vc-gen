@@ -54,6 +54,7 @@ blank [ \t]
 "||"        return gc::gc_parser::make_OR(loc);
 "&&"        return gc::gc_parser::make_AND(loc);
 ";"         return gc::gc_parser::make_SEMICOLON(loc);
+","         return gc::gc_parser::make_COMMA(loc);
 "["         return gc::gc_parser::make_LSQUARE(loc);
 "]"         return gc::gc_parser::make_RSQUARE(loc);
 "==>"       return gc::gc_parser::make_IMPLY(loc);
@@ -61,6 +62,12 @@ blank [ \t]
 "exists"    return gc::gc_parser::make_SOME(loc);
 "true"      return gc::gc_parser::make_TRUE(loc);
 "false"     return gc::gc_parser::make_FALSE(loc);
+"assume"    return gc::gc_parser::make_ASSUME(loc);
+"assert"    return gc::gc_parser::make_ASSERT(loc);
+"havoc"     return gc::gc_parser::make_HAVOC(loc);
+"[]"        return gc::gc_parser::make_CHOICE(loc);
+"{"         driver.error (loc, "invalid character");
+"}"         driver.error (loc, "invalid character");
 
 {int}      {
   errno = 0;
@@ -72,7 +79,7 @@ blank [ \t]
 
 {id}       return gc::gc_parser::make_IDENTIFIER(yytext, loc);
 .          driver.error (loc, "invalid character");
-<<EOF>>    return gc::gc_parser::make_EOF(loc);
+<<EOF>>    {return gc::gc_parser::make_EOF(loc);}
 %%
 
 void

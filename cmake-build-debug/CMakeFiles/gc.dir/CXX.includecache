@@ -21,6 +21,8 @@ map
 -
 string
 -
+utility
+-
 vector
 -
 
@@ -32,6 +34,8 @@ vector
 stack
 -
 iterator
+-
+cstdio
 -
 gc.hpp
 ../gc/recognizer/gc.hpp
@@ -117,6 +121,8 @@ map
 -
 string
 -
+utility
+-
 vector
 -
 
@@ -136,6 +142,8 @@ vector
 stack
 -
 iterator
+-
+cstdio
 -
 gc.hpp
 /home/ferhat/git/vc-gen/gc/recognizer/gc.hpp

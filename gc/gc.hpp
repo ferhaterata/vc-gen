@@ -10,6 +10,7 @@
 #include <iostream>
 #include <map>
 #include <string>
+#include <utility>
 #include <vector>
 
 using namespace std;
@@ -34,7 +35,7 @@ class Command : public Node {
     };
     const Type type;
 
-    Command(const Type type) : type(type) {}
+    explicit Command(const Type type) : type(type) {}
 };
 
 // -----------------------------------------------------------------------------
@@ -61,7 +62,7 @@ class Location : public Expression {
   public:
     const string identifier;
 
-    Location(string identifier)
+    explicit Location(string identifier)
         : Expression(Expression::Type::Location),
           identifier(std::move(identifier)) {}
 
@@ -93,7 +94,7 @@ class Assume : public Command {
   public:
     const Assertion& assertion;
 
-    Assume(Assertion& assertion)
+    explicit Assume(Assertion& assertion)
         : Command(Command::Type::Assume), assertion(assertion) {}
 
     ~Assume() override {
@@ -107,10 +108,10 @@ class Assert : public Command {
   public:
     const Assertion& assertion;
 
-    Assert(const Assertion& assertion)
+    explicit Assert(const Assertion& assertion)
         : Command(Command::Type::Assert), assertion(assertion) {}
 
-    ~Assert() {
+    ~Assert() override {
         std::cout << "\n Deleting Assert 0x" << this << dec << "...";
         delete &assertion;
     }
@@ -121,10 +122,10 @@ class Havoc : public Command {
   public:
     const Location& location;
 
-    Havoc(const Location& location)
+    explicit Havoc(const Location& location)
         : Command(Command::Type::Havoc), location(location) {}
 
-    ~Havoc() {
+    ~Havoc() override {
         std::cout << "\n Deleting Havoc 0x" << this << dec << "...";
         delete &location;
     }
@@ -134,16 +135,21 @@ class Havoc : public Command {
 class Choice : public Command {
 
   public:
-    const Command& left;
-    const Command& right;
+    const vector<Command*> left;
+    const vector<Command*> right;
 
-    Choice(const Command& left, const Command& right)
-        : Command(Command::Type::Choice), left(left), right(right) {}
+    Choice(vector<Command*> left, vector<Command*> right)
+        : Command(Command::Type::Choice), left(std::move(left)),
+          right(std::move(right)) {}
 
-    ~Choice() {
+    ~Choice() override {
         std::cout << "\n Deleting Choice 0x" << this << dec << "...";
-        delete &left;
-        delete &right;
+        for (auto c : left) {
+            delete c;
+        }
+        for (auto c : right) {
+            delete c;
+        }
     }
 };
 
@@ -152,7 +158,8 @@ class Program : public Node {
   public:
     const vector<Command*> commands;
 
-    Program(const vector<Command*>& commands) : commands(commands) {}
+    explicit Program(vector<Command*> commands)
+        : commands(std::move(commands)) {}
 
     ~Program() override {
         std::cout << "\n Deleting Program 0x" << this << dec << "...";
@@ -399,7 +406,6 @@ class Mod : public Expression {
     }
 };
 
-
 // -----------------------------------------------------------------------------
 class Comparison : public Assertion {
   public:
@@ -413,7 +419,7 @@ class Comparison : public Assertion {
     };
     const Type type;
 
-    Comparison(Comparison::Type type)
+    explicit Comparison(Comparison::Type type)
         : type(type), Assertion(Assertion::Type::Comparison) {}
 };
 

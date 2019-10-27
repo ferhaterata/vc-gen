@@ -210,6 +210,12 @@ stmt_list:
 
 prog: "program" "identifier" pre_list post_list "is" block "end"
       { $$ = new imp::ast::Program($2, $3, $4, *$6); driver.program = $$;}
+    | "program" "identifier" post_list "is" block "end"
+      { std::vector<imp::ast::PreCondition*> pre;
+        $$ = new imp::ast::Program($2, pre, $3, *$5); driver.program = $$;}
+    | "program" "identifier" pre_list "is" block "end"
+      { std::vector<imp::ast::PostCondition*> post;
+        $$ = new imp::ast::Program($2, $3, post, *$5); driver.program = $$;}
     ;
 
 pre_list:

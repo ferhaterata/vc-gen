@@ -1120,109 +1120,123 @@ namespace imp {
     break;
 
   case 39:
-#line 216 "/home/ferhat/git/vc-gen/imp/imp-parser.yy"
-    { yylhs.value.as < std::vector<imp::ast::PreCondition*> > () = {yystack_[0].value.as < imp::ast::PreCondition* > ()}; }
-#line 1126 "/home/ferhat/git/vc-gen/imp/recognizer/imp-parser.cpp"
+#line 214 "/home/ferhat/git/vc-gen/imp/imp-parser.yy"
+    { std::vector<imp::ast::PreCondition*> pre;
+        yylhs.value.as < imp::ast::Program* > () = new imp::ast::Program(yystack_[4].value.as < std::string > (), pre, yystack_[3].value.as < std::vector<imp::ast::PostCondition*> > (), *yystack_[1].value.as < imp::ast::Block* > ()); driver.program = yylhs.value.as < imp::ast::Program* > ();}
+#line 1127 "/home/ferhat/git/vc-gen/imp/recognizer/imp-parser.cpp"
     break;
 
   case 40:
 #line 217 "/home/ferhat/git/vc-gen/imp/imp-parser.yy"
-    { yylhs.value.as < std::vector<imp::ast::PreCondition*> > () = enlist(yystack_[1].value.as < std::vector<imp::ast::PreCondition*> > (), yystack_[0].value.as < imp::ast::PreCondition* > ()); }
-#line 1132 "/home/ferhat/git/vc-gen/imp/recognizer/imp-parser.cpp"
+    { std::vector<imp::ast::PostCondition*> post;
+        yylhs.value.as < imp::ast::Program* > () = new imp::ast::Program(yystack_[4].value.as < std::string > (), yystack_[3].value.as < std::vector<imp::ast::PreCondition*> > (), post, *yystack_[1].value.as < imp::ast::Block* > ()); driver.program = yylhs.value.as < imp::ast::Program* > ();}
+#line 1134 "/home/ferhat/git/vc-gen/imp/recognizer/imp-parser.cpp"
     break;
 
   case 41:
-#line 220 "/home/ferhat/git/vc-gen/imp/imp-parser.yy"
-    { yylhs.value.as < imp::ast::PreCondition* > () = new imp::ast::PreCondition(*yystack_[0].value.as < imp::ast::Assertion* > ()); }
-#line 1138 "/home/ferhat/git/vc-gen/imp/recognizer/imp-parser.cpp"
+#line 222 "/home/ferhat/git/vc-gen/imp/imp-parser.yy"
+    { yylhs.value.as < std::vector<imp::ast::PreCondition*> > () = {yystack_[0].value.as < imp::ast::PreCondition* > ()}; }
+#line 1140 "/home/ferhat/git/vc-gen/imp/recognizer/imp-parser.cpp"
     break;
 
   case 42:
-#line 224 "/home/ferhat/git/vc-gen/imp/imp-parser.yy"
-    { yylhs.value.as < std::vector<imp::ast::PostCondition*> > () = {yystack_[0].value.as < imp::ast::PostCondition* > ()}; }
-#line 1144 "/home/ferhat/git/vc-gen/imp/recognizer/imp-parser.cpp"
+#line 223 "/home/ferhat/git/vc-gen/imp/imp-parser.yy"
+    { yylhs.value.as < std::vector<imp::ast::PreCondition*> > () = enlist(yystack_[1].value.as < std::vector<imp::ast::PreCondition*> > (), yystack_[0].value.as < imp::ast::PreCondition* > ()); }
+#line 1146 "/home/ferhat/git/vc-gen/imp/recognizer/imp-parser.cpp"
     break;
 
   case 43:
-#line 225 "/home/ferhat/git/vc-gen/imp/imp-parser.yy"
-    { yylhs.value.as < std::vector<imp::ast::PostCondition*> > () = enlist(yystack_[1].value.as < std::vector<imp::ast::PostCondition*> > (), yystack_[0].value.as < imp::ast::PostCondition* > ()); }
-#line 1150 "/home/ferhat/git/vc-gen/imp/recognizer/imp-parser.cpp"
+#line 226 "/home/ferhat/git/vc-gen/imp/imp-parser.yy"
+    { yylhs.value.as < imp::ast::PreCondition* > () = new imp::ast::PreCondition(*yystack_[0].value.as < imp::ast::Assertion* > ()); }
+#line 1152 "/home/ferhat/git/vc-gen/imp/recognizer/imp-parser.cpp"
     break;
 
   case 44:
-#line 228 "/home/ferhat/git/vc-gen/imp/imp-parser.yy"
-    { yylhs.value.as < imp::ast::PostCondition* > () = new imp::ast::PostCondition(*yystack_[0].value.as < imp::ast::Assertion* > ()); }
-#line 1156 "/home/ferhat/git/vc-gen/imp/recognizer/imp-parser.cpp"
+#line 230 "/home/ferhat/git/vc-gen/imp/imp-parser.yy"
+    { yylhs.value.as < std::vector<imp::ast::PostCondition*> > () = {yystack_[0].value.as < imp::ast::PostCondition* > ()}; }
+#line 1158 "/home/ferhat/git/vc-gen/imp/recognizer/imp-parser.cpp"
     break;
 
   case 45:
-#line 232 "/home/ferhat/git/vc-gen/imp/imp-parser.yy"
-    { yylhs.value.as < imp::ast::Assertion* > () = yystack_[0].value.as < imp::ast::Comparison* > (); }
-#line 1162 "/home/ferhat/git/vc-gen/imp/recognizer/imp-parser.cpp"
+#line 231 "/home/ferhat/git/vc-gen/imp/imp-parser.yy"
+    { yylhs.value.as < std::vector<imp::ast::PostCondition*> > () = enlist(yystack_[1].value.as < std::vector<imp::ast::PostCondition*> > (), yystack_[0].value.as < imp::ast::PostCondition* > ()); }
+#line 1164 "/home/ferhat/git/vc-gen/imp/recognizer/imp-parser.cpp"
     break;
 
   case 46:
-#line 233 "/home/ferhat/git/vc-gen/imp/imp-parser.yy"
-    { yylhs.value.as < imp::ast::Assertion* > () = new imp::ast::Negation(*yystack_[0].value.as < imp::ast::Assertion* > ()); }
-#line 1168 "/home/ferhat/git/vc-gen/imp/recognizer/imp-parser.cpp"
+#line 234 "/home/ferhat/git/vc-gen/imp/imp-parser.yy"
+    { yylhs.value.as < imp::ast::PostCondition* > () = new imp::ast::PostCondition(*yystack_[0].value.as < imp::ast::Assertion* > ()); }
+#line 1170 "/home/ferhat/git/vc-gen/imp/recognizer/imp-parser.cpp"
     break;
 
   case 47:
-#line 234 "/home/ferhat/git/vc-gen/imp/imp-parser.yy"
-    { yylhs.value.as < imp::ast::Assertion* > () = new imp::ast::Disjunction(*yystack_[2].value.as < imp::ast::Assertion* > (), *yystack_[0].value.as < imp::ast::Assertion* > ()); }
-#line 1174 "/home/ferhat/git/vc-gen/imp/recognizer/imp-parser.cpp"
+#line 238 "/home/ferhat/git/vc-gen/imp/imp-parser.yy"
+    { yylhs.value.as < imp::ast::Assertion* > () = yystack_[0].value.as < imp::ast::Comparison* > (); }
+#line 1176 "/home/ferhat/git/vc-gen/imp/recognizer/imp-parser.cpp"
     break;
 
   case 48:
-#line 235 "/home/ferhat/git/vc-gen/imp/imp-parser.yy"
-    { yylhs.value.as < imp::ast::Assertion* > () = new imp::ast::Conjunction(*yystack_[2].value.as < imp::ast::Assertion* > (), *yystack_[0].value.as < imp::ast::Assertion* > ()); }
-#line 1180 "/home/ferhat/git/vc-gen/imp/recognizer/imp-parser.cpp"
+#line 239 "/home/ferhat/git/vc-gen/imp/imp-parser.yy"
+    { yylhs.value.as < imp::ast::Assertion* > () = new imp::ast::Negation(*yystack_[0].value.as < imp::ast::Assertion* > ()); }
+#line 1182 "/home/ferhat/git/vc-gen/imp/recognizer/imp-parser.cpp"
     break;
 
   case 49:
-#line 236 "/home/ferhat/git/vc-gen/imp/imp-parser.yy"
-    { yylhs.value.as < imp::ast::Assertion* > () = new imp::ast::Implication(*yystack_[2].value.as < imp::ast::Assertion* > (), *yystack_[0].value.as < imp::ast::Assertion* > ()); }
-#line 1186 "/home/ferhat/git/vc-gen/imp/recognizer/imp-parser.cpp"
+#line 240 "/home/ferhat/git/vc-gen/imp/imp-parser.yy"
+    { yylhs.value.as < imp::ast::Assertion* > () = new imp::ast::Disjunction(*yystack_[2].value.as < imp::ast::Assertion* > (), *yystack_[0].value.as < imp::ast::Assertion* > ()); }
+#line 1188 "/home/ferhat/git/vc-gen/imp/recognizer/imp-parser.cpp"
     break;
 
   case 50:
-#line 237 "/home/ferhat/git/vc-gen/imp/imp-parser.yy"
-    { yylhs.value.as < imp::ast::Assertion* > () = new imp::ast::UniversalQuantification(yystack_[2].value.as < std::vector<std::string> > (), *yystack_[0].value.as < imp::ast::Assertion* > ()); /*print<std::string>($2);*/ }
-#line 1192 "/home/ferhat/git/vc-gen/imp/recognizer/imp-parser.cpp"
+#line 241 "/home/ferhat/git/vc-gen/imp/imp-parser.yy"
+    { yylhs.value.as < imp::ast::Assertion* > () = new imp::ast::Conjunction(*yystack_[2].value.as < imp::ast::Assertion* > (), *yystack_[0].value.as < imp::ast::Assertion* > ()); }
+#line 1194 "/home/ferhat/git/vc-gen/imp/recognizer/imp-parser.cpp"
     break;
 
   case 51:
-#line 238 "/home/ferhat/git/vc-gen/imp/imp-parser.yy"
-    { yylhs.value.as < imp::ast::Assertion* > () = new imp::ast::ExistentialQuantification(yystack_[2].value.as < std::vector<std::string> > (), *yystack_[0].value.as < imp::ast::Assertion* > ()); /*print<std::string>($2);*/ }
-#line 1198 "/home/ferhat/git/vc-gen/imp/recognizer/imp-parser.cpp"
+#line 242 "/home/ferhat/git/vc-gen/imp/imp-parser.yy"
+    { yylhs.value.as < imp::ast::Assertion* > () = new imp::ast::Implication(*yystack_[2].value.as < imp::ast::Assertion* > (), *yystack_[0].value.as < imp::ast::Assertion* > ()); }
+#line 1200 "/home/ferhat/git/vc-gen/imp/recognizer/imp-parser.cpp"
     break;
 
   case 52:
-#line 239 "/home/ferhat/git/vc-gen/imp/imp-parser.yy"
-    { yylhs.value.as < imp::ast::Assertion* > () = yystack_[1].value.as < imp::ast::Assertion* > (); }
-#line 1204 "/home/ferhat/git/vc-gen/imp/recognizer/imp-parser.cpp"
+#line 243 "/home/ferhat/git/vc-gen/imp/imp-parser.yy"
+    { yylhs.value.as < imp::ast::Assertion* > () = new imp::ast::UniversalQuantification(yystack_[2].value.as < std::vector<std::string> > (), *yystack_[0].value.as < imp::ast::Assertion* > ()); /*print<std::string>($2);*/ }
+#line 1206 "/home/ferhat/git/vc-gen/imp/recognizer/imp-parser.cpp"
     break;
 
   case 53:
-#line 240 "/home/ferhat/git/vc-gen/imp/imp-parser.yy"
-    {  }
-#line 1210 "/home/ferhat/git/vc-gen/imp/recognizer/imp-parser.cpp"
+#line 244 "/home/ferhat/git/vc-gen/imp/imp-parser.yy"
+    { yylhs.value.as < imp::ast::Assertion* > () = new imp::ast::ExistentialQuantification(yystack_[2].value.as < std::vector<std::string> > (), *yystack_[0].value.as < imp::ast::Assertion* > ()); /*print<std::string>($2);*/ }
+#line 1212 "/home/ferhat/git/vc-gen/imp/recognizer/imp-parser.cpp"
     break;
 
   case 54:
-#line 244 "/home/ferhat/git/vc-gen/imp/imp-parser.yy"
-    { yylhs.value.as < std::vector<std::string> > () = {yystack_[0].value.as < std::string > ()}; }
-#line 1216 "/home/ferhat/git/vc-gen/imp/recognizer/imp-parser.cpp"
+#line 245 "/home/ferhat/git/vc-gen/imp/imp-parser.yy"
+    { yylhs.value.as < imp::ast::Assertion* > () = yystack_[1].value.as < imp::ast::Assertion* > (); }
+#line 1218 "/home/ferhat/git/vc-gen/imp/recognizer/imp-parser.cpp"
     break;
 
   case 55:
-#line 245 "/home/ferhat/git/vc-gen/imp/imp-parser.yy"
+#line 246 "/home/ferhat/git/vc-gen/imp/imp-parser.yy"
+    {  }
+#line 1224 "/home/ferhat/git/vc-gen/imp/recognizer/imp-parser.cpp"
+    break;
+
+  case 56:
+#line 250 "/home/ferhat/git/vc-gen/imp/imp-parser.yy"
+    { yylhs.value.as < std::vector<std::string> > () = {yystack_[0].value.as < std::string > ()}; }
+#line 1230 "/home/ferhat/git/vc-gen/imp/recognizer/imp-parser.cpp"
+    break;
+
+  case 57:
+#line 251 "/home/ferhat/git/vc-gen/imp/imp-parser.yy"
     { yylhs.value.as < std::vector<std::string> > () = enlist(yystack_[1].value.as < std::vector<std::string> > (), yystack_[0].value.as < std::string > ()); }
-#line 1222 "/home/ferhat/git/vc-gen/imp/recognizer/imp-parser.cpp"
+#line 1236 "/home/ferhat/git/vc-gen/imp/recognizer/imp-parser.cpp"
     break;
 
 
-#line 1226 "/home/ferhat/git/vc-gen/imp/recognizer/imp-parser.cpp"
+#line 1240 "/home/ferhat/git/vc-gen/imp/recognizer/imp-parser.cpp"
 
             default:
               break;
@@ -1493,128 +1507,131 @@ namespace imp {
   }
 
 
-  const signed char imp_parser::yypact_ninf_ = -31;
+  const signed char imp_parser::yypact_ninf_ = -44;
 
   const signed char imp_parser::yytable_ninf_ = -1;
 
   const short
   imp_parser::yypact_[] =
   {
-     -26,   -30,    20,    49,   -31,    33,   -21,   -31,    15,     6,
-      33,   -23,   -23,   -31,   -31,   167,    55,   -31,   -31,    29,
-      33,   -31,    69,   -31,    15,   190,    98,   154,    70,    29,
-     -31,   -17,    97,    15,    15,    15,    15,    15,    15,    15,
-      15,    15,    15,    15,    15,    33,    33,    33,    29,   118,
-     -31,   180,   -31,   -31,   -31,    33,   -31,    33,   190,   190,
-     102,   102,   187,   187,   187,   187,   187,   187,   187,    53,
-     -11,    29,    29,    47,    47,   -31,   -31,    87,    92,   118,
-      29,    29,   -31,    47,    47,   128,   -31,    48,    15,    76,
-      15,   -31,   -31,     0,   121,    47,    47,   118,    33,    84,
-     -31,   117,   124,    89,   -31,   135,   121,   125,    29,   118,
-     -31,   -31,    15,   136,   118,   -31,   116,    94,    15,   129,
-     -31,    15,   122,   -31,   127,   -31,   -31
+     -25,   -26,    14,   107,   -44,    66,    66,   161,   -44,   112,
+     -44,    13,    49,    66,   -22,   -22,   -44,   -44,   170,   -10,
+     -44,   -44,    37,    37,   115,   -44,   166,   115,   -44,    13,
+     191,    36,   157,   101,    37,   -44,   -18,    18,    13,    13,
+      13,    13,    13,    13,    13,    13,    13,    13,    13,    13,
+      66,    66,    66,    59,    59,   -44,   -44,    47,    44,   115,
+     115,    46,   183,   -44,   -44,   -44,    66,   -44,    66,   191,
+     191,    72,    72,   151,   151,   151,   151,   151,   151,   151,
+      19,    60,    37,    37,    59,    59,    89,   -44,   -13,    13,
+      43,    13,   -44,   -44,    74,   -44,    37,    37,   -44,   126,
+     184,    59,    59,   115,    66,   176,   -44,   122,    65,    86,
+     -44,   -44,    92,   184,   154,    37,   115,   -44,   -44,    13,
+      94,   115,   -44,    90,   117,    13,   134,   -44,    13,   127,
+     -44,   145,   -44,   -44
   };
 
   const unsigned char
   imp_parser::yydefact_[] =
   {
-       0,     0,     0,     0,     1,     0,     0,    39,     0,     0,
-       0,     0,     0,    12,    13,     0,     2,     4,    45,    41,
-       0,    40,     0,    42,     0,     5,     0,     0,     0,    46,
-      54,     0,     0,     0,     0,     0,     0,     0,     0,     0,
-       0,     0,     0,     0,     0,     0,     0,     0,    44,     0,
-      43,     0,    53,    11,    52,     0,    55,     0,     6,     7,
-       8,     9,    10,    19,    20,    21,    22,    23,    24,     0,
-      47,    48,    49,     0,     0,    31,    36,     0,     0,    35,
-      50,    51,     3,     0,     0,     0,    14,     0,     0,     0,
-       0,    38,    37,     0,    15,     0,     0,     0,     0,     0,
-      32,     0,     0,     0,    18,    16,    17,     0,    34,     0,
-      33,    25,     0,     0,     0,    29,     0,     0,     0,     0,
-      30,     0,     0,    28,     0,    27,    26
+       0,     0,     0,     0,     1,     0,     0,     0,    41,     0,
+      44,     0,     0,     0,     0,     0,    12,    13,     0,     2,
+       4,    47,    43,    46,     0,    42,     0,     0,    45,     0,
+       5,     0,     0,     0,    48,    56,     0,     0,     0,     0,
+       0,     0,     0,     0,     0,     0,     0,     0,     0,     0,
+       0,     0,     0,     0,     0,    31,    36,     0,     0,    35,
+       0,     0,     0,    55,    11,    54,     0,    57,     0,     6,
+       7,     8,     9,    10,    19,    20,    21,    22,    23,    24,
+       0,    49,    50,    51,     0,     0,     0,    14,     0,     0,
+       0,     0,    40,    37,     0,    39,    52,    53,     3,     0,
+      15,     0,     0,     0,     0,     0,    32,     0,     0,     0,
+      38,    18,    16,    17,     0,    34,     0,    33,    25,     0,
+       0,     0,    29,     0,     0,     0,     0,    30,     0,     0,
+      28,     0,    27,    26
   };
 
   const short
   imp_parser::yypgoto_[] =
   {
-     -31,    -8,   -31,   -31,   -22,    -6,    83,    86,   -31,    77,
-      39,   -31,   -31,   -31,   182,   -31,   176,    -7,   188
+     -44,   -11,   -44,   -44,   -41,   -43,   132,   116,   -44,   100,
+     -20,   -44,   -44,   -44,   200,   201,    85,    -4,   194
   };
 
   const signed char
   imp_parser::yydefgoto_[] =
   {
-      -1,    15,    16,    17,    85,    18,    76,    77,    99,   100,
-      78,    79,     2,     6,     7,    22,    23,    19,    31
+      -1,    18,    19,    20,    86,    21,    56,    57,   105,   106,
+      58,    59,     2,     7,     8,     9,    10,    22,    36
   };
 
   const unsigned char
   imp_parser::yytable_[] =
   {
-      25,    27,    28,    29,    55,     1,    45,    26,     3,   104,
-       8,     5,    20,    48,     9,    30,    51,    95,    96,     8,
-       4,    56,    10,    24,    47,    58,    59,    60,    61,    62,
-      63,    64,    65,    66,    67,    68,    69,     8,    70,    71,
-      72,     9,    11,    12,    13,    14,    45,    46,    80,    10,
-      81,     8,    87,    13,    14,    83,    33,    34,    35,    36,
-      37,    93,    94,    84,    47,    95,    96,    86,    86,    11,
-      12,    13,    14,   105,   106,    27,    98,    86,    86,    54,
-     101,     5,   103,    82,    44,    13,    14,    45,    46,    86,
-      86,   108,    33,    34,    35,    36,    37,    33,    34,    35,
-      36,    37,    20,    49,   117,    47,    88,    52,    89,    37,
-     122,   109,    98,   124,    75,   121,    90,    91,    57,   113,
-      33,    34,    35,    36,    37,    33,    34,    35,    36,    37,
-      33,    34,    35,    36,    37,    56,   107,   111,    95,    96,
-      73,   120,   125,   112,    74,    95,    96,   126,   116,   114,
-     115,    97,    95,   119,   123,   118,    75,    33,    34,    35,
-      36,    37,    92,    53,    38,    39,    40,    41,    42,    43,
-      33,    34,    35,    36,    37,   102,   110,    38,    39,    40,
-      41,    42,    43,    33,    34,    35,    36,    37,    21,    53,
-      33,    34,    35,    36,    37,    35,    36,    37,    50,     0,
-      32
+      30,    32,    23,    66,   101,   102,     1,    61,    33,    34,
+      87,    87,     3,    88,     4,   104,    35,    11,    62,    49,
+      67,    29,    38,    39,    40,    41,    42,    69,    70,    71,
+      72,    73,    74,    75,    76,    77,    78,    79,    80,    68,
+      94,    87,    87,    99,   100,    63,    81,    82,    83,    98,
+      31,    16,    17,    11,    50,    51,    67,    12,    87,    87,
+     112,   113,    96,    11,    97,    13,    89,    84,    90,    92,
+      11,    95,    52,    32,    12,    85,    91,    50,   107,    42,
+     109,    55,    13,   114,   119,    14,    15,    16,    17,    38,
+      39,    40,    41,    42,    28,    52,   123,    16,    17,   110,
+     115,   126,    14,    15,    16,    17,   101,   102,   124,   101,
+      65,    28,   103,   125,   129,   127,   120,   131,    50,    51,
+      38,    39,    40,    41,    42,    38,    39,    40,    41,    42,
+      38,    39,    40,    41,    42,   111,    52,    53,   128,     5,
+       6,    54,   118,   101,   102,     6,    27,   132,    38,    39,
+      40,    41,    42,    55,    38,    39,    40,    41,    42,   130,
+      38,    39,    40,    41,    42,   133,    64,    43,    44,    45,
+      46,    47,    48,    38,    39,    40,    41,    42,   121,   122,
+      43,    44,    45,    46,    47,    48,    38,    39,    40,    41,
+      42,    93,    64,     5,     6,    24,    40,    41,    42,     6,
+      60,   101,   102,   116,   104,   117,   108,    25,    26,    37
   };
 
-  const signed char
+  const unsigned char
   imp_parser::yycheck_[] =
   {
-       8,     9,     9,    10,    21,    31,    17,     1,    38,     9,
-       4,    32,    33,    20,     8,    38,    24,    17,    18,     4,
-       0,    38,    16,     8,    35,    33,    34,    35,    36,    37,
-      38,    39,    40,    41,    42,    43,    44,     4,    45,    46,
-      47,     8,    36,    37,    38,    39,    17,    18,    55,    16,
-      57,     4,    74,    38,    39,     8,     3,     4,     5,     6,
-       7,    83,    84,    16,    35,    17,    18,    73,    74,    36,
-      37,    38,    39,    95,    96,    83,    28,    83,    84,     9,
-      88,    32,    90,    30,    29,    38,    39,    17,    18,    95,
-      96,    98,     3,     4,     5,     6,     7,     3,     4,     5,
-       6,     7,    33,    34,   112,    35,    19,     9,    21,     7,
-     118,    27,    28,   121,    38,    21,    29,    25,    21,    30,
+      11,    12,     6,    21,    17,    18,    31,    27,    12,    13,
+      53,    54,    38,    54,     0,    28,    38,     4,    29,    29,
+      38,     8,     3,     4,     5,     6,     7,    38,    39,    40,
+      41,    42,    43,    44,    45,    46,    47,    48,    49,    21,
+      60,    84,    85,    84,    85,     9,    50,    51,    52,    30,
+       1,    38,    39,     4,    17,    18,    38,     8,   101,   102,
+     101,   102,    66,     4,    68,    16,    19,     8,    21,    25,
+       4,    25,    35,    84,     8,    16,    29,    17,    89,     7,
+      91,    38,    16,   103,    19,    36,    37,    38,    39,     3,
+       4,     5,     6,     7,     9,    35,   116,    38,    39,    25,
+     104,   121,    36,    37,    38,    39,    17,    18,   119,    17,
+       9,    26,    23,    19,   125,    25,    30,   128,    17,    18,
        3,     4,     5,     6,     7,     3,     4,     5,     6,     7,
-       3,     4,     5,     6,     7,    38,    97,    20,    17,    18,
-      22,    25,    20,    19,    26,    17,    18,    20,   109,    24,
-      25,    23,    17,   114,    25,    19,    38,     3,     4,     5,
-       6,     7,    79,     9,    10,    11,    12,    13,    14,    15,
-       3,     4,     5,     6,     7,    89,    99,    10,    11,    12,
-      13,    14,    15,     3,     4,     5,     6,     7,     6,     9,
-       3,     4,     5,     6,     7,     5,     6,     7,    22,    -1,
-      12
+       3,     4,     5,     6,     7,     9,    35,    22,    21,    32,
+      33,    26,    20,    17,    18,    33,    34,    20,     3,     4,
+       5,     6,     7,    38,     3,     4,     5,     6,     7,    25,
+       3,     4,     5,     6,     7,    20,     9,    10,    11,    12,
+      13,    14,    15,     3,     4,     5,     6,     7,    24,    25,
+      10,    11,    12,    13,    14,    15,     3,     4,     5,     6,
+       7,    59,     9,    32,    33,    34,     5,     6,     7,    33,
+      34,    17,    18,    27,    28,   105,    90,     7,     7,    15
   };
 
   const unsigned char
   imp_parser::yystos_[] =
   {
-       0,    31,    52,    38,     0,    32,    53,    54,     4,     8,
-      16,    36,    37,    38,    39,    41,    42,    43,    45,    57,
-      33,    54,    55,    56,     8,    41,     1,    41,    57,    57,
-      38,    58,    58,     3,     4,     5,     6,     7,    10,    11,
-      12,    13,    14,    15,    29,    17,    18,    35,    57,    34,
-      56,    41,     9,     9,     9,    21,    38,    21,    41,    41,
+       0,    31,    52,    38,     0,    32,    33,    53,    54,    55,
+      56,     4,     8,    16,    36,    37,    38,    39,    41,    42,
+      43,    45,    57,    57,    34,    54,    55,    34,    56,     8,
+      41,     1,    41,    57,    57,    38,    58,    58,     3,     4,
+       5,     6,     7,    10,    11,    12,    13,    14,    15,    29,
+      17,    18,    35,    22,    26,    38,    46,    47,    50,    51,
+      34,    50,    41,     9,     9,     9,    21,    38,    21,    41,
       41,    41,    41,    41,    41,    41,    41,    41,    41,    41,
-      57,    57,    57,    22,    26,    38,    46,    47,    50,    51,
-      57,    57,    30,     8,    16,    44,    45,    44,    19,    21,
-      29,    25,    46,    44,    44,    17,    18,    23,    28,    48,
-      49,    41,    47,    41,     9,    44,    44,    50,    57,    27,
-      49,    20,    19,    30,    24,    25,    50,    41,    19,    50,
-      25,    21,    41,    25,    41,    20,    20
+      41,    57,    57,    57,     8,    16,    44,    45,    44,    19,
+      21,    29,    25,    46,    50,    25,    57,    57,    30,    44,
+      44,    17,    18,    23,    28,    48,    49,    41,    47,    41,
+      25,     9,    44,    44,    50,    57,    27,    49,    20,    19,
+      30,    24,    25,    50,    41,    19,    50,    25,    21,    41,
+      25,    41,    20,    20
   };
 
   const unsigned char
@@ -1623,9 +1640,9 @@ namespace imp {
        0,    40,    41,    41,    41,    41,    41,    41,    41,    41,
       41,    41,    42,    43,    44,    44,    44,    44,    44,    45,
       45,    45,    45,    45,    45,    46,    46,    46,    46,    46,
-      46,    47,    48,    48,    49,    50,    51,    51,    52,    53,
-      53,    54,    55,    55,    56,    57,    57,    57,    57,    57,
-      57,    57,    57,    57,    58,    58
+      46,    47,    48,    48,    49,    50,    51,    51,    52,    52,
+      52,    53,    53,    54,    55,    55,    56,    57,    57,    57,
+      57,    57,    57,    57,    57,    57,    58,    58
   };
 
   const unsigned char
@@ -1634,9 +1651,9 @@ namespace imp {
        0,     2,     1,     4,     1,     2,     3,     3,     3,     3,
        3,     3,     1,     1,     1,     2,     3,     3,     3,     3,
        3,     3,     3,     3,     3,     4,     8,     7,     7,     5,
-       6,     1,     1,     2,     2,     1,     1,     2,     7,     1,
-       2,     2,     1,     2,     2,     1,     2,     3,     3,     3,
-       4,     4,     3,     3,     1,     2
+       6,     1,     1,     2,     2,     1,     1,     2,     7,     6,
+       6,     1,     2,     2,     1,     2,     2,     1,     2,     3,
+       3,     3,     4,     4,     3,     3,     1,     2
   };
 
 
@@ -1665,9 +1682,9 @@ namespace imp {
        0,   147,   147,   148,   149,   150,   151,   152,   153,   154,
      155,   156,   159,   162,   166,   167,   168,   169,   170,   174,
      175,   176,   177,   178,   179,   183,   184,   185,   186,   187,
-     188,   191,   195,   196,   199,   202,   206,   207,   211,   216,
-     217,   220,   224,   225,   228,   232,   233,   234,   235,   236,
-     237,   238,   239,   240,   244,   245
+     188,   191,   195,   196,   199,   202,   206,   207,   211,   213,
+     216,   222,   223,   226,   230,   231,   234,   238,   239,   240,
+     241,   242,   243,   244,   245,   246,   250,   251
   };
 
   // Print the state stack on the debug stream.
@@ -1702,9 +1719,9 @@ namespace imp {
 
 #line 9 "/home/ferhat/git/vc-gen/imp/imp-parser.yy"
 } // imp
-#line 1706 "/home/ferhat/git/vc-gen/imp/recognizer/imp-parser.cpp"
+#line 1723 "/home/ferhat/git/vc-gen/imp/recognizer/imp-parser.cpp"
 
-#line 247 "/home/ferhat/git/vc-gen/imp/imp-parser.yy"
+#line 253 "/home/ferhat/git/vc-gen/imp/imp-parser.yy"
 
 
 void

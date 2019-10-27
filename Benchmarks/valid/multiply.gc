@@ -1,0 +1,13 @@
+(assume n >= 0; )
+(assume p!0 = p; havoc p; assume p = 0;)
+(assume x!0 = x; havoc x; assume x = 0;)
+(assert p = x * m; assert x <= n; )
+(havoc p; havoc x; )
+(assume p = x * m; assume x <= n; )
+(assume x < n;
+(assume x!1 = x; havoc x; assume x = x!1 + 1;)
+(assume p!1 = p; havoc p; assume p = p!1 + m;)
+assert p = x * m; assert x <= n; assume false;)
+[]
+assume !(x < n);)
+(assert p = n * m; )

@@ -11,6 +11,7 @@
 #include <iostream>
 
 void run(imp_driver&);
+std::string& erase(std::string&, const std::string&);
 
 int main(int argc, char* argv[]) {
     banner();
@@ -33,5 +34,23 @@ void run(imp_driver& driver) {
     std::cout << visitor.getOutput() << std::endl;
     cout << "---------------------------------------------------------------\n";
     imp::compiler::GcCompiler compiler(driver.program);
-    std::cout << compiler.compile() << std::endl;
+    std::string gc = compiler.compile();
+    std::cout << gc << std::endl;
+    std::string filename = driver.program->identifier + ".gc";
+    std::ofstream fout(filename);
+    fout << erase(gc, " \b");
+    fout.close();
+}
+
+/*
+ * Erase all Occurrences of given substring from main string.
+ */
+std::string& erase(std::string& out, const std::string& to) {
+    size_t pos;
+    // Search for the substring in string in a loop untill nothing is found
+    while ((pos = out.find(to)) != std::string::npos) {
+        // If found then erase it from string
+        out.erase(pos, to.length());
+    }
+    return out;
 }

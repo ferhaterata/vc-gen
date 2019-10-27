@@ -461,16 +461,22 @@ class GcCompiler : public imp::ast::Visitor<string> {
 
     string visit(const imp::ast::IfThenStatement* statement) override {
         stringstream ss;
-        ss << "(if " << visit(&statement->condition);
-        ss << " then " << visit(&statement->thenBlock) << ")";
+        ss << "(";
+        ss << "assume " << visit(&statement->condition) << ";";
+        ss << visit(&statement->thenBlock);
+        ss << ")";
         return ss.str();
     }
 
     string visit(const imp::ast::IfThenElseStatement* statement) override {
         stringstream ss;
-        ss << "(if " << visit(&statement->condition);
-        ss << " then " << visit(&statement->thenBlock);
-        ss << " else " << visit(&statement->elseBlock) << ")";
+        ss << "(";
+        ss << "assume " << visit(&statement->condition) << ";";
+        ss << visit(&statement->thenBlock);
+        ss << "\n[]\n";
+        ss << "assume !(" << visit(&statement->condition) << ");";
+        ss << visit(&statement->elseBlock);
+        ss << ")";
         return ss.str();
     }
 
@@ -482,7 +488,7 @@ class GcCompiler : public imp::ast::Visitor<string> {
         for (const auto& invariant : statement->invariants) {
             ss << "assert " << visit(invariant) << "; ";
         }
-        ss <<"\b)\n";
+        ss << "\b)\n";
         // havoc x1; ...; havoc xn;
         // collect modified locations for havoc
         visit(&statement->block);
@@ -495,6 +501,7 @@ class GcCompiler : public imp::ast::Visitor<string> {
         }
         // assume I;
         ss << "(";
+
         for (const auto& invariant : statement->invariants) {
             ss << "assume " << visit(invariant) << "; ";
         }

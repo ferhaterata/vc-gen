@@ -153,28 +153,28 @@ class PrinterVisitor : public Visitor<string> {
 
     string visit(const Negation* assertion) override {
         stringstream ss;
-        ss << "(not " << visit(&assertion->assertion) << " )";
+        ss << "not " << visit(&assertion->assertion) << " ";
         return ss.str();
     }
 
     string visit(const Conjunction* assertion) override {
         stringstream ss;
-        ss << "(" << visit(&assertion->left) << " and "
-           << visit(&assertion->right) << ")";
+        ss << "" << visit(&assertion->left) << " and "
+           << visit(&assertion->right) << "";
         return ss.str();
     }
 
     string visit(const Disjunction* assertion) override {
         stringstream ss;
-        ss << "(" << visit(&assertion->left) << " or "
-           << visit(&assertion->right) << ")";
+        ss << "" << visit(&assertion->left) << " or "
+           << visit(&assertion->right) << "";
         return ss.str();
     }
 
     string visit(const Implication* assertion) override {
         stringstream ss;
-        ss << "(" << visit(&assertion->left) << " implies "
-           << visit(&assertion->right) << ")";
+        ss << "" << visit(&assertion->left) << " implies "
+           << visit(&assertion->right) << "";
         return ss.str();
     }
 
@@ -249,42 +249,42 @@ class PrinterVisitor : public Visitor<string> {
 
     string visit(const Negate* expression) override {
         stringstream ss;
-        ss << "(-" << visit(&expression->expression) << ")";
+        ss << "-" << visit(&expression->expression) << "";
         return ss.str();
     }
 
     string visit(const Sum* expression) override {
         stringstream ss;
-        ss << "(" << visit(&expression->left) << " + "
-           << visit(&expression->right) << ")";
+        ss << "" << visit(&expression->left) << " + "
+           << visit(&expression->right) << "";
         return ss.str();
     }
 
     string visit(const Subtract* expression) override {
         stringstream ss;
-        ss << "(" << visit(&expression->left) << " - "
-           << visit(&expression->right) << ")";
+        ss << "" << visit(&expression->left) << " - "
+           << visit(&expression->right) << "";
         return ss.str();
     }
 
     string visit(const Multiply* expression) override {
         stringstream ss;
-        ss << "(" << visit(&expression->left) << " * "
-           << visit(&expression->right) << ")";
+        ss << "" << visit(&expression->left) << " * "
+           << visit(&expression->right) << "";
         return ss.str();
     }
 
     string visit(const Divide* expression) override {
         stringstream ss;
-        ss << "(" << visit(&expression->left) << " / "
-           << visit(&expression->right) << ")";
+        ss << "" << visit(&expression->left) << " / "
+           << visit(&expression->right) << "";
         return ss.str();
     }
 
     string visit(const Mod* expression) override {
         stringstream ss;
-        ss << "(" << visit(&expression->left) << " % "
-           << visit(&expression->right) << ")";
+        ss << "" << visit(&expression->left) << " % "
+           << visit(&expression->right) << "";
         return ss.str();
     }
 
@@ -315,42 +315,42 @@ class PrinterVisitor : public Visitor<string> {
 
     string visit(const EqualComparison* comparison) override {
         stringstream ss;
-        ss << "(" << visit(&comparison->left) << " = "
-           << visit(&comparison->right) << ")";
+        ss << "" << visit(&comparison->left) << " = "
+           << visit(&comparison->right) << "";
         return ss.str();
     }
 
     string visit(const NotEqualComparison* comparison) override {
         stringstream ss;
-        ss << "(" << visit(&comparison->left)
-           << " != " << visit(&comparison->right) << ")";
+        ss << "" << visit(&comparison->left)
+           << " != " << visit(&comparison->right) << "";
         return ss.str();
     }
 
     string visit(const LeqComparison* comparison) override {
         stringstream ss;
-        ss << "(" << visit(&comparison->left)
-           << " <= " << visit(&comparison->right) << ")";
+        ss << "" << visit(&comparison->left)
+           << " <= " << visit(&comparison->right) << "";
         return ss.str();
     }
     string visit(const GeqComparison* comparison) override {
         stringstream ss;
-        ss << "(" << visit(&comparison->left)
-           << " >= " << visit(&comparison->right) << ")";
+        ss << "" << visit(&comparison->left)
+           << " >= " << visit(&comparison->right) << "";
         return ss.str();
     }
 
     string visit(const LtComparison* comparison) override {
         stringstream ss;
-        ss << "(" << visit(&comparison->left) << " < "
-           << visit(&comparison->right) << ")";
+        ss << "" << visit(&comparison->left) << " < "
+           << visit(&comparison->right) << "";
         return ss.str();
     }
 
     string visit(const GtComparison* comparison) override {
         stringstream ss;
-        ss << "(" << visit(&comparison->left) << " > "
-           << visit(&comparison->right) << ")";
+        ss << "" << visit(&comparison->left) << " > "
+           << visit(&comparison->right) << "";
         return ss.str();
     }
 };

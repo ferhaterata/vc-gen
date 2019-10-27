@@ -4,9 +4,9 @@
 //  Copyright (c) 2019 Yale University. All rights reserved.
 // -----------------------------------------------------------------------------
 
+#include "gc/compiler/smt-compiler.hpp"
 #include "gc/gc-driver.hpp"
 #include "gc/printer-visitor.hpp"
-#include "gc/compiler/smt-compiler.hpp"
 #include "tools.hpp"
 #include <iostream>
 
@@ -35,12 +35,11 @@ void run(gc_driver& driver) {
     gc::ast::PrinterVisitor visitor(driver.program);
     std::cout << visitor.getOutput() << std::endl;
     cout << "---------------------------------------------------------------\n";
-    gc::compiler::s compiler(driver.program);
-    std::string gc = compiler.compile();
+    gc::compiler::SmtCompiler compiler(driver.program);
+    const std::string& gc = compiler.compile();
     std::cout << gc << std::endl;
-    std::string filename = driver.program->identifier + ".smt";
+    const std::string& filename = driver.file + ".smt";
     std::ofstream fout(filename);
-
 }
 
 // print the file

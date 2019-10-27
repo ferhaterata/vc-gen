@@ -26,6 +26,8 @@ class SmtCompiler : public gc::ast::Visitor<string> {
         output = visit(prog);
     }
 
+    const string& compile() { return ""; }
+
     string visit(const gc::ast::Command* command) override {
         stringstream ss;
         switch (command->type) {

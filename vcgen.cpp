@@ -6,7 +6,7 @@
 
 #include "imp/compiler/gc-compiler.hpp"
 #include "imp/imp-driver.hpp"
-#include "imp/printer-visitor.hpp"
+#include "ast/printer-visitor.hpp"
 #include "gc/compiler/smt-compiler.hpp"
 #include "tools.hpp"
 #include <iostream>

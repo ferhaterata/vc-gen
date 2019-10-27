@@ -6,7 +6,7 @@
 
 #include "gc-driver.hpp"
 #include "gc-parser.hpp"
-#include "gc.hpp"
+#include "ast/gc.hpp"
 #include <fstream>
 
 gc_driver::gc_driver() : trace_scanning(false), trace_parsing(false) {}

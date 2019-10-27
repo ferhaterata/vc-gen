@@ -37,28 +37,27 @@ ADD_FLEX_BISON_DEPENDENCY(gc-scanner gc-parser)
 add_executable(vcgen
         vcgen.cpp
         ##########
-        imp/imp-driver.cpp
-        imp/imp-driver.hpp
         ${BISON_imp-parser_OUTPUTS}
         ${FLEX_imp-scanner_OUTPUTS}
-        imp/imp.cpp
-        imp/imp.hpp
-        imp/visitor.hpp
-#        imp/abstract-visitor.hpp
-        imp/printer-visitor.hpp
+        imp/imp-driver.cpp
+        imp/imp-driver.hpp
+        imp/ast/imp.cpp
+        imp/ast/imp.hpp
+        imp/ast/visitor.hpp
+        imp/ast/printer-visitor.hpp
         imp/compiler/gc-compiler.hpp
         ##########
         tools.cpp
         tools.hpp
         ##########
-        gc/gc-driver.hpp
-        gc/gc-driver.cpp
         ${BISON_gc-parser_OUTPUTS}
         ${FLEX_gc-scanner_OUTPUTS}
-        gc/gc.hpp
-        gc/gc.cpp
-        gc/visitor.hpp
-        gc/printer-visitor.hpp
+        gc/gc-driver.hpp
+        gc/gc-driver.cpp
+        gc/ast/gc.hpp
+        gc/ast/gc.cpp
+        gc/ast/visitor.hpp
+        gc/ast/printer-visitor.hpp
         gc/compiler/smt-compiler.hpp
         ##########
         solver/z3-solver.hpp
@@ -70,14 +69,14 @@ add_executable(gc
         tools.cpp
         tools.hpp
         ##########
-        gc/gc-driver.hpp
-        gc/gc-driver.cpp
         ${BISON_gc-parser_OUTPUTS}
         ${FLEX_gc-scanner_OUTPUTS}
-        gc/gc.hpp
-        gc/gc.cpp
-        gc/visitor.hpp
-        gc/printer-visitor.hpp
+        gc/gc-driver.hpp
+        gc/gc-driver.cpp
+        gc/ast/gc.hpp
+        gc/ast/gc.cpp
+        gc/ast/visitor.hpp
+        gc/ast/printer-visitor.hpp
         gc/compiler/smt-compiler.hpp
         ##########
         solver/z3-solver.hpp)

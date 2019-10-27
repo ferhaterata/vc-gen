@@ -50,7 +50,7 @@
 #include <vector>
 #include <stack>
 #include <iterator>
-#include "gc.hpp"
+#include "ast/gc.hpp"
 class gc_driver;
 
 #line 57 "/home/ferhat/git/vc-gen/gc/recognizer/gc-parser.hpp"

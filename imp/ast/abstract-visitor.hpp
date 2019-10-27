@@ -9,7 +9,7 @@
 #include "imp.hpp"
 #include <iostream>
 
-namespace ast {
+namespace imp:ast {
 
 template <class T> class AbstractVisitor : public Visitor<T> {
   public:

@@ -6,7 +6,7 @@
 
 #include "imp-driver.hpp"
 #include "imp-parser.hpp"
-#include "imp.hpp"
+#include "ast/imp.hpp"
 #include <fstream>
 #include <sstream>
 

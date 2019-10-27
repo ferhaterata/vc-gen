@@ -19,7 +19,7 @@
 #include <vector>
 #include <stack>
 #include <iterator>
-#include "gc.hpp"
+#include "ast/gc.hpp"
 class gc_driver;
 }
 

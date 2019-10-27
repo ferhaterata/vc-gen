@@ -7,7 +7,7 @@
 #ifndef GC_SMT_COMPILER_HPP
 #define GC_SMT_COMPILER_HPP
 
-#include "../visitor.hpp"
+#include "gc/ast/visitor.hpp"
 #include <sstream>
 
 using namespace std;

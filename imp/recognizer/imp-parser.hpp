@@ -50,7 +50,7 @@
 #include <vector>
 #include <stack>
 #include <iterator>
-#include "imp.hpp"
+#include "ast/imp.hpp"
 class imp_driver;
 
 #line 57 "/home/ferhat/git/vc-gen/imp/recognizer/imp-parser.hpp"

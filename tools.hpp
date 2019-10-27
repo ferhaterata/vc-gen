@@ -11,7 +11,7 @@
 // Please enter your own name.
 // -------------------------------------------------------------------
 #define NAME "Ferhat Erata"
-#define CLASS "CPSC 427/527"
+#define CLASS "CPSC 454/554"
 
 #include <fstream>
 #include <iomanip>

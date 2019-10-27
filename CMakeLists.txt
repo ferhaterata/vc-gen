@@ -5,7 +5,7 @@ set(CMAKE_CXX_STANDARD 17)
 
 include_directories(
         .
-        imp imp/recognizer
+        imp imp/recognizer imp/compiler
         gc gc/recognizer
 )
 
@@ -46,6 +46,7 @@ add_executable(vcgen
         imp/visitor.hpp
         imp/abstract-visitor.hpp
         imp/printer-visitor.hpp
+        imp/compiler/gc-compiler.hpp
         ##########
         tools.cpp
         tools.hpp

@@ -284,6 +284,8 @@ class GcCompiler : public imp::ast::Visitor<string> {
         return ss.str();
     }
 
+    // being used havocs here
+    // TODO: check array fragment
     string visit(const imp::ast::Reference* expression) override {
         std::stringstream ss;
 
@@ -304,10 +306,11 @@ class GcCompiler : public imp::ast::Visitor<string> {
         return ss.str();
     }
 
+    // TODO: check array fragment
     string visit(const imp::ast::ArrayReference* expression) override {
         stringstream ss;
         ss << visit(&expression->reference);
-        ss << "[" << visit(&expression->index) << "]";
+        ss << "(" << visit(&expression->index) << ")";
         return ss.str();
     }
 
@@ -442,20 +445,48 @@ class GcCompiler : public imp::ast::Visitor<string> {
     string
     visit(const imp::ast::MultipleAssignmentStatement* statement) override {
         stringstream ss;
-        ss << "(";
-        ss << visit(&statement->locFirst) << ", ";
-        ss << visit(&statement->locSecond) << ":=";
-        ss << visit(&statement->exprFirst) << ", ";
-        ss << visit(&statement->exprSecond) << ")";
+        // First Assignment
+        std::pair<string, string> pair(statement->locFirst.identifier,
+                                       statement->locFirst.fresh);
+        symbols.push_back(pair);
+        ss << "(assume " << pair.second << " = " << pair.first << "; ";
+        ss << "havoc " << pair.first << "; ";
+        ss << "assume " << pair.first << " = " << visit(&statement->exprFirst)
+           << ";)";
+        symbols.pop_back();
+        // for other calls visit location
+        visit(&statement->exprFirst);
+        ss << "\n";
+        // Second Assignment
+        pair.first = statement->locSecond.identifier;
+        pair.second = statement->locSecond.fresh;
+        symbols.push_back(pair);
+        ss << "(assume " << pair.second << " = " << pair.first << "; ";
+        ss << "havoc " << pair.first << "; ";
+        ss << "assume " << pair.first << " = " << visit(&statement->exprSecond)
+           << ";)";
+        symbols.pop_back();
+        // for other calls visit location
+        visit(&statement->exprFirst);
+        // Return both
         return ss.str();
     }
 
+    // TODO: check array fragment
     string visit(const imp::ast::ArrayAssignmentStatement* statement) override {
         stringstream ss;
-        ss << "(";
-        ss << visit(&statement->loc);
-        ss << "[" << visit(&statement->index) << "] := ";
-        ss << visit(&statement->exp) << ")";
+        std::pair<string, string> pair(statement->loc.identifier,
+                                       statement->loc.fresh);
+        symbols.push_back(pair);
+        ss << "(assume " << pair.second << "(" << visit(&statement->index)
+           << ")";
+        ss << " = " << pair.first << "; ";
+        ss << "havoc " << pair.first << "; ";
+        ss << "assume " << pair.first << " = " << visit(&statement->exp)
+           << ";)";
+        symbols.pop_back();
+        // for other calls visit location
+        visit(&statement->loc);
         return ss.str();
     }
 
@@ -481,7 +512,6 @@ class GcCompiler : public imp::ast::Visitor<string> {
     }
 
     string visit(const imp::ast::WhileStatement* statement) override {
-
         stringstream ss;
         // assert I;
         ss << "(";

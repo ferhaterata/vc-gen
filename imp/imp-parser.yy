@@ -72,24 +72,15 @@ void print(std::vector<T>& v){
   MOD       "%"
   LPAREN    "("
   RPAREN    ")"
-
-/* Program Conditions (COMP)*/
-
   EQUAL     "="
   NEQUAL    "!="
   LEQ       "<="
   GEQ       ">="
   LT        "<"
   GT        ">"
-
-/* Boolean Expressions (BEXP)*/
-
   NOT       "!"
   OR        "||"
   AND       "&&"
-
-/* Program Statements (STMT) */
-
   ASSIGN    ":="
   SEMICOLON ";"
   COMMA     ","
@@ -102,16 +93,10 @@ void print(std::vector<T>& v){
   INV       "inv"
   LSQUARE   "["
   RSQUARE   "]"
-
-/* Program */
-
   PROGRAM   "program"
   PRE       "pre"
   POST      "post"
   IS        "is"
-
-/* Assertions */
-
   IMPLY     "==>"
   ALL       "forall"
   SOME      "exists"
@@ -211,7 +196,7 @@ inv_list:
     | inv_list inv      { $$ = enlist($1, $2); }
     ;
 
-inv: "inv" assertion   { $$ = new imp::ast::Invariant(*$2); }
+inv: "inv" assertion    { $$ = new imp::ast::Invariant(*$2); }
     ;
 
 block: stmt_list        { $$ = new imp::ast::Block($1); /*print<imp::ast::Statement>($1);*/}

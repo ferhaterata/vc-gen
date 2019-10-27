@@ -50,11 +50,10 @@
 #include <vector>
 #include <stack>
 #include <iterator>
-#include <cstdio>
 #include "gc.hpp"
 class gc_driver;
 
-#line 58 "/home/ferhat/git/vc-gen/gc/recognizer/gc-parser.hpp"
+#line 57 "/home/ferhat/git/vc-gen/gc/recognizer/gc-parser.hpp"
 
 # include <cassert>
 # include <cstdlib> // std::abort
@@ -178,7 +177,7 @@ class gc_driver;
 
 #line 8 "/home/ferhat/git/vc-gen/gc/gc-parser.yy"
 namespace gc {
-#line 182 "/home/ferhat/git/vc-gen/gc/recognizer/gc-parser.hpp"
+#line 181 "/home/ferhat/git/vc-gen/gc/recognizer/gc-parser.hpp"
 
 
 
@@ -2010,7 +2009,7 @@ switch (yytype)
 
 #line 8 "/home/ferhat/git/vc-gen/gc/gc-parser.yy"
 } // gc
-#line 2014 "/home/ferhat/git/vc-gen/gc/recognizer/gc-parser.hpp"
+#line 2013 "/home/ferhat/git/vc-gen/gc/recognizer/gc-parser.hpp"
 
 
 

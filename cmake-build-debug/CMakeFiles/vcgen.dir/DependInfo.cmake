@@ -22,6 +22,7 @@ set(CMAKE_CXX_TARGET_INCLUDE_PATH
   "../."
   "../imp"
   "../imp/recognizer"
+  "../imp/compiler"
   "../gc"
   "../gc/recognizer"
   )

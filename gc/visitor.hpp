@@ -4,8 +4,8 @@
 //  Copyright (c) 2019 Yale University. All rights reserved.
 // -----------------------------------------------------------------------------
 
-#ifndef VC_GEN_VISITOR_HPP
-#define VC_GEN_VISITOR_HPP
+#ifndef GC_VISITOR_HPP
+#define GC_VISITOR_HPP
 
 #include "gc.hpp"
 
@@ -86,4 +86,4 @@ class Visitor {
 
 } // namespace ast
 
-#endif // VC_GEN_VISITOR_HPP
+#endif // GC_VISITOR_HPP

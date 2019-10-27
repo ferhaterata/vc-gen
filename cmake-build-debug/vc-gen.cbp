@@ -47,6 +47,7 @@
 					<Add directory="/home/ferhat/git/vc-gen/."/>
 					<Add directory="/home/ferhat/git/vc-gen/imp"/>
 					<Add directory="/home/ferhat/git/vc-gen/imp/recognizer"/>
+					<Add directory="/home/ferhat/git/vc-gen/imp/compiler"/>
 					<Add directory="/home/ferhat/git/vc-gen/gc"/>
 					<Add directory="/home/ferhat/git/vc-gen/gc/recognizer"/>
 					<Add directory="/usr/include/c++/7"/>
@@ -75,6 +76,7 @@
 					<Add directory="/home/ferhat/git/vc-gen/."/>
 					<Add directory="/home/ferhat/git/vc-gen/imp"/>
 					<Add directory="/home/ferhat/git/vc-gen/imp/recognizer"/>
+					<Add directory="/home/ferhat/git/vc-gen/imp/compiler"/>
 					<Add directory="/home/ferhat/git/vc-gen/gc"/>
 					<Add directory="/home/ferhat/git/vc-gen/gc/recognizer"/>
 					<Add directory="/usr/include/c++/7"/>
@@ -103,6 +105,7 @@
 					<Add directory="/home/ferhat/git/vc-gen/."/>
 					<Add directory="/home/ferhat/git/vc-gen/imp"/>
 					<Add directory="/home/ferhat/git/vc-gen/imp/recognizer"/>
+					<Add directory="/home/ferhat/git/vc-gen/imp/compiler"/>
 					<Add directory="/home/ferhat/git/vc-gen/gc"/>
 					<Add directory="/home/ferhat/git/vc-gen/gc/recognizer"/>
 					<Add directory="/usr/include/c++/7"/>
@@ -131,6 +134,7 @@
 					<Add directory="/home/ferhat/git/vc-gen/."/>
 					<Add directory="/home/ferhat/git/vc-gen/imp"/>
 					<Add directory="/home/ferhat/git/vc-gen/imp/recognizer"/>
+					<Add directory="/home/ferhat/git/vc-gen/imp/compiler"/>
 					<Add directory="/home/ferhat/git/vc-gen/gc"/>
 					<Add directory="/home/ferhat/git/vc-gen/gc/recognizer"/>
 					<Add directory="/usr/include/c++/7"/>
@@ -197,7 +201,7 @@
 			<Option target="vcgen"/>
 			<Option target="gc"/>
 		</Unit>
-		<Unit filename="/home/ferhat/git/vc-gen/imp/abstract-visitor.hpp">
+		<Unit filename="/home/ferhat/git/vc-gen/imp/compiler/gc-compiler.hpp">
 			<Option target="vcgen"/>
 		</Unit>
 		<Unit filename="/home/ferhat/git/vc-gen/imp/imp-driver.cpp">

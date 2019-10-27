@@ -27,8 +27,6 @@ stack
 -
 iterator
 -
-cstdio
--
 gc.hpp
 ../gc/recognizer/gc.hpp
 cassert

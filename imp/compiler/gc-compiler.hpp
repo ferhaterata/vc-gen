@@ -4,8 +4,8 @@
 //  Copyright (c) 2019 Yale University. All rights reserved.
 // -----------------------------------------------------------------------------
 
-#ifndef VC_GEN_PRINTER_VISITOR_HPP
-#define VC_GEN_PRINTER_VISITOR_HPP
+#ifndef IMP_GC_COMPILER_HPP
+#define IMP_GC_COMPILER_HPP
 
 #include "visitor.hpp"
 #include <sstream>
@@ -444,4 +444,4 @@ class GcCompiler : public imp::ast::Visitor<string> {
     }
 };
 } // namespace imp::compiler
-#endif // VC_GEN_PRINTER_VISITOR_HPP
+#endif // IMP_GC_COMPILER_HPP

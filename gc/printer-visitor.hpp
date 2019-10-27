@@ -4,8 +4,8 @@
 //  Copyright (c) 2019 Yale University. All rights reserved.
 // -----------------------------------------------------------------------------
 
-#ifndef VC_GEN_PRINTER_VISITOR_HPP
-#define VC_GEN_PRINTER_VISITOR_HPP
+#ifndef GC_PRINTER_VISITOR_HPP
+#define GC_PRINTER_VISITOR_HPP
 
 #include "visitor.hpp"
 #include <sstream>
@@ -92,13 +92,11 @@ class PrinterVisitor : public Visitor<string> {
     }
 
     string visit(const True* aTrue) override {
-        stringstream ss;
-        return ss.str();
+        return "true";
     }
 
     string visit(const False* aFalse) override {
-        stringstream ss;
-        return ss.str();
+        return "false";
     }
 
     string visit(const Assertion* assertion) override {
@@ -355,4 +353,4 @@ class PrinterVisitor : public Visitor<string> {
     }
 };
 } // namespace gc::ast
-#endif // VC_GEN_PRINTER_VISITOR_HPP
+#endif // GC_PRINTER_VISITOR_HPP

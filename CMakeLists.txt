@@ -44,7 +44,7 @@ add_executable(vcgen
         imp/imp.cpp
         imp/imp.hpp
         imp/visitor.hpp
-        imp/abstract-visitor.hpp
+#        imp/abstract-visitor.hpp
         imp/printer-visitor.hpp
         imp/compiler/gc-compiler.hpp
         ##########

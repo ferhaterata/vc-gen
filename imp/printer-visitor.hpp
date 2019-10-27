@@ -4,8 +4,8 @@
 //  Copyright (c) 2019 Yale University. All rights reserved.
 // -----------------------------------------------------------------------------
 
-#ifndef VC_GEN_PRINTER_VISITOR_HPP
-#define VC_GEN_PRINTER_VISITOR_HPP
+#ifndef IMP_PRINTER_VISITOR_HPP
+#define IMP_PRINTER_VISITOR_HPP
 
 #include "visitor.hpp"
 #include <sstream>
@@ -438,5 +438,5 @@ class PrinterVisitor : public Visitor<string> {
         return ss.str();
     }
 };
-} // namespace ast
-#endif // VC_GEN_PRINTER_VISITOR_HPP
+} // namespace imp::ast
+#endif // IMP_PRINTER_VISITOR_HPP

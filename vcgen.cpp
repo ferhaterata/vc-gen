@@ -4,9 +4,9 @@
 //  Copyright (c) 2019 Yale University. All rights reserved.
 // -----------------------------------------------------------------------------
 
-#include "gc-compiler.hpp"
-#include "imp-driver.hpp"
-#include "printer-visitor.hpp"
+#include "imp/compiler/gc-compiler.hpp"
+#include "imp/imp-driver.hpp"
+#include "imp/printer-visitor.hpp"
 #include "tools.hpp"
 #include <iostream>
 

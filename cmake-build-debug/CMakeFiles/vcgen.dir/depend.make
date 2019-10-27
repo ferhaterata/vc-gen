@@ -50,12 +50,13 @@ CMakeFiles/vcgen.dir/imp/recognizer/imp-scanner.cpp.o: ../imp/recognizer/locatio
 CMakeFiles/vcgen.dir/tools.cpp.o: ../tools.cpp
 CMakeFiles/vcgen.dir/tools.cpp.o: ../tools.hpp
 
-CMakeFiles/vcgen.dir/vcgen.cpp.o: ../imp/imp-driver.hpp
 CMakeFiles/vcgen.dir/vcgen.cpp.o: ../imp/imp.hpp
-CMakeFiles/vcgen.dir/vcgen.cpp.o: ../imp/printer-visitor.hpp
 CMakeFiles/vcgen.dir/vcgen.cpp.o: ../imp/recognizer/imp-parser.hpp
 CMakeFiles/vcgen.dir/vcgen.cpp.o: ../imp/recognizer/location.hh
 CMakeFiles/vcgen.dir/vcgen.cpp.o: ../imp/visitor.hpp
+CMakeFiles/vcgen.dir/vcgen.cpp.o: ../imp/compiler/gc-compiler.hpp
+CMakeFiles/vcgen.dir/vcgen.cpp.o: ../imp/imp-driver.hpp
+CMakeFiles/vcgen.dir/vcgen.cpp.o: ../imp/printer-visitor.hpp
 CMakeFiles/vcgen.dir/vcgen.cpp.o: ../tools.hpp
 CMakeFiles/vcgen.dir/vcgen.cpp.o: ../vcgen.cpp
 

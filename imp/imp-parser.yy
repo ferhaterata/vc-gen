@@ -203,7 +203,7 @@ stmt:
     | "while" bexp inv_list "do" block "end"        { $$ = new imp::ast::WhileStatement(*$2, $3, *$5);}
     ;
 
-location: "identifier"  { $$ = new imp::ast::Location($1); driver.ssa($1);}
+location: "identifier"  { $$ = new imp::ast::Location($1, driver.fresh($1));}
     ;
 
 inv_list:

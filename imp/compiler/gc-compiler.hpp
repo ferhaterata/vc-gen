@@ -7,10 +7,12 @@
 #ifndef IMP_GC_COMPILER_HPP
 #define IMP_GC_COMPILER_HPP
 
+#include "algorithm"
 #include "visitor.hpp"
-#include <sstream>
 #include <map>
+#include <sstream>
 #include <string>
+#include <vector>
 
 using namespace std;
 
@@ -20,6 +22,8 @@ class GcCompiler : public imp::ast::Visitor<string> {
   private:
     const imp::ast::Program* prog;
     string output;
+    std::vector<std::pair<string, string>> symbols;
+    std::vector<std::string> havocs;
 
   public:
     const string& compile() const { return output; }
@@ -52,21 +56,21 @@ class GcCompiler : public imp::ast::Visitor<string> {
 
     string visit(const imp::ast::NotExpression* expression) override {
         stringstream ss;
-        ss << "(!" << visit(&expression->expression) << ")";
+        ss << "!" << visit(&expression->expression) << "";
         return ss.str();
     }
 
     string visit(const imp::ast::OrExpression* expression) override {
         stringstream ss;
-        ss << "(" << visit(&expression->left) << " || "
-           << visit(&expression->right) << ")";
+        ss << "" << visit(&expression->left) << " || "
+           << visit(&expression->right) << "";
         return ss.str();
     }
 
     string visit(const imp::ast::AndExpression* expression) override {
         stringstream ss;
-        ss << "(" << visit(&expression->left) << " && "
-           << visit(&expression->right) << ")";
+        ss << "" << visit(&expression->left) << " && "
+           << visit(&expression->right) << "";
         return ss.str();
     }
 
@@ -105,84 +109,99 @@ class GcCompiler : public imp::ast::Visitor<string> {
         stringstream ss;
         switch (statement->type) {
         case imp::ast::Statement::Type::AssignmentStatement:
-            ss << visit(dynamic_cast<const imp::ast::AssignmentStatement*>(statement));
+            ss << visit(
+                dynamic_cast<const imp::ast::AssignmentStatement*>(statement));
             break;
         case imp::ast::Statement::Type::MultipleAssignmentStatement:
             ss << visit(
-                dynamic_cast<const imp::ast::MultipleAssignmentStatement*>(statement));
+                dynamic_cast<const imp::ast::MultipleAssignmentStatement*>(
+                    statement));
             break;
         case imp::ast::Statement::Type::ArrayAssignmentStatement:
-            ss << visit(
-                dynamic_cast<const imp::ast::ArrayAssignmentStatement*>(statement));
+            ss << visit(dynamic_cast<const imp::ast::ArrayAssignmentStatement*>(
+                statement));
             break;
         case imp::ast::Statement::Type::IfThenElseStatement:
-            ss << visit(dynamic_cast<const imp::ast::IfThenElseStatement*>(statement));
+            ss << visit(
+                dynamic_cast<const imp::ast::IfThenElseStatement*>(statement));
             break;
         case imp::ast::Statement::Type::IfThenStatement:
-            ss << visit(dynamic_cast<const imp::ast::IfThenStatement*>(statement));
+            ss << visit(
+                dynamic_cast<const imp::ast::IfThenStatement*>(statement));
             break;
         case imp::ast::Statement::Type::WhileStatement:
-            ss << visit(dynamic_cast<const imp::ast::WhileStatement*>(statement));
+            ss << visit(
+                dynamic_cast<const imp::ast::WhileStatement*>(statement));
             break;
         }
         return ss.str();
     }
 
     string visit(const imp::ast::Location* location) override {
+        // updating recent havoc list
+        std::string str = location->identifier;
+        std::vector<std::string>::iterator pos;
+        pos = find(havocs.begin(), havocs.end(), str);
+        if (pos == havocs.end())
+            havocs.push_back(str);
+
         stringstream ss;
         ss << "" << location->identifier << "";
         return ss.str();
     }
 
     string visit(const imp::ast::Invariant* invariant) override {
-        stringstream ss;
-        ss << "(invariant " << visit(&invariant->assertion) << ")";
-        return ss.str();
+        return visit(&invariant->assertion);
     }
 
     string visit(const imp::ast::Block* block) override {
         stringstream ss;
-        ss << "(";
+        ss << "";
+        int i = 1;
+        int size = block->stmts.size();
         for (const auto& node : block->stmts) {
-            ss << visit(node) << "\n";
+            ss << visit(node) << (i != size ? "\n" : "");
+            i++;
         }
-        ss << "\b\b)";
         return ss.str();
     }
 
     string visit(const imp::ast::PreCondition* condition) override {
         stringstream ss;
-        ss << "(precondition ";
-        ss << visit(&condition->assertion) << ")";
+        ss << "assume " << visit(&condition->assertion) << ";";
         return ss.str();
     }
 
     string visit(const imp::ast::PostCondition* condition) override {
         stringstream ss;
-        ss << "(postcondition ";
-        ss << visit(&condition->assertion) << ")";
+        ss << "assert " << visit(&condition->assertion) << ";";
         return ss.str();
     }
 
     string visit(const imp::ast::Program* program) override {
         stringstream ss;
-        ss << "(program " << program->identifier << "\n  ";
-        for (const auto& node : program->preConditions) {
-            ss << visit(node);
+        if (!program->preConditions.empty()) {
+            ss << "(";
+            for (const auto& node : program->preConditions) {
+                ss << visit(node) << " ";
+            }
+            ss << "\b)\n";
         }
-        ss << "\n  ";
-        for (const auto& node : program->postConditions) {
-            ss << visit(node);
-        }
-        ss << "\n";
-        ss << " is\n  ";
         ss << visit(&program->block);
+        ss << "\n";
+        if (!program->postConditions.empty()) {
+            ss << "(";
+            for (const auto& node : program->postConditions) {
+                ss << visit(node) << " ";
+            }
+            ss << "\b)";
+        }
         return ss.str();
     }
 
     string visit(const imp::ast::Negation* assertion) override {
         stringstream ss;
-        ss << "(not " << visit(&assertion->assertion) << " )";
+        ss << "(not " << visit(&assertion->assertion) << ")";
         return ss.str();
     }
 
@@ -209,24 +228,24 @@ class GcCompiler : public imp::ast::Visitor<string> {
 
     string visit(const imp::ast::UniversalQuantification* assertion) override {
         stringstream ss;
-        ss << "(forall ";
+        ss << "forall ";
         for (const auto& var : assertion->variables) {
             ss << var << " ";
         }
         ss << "";
-        ss << visit(&assertion->body) << ")";
+        ss << visit(&assertion->body) << "";
         return ss.str();
     }
 
     string
     visit(const imp::ast::ExistentialQuantification* assertion) override {
         stringstream ss;
-        ss << "(exists ";
+        ss << "exists ";
         for (const auto& var : assertion->variables) {
             ss << var << " ";
         }
         ss << " ,";
-        ss << visit(&assertion->body) << ")";
+        ss << visit(&assertion->body) << "";
         return ss.str();
     }
 
@@ -237,7 +256,8 @@ class GcCompiler : public imp::ast::Visitor<string> {
             ss << visit(dynamic_cast<const imp::ast::Reference*>(expression));
             break;
         case imp::ast::ArithmeticExpression::Type::ArrayReference:
-            ss << visit(dynamic_cast<const imp::ast::ArrayReference*>(expression));
+            ss << visit(
+                dynamic_cast<const imp::ast::ArrayReference*>(expression));
             break;
         case imp::ast::ArithmeticExpression::Type::Constant:
             ss << visit(dynamic_cast<const imp::ast::Constant*>(expression));
@@ -265,7 +285,15 @@ class GcCompiler : public imp::ast::Visitor<string> {
     }
 
     string visit(const imp::ast::Reference* expression) override {
-        stringstream ss;
+        std::stringstream ss;
+
+        string str = expression->identifier;
+        for (const auto& pair : symbols) {
+            if (pair.first == str) {
+                ss << pair.second << "";
+                return ss.str();
+            }
+        }
         ss << expression->identifier << "";
         return ss.str();
     }
@@ -285,42 +313,42 @@ class GcCompiler : public imp::ast::Visitor<string> {
 
     string visit(const imp::ast::Negate* expression) override {
         stringstream ss;
-        ss << "(-" << visit(&expression->expression) << ")";
+        ss << "-" << visit(&expression->expression) << "";
         return ss.str();
     }
 
     string visit(const imp::ast::Sum* expression) override {
         stringstream ss;
-        ss << "(" << visit(&expression->left) << " + "
-           << visit(&expression->right) << ")";
+        ss << "" << visit(&expression->left) << " + "
+           << visit(&expression->right) << "";
         return ss.str();
     }
 
     string visit(const imp::ast::Subtract* expression) override {
         stringstream ss;
-        ss << "(" << visit(&expression->left) << " - "
-           << visit(&expression->right) << ")";
+        ss << "" << visit(&expression->left) << " - "
+           << visit(&expression->right) << "";
         return ss.str();
     }
 
     string visit(const imp::ast::Multiply* expression) override {
         stringstream ss;
-        ss << "(" << visit(&expression->left) << " * "
-           << visit(&expression->right) << ")";
+        ss << "" << visit(&expression->left) << " * "
+           << visit(&expression->right) << "";
         return ss.str();
     }
 
     string visit(const imp::ast::Divide* expression) override {
         stringstream ss;
-        ss << "(" << visit(&expression->left) << " / "
-           << visit(&expression->right) << ")";
+        ss << "" << visit(&expression->left) << " / "
+           << visit(&expression->right) << "";
         return ss.str();
     }
 
     string visit(const imp::ast::Mod* expression) override {
         stringstream ss;
-        ss << "(" << visit(&expression->left) << " % "
-           << visit(&expression->right) << ")";
+        ss << "" << visit(&expression->left) << " % "
+           << visit(&expression->right) << "";
         return ss.str();
     }
 
@@ -328,22 +356,28 @@ class GcCompiler : public imp::ast::Visitor<string> {
         stringstream ss;
         switch (comparison->type) {
         case imp::ast::Comparison::Type::EqualComparison:
-            ss << visit(dynamic_cast<const imp::ast::EqualComparison*>(comparison));
+            ss << visit(
+                dynamic_cast<const imp::ast::EqualComparison*>(comparison));
             break;
         case imp::ast::Comparison::Type::NotEqualComparison:
-            ss << visit(dynamic_cast<const imp::ast::NotEqualComparison*>(comparison));
+            ss << visit(
+                dynamic_cast<const imp::ast::NotEqualComparison*>(comparison));
             break;
         case imp::ast::Comparison::Type::LeqComparison:
-            ss << visit(dynamic_cast<const imp::ast::LeqComparison*>(comparison));
+            ss << visit(
+                dynamic_cast<const imp::ast::LeqComparison*>(comparison));
             break;
         case imp::ast::Comparison::Type::GeqComparison:
-            ss << visit(dynamic_cast<const imp::ast::GeqComparison*>(comparison));
+            ss << visit(
+                dynamic_cast<const imp::ast::GeqComparison*>(comparison));
             break;
         case imp::ast::Comparison::Type::LtComparison:
-            ss << visit(dynamic_cast<const imp::ast::LtComparison*>(comparison));
+            ss << visit(
+                dynamic_cast<const imp::ast::LtComparison*>(comparison));
             break;
         case imp::ast::Comparison::Type::GtComparison:
-            ss << visit(dynamic_cast<const imp::ast::GtComparison*>(comparison));
+            ss << visit(
+                dynamic_cast<const imp::ast::GtComparison*>(comparison));
             break;
         }
         return ss.str();
@@ -351,53 +385,62 @@ class GcCompiler : public imp::ast::Visitor<string> {
 
     string visit(const imp::ast::EqualComparison* comparison) override {
         stringstream ss;
-        ss << "(" << visit(&comparison->left) << " = "
-           << visit(&comparison->right) << ")";
+        ss << "" << visit(&comparison->left) << " = "
+           << visit(&comparison->right) << "";
         return ss.str();
     }
 
     string visit(const imp::ast::NotEqualComparison* comparison) override {
         stringstream ss;
-        ss << "(" << visit(&comparison->left)
-           << " != " << visit(&comparison->right) << ")";
+        ss << "" << visit(&comparison->left)
+           << " != " << visit(&comparison->right) << "";
         return ss.str();
     }
 
     string visit(const imp::ast::LeqComparison* comparison) override {
         stringstream ss;
-        ss << "(" << visit(&comparison->left)
-           << " <= " << visit(&comparison->right) << ")";
+        ss << "" << visit(&comparison->left)
+           << " <= " << visit(&comparison->right) << "";
         return ss.str();
     }
     string visit(const imp::ast::GeqComparison* comparison) override {
         stringstream ss;
-        ss << "(" << visit(&comparison->left)
-           << " >= " << visit(&comparison->right) << ")";
+        ss << "" << visit(&comparison->left)
+           << " >= " << visit(&comparison->right) << "";
         return ss.str();
     }
 
     string visit(const imp::ast::LtComparison* comparison) override {
         stringstream ss;
-        ss << "(" << visit(&comparison->left) << " < "
-           << visit(&comparison->right) << ")";
+        ss << "" << visit(&comparison->left) << " < "
+           << visit(&comparison->right) << "";
         return ss.str();
     }
 
     string visit(const imp::ast::GtComparison* comparison) override {
         stringstream ss;
-        ss << "(" << visit(&comparison->left) << " > "
-           << visit(&comparison->right) << ")";
+        ss << "" << visit(&comparison->left) << " > "
+           << visit(&comparison->right) << "";
         return ss.str();
     }
 
     string visit(const imp::ast::AssignmentStatement* statement) override {
         stringstream ss;
-        ss << "(assume " << visit(&statement->loc) << ":=" << visit(&statement->expr)
-           << ")";
+        std::pair<string, string> pair(statement->loc.identifier,
+                                       statement->loc.fresh);
+        symbols.push_back(pair);
+        ss << "(assume " << pair.second << " = " << pair.first << "; ";
+        ss << "havoc " << pair.first << "; ";
+        ss << "assume " << pair.first << " = " << visit(&statement->expr)
+           << ";)";
+        symbols.pop_back();
+        // for other calls visit location
+        visit(&statement->loc);
         return ss.str();
     }
 
-    string visit(const imp::ast::MultipleAssignmentStatement* statement) override {
+    string
+    visit(const imp::ast::MultipleAssignmentStatement* statement) override {
         stringstream ss;
         ss << "(";
         ss << visit(&statement->locFirst) << ", ";
@@ -432,14 +475,45 @@ class GcCompiler : public imp::ast::Visitor<string> {
     }
 
     string visit(const imp::ast::WhileStatement* statement) override {
+
         stringstream ss;
-        ss << "(while " << visit(&statement->condition) << "\n";
+        // assert I;
+        ss << "(";
         for (const auto& invariant : statement->invariants) {
-            ss << "  " << visit(invariant) << "\n";
+            ss << "assert " << visit(invariant) << "; ";
         }
-        ss << " do\n  ";
-        ss << visit(&statement->block);
-        ss << ")";
+        ss <<"\b)\n";
+        // havoc x1; ...; havoc xn;
+        // collect modified locations for havoc
+        visit(&statement->block);
+        if (!havocs.empty()) {
+            ss << "(";
+            for (const auto& h : havocs) {
+                ss << "havoc " << h << "; ";
+            }
+            ss << "\b)\n";
+        }
+        // assume I;
+        ss << "(";
+        for (const auto& invariant : statement->invariants) {
+            ss << "assume " << visit(invariant) << "; ";
+        }
+        ss << "\b)\n";
+        // (assume b; GC(c); assert I; assume false)
+        // (assume b;
+        ss << "(assume " << visit(&statement->condition) << ";\n";
+        //  GC(c);
+        ss << visit(&statement->block) << "\n";
+        //  assert I;
+        for (const auto& invariant : statement->invariants) {
+            ss << "assert " << visit(invariant) << "; ";
+        }
+        // assume false;
+        ss << "assume false;)";
+        ss << "\n[]\n";
+        // assume ¬b )
+        ss << "assume !(" << visit(&statement->condition) << ");)";
+        havocs.clear();
         return ss.str();
     }
 };

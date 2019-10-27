@@ -20,13 +20,12 @@ YY_DECL;
 class imp_driver {
   public:
     imp::ast::Program* program = nullptr; // the top level node of our final AST
-    std::map<string, string> locations;   // unique location names
     std::map<std::string, int> variables; // counters for each location name
 
     imp_driver();
     ~imp_driver() { delete program; };
 
-    bool ssa(const string& location);
+    string fresh(const string& location);
 
     // Handling the scanner.
     void scan_begin();

@@ -1,5 +1,5 @@
 //  ----------------------------------------------------------------------------
-//  Implementation file for the imp-driver class.             imp-driver.cpp
+//  Implementation file for the imp-driver class.                 imp-driver.cpp
 //  Created by Ferhat Erata <ferhat.erata@yale.edu> on October 23, 2019.
 //  Copyright (c) 2019 Yale University. All rights reserved.
 // -----------------------------------------------------------------------------
@@ -12,20 +12,20 @@
 
 imp_driver::imp_driver() : trace_scanning(false), trace_parsing(false) {}
 
-bool imp_driver::ssa(const string& location) {
-    std::map<string, string>::iterator it;
-    it = locations.find(location);
-    if (it == locations.end()) {
+string imp_driver::fresh(const string& location) {
+    std::map<string, int>::iterator it;
+    it = variables.find(location);
+    stringstream ss;
+    if (it == variables.end()) {
         variables[location] = 0;
-        locations[location] = location;
+        ss << location << "!0";
+        return ss.str();
     } else {
-        int count = variables[location]++;
+        int count = ++variables[location];
         variables[location] = count;
-        stringstream ss;
-        ss << "!" << count;
-        locations[ss.str()] = location;
+        ss << location << "!" << count;
+        return ss.str();
     }
-    return false;
 }
 
 int imp_driver::parse(const std::string& f) {

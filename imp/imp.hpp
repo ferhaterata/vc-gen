@@ -122,8 +122,10 @@ class Statement : public Node {
 class Location : public Node {
   public:
     const string identifier;
+    const string fresh;
 
-    explicit Location(string identifier) : identifier(std::move(identifier)) {}
+    explicit Location(string identifier, string fresh)
+        : identifier(std::move(identifier)), fresh(std::move(fresh)) {}
 
     ~Location() override {
         std::cout << "\n Deleting Location 0x" << this << dec << "...";
@@ -711,6 +713,6 @@ class WhileStatement : public Statement {
     }
 };
 
-} // namespace ast
+} // namespace imp::ast
 
 #endif // VC_GEN_IMP_HPP

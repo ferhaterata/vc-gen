@@ -18,7 +18,6 @@ class PrinterVisitor : public Visitor<string> {
   private:
     const Program* prog;
     string output;
-    string indent = "";
 
   public:
     const string& getOutput() const { return output; }
@@ -386,7 +385,7 @@ class PrinterVisitor : public Visitor<string> {
 
     string visit(const AssignmentStatement* statement) override {
         stringstream ss;
-        ss << "(" << visit(&statement->loc) << ":=" << visit(&statement->expr)
+        ss << "(" << visit(&statement->loc) << " := " << visit(&statement->expr)
            << ")";
         return ss.str();
     }
@@ -395,7 +394,7 @@ class PrinterVisitor : public Visitor<string> {
         stringstream ss;
         ss << "(";
         ss << visit(&statement->locFirst) << ", ";
-        ss << visit(&statement->locSecond) << ":=";
+        ss << visit(&statement->locSecond) << " := ";
         ss << visit(&statement->exprFirst) << ", ";
         ss << visit(&statement->exprSecond) << ")";
         return ss.str();

@@ -4,12 +4,14 @@
 //  Copyright (c) 2019 Yale University. All rights reserved.
 // -----------------------------------------------------------------------------
 
-#include "gc-driver.hpp"
-#include "printer-visitor.hpp"
+#include "gc/gc-driver.hpp"
+#include "gc/printer-visitor.hpp"
+#include "gc/compiler/smt-compiler.hpp"
 #include "tools.hpp"
 #include <iostream>
 
 void run(gc_driver&);
+void printFile(const std::string&);
 
 int main(int argc, char* argv[]) {
     banner();
@@ -28,6 +30,21 @@ int main(int argc, char* argv[]) {
 }
 
 void run(gc_driver& driver) {
+    printFile(driver.file);
+    cout << "---------------------------------------------------------------\n";
     gc::ast::PrinterVisitor visitor(driver.program);
-    std::cout << visitor.getOutput() << std::endl;driver.program;
+    std::cout << visitor.getOutput() << std::endl;
+    cout << "---------------------------------------------------------------\n";
+    gc::compiler::s compiler(driver.program);
+    std::string gc = compiler.compile();
+    std::cout << gc << std::endl;
+    std::string filename = driver.program->identifier + ".smt";
+    std::ofstream fout(filename);
+}
+
+// print the file
+void printFile(const string& filename) {
+    std::ifstream f(filename);
+    if (f.is_open())
+        std::cout << f.rdbuf();
 }

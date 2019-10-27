@@ -59,6 +59,9 @@ add_executable(vcgen
         gc/gc.cpp
         gc/visitor.hpp
         gc/printer-visitor.hpp
+        gc/compiler/smt-compiler.hpp
+        ##########
+        solver/z3-solver.hpp
         )
 
 add_executable(gc
@@ -75,4 +78,6 @@ add_executable(gc
         gc/gc.cpp
         gc/visitor.hpp
         gc/printer-visitor.hpp
-        )
+        gc/compiler/smt-compiler.hpp
+        ##########
+        solver/z3-solver.hpp)

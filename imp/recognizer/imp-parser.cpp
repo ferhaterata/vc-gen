@@ -1208,13 +1208,13 @@ namespace imp {
 
   case 53:
 #line 245 "/home/ferhat/git/vc-gen/imp/imp-parser.yy"
-    { yylhs.value.as < imp::ast::Assertion* > () = new imp::ast::UniversalQuantification(yystack_[2].value.as < std::vector<std::string> > (), *yystack_[0].value.as < imp::ast::Assertion* > ()); /*print<std::string>($2);*/ }
+    { yylhs.value.as < imp::ast::Assertion* > () = new imp::ast::UniversalQuantifier(yystack_[2].value.as < std::vector<std::string> > (), *yystack_[0].value.as < imp::ast::Assertion* > ()); /*print<std::string>($2);*/ }
 #line 1213 "/home/ferhat/git/vc-gen/imp/recognizer/imp-parser.cpp"
     break;
 
   case 54:
 #line 246 "/home/ferhat/git/vc-gen/imp/imp-parser.yy"
-    { yylhs.value.as < imp::ast::Assertion* > () = new imp::ast::ExistentialQuantification(yystack_[2].value.as < std::vector<std::string> > (), *yystack_[0].value.as < imp::ast::Assertion* > ()); /*print<std::string>($2);*/ }
+    { yylhs.value.as < imp::ast::Assertion* > () = new imp::ast::ExistentialQuantifier(yystack_[2].value.as < std::vector<std::string> > (), *yystack_[0].value.as < imp::ast::Assertion* > ()); /*print<std::string>($2);*/ }
 #line 1219 "/home/ferhat/git/vc-gen/imp/recognizer/imp-parser.cpp"
     break;
 

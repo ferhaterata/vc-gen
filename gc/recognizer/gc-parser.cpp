@@ -833,13 +833,13 @@ namespace gc {
 
   case 15:
 #line 146 "/home/ferhat/git/vc-gen/gc/gc-parser.yy"
-    { yylhs.value.as < gc::ast::Assertion* > () = new gc::ast::UniversalQuantification(yystack_[2].value.as < std::vector<std::string> > (), *yystack_[0].value.as < gc::ast::Assertion* > ()); /*print<std::string>($2);*/ }
+    { yylhs.value.as < gc::ast::Assertion* > () = new gc::ast::UniversalQuantifier(yystack_[2].value.as < std::vector<std::string> > (), *yystack_[0].value.as < gc::ast::Assertion* > ()); /*print<std::string>($2);*/ }
 #line 838 "/home/ferhat/git/vc-gen/gc/recognizer/gc-parser.cpp"
     break;
 
   case 16:
 #line 147 "/home/ferhat/git/vc-gen/gc/gc-parser.yy"
-    { yylhs.value.as < gc::ast::Assertion* > () = new gc::ast::ExistentialQuantification(yystack_[2].value.as < std::vector<std::string> > (), *yystack_[0].value.as < gc::ast::Assertion* > ()); /*print<std::string>($2);*/ }
+    { yylhs.value.as < gc::ast::Assertion* > () = new gc::ast::ExistentialQuantifier(yystack_[2].value.as < std::vector<std::string> > (), *yystack_[0].value.as < gc::ast::Assertion* > ()); /*print<std::string>($2);*/ }
 #line 844 "/home/ferhat/git/vc-gen/gc/recognizer/gc-parser.cpp"
     break;
 

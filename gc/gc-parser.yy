@@ -143,8 +143,8 @@ assertion:
     | assertion "||" assertion              { $$ = new gc::ast::Disjunction(*$1, *$3); }
     | assertion "&&" assertion              { $$ = new gc::ast::Conjunction(*$1, *$3); }
     | assertion "==>" assertion             { $$ = new gc::ast::Implication(*$1, *$3); }
-    | "forall" identifiers "," assertion    { $$ = new gc::ast::UniversalQuantification($2, *$4); /*print<std::string>($2);*/ }
-    | "exists" identifiers "," assertion    { $$ = new gc::ast::ExistentialQuantification($2, *$4); /*print<std::string>($2);*/ }
+    | "forall" identifiers "," assertion    { $$ = new gc::ast::UniversalQuantifier($2, *$4); /*print<std::string>($2);*/ }
+    | "exists" identifiers "," assertion    { $$ = new gc::ast::ExistentialQuantifier($2, *$4); /*print<std::string>($2);*/ }
     | "true"                                { $$ = new gc::ast::True(); }
     | "false"                               { $$ = new gc::ast::False(); }
     | "(" assertion ")"                     { $$ = $2; }

@@ -90,12 +90,12 @@ class GcCompiler : public imp::ast::Visitor<string> {
             ss << visit(dynamic_cast<const imp::ast::Implication*>(assertion));
             break;
         case imp::ast::Assertion::Type::UniversalQuantification:
-            ss << visit(dynamic_cast<const imp::ast::UniversalQuantification*>(
+            ss << visit(dynamic_cast<const imp::ast::UniversalQuantifier*>(
                 assertion));
             break;
         case imp::ast::Assertion::Type::ExistentialQuantification:
             ss << visit(
-                dynamic_cast<const imp::ast::ExistentialQuantification*>(
+                dynamic_cast<const imp::ast::ExistentialQuantifier*>(
                     assertion));
             break;
         case imp::ast::Assertion::Type::Comparison:
@@ -226,7 +226,7 @@ class GcCompiler : public imp::ast::Visitor<string> {
         return ss.str();
     }
 
-    string visit(const imp::ast::UniversalQuantification* assertion) override {
+    string visit(const imp::ast::UniversalQuantifier* assertion) override {
         stringstream ss;
         ss << "forall ";
         for (const auto& var : assertion->variables) {
@@ -238,7 +238,7 @@ class GcCompiler : public imp::ast::Visitor<string> {
     }
 
     string
-    visit(const imp::ast::ExistentialQuantification* assertion) override {
+    visit(const imp::ast::ExistentialQuantifier* assertion) override {
         stringstream ss;
         ss << "exists ";
         for (const auto& var : assertion->variables) {

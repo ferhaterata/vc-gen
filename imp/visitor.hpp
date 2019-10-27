@@ -28,7 +28,7 @@ class Constant;
 class Divide;
 class Disjunction;
 class EqualComparison;
-class ExistentialQuantification;
+class ExistentialQuantifier;
 class GeqComparison;
 class GtComparison;
 class IfThenElseStatement;
@@ -52,7 +52,7 @@ class Reference;
 class Subtract;
 class Sum;
 class WhileStatement;
-class UniversalQuantification;
+class UniversalQuantifier;
 
 template <class T>
 class Visitor {
@@ -74,7 +74,7 @@ class Visitor {
     virtual T visit(const Disjunction*) = 0;
     virtual T visit(const Divide*) = 0;
     virtual T visit(const EqualComparison*) = 0;
-    virtual T visit(const ExistentialQuantification*) = 0;
+    virtual T visit(const ExistentialQuantifier*) = 0;
     virtual T visit(const GeqComparison*) = 0;
     virtual T visit(const GtComparison*) = 0;
     virtual T visit(const IfThenElseStatement*) = 0;
@@ -96,7 +96,7 @@ class Visitor {
     virtual T visit(const Reference*) = 0;
     virtual T visit(const Subtract*) = 0;
     virtual T visit(const Sum*) = 0;
-    virtual T visit(const UniversalQuantification*) = 0;
+    virtual T visit(const UniversalQuantifier*) = 0;
     virtual T visit(const WhileStatement*) = 0;
 };
 

@@ -82,11 +82,11 @@ class PrinterVisitor : public Visitor<string> {
             break;
         case Assertion::Type::UniversalQuantification:
             ss << visit(
-                dynamic_cast<const UniversalQuantification*>(assertion));
+                dynamic_cast<const UniversalQuantifier*>(assertion));
             break;
         case Assertion::Type::ExistentialQuantification:
             ss << visit(
-                dynamic_cast<const ExistentialQuantification*>(assertion));
+                dynamic_cast<const ExistentialQuantifier*>(assertion));
             break;
         case Assertion::Type::Comparison:
             ss << visit(dynamic_cast<const Comparison*>(assertion));
@@ -201,7 +201,7 @@ class PrinterVisitor : public Visitor<string> {
         return ss.str();
     }
 
-    string visit(const UniversalQuantification* assertion) override {
+    string visit(const UniversalQuantifier* assertion) override {
         stringstream ss;
         ss << "(forall ";
         for (const auto& var : assertion->variables) {
@@ -212,7 +212,7 @@ class PrinterVisitor : public Visitor<string> {
         return ss.str();
     }
 
-    string visit(const ExistentialQuantification* assertion) override {
+    string visit(const ExistentialQuantifier* assertion) override {
         stringstream ss;
         ss << "(exists ";
         for (const auto& var : assertion->variables) {

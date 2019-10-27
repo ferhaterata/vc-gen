@@ -40,6 +40,7 @@ void run(gc_driver& driver) {
     std::cout << gc << std::endl;
     std::string filename = driver.program->identifier + ".smt";
     std::ofstream fout(filename);
+
 }
 
 // print the file

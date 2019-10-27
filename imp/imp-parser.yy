@@ -242,8 +242,8 @@ assertion:
     | assertion "||" assertion                  { $$ = new imp::ast::Disjunction(*$1, *$3); }
     | assertion "&&" assertion                  { $$ = new imp::ast::Conjunction(*$1, *$3); }
     | assertion "==>" assertion                 { $$ = new imp::ast::Implication(*$1, *$3); }
-    | "forall" identifier_list "," assertion    { $$ = new imp::ast::UniversalQuantification($2, *$4); /*print<std::string>($2);*/ }
-    | "exists" identifier_list "," assertion    { $$ = new imp::ast::ExistentialQuantification($2, *$4); /*print<std::string>($2);*/ }
+    | "forall" identifier_list "," assertion    { $$ = new imp::ast::UniversalQuantifier($2, *$4); /*print<std::string>($2);*/ }
+    | "exists" identifier_list "," assertion    { $$ = new imp::ast::ExistentialQuantifier($2, *$4); /*print<std::string>($2);*/ }
     | "(" assertion ")"                         { $$ = $2; }
     | "(" error ")"                             {  }
     ;

@@ -276,34 +276,34 @@ class Implication : public Assertion {
 };
 
 // -----------------------------------------------------------------------------
-class UniversalQuantification : public Assertion {
+class UniversalQuantifier : public Assertion {
   public:
     const vector<string> variables;
     const Assertion& body;
 
-    UniversalQuantification(vector<string> variables, Assertion& body)
+    UniversalQuantifier(vector<string> variables, Assertion& body)
         : variables(std::move(variables)), body(body),
           Assertion(Type::UniversalQuantification) {}
 
-    ~UniversalQuantification() override {
-        std::cout << "\n Deleting UniversalQuantification 0x" << this << dec
+    ~UniversalQuantifier() override {
+        std::cout << "\n Deleting UniversalQuantifier 0x" << this << dec
                   << "...";
         delete &body;
     }
 };
 
 // -----------------------------------------------------------------------------
-class ExistentialQuantification : public Assertion {
+class ExistentialQuantifier : public Assertion {
   public:
     const vector<string> variables;
     const Assertion& body;
 
-    ExistentialQuantification(vector<string> variables, Assertion& body)
+    ExistentialQuantifier(vector<string> variables, Assertion& body)
         : variables(std::move(variables)), body(body),
           Assertion(Type::ExistentialQuantification) {}
 
-    ~ExistentialQuantification() override {
-        std::cout << "\n Deleting ExistentialQuantification 0x" << this << dec
+    ~ExistentialQuantifier() override {
+        std::cout << "\n Deleting ExistentialQuantifier 0x" << this << dec
                   << "...";
         delete &body;
     }

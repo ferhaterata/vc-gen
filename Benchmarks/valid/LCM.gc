@@ -1,0 +1,13 @@
+(assume (0 <= A and 0 <= B); assume (A != 0 or B != 0);)
+(assume gcd!0 = gcd; havoc gcd; assume gcd = 1;)
+(assume j!0 = j; havoc j; assume j = 1;)
+(assert (A % gcd = 0 and B % gcd = 0);)
+(havoc gcd; havoc j;)
+(assume (A % gcd = 0 and B % gcd = 0);)
+(assume j <= A || j <= B;
+(assume A % j = 0 && B % j = 0;(assume gcd!1 = gcd; havoc gcd; assume gcd = j;))
+assert (A % gcd = 0 and B % gcd = 0); assume false;)
+[]
+assume !(j <= A || j <= B);)
+(assume lcm!0 = lcm; havoc lcm; assume lcm = A * B / gcd;)
+(assert (A <= lcm and (lcm <= A * B and B <= lcm));)

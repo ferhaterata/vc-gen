@@ -7,11 +7,13 @@
 #include "imp/compiler/gc-compiler.hpp"
 #include "imp/imp-driver.hpp"
 #include "imp/printer-visitor.hpp"
+#include "gc/compiler/smt-compiler.hpp"
 #include "tools.hpp"
 #include <iostream>
 
 void run(imp_driver&);
 std::string& erase(std::string&, const std::string&);
+void printFile(const std::string&);
 
 int main(int argc, char* argv[]) {
     banner();
@@ -30,6 +32,8 @@ int main(int argc, char* argv[]) {
 }
 
 void run(imp_driver& driver) {
+    printFile(driver.file);
+    cout << "---------------------------------------------------------------\n";
     imp::ast::PrinterVisitor visitor(driver.program);
     std::cout << visitor.getOutput() << std::endl;
     cout << "---------------------------------------------------------------\n";
@@ -42,9 +46,14 @@ void run(imp_driver& driver) {
     fout.close();
 }
 
-/*
- * Erase all Occurrences of given substring from main string.
- */
+// print the file
+void printFile(const string& filename) {
+    std::ifstream f(filename);
+    if (f.is_open())
+        std::cout << f.rdbuf();
+}
+
+// Erase all Occurrences of given substring from main string.
 std::string& erase(std::string& out, const std::string& to) {
     size_t pos;
     // Search for the substring in string in a loop untill nothing is found

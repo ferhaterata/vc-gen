@@ -201,28 +201,28 @@ class GcCompiler : public imp::ast::Visitor<string> {
 
     string visit(const imp::ast::Negation* assertion) override {
         stringstream ss;
-        ss << "(not " << visit(&assertion->assertion) << ")";
+        ss << "! " << visit(&assertion->assertion) << "";
         return ss.str();
     }
 
     string visit(const imp::ast::Conjunction* assertion) override {
         stringstream ss;
-        ss << "(" << visit(&assertion->left) << " and "
-           << visit(&assertion->right) << ")";
+        ss << "" << visit(&assertion->left) << " && "
+           << visit(&assertion->right) << "";
         return ss.str();
     }
 
     string visit(const imp::ast::Disjunction* assertion) override {
         stringstream ss;
-        ss << "(" << visit(&assertion->left) << " or "
-           << visit(&assertion->right) << ")";
+        ss << "" << visit(&assertion->left) << " || "
+           << visit(&assertion->right) << "";
         return ss.str();
     }
 
     string visit(const imp::ast::Implication* assertion) override {
         stringstream ss;
-        ss << "(" << visit(&assertion->left) << " implies "
-           << visit(&assertion->right) << ")";
+        ss << "" << visit(&assertion->left) << " ==> "
+           << visit(&assertion->right) << "";
         return ss.str();
     }
 
@@ -232,7 +232,7 @@ class GcCompiler : public imp::ast::Visitor<string> {
         for (const auto& var : assertion->variables) {
             ss << var << " ";
         }
-        ss << "";
+        ss << "\b, ";
         ss << visit(&assertion->body) << "";
         return ss.str();
     }
@@ -244,7 +244,7 @@ class GcCompiler : public imp::ast::Visitor<string> {
         for (const auto& var : assertion->variables) {
             ss << var << " ";
         }
-        ss << " ,";
+        ss << "\b, ";
         ss << visit(&assertion->body) << "";
         return ss.str();
     }
@@ -310,7 +310,7 @@ class GcCompiler : public imp::ast::Visitor<string> {
     string visit(const imp::ast::ArrayReference* expression) override {
         stringstream ss;
         ss << visit(&expression->reference);
-        ss << "(" << visit(&expression->index) << ")";
+        ss << "[" << visit(&expression->index) << "]";
         return ss.str();
     }
 
@@ -478,8 +478,8 @@ class GcCompiler : public imp::ast::Visitor<string> {
         std::pair<string, string> pair(statement->loc.identifier,
                                        statement->loc.fresh);
         symbols.push_back(pair);
-        ss << "(assume " << pair.second << "(" << visit(&statement->index)
-           << ")";
+        ss << "(assume " << pair.second << "[" << visit(&statement->index)
+           << "]";
         ss << " = " << pair.first << "; ";
         ss << "havoc " << pair.first << "; ";
         ss << "assume " << pair.first << " = " << visit(&statement->exp)
@@ -546,7 +546,7 @@ class GcCompiler : public imp::ast::Visitor<string> {
             ss << "assert " << visit(invariant) << "; ";
         }
         // assume false;
-        ss << "assume false;)";
+        ss << "assume false;";
         ss << "\n[]\n";
         // assume ¬b )
         ss << "assume !(" << visit(&statement->condition) << ");)";

@@ -4,6 +4,7 @@
 //  Copyright (c) 2019 Yale University. All rights reserved.
 // -----------------------------------------------------------------------------
 
+#include "gc-compiler.hpp"
 #include "imp-driver.hpp"
 #include "printer-visitor.hpp"
 #include "tools.hpp"
@@ -30,6 +31,9 @@ int main(int argc, char* argv[]) {
 void run(imp_driver& driver) {
     imp::ast::PrinterVisitor visitor(driver.program);
     std::cout << visitor.getOutput() << std::endl;
+    cout << "---------------------------------------------------------------\n";
+    imp::compiler::GcCompiler compiler(driver.program);
+    std::cout << compiler.compile() << std::endl;
     cout << "---------------------------------------------------------------\n";
     delete driver.program;
 }

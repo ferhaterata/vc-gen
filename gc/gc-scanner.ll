@@ -20,7 +20,7 @@ static gc::location loc;
 
 %option prefix="gc"
 
-id    [a-zA-Z][a-zA-Z_0-9]*
+id    [a-zA-Z]"!"?[a-zA-Z_0-9]*
 int   [0-9]+
 blank [ \t]
 
@@ -41,6 +41,7 @@ blank [ \t]
 "-"         return gc::gc_parser::make_MINUS(loc);
 "+"         return gc::gc_parser::make_PLUS(loc);
 "*"         return gc::gc_parser::make_STAR(loc);
+"%"         return gc::gc_parser::make_MOD(loc);
 "/"         return gc::gc_parser::make_SLASH(loc);
 "("         return gc::gc_parser::make_LPAREN(loc);
 ")"         return gc::gc_parser::make_RPAREN(loc);

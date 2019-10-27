@@ -5,16 +5,28 @@
 // -----------------------------------------------------------------------------
 
 #include "imp-driver.hpp"
-#include "imp.hpp"
 #include "imp-parser.hpp"
+#include "imp.hpp"
 #include <fstream>
+#include <sstream>
 
-imp_driver::imp_driver() : trace_scanning(false), trace_parsing(false) {
-    variables["one"] = 1;
-    variables["two"] = 2;
+imp_driver::imp_driver() : trace_scanning(false), trace_parsing(false) {}
+
+bool imp_driver::ssa(const string& location) {
+    std::map<string, string>::iterator it;
+    it = locations.find(location);
+    if (it == locations.end()) {
+        variables[location] = 0;
+        locations[location] = location;
+    } else {
+        int count = variables[location]++;
+        variables[location] = count;
+        stringstream ss;
+        ss << "!" << count;
+        locations[ss.str()] = location;
+    }
+    return false;
 }
-
-imp_driver::~imp_driver() {}
 
 int imp_driver::parse(const std::string& f) {
     file = f;
@@ -54,4 +66,3 @@ std::string imp_driver::getLine(unsigned lineno) {
         std::cout << "Unable to open stream" << std::endl;
     return line;
 }
-

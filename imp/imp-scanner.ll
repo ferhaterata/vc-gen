@@ -42,20 +42,18 @@ blank [ \t]
 "+"         return imp::imp_parser::make_PLUS(loc);
 "*"         return imp::imp_parser::make_STAR(loc);
 "/"         return imp::imp_parser::make_SLASH(loc);
+"%"         return imp::imp_parser::make_MOD(loc);
 "("         return imp::imp_parser::make_LPAREN(loc);
 ")"         return imp::imp_parser::make_RPAREN(loc);
-
 "="         return imp::imp_parser::make_EQUAL(loc);
 "!="        return imp::imp_parser::make_NEQUAL(loc);
 "<="        return imp::imp_parser::make_LEQ(loc);
 ">="        return imp::imp_parser::make_GEQ(loc);
 "<"         return imp::imp_parser::make_LT(loc);
 ">"         return imp::imp_parser::make_GT(loc);
-
 "!"         return imp::imp_parser::make_NOT(loc);
 "||"        return imp::imp_parser::make_OR(loc);
 "&&"        return imp::imp_parser::make_AND(loc);
-
 ":="        return imp::imp_parser::make_ASSIGN(loc);
 ";"         return imp::imp_parser::make_SEMICOLON(loc);
 ","         return imp::imp_parser::make_COMMA(loc);

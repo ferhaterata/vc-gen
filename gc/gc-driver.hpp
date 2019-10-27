@@ -22,7 +22,7 @@ class gc_driver {
     /* the top level root node of our final AST */
     gc::ast::Program* program = nullptr;
     gc_driver();
-    virtual ~gc_driver();
+    ~gc_driver() { delete program; };
 
     std::map<std::string, int> variables;
 

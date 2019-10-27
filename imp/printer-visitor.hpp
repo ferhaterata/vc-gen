@@ -18,6 +18,7 @@ class PrinterVisitor : public Visitor<string> {
   private:
     const Program* prog;
     string output;
+    string indent = "";
 
   public:
     const string& getOutput() const { return output; }
@@ -25,8 +26,6 @@ class PrinterVisitor : public Visitor<string> {
     explicit PrinterVisitor(const Program* prog) : prog(prog) {
         output = visit(prog);
     }
-
-    string visit(const Node* node) override {}
 
     string visit(const BooleanExpression* expression) override {
         stringstream ss;
@@ -138,11 +137,13 @@ class PrinterVisitor : public Visitor<string> {
 
     string visit(const Block* block) override {
         stringstream ss;
-        ss << "(";
+        ss << "";
+        int i = 1;
+        int size = block->stmts.size();
         for (const auto& node : block->stmts) {
-            ss << visit(node) << "\n";
+            ss << visit(node) << (i != size ? "\n" : "");
+            i++;
         }
-        ss << "\b\b)";
         return ss.str();
     }
 
@@ -164,14 +165,12 @@ class PrinterVisitor : public Visitor<string> {
         stringstream ss;
         ss << "(program " << program->identifier << "\n  ";
         for (const auto& node : program->preConditions) {
-            ss << visit(node);
+            ss << visit(node) << "\n  ";
         }
-        ss << "\n  ";
         for (const auto& node : program->postConditions) {
-            ss << visit(node);
+            ss << visit(node) << "\n  ";
         }
-        ss << "\n";
-        ss << " is\n  ";
+        ss << "\b\b";
         ss << visit(&program->block);
         return ss.str();
     }
@@ -432,7 +431,7 @@ class PrinterVisitor : public Visitor<string> {
         for (const auto& invariant : statement->invariants) {
             ss << "  " << visit(invariant) << "\n";
         }
-        ss << " do\n  ";
+        ss << "";
         ss << visit(&statement->block);
         ss << ")";
         return ss.str();

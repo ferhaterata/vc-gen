@@ -14,8 +14,6 @@ gc_driver::gc_driver() : trace_scanning(false), trace_parsing(false) {
     variables["two"] = 2;
 }
 
-gc_driver::~gc_driver() {}
-
 int gc_driver::parse(const std::string& f) {
     file = f;
     scan_begin();

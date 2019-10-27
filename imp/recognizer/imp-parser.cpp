@@ -1073,7 +1073,7 @@ namespace imp {
 
   case 31:
 #line 206 "/home/ferhat/git/vc-gen/imp/imp-parser.yy"
-    { yylhs.value.as < imp::ast::Location* > () = new imp::ast::Location(yystack_[0].value.as < std::string > ()); }
+    { yylhs.value.as < imp::ast::Location* > () = new imp::ast::Location(yystack_[0].value.as < std::string > ()); driver.ssa(yystack_[0].value.as < std::string > ());}
 #line 1078 "/home/ferhat/git/vc-gen/imp/recognizer/imp-parser.cpp"
     break;
 

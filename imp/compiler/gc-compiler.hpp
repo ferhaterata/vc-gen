@@ -9,6 +9,8 @@
 
 #include "visitor.hpp"
 #include <sstream>
+#include <map>
+#include <string>
 
 using namespace std;
 
@@ -25,8 +27,6 @@ class GcCompiler : public imp::ast::Visitor<string> {
     explicit GcCompiler(const imp::ast::Program* prog) : prog(prog) {
         output = visit(prog);
     }
-
-    string visit(const imp::ast::Node* node) override {}
 
     string visit(const imp::ast::BooleanExpression* expression) override {
         stringstream ss;
@@ -392,7 +392,7 @@ class GcCompiler : public imp::ast::Visitor<string> {
 
     string visit(const imp::ast::AssignmentStatement* statement) override {
         stringstream ss;
-        ss << "(" << visit(&statement->loc) << ":=" << visit(&statement->expr)
+        ss << "(assume " << visit(&statement->loc) << ":=" << visit(&statement->expr)
            << ")";
         return ss.str();
     }

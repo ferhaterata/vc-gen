@@ -34,6 +34,4 @@ void run(imp_driver& driver) {
     cout << "---------------------------------------------------------------\n";
     imp::compiler::GcCompiler compiler(driver.program);
     std::cout << compiler.compile() << std::endl;
-    cout << "---------------------------------------------------------------\n";
-    delete driver.program;
 }

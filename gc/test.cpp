@@ -29,7 +29,5 @@ int main(int argc, char* argv[]) {
 
 void run(gc_driver& driver) {
     gc::ast::PrinterVisitor visitor(driver.program);
-    std::cout << visitor.getOutput() << std::endl;
-    cout << "---------------------------------------------------------------\n";
-    delete driver.program;
+    std::cout << visitor.getOutput() << std::endl;driver.program;
 }

@@ -89,7 +89,6 @@ class Visitor {
     virtual T visit(const Multiply*) = 0;
     virtual T visit(const Negate*) = 0;
     virtual T visit(const Negation*) = 0;
-    virtual T visit(const Node*) = 0;
     virtual T visit(const NotEqualComparison*) = 0;
     virtual T visit(const NotExpression*) = 0;
     virtual T visit(const OrExpression*) = 0;

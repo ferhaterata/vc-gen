@@ -31,7 +31,7 @@ class Command : public Node {
         Assume,
         Assert,
         Havoc,
-        Choice,
+        Select,
         List,
     };
     const Type type;
@@ -122,9 +122,11 @@ class Assert : public Command {
 class Havoc : public Command {
   public:
     const Location& location;
+    const string fresh;
 
-    explicit Havoc(const Location& location)
-        : Command(Command::Type::Havoc), location(location) {}
+    explicit Havoc(const Location& location, string fresh)
+        : Command(Command::Type::Havoc), location(location),
+          fresh(std::move(fresh)) {}
 
     ~Havoc() override {
         std::cout << "\n Deleting Havoc 0x" << this << dec << "...";
@@ -149,18 +151,18 @@ class List : public Command {
 };
 
 // -----------------------------------------------------------------------------
-class Choice : public Command {
+class Select : public Command {
 
   public:
     const vector<Command*> left;
     const vector<Command*> right;
 
-    Choice(vector<Command*> left, vector<Command*> right)
-        : Command(Command::Type::Choice), left(std::move(left)),
+    Select(vector<Command*> left, vector<Command*> right)
+        : Command(Command::Type::Select), left(std::move(left)),
           right(std::move(right)) {}
 
-    ~Choice() override {
-        std::cout << "\n Deleting Choice 0x" << this << dec << "...";
+    ~Select() override {
+        std::cout << "\n Deleting Select 0x" << this << dec << "...";
         for (auto c : left) {
             delete c;
         }

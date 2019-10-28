@@ -12,6 +12,7 @@
 
 void run(gc_driver&);
 void printFile(const std::string&);
+std::string& erase(std::string&, const std::string&);
 
 int main(int argc, char* argv[]) {
     banner();
@@ -38,11 +39,11 @@ void run(gc_driver& driver) {
     //    cout <<
     //    "---------------------------------------------------------------\n";
     gc::compiler::SmtCompiler compiler(driver.program);
-    const std::string& smt = compiler.compile();
+    std::string smt = compiler.compile();
     std::cout << smt << std::endl;
     const std::string& filename = driver.file + ".smt";
     std::ofstream fout(filename);
-    fout << smt;
+    fout << erase(smt, " \b");
     fout.close();
 }
 
@@ -51,4 +52,15 @@ void printFile(const string& filename) {
     std::ifstream f(filename);
     if (f.is_open())
         std::cout << f.rdbuf();
+}
+
+// Erase all Occurrences of given substring from main string.
+std::string& erase(std::string& out, const std::string& to) {
+    size_t pos;
+    // Search for the substring in string in a loop until nothing is found
+    while ((pos = out.find(to)) != std::string::npos) {
+        // If found then erase it from string
+        out.erase(pos, to.length());
+    }
+    return out;
 }

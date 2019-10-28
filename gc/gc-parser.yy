@@ -126,13 +126,13 @@ prog: commands                              { $$ = new gc::ast::Program($1); dri
 commands:
       command                               { $$ = {$1}; }
     | commands command                      { $$ = enlist($1, $2); }
-    | commands "[]" commands                { $$ = {new gc::ast::Choice($1, $3)}; }
+    | commands "[]" commands                { $$ = {new gc::ast::Select($1, $3)}; }
     ;
 
 command:
       "assume" assertion ";"                { $$ = new gc::ast::Assume(*$2); }
     | "assert" assertion ";"                { $$ = new gc::ast::Assert(*$2); }
-    | "havoc" location   ";"                { $$ = new gc::ast::Havoc(*$2); }
+    | "havoc" location   ";"                { $$ = new gc::ast::Havoc(*$2, driver.fresh($2->identifier)); }
     | "(" commands ")"                      { $$ = new gc::ast::List($2); }
 
     ;

@@ -38,8 +38,8 @@ class PrinterVisitor : public Visitor<string> {
         case Command::Type::Havoc:
             ss << visit(dynamic_cast<const Havoc*>(command));
             break;
-        case Command::Type::Choice:
-            ss << visit(dynamic_cast<const Choice*>(command));
+        case Command::Type::Select:
+            ss << visit(dynamic_cast<const Select*>(command));
             break;
         case Command::Type::List:
             ss << visit(dynamic_cast<const List*>(command));
@@ -75,7 +75,7 @@ class PrinterVisitor : public Visitor<string> {
         return ss.str();
     }
 
-    string visit(const Choice* choice) override {
+    string visit(const Select* choice) override {
         stringstream ss;
         ss << "(";
         for (auto command : choice->left) {

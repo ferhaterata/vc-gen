@@ -20,7 +20,7 @@ class Assume;
 class Assert;
 class Havoc;
 class List;
-class Choice;
+class Select;
 class Program;
 class Negation;
 class True;
@@ -57,7 +57,7 @@ class Visitor {
     virtual T visit(const Assert*) = 0;
     virtual T visit(const Havoc*) = 0;
     virtual T visit(const List*) = 0;
-    virtual T visit(const Choice*) = 0;
+    virtual T visit(const Select*) = 0;
     virtual T visit(const Program*) = 0;
     virtual T visit(const Negation*) = 0;
     virtual T visit(const True*) = 0;

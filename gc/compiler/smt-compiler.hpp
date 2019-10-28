@@ -8,7 +8,11 @@
 #define GC_SMT_COMPILER_HPP
 
 #include "gc/ast/visitor.hpp"
+#include <algorithm>
+#include <map>
 #include <sstream>
+#include <utility>
+#include <vector>
 
 using namespace std;
 
@@ -17,15 +21,42 @@ namespace gc::compiler {
 class SmtCompiler : public gc::ast::Visitor<string> {
   private:
     const gc::ast::Program* prog;
-    string output;
-    std::vector<std::string> constants;
+    std::string output; // the resulting smt formula
+    int pnum = 0;       // tracks the number of missing trailing parentheses.
+
+    // WP(havoc x, B) = B[a/x] (a fresh in B)
+    std::map<string, string> havocs; // first is a unique location
+    std::vector<string> locs;
 
   public:
     explicit SmtCompiler(const gc::ast::Program* prog) : prog(prog) {
-        output = visit(prog);
+        string body = visit(prog);
+        stringstream ss;
+        for (const auto& l : locs) {
+            ss << "(declare-fun " << l << "() Int)\n";
+        }
+        ss << "\n";
+        ss << "(assert (not " << body << "))";
+        ss << "\n(check-sat)\n";
+        ss << "(exit)\n";
+        output = ss.str();
     }
 
     const string& compile() { return output; }
+
+    // done
+    string visit(const gc::ast::Program* program) override {
+        stringstream ss;
+        const auto& vc = program->commands;
+        for (auto it = vc.begin(); it != vc.end(); ++it) {
+            ss << visit(*it) << " ";
+        }
+        // append trailing parentheses.
+        for (int i = 0; i < pnum; ++i) {
+            ss << ")";
+        }
+        return ss.str();
+    }
 
     string visit(const gc::ast::Command* command) override {
         stringstream ss;
@@ -39,8 +70,8 @@ class SmtCompiler : public gc::ast::Visitor<string> {
         case gc::ast::Command::Type::Havoc:
             ss << visit(dynamic_cast<const gc::ast::Havoc*>(command));
             break;
-        case gc::ast::Command::Type::Choice:
-            ss << visit(dynamic_cast<const gc::ast::Choice*>(command));
+        case gc::ast::Command::Type::Select:
+            ss << visit(dynamic_cast<const gc::ast::Select*>(command));
             break;
         case gc::ast::Command::Type::List:
             ss << visit(dynamic_cast<const gc::ast::List*>(command));
@@ -51,32 +82,39 @@ class SmtCompiler : public gc::ast::Visitor<string> {
 
     string visit(const gc::ast::Assume* a) override {
         stringstream ss;
-        ss << "(assert (=> " << visit(&a->assertion) << " ... ))";
+        ss << "(=> " << visit(&a->assertion);
+        pnum++;
         return ss.str();
     }
 
     string visit(const gc::ast::Assert* assert) override {
         stringstream ss;
-        ss << "(assert " << visit(&assert->assertion) << ")";
+        ss << "(and " << visit(&assert->assertion);
+        pnum++;
         return ss.str();
     }
 
-    string visit(const gc::ast::Havoc* havoc) override {
+    string visit(const gc::ast::Havoc* h) override {
         stringstream ss;
-        ss << "(havoc " << visit(&havoc->location) << ")";
+
+        havocs[h->location.identifier] = h->fresh;
+
+        if (std::find(locs.begin(), locs.end(), h->fresh) == locs.end()) {
+            locs.push_back(h->fresh); // add to location list
+        }
+
         return ss.str();
     }
 
     string visit(const gc::ast::List* list) override {
         stringstream ss;
-        for (auto command : list->commands) {
-            ss << visit(command) << " ";
+        for (auto c : list->commands) {
+            ss << visit(c) << "";
         }
-        ss << "\b";
         return ss.str();
     }
 
-    string visit(const gc::ast::Choice* choice) override {
+    string visit(const gc::ast::Select* choice) override {
         stringstream ss;
         ss << "(";
         for (auto command : choice->left) {
@@ -92,10 +130,10 @@ class SmtCompiler : public gc::ast::Visitor<string> {
         return ss.str();
     }
 
-    // TODO delegate to lexical analysis
+    // TODO delegate this to lexical analysis
     string visit(const gc::ast::True* aTrue) override { return "true"; }
 
-    // TODO delegate to lexical analysis
+    // TODO delegate this to lexical analysis
     string visit(const gc::ast::False* aFalse) override { return "false"; }
 
     string visit(const gc::ast::Assertion* assertion) override {
@@ -136,16 +174,13 @@ class SmtCompiler : public gc::ast::Visitor<string> {
 
     string visit(const gc::ast::Location* location) override {
         stringstream ss;
-        ss << "" << location->identifier << "";
-        return ss.str();
-    }
-
-    // done
-    string visit(const gc::ast::Program* program) override {
-        stringstream ss;
-        const auto& vc = program->commands;
-        for (auto rit = vc.rbegin(); rit != vc.rend(); ++rit) {
-            ss << visit(*rit) << "\n";
+        const string& str = location->identifier;
+        if (!havocs[str].empty())
+            ss << "" << havocs[str] << "";
+        else
+            ss << "" << str << "";
+        if (std::find(locs.begin(), locs.end(), str) == locs.end()) {
+            locs.push_back(str); // add to location list
         }
         return ss.str();
     }

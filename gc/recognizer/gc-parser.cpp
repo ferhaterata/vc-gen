@@ -773,7 +773,7 @@ namespace gc {
 
   case 5:
 #line 129 "/home/ferhat/git/vc-gen/gc/gc-parser.yy"
-    { yylhs.value.as < std::vector<gc::ast::Command*> > () = {new gc::ast::Choice(yystack_[2].value.as < std::vector<gc::ast::Command*> > (), yystack_[0].value.as < std::vector<gc::ast::Command*> > ())}; }
+    { yylhs.value.as < std::vector<gc::ast::Command*> > () = {new gc::ast::Select(yystack_[2].value.as < std::vector<gc::ast::Command*> > (), yystack_[0].value.as < std::vector<gc::ast::Command*> > ())}; }
 #line 778 "/home/ferhat/git/vc-gen/gc/recognizer/gc-parser.cpp"
     break;
 
@@ -791,7 +791,7 @@ namespace gc {
 
   case 8:
 #line 135 "/home/ferhat/git/vc-gen/gc/gc-parser.yy"
-    { yylhs.value.as < gc::ast::Command* > () = new gc::ast::Havoc(*yystack_[1].value.as < gc::ast::Location* > ()); }
+    { yylhs.value.as < gc::ast::Command* > () = new gc::ast::Havoc(*yystack_[1].value.as < gc::ast::Location* > (), driver.fresh(yystack_[1].value.as < gc::ast::Location* > ()->identifier)); }
 #line 796 "/home/ferhat/git/vc-gen/gc/recognizer/gc-parser.cpp"
     break;
 

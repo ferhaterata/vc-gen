@@ -24,6 +24,7 @@ class GcCompiler : public imp::ast::Visitor<string> {
     string output;
     std::vector<std::pair<string, string>> symbols;
     std::vector<std::string> havocs;
+    string indent = "";
 
   public:
     const string& compile() const { return output; }
@@ -90,13 +91,12 @@ class GcCompiler : public imp::ast::Visitor<string> {
             ss << visit(dynamic_cast<const imp::ast::Implication*>(assertion));
             break;
         case imp::ast::Assertion::Type::UniversalQuantification:
-            ss << visit(dynamic_cast<const imp::ast::UniversalQuantifier*>(
-                assertion));
+            ss << visit(
+                dynamic_cast<const imp::ast::UniversalQuantifier*>(assertion));
             break;
         case imp::ast::Assertion::Type::ExistentialQuantification:
-            ss << visit(
-                dynamic_cast<const imp::ast::ExistentialQuantifier*>(
-                    assertion));
+            ss << visit(dynamic_cast<const imp::ast::ExistentialQuantifier*>(
+                assertion));
             break;
         case imp::ast::Assertion::Type::Comparison:
             ss << visit(dynamic_cast<const imp::ast::Comparison*>(assertion));
@@ -160,7 +160,7 @@ class GcCompiler : public imp::ast::Visitor<string> {
         int i = 1;
         int size = block->stmts.size();
         for (const auto& node : block->stmts) {
-            ss << visit(node) << (i != size ? "\n" : "");
+            ss << visit(node) << (i != size ? "\n" + indent : "");
             i++;
         }
         return ss.str();
@@ -237,8 +237,7 @@ class GcCompiler : public imp::ast::Visitor<string> {
         return ss.str();
     }
 
-    string
-    visit(const imp::ast::ExistentialQuantifier* assertion) override {
+    string visit(const imp::ast::ExistentialQuantifier* assertion) override {
         stringstream ss;
         ss << "exists ";
         for (const auto& var : assertion->variables) {
@@ -512,6 +511,7 @@ class GcCompiler : public imp::ast::Visitor<string> {
     }
 
     string visit(const imp::ast::WhileStatement* statement) override {
+        indent.push_back(' ');
         stringstream ss;
         // assert I;
         ss << "(";
@@ -531,26 +531,26 @@ class GcCompiler : public imp::ast::Visitor<string> {
         }
         // assume I;
         ss << "(";
-
         for (const auto& invariant : statement->invariants) {
             ss << "assume " << visit(invariant) << "; ";
         }
         ss << "\b)\n";
         // (assume b; GC(c); assert I; assume false)
         // (assume b;
-        ss << "(assume " << visit(&statement->condition) << ";\n";
+        ss << "(assume " << visit(&statement->condition) << ";\n" << indent;
         //  GC(c);
-        ss << visit(&statement->block) << "\n";
+        ss << visit(&statement->block) << "\n" << indent;
         //  assert I;
         for (const auto& invariant : statement->invariants) {
             ss << "assert " << visit(invariant) << "; ";
         }
         // assume false;
         ss << "assume false;";
-        ss << "\n[]\n";
+        ss << "\n" << indent << "[]\n" << indent;
         // assume ¬b )
         ss << "assume !(" << visit(&statement->condition) << ");)";
         havocs.clear();
+        indent.pop_back();
         return ss.str();
     }
 };

@@ -5,8 +5,11 @@
 // -----------------------------------------------------------------------------
 
 //#include "gc/ast/printer-visitor.hpp"
+#include "gc/ast/printer-visitor.hpp"
+#include "gc/ast/prufier.hpp"
 #include "gc/compiler/smt-compiler.hpp"
 #include "gc/gc-driver.hpp"
+#include "solver/z3-solver.hpp"
 #include "tools.hpp"
 #include <iostream>
 
@@ -34,10 +37,10 @@ void run(gc_driver& driver) {
     printFile(driver.file);
     cout << "\n";
     cout << "---------------------------------------------------------------\n";
-    //    gc::ast::PrinterVisitor visitor(driver.program);
-    //    std::cout << visitor.getOutput() << std::endl;
-    //    cout <<
-    //    "---------------------------------------------------------------\n";
+    gc::ast::Purifier purifier(driver.program);
+    gc::ast::PrinterVisitor visitor(driver.program);
+    std::cout << visitor.getOutput() << std::endl;
+    cout << "---------------------------------------------------------------\n";
     gc::compiler::SmtCompiler compiler(driver.program);
     std::string smt = compiler.compile();
     std::cout << smt << std::endl;
@@ -45,6 +48,21 @@ void run(gc_driver& driver) {
     std::ofstream fout(filename);
     fout << erase(smt, " \b");
     fout.close();
+    cout << "---------------------------------------------------------------\n";
+    Z3 solver;
+    Result result = solver.run(filename);
+    switch (result) {
+    case Result::SAT:
+        cout << "Not Valid!";
+        break;
+    case Result::UNSAT:
+        cout << "Not Valid!";
+        break;
+    case Result::ERROR:
+        cout << "Error in formula:\n";
+        cout << solver.getResult();
+        break;
+    }
 }
 
 // print the file

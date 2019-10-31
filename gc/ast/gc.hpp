@@ -135,27 +135,13 @@ class Havoc : public Command {
 };
 
 // -----------------------------------------------------------------------------
-class List : public Command {
-  public:
-    const vector<Command*> commands;
-
-    explicit List(vector<Command*> commands)
-        : Command(Command::Type::List), commands(std::move(commands)) {}
-
-    ~List() override {
-        std::cout << "\n Deleting Command List 0x" << this << dec << "...";
-        for (auto c : commands) {
-            delete c;
-        }
-    }
-};
-
-// -----------------------------------------------------------------------------
 class Select : public Command {
 
   public:
-    const vector<Command*> left;
-    const vector<Command*> right;
+    vector<Command*> left;
+    vector<Command*> right;
+    vector<Command*> leftExt;  // no custody
+    vector<Command*> rightExt; // no custody
 
     Select(vector<Command*> left, vector<Command*> right)
         : Command(Command::Type::Select), left(std::move(left)),
@@ -167,6 +153,22 @@ class Select : public Command {
             delete c;
         }
         for (auto c : right) {
+            delete c;
+        }
+    }
+};
+
+// -----------------------------------------------------------------------------
+class List : public Command {
+  public:
+    vector<Command*> commands;
+
+    explicit List(vector<Command*> commands)
+        : Command(Command::Type::List), commands(std::move(commands)) {}
+
+    ~List() override {
+        std::cout << "\n Deleting Command List 0x" << this << dec << "...";
+        for (auto c : commands) {
             delete c;
         }
     }

@@ -20,7 +20,7 @@ namespace gc::compiler {
 
 class SmtCompiler : public gc::ast::Visitor<string> {
   private:
-    const gc::ast::Program* prog;
+    gc::ast::Program* prog;
     std::string output; // the resulting smt formula
     int pnum = 0;       // tracks the number of missing trailing parentheses.
 
@@ -29,7 +29,8 @@ class SmtCompiler : public gc::ast::Visitor<string> {
     std::vector<string> locs;
 
   public:
-    explicit SmtCompiler(const gc::ast::Program* prog) : prog(prog) {
+    // done
+    explicit SmtCompiler(gc::ast::Program* prog) : prog(prog) {
         string body = visit(prog);
         stringstream ss;
         for (const auto& l : locs) {
@@ -47,10 +48,10 @@ class SmtCompiler : public gc::ast::Visitor<string> {
     // done
     string visit(const gc::ast::Program* program) override {
         stringstream ss;
-        const auto& vc = program->commands;
-        for (auto it = vc.begin(); it != vc.end(); ++it) {
-            ss << visit(*it) << " ";
+        for (auto& it : program->commands) {
+            ss << visit(it) << " ";
         }
+        ss << "\b";
         // append trailing parentheses.
         for (int i = 0; i < pnum; ++i) {
             ss << ")";
@@ -80,6 +81,7 @@ class SmtCompiler : public gc::ast::Visitor<string> {
         return ss.str();
     }
 
+    // done
     string visit(const gc::ast::Assume* a) override {
         stringstream ss;
         ss << "(=> " << visit(&a->assertion);
@@ -87,6 +89,7 @@ class SmtCompiler : public gc::ast::Visitor<string> {
         return ss.str();
     }
 
+    // done
     string visit(const gc::ast::Assert* assert) override {
         stringstream ss;
         ss << "(and " << visit(&assert->assertion);
@@ -94,6 +97,7 @@ class SmtCompiler : public gc::ast::Visitor<string> {
         return ss.str();
     }
 
+    // done
     string visit(const gc::ast::Havoc* h) override {
         stringstream ss;
 
@@ -106,25 +110,30 @@ class SmtCompiler : public gc::ast::Visitor<string> {
         return ss.str();
     }
 
+    // done
     string visit(const gc::ast::List* list) override {
         stringstream ss;
         for (auto c : list->commands) {
-            ss << visit(c) << "";
+            ss << visit(c) << " ";
         }
+        ss << "\b";
         return ss.str();
     }
 
     string visit(const gc::ast::Select* choice) override {
         stringstream ss;
+        ss << "(and " << visit(choice->left) << " ";
+        ss << visit(choice->leftExt) << " ";
+        ss << visit(choice->right) << " ";
+        ss << visit(choice->rightExt) << ")";
+        return ss.str();
+    }
+
+    string visit(const vector<gc::ast::Command*>& commands) {
+        stringstream ss;
         ss << "(";
-        for (auto command : choice->left) {
-            ss << visit(command) << "\n ";
-        }
-        ss << "\b)\n";
-        ss << " []\n";
-        ss << "(";
-        for (auto command : choice->right) {
-            ss << visit(command) << "\n ";
+        for (auto command : commands) {
+            ss << visit(command) << " ";
         }
         ss << "\b)";
         return ss.str();

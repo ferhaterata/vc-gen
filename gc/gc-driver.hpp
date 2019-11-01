@@ -19,13 +19,10 @@ YY_DECL;
 
 class gc_driver {
   public:
-    gc::ast::Program* program = nullptr;  // the top level node of our final AST
-    std::map<std::string, int> variables; // counters for each location name
+    gc::ast::Program* program = nullptr; // the top level node of our final AST
 
     gc_driver();
     ~gc_driver() { delete program; };
-
-    string fresh(const string& location);
 
     // Handling the scanner.
     void scan_begin();

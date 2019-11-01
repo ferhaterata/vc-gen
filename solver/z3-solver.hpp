@@ -16,25 +16,25 @@ enum class Result { SAT, UNSAT, ERROR };
 class Z3 {
   private:
     const std::string cmd = "z3";
-    string result;
-    static string read(const string& file);
-    static Result parse(const string& file);
+    std::string result;
+    static std::string read(const std::string& file);
+    static Result parse(const std::string& file);
 
   public:
     Z3() : result() {}
     Result run(const std::string& file) {
         std::stringstream ss;
-        string out = file + ".out";
+        std::string out = file + ".out";
         ss << cmd << " " << file << " > " << out;
         std::system(ss.str().c_str());
         result = read(out);
         return parse(result);
     }
 
-    string getResult() const { return result; }
+    std::string getResult() const { return result; }
 };
 
-inline string Z3::read(const string& file) {
+inline std::string Z3::read(const std::string& file) {
     std::ifstream in(file.c_str(), std::ios::in | std::ios::binary);
     std::ostringstream contents;
     if (in) {
@@ -44,7 +44,7 @@ inline string Z3::read(const string& file) {
     return contents.str();
 }
 
-inline Result Z3::parse(const string& file) {
+inline Result Z3::parse(const std::string& file) {
     std::size_t found = file.find("error");
     if (found != std::string::npos)
         return Result::ERROR;

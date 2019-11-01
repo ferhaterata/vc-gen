@@ -791,7 +791,7 @@ namespace gc {
 
   case 8:
 #line 135 "/home/ferhat/git/vc-gen/gc/gc-parser.yy"
-    { yylhs.value.as < gc::ast::Command* > () = new gc::ast::Havoc(*yystack_[1].value.as < gc::ast::Location* > (), driver.fresh(yystack_[1].value.as < gc::ast::Location* > ()->identifier)); }
+    { yylhs.value.as < gc::ast::Command* > () = new gc::ast::Havoc(*yystack_[1].value.as < gc::ast::Location* > ());}
 #line 796 "/home/ferhat/git/vc-gen/gc/recognizer/gc-parser.cpp"
     break;
 
@@ -1265,7 +1265,7 @@ namespace gc {
       -1,   106,   -24,   108,     0,   -24,    43,   -24,   -24,     7,
      127,    72,    93,    22,   -24,   -15,     6,    -2,    -2,   -24,
       -2,     7,     7,     7,     7,     7,     7,     7,     7,     7,
-       7,     7,     7,   -24,   -24,    43,    79,   -24,   -24,    -2,
+       7,     7,     7,   -24,   -24,    13,    79,   -24,   -24,    -2,
      -24,    -2,    -7,   112,   112,    71,   127,   127,    11,    11,
      133,   133,   133,   133,   133,   133,   133,   112,   112,   -24
   };

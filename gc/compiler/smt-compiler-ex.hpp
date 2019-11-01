@@ -22,24 +22,21 @@ class SmtCompiler : public gc::ast::Visitor<string> {
   private:
     gc::ast::Program* prog;
     std::string output; // the resulting smt formula
-    std::string trailer = "true";
+    int pnum = 0;       // tracks the number of missing trailing parentheses.
 
     // WP(havoc x, B) = B[a/x] (a fresh in B)
+    std::map<string, string> havocs; // first is a unique location
     std::vector<string> locs;
 
   public:
     explicit SmtCompiler(gc::ast::Program* prog) : prog(prog) {
-        visit(prog);
+        string body = visit(prog);
         stringstream ss;
-        vector<string> v;
         for (const auto& l : locs) {
-            if (std::find(v.begin(), v.end(), l) == v.end()) {
-                v.push_back(l);
-                ss << "(declare-fun " << l << "() Int)\n";
-            }
+            ss << "(declare-fun " << l << "() Int)\n";
         }
         ss << "\n";
-        ss << "(assert (not " << trailer << "))";
+        ss << "(assert (not " << body << "))";
         ss << "\n(check-sat)\n";
         ss << "(exit)\n";
         output = ss.str();
@@ -48,77 +45,109 @@ class SmtCompiler : public gc::ast::Visitor<string> {
     const string& compile() { return output; }
 
     string visit(const gc::ast::Program* program) override {
-        auto& cv = prog->commands;
-        for (auto rcit = cv.rbegin(); rcit != cv.rend(); ++rcit) {
-            auto& c = (*rcit);
-            visit(c);
+        stringstream ss;
+        for (auto& it : program->commands) {
+            ss << visit(it) << " ";
         }
-        return "";
+        ss << "\b";
+        // append trailing parentheses.
+        for (int i = 0; i < pnum; ++i) {
+            ss << ")";
+        }
+        return ss.str();
     }
 
     string visit(const gc::ast::Command* command) override {
+        stringstream ss;
         switch (command->type) {
         case gc::ast::Command::Type::Assume:
-            visit(dynamic_cast<const gc::ast::Assume*>(command));
+            ss << visit(dynamic_cast<const gc::ast::Assume*>(command));
             break;
         case gc::ast::Command::Type::Assert:
-            visit(dynamic_cast<const gc::ast::Assert*>(command));
+            ss << visit(dynamic_cast<const gc::ast::Assert*>(command));
             break;
         case gc::ast::Command::Type::Havoc:
-            visit(dynamic_cast<const gc::ast::Havoc*>(command));
+            ss << visit(dynamic_cast<const gc::ast::Havoc*>(command));
             break;
         case gc::ast::Command::Type::Select:
-            visit(dynamic_cast<const gc::ast::Select*>(command));
+            ss << visit(dynamic_cast<const gc::ast::Select*>(command));
+            break;
+        case gc::ast::Command::Type::And:
+            ss << visit(dynamic_cast<const gc::ast::AndCommand*>(command));
             break;
         case gc::ast::Command::Type::List:
-            visit(dynamic_cast<const gc::ast::List*>(command));
+            ss << visit(dynamic_cast<const gc::ast::List*>(command));
             break;
         }
-        return "";
+        return ss.str();
     }
 
     string visit(const gc::ast::Assume* a) override {
-        trailer = "(=> " + visit(&a->assertion) + " " + trailer + ")";
-        return "";
+        stringstream ss;
+        ss << "(=> " << visit(&a->assertion);
+        pnum++;
+        return ss.str();
     }
 
-    string visit(const gc::ast::Assert* a) override {
-        trailer = "(and " + visit(&a->assertion) + " " + trailer + ")";
-        return "";
+    string visit(const gc::ast::Assert* assert) override {
+        stringstream ss;
+        ss << "(and " << visit(&assert->assertion);
+        pnum++;
+        return ss.str();
     }
 
-    string visit(const gc::ast::Havoc* h) override { return ""; }
+    string visit(const gc::ast::Havoc* h) override {
+        stringstream ss;
+
+        havocs[h->location.identifier] = h->fresh;
+
+        if (std::find(locs.begin(), locs.end(), h->fresh) == locs.end()) {
+            locs.push_back(h->fresh); // add to location list
+        }
+
+        return ss.str();
+    }
 
     string visit(const gc::ast::List* list) override {
-        auto& cv = list->commands;
-        for (auto rcit = cv.rbegin(); rcit != cv.rend(); ++rcit) {
-            auto& c = (*rcit);
-            visit(c);
+        stringstream ss;
+        for (auto c : list->commands) {
+            ss << visit(c) << " ";
         }
-        return "";
+        ss << "\b";
+        return ss.str();
     }
 
+    string visit(const gc::ast::AndCommand* choice) override {}
+
     string visit(const gc::ast::Select* choice) override {
-
-        string m_trailer = trailer;
-        trailer = "";
-
-        auto& cl = choice->left;
-        for (auto rcit = cl.rbegin(); rcit != cl.rend(); ++rcit) {
-            visit(*rcit);
+        stringstream ss;
+        std::vector<gc::ast::Command*> vc;
+        for (auto c : choice->left) {
+            vc.emplace_back(c);
         }
-        string l_trailer = trailer;
-        l_trailer = l_trailer + "\b " + m_trailer + ")";
-        trailer = "";
-
-        auto& cr = choice->right;
-        for (auto rcit = cr.rbegin(); rcit != cr.rend(); ++rcit) {
-            visit(*rcit);
+        for (auto c : choice->leftExt) {
+            vc.emplace_back(c);
         }
-        string r_trailer = trailer;
-        r_trailer = r_trailer = trailer + "\b " + m_trailer + ")";
-        trailer = "(and " + l_trailer + " " + r_trailer + ")";
-        return "";
+        ss << "(and " << visit(vc) << " ";
+        vc.clear();
+        for (auto c : choice->right) {
+            vc.emplace_back(c);
+        }
+        for (auto c : choice->rightExt) {
+            vc.emplace_back(c);
+        }
+        ss << visit(vc) << ")";
+        return ss.str();
+    }
+
+    string visit(const vector<gc::ast::Command*>& commands) {
+        stringstream ss;
+        ss << "";
+        for (auto command : commands) {
+            ss << visit(command) << " ";
+        }
+        ss << "\b";
+        return ss.str();
     }
 
     // TODO delegate this to lexical analysis
@@ -163,11 +192,16 @@ class SmtCompiler : public gc::ast::Visitor<string> {
         return ss.str();
     }
 
-    // TODO
     string visit(const gc::ast::Location* location) override {
         stringstream ss;
-        ss << location->identifier;
-        locs.push_back(location->identifier);
+        const string& str = location->identifier;
+        if (!havocs[str].empty())
+            ss << "" << havocs[str] << "";
+        else
+            ss << "" << str << "";
+        if (std::find(locs.begin(), locs.end(), str) == locs.end()) {
+            locs.push_back(str); // add to location list
+        }
         return ss.str();
     }
 

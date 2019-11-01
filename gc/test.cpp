@@ -4,12 +4,11 @@
 //  Copyright (c) 2019 Yale University. All rights reserved.
 // -----------------------------------------------------------------------------
 
-#include "ast/printer-visitor.hpp"
-#include "ast/prufier.hpp"
-#include "compiler/smt-compiler.hpp"
-#include "gc-driver.hpp"
 #include "../solver/z3-solver.hpp"
 #include "../tools.hpp"
+#include "ast/printer-visitor.hpp"
+#include "compiler/smt-compiler.hpp"
+#include "gc-driver.hpp"
 #include <iostream>
 
 void run(gc_driver&);
@@ -36,16 +35,16 @@ void run(gc_driver& driver) {
     printFile(driver.file);
     cout << "\n";
     cout << "---------------------------------------------------------------\n";
-//    gc::ast::Purifier purifier(driver.program);
-    gc::ast::PrinterVisitor visitor(driver.program);
-    std::cout << visitor.getOutput() << std::endl;
-    cout << "---------------------------------------------------------------\n";
+    //    gc::ast::PrinterVisitor visitor(driver.program);
+    // std::cout << visitor.getOutput() << std::endl;
+    // cout <<
+    // "---------------------------------------------------------------\n";
     gc::compiler::SmtCompiler compiler(driver.program);
     std::string smt = compiler.compile();
     std::cout << smt << std::endl;
     const std::string& filename = driver.file + ".smt";
     std::ofstream fout(filename);
-    fout << erase(smt, " \b");
+    fout << erase(smt, ")\b ");
     fout.close();
     cout << "---------------------------------------------------------------\n";
     Z3 solver;

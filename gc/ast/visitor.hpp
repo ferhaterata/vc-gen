@@ -46,8 +46,7 @@ class GeqComparison;
 class LtComparison;
 class GtComparison;
 
-template <class T>
-class Visitor {
+template <class T> class Visitor {
   public:
     virtual T visit(const Command*) = 0;
     virtual T visit(const Expression*) = 0;
@@ -84,6 +83,6 @@ class Visitor {
     virtual T visit(const GtComparison*) = 0;
 };
 
-} // namespace ast
+} // namespace gc::ast
 
 #endif // GC_VISITOR_HPP

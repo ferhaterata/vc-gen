@@ -12,22 +12,6 @@
 
 gc_driver::gc_driver() : trace_scanning(false), trace_parsing(false) {}
 
-string gc_driver::fresh(const string& location) {
-    std::map<string, int>::iterator it;
-    it = variables.find(location);
-    stringstream ss;
-    if (it == variables.end()) {
-        variables[location] = 0;
-        ss << location << "!0";
-        return ss.str();
-    } else {
-        int count = ++variables[location];
-        variables[location] = count;
-        ss << location << "!" << count;
-        return ss.str();
-    }
-}
-
 int gc_driver::parse(const std::string& f) {
     file = f;
     scan_begin();

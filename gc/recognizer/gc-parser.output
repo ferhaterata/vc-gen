@@ -854,6 +854,7 @@ State 55
     "assume"  shift, and go to state 2
     "assert"  shift, and go to state 3
     "havoc"   shift, and go to state 4
+    "[]"      shift, and go to state 26
 
     "("       [reduce using rule 4 (commands)]
     "assume"  [reduce using rule 4 (commands)]

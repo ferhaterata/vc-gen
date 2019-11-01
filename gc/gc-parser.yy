@@ -113,7 +113,7 @@ void print(std::vector<T>& v){
 
 %start prog;
 
-%left "[]";
+%right "[]";
 %precedence "&&";
 %precedence "||";
 %precedence "!";
@@ -132,7 +132,7 @@ commands:
 command:
       "assume" assertion ";"                { $$ = new gc::ast::Assume(*$2); }
     | "assert" assertion ";"                { $$ = new gc::ast::Assert(*$2); }
-    | "havoc" location   ";"                { $$ = new gc::ast::Havoc(*$2, driver.fresh($2->identifier)); }
+    | "havoc" location   ";"                { $$ = new gc::ast::Havoc(*$2);}
     | "(" commands ")"                      { $$ = new gc::ast::List($2); }
 
     ;

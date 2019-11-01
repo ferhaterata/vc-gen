@@ -387,6 +387,7 @@ digraph "/home/ferhat/git/vc-gen/gc/gc-parser.yy"
   55 -> 2 [style=solid label="\"assume\""]
   55 -> 3 [style=solid label="\"assert\""]
   55 -> 4 [style=solid label="\"havoc\""]
+  55 -> 26 [style=solid label="\"[]\""]
   55 -> 27 [style=dashed label="command"]
   55 -> "55R4d" [label="[\"(\", \"assume\", \"assert\", \"havoc\"]", style=solid]
  "55R4d" [label="R4", fillcolor=5, shape=diamond, style=filled]

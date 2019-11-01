@@ -18,22 +18,27 @@ class PrinterVisitor : public Visitor<string> {
   private:
     const Program* prog;
     string output;
+    int pnum = 0;
 
   public:
     const string& getOutput() const { return output; }
 
     explicit PrinterVisitor(const Program* prog) : prog(prog) {
         stringstream ss;
-        ss << "(" << visit(prog) << ")";
+        ss << "" << visit(prog) << "";
         output = ss.str();
     }
 
     string visit(const Program* program) override {
         stringstream ss;
         auto& cv = prog->commands;
-        for (auto rcit = cv.rbegin(); rcit != cv.rend(); ++rcit) {
-            auto& c = (*rcit);
-            ss << "(" << visit(c) << ")";
+        for (auto c : cv) {
+            ss << "" << visit(c) << " ";
+        }
+        ss << "\b";
+        // append trailing parentheses.
+        for (int i = 0; i < pnum; ++i) {
+            ss << ")";
         }
         return ss.str();
     }
@@ -62,19 +67,22 @@ class PrinterVisitor : public Visitor<string> {
 
     string visit(const Assume* assume) override {
         stringstream ss;
-        ss << "assume " << visit(&assume->assertion) << ";";
+        ss << "(assume " << visit(&assume->assertion) << ";";
+        pnum++;
         return ss.str();
     }
 
     string visit(const Assert* assert) override {
         stringstream ss;
         ss << "(assert " << visit(&assert->assertion) << ";";
+        pnum++;
         return ss.str();
     }
 
     string visit(const Havoc* havoc) override {
         stringstream ss;
         ss << "(havoc " << visit(&havoc->location) << ";";
+        pnum++;
         return ss.str();
     }
 
@@ -88,23 +96,33 @@ class PrinterVisitor : public Visitor<string> {
     }
 
     string visit(const Select* choice) override {
+        int p = 0;
         stringstream ss;
-        std::vector<gc::ast::Command*> vc;
-        for (auto c : choice->left) {
-            vc.push_back(c);
+        ss << "((";
+        for (auto command : choice->left) {
+            ss << visit(command) << " ";
+            p++;
         }
-        for (auto c : choice->leftExt) {
-            vc.push_back(c);
+        ss << "\b";
+        // append trailing parentheses.
+        for (int i = 0; i < p; ++i) {
+            ss << ")";
         }
-        ss << "(" << visit(vc) << " [] ";
-        vc.clear();
-        for (auto c : choice->right) {
-            vc.push_back(c);
+        ss << " [] ";
+        pnum -= p;
+        p = 0;
+        for (auto command : choice->right) {
+            ss << visit(command) << " ";
+            p++;
         }
-        for (auto c : choice->rightExt) {
-            vc.push_back(c);
+        ss << "\b";
+        // append trailing parentheses.
+        for (int i = 0; i < p; ++i) {
+            ss << ")";
         }
-        ss << "" << visit(vc)<< ")";
+        ss << ")";
+        pnum -= p;
+        pnum++;
         return ss.str();
     }
 
@@ -161,8 +179,6 @@ class PrinterVisitor : public Visitor<string> {
         ss << "" << location->identifier << "";
         return ss.str();
     }
-
-
 
     string visit(const Negation* assertion) override {
         stringstream ss;

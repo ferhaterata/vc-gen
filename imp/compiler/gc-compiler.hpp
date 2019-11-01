@@ -455,7 +455,7 @@ class GcCompiler : public imp::ast::Visitor<string> {
         symbols.pop_back();
         // for other calls visit location
         visit(&statement->exprFirst);
-        ss << "\n";
+        ss << "\n" << indent;
         // Second Assignment
         pair.first = statement->locSecond.identifier;
         pair.second = statement->locSecond.fresh;
@@ -499,14 +499,16 @@ class GcCompiler : public imp::ast::Visitor<string> {
     }
 
     string visit(const imp::ast::IfThenElseStatement* statement) override {
+        indent.push_back(' ');
         stringstream ss;
         ss << "(";
-        ss << "assume " << visit(&statement->condition) << ";\n";
+        ss << "assume " << visit(&statement->condition) << ";\n" << indent;
         ss << visit(&statement->thenBlock);
-        ss << "\n[]\n";
+        ss << "\n" << indent << "[]\n" << indent;
         ss << "assume !(" << visit(&statement->condition) << ");";
         ss << visit(&statement->elseBlock);
         ss << ")";
+        indent.pop_back();
         return ss.str();
     }
 

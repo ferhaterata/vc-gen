@@ -1,0 +1,13 @@
+program example
+  pre n >= 0
+  post p = p * m
+is
+  p := 0;
+  x := 0;
+  while n < N
+    inv p = x * m && x <= n
+  do
+    x := x + 1;
+    p := p + m;
+  end
+end

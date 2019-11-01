@@ -492,7 +492,7 @@ class GcCompiler : public imp::ast::Visitor<string> {
     string visit(const imp::ast::IfThenStatement* statement) override {
         stringstream ss;
         ss << "(";
-        ss << "assume " << visit(&statement->condition) << ";";
+        ss << "assume " << visit(&statement->condition) << ";\n";
         ss << visit(&statement->thenBlock);
         ss << ")";
         return ss.str();
@@ -501,7 +501,7 @@ class GcCompiler : public imp::ast::Visitor<string> {
     string visit(const imp::ast::IfThenElseStatement* statement) override {
         stringstream ss;
         ss << "(";
-        ss << "assume " << visit(&statement->condition) << ";";
+        ss << "assume " << visit(&statement->condition) << ";\n";
         ss << visit(&statement->thenBlock);
         ss << "\n[]\n";
         ss << "assume !(" << visit(&statement->condition) << ");";

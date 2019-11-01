@@ -37,6 +37,12 @@ class Command : public Node {
     const Type type;
     bool removed = false;
 
+    virtual Command* clone() {
+        auto* c = new Command(type);
+        c->removed = removed;
+        return c;
+    }
+
     explicit Command(const Type type) : type(type) {}
 };
 
@@ -96,12 +102,18 @@ class Assume : public Command {
   public:
     const Assertion& assertion;
 
-    explicit Assume(Assertion& assertion)
+    explicit Assume(const Assertion& assertion)
         : Command(Command::Type::Assume), assertion(assertion) {}
 
     ~Assume() override {
         std::cout << " Deleting Assume 0x" << this << dec << "...\n";
         delete &assertion;
+    }
+
+    Command* clone() override {
+        auto* c = new Assume(assertion);
+        c->removed = removed;
+        return c;
     }
 };
 
@@ -116,6 +128,12 @@ class Assert : public Command {
     ~Assert() override {
         std::cout << " Deleting Assert 0x" << this << dec << "...\n";
         delete &assertion;
+    }
+
+    Command* clone() override {
+        auto* c = new Assert(assertion);
+        c->removed = removed;
+        return c;
     }
 };
 
@@ -132,6 +150,12 @@ class Havoc : public Command {
     ~Havoc() override {
         std::cout << " Deleting Havoc 0x" << this << dec << "...\n";
         delete &location;
+    }
+
+    Command* clone() override {
+        auto* c = new Havoc(location, std::string(fresh)); // TODO
+        c->removed = removed;
+        return c;
     }
 };
 
@@ -157,6 +181,14 @@ class Select : public Command {
             delete c;
         }
     }
+
+    Command* clone() override {
+        auto* c = new Select(left, right);
+        c->leftExt = leftExt;
+        c->rightExt = rightExt;
+        c->removed = removed;
+        return c;
+    }
 };
 
 // -----------------------------------------------------------------------------
@@ -172,6 +204,12 @@ class List : public Command {
         for (auto c : commands) {
             delete c;
         }
+    }
+
+    Command* clone() override {
+        auto* c = new List(commands);
+        c->removed = removed;
+        return c;
     }
 };
 

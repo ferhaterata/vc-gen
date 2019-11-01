@@ -42,35 +42,26 @@ class Purifier {
 
   public:
     explicit Purifier(gc::ast::Program* prog) : prog(prog) {
-        // top level commands
-        for (auto& it : prog->commands) {
-            visit(it);
+        auto& cv = prog->commands;
+        for (auto rcit = cv.rbegin(); rcit != cv.rend(); ++rcit) {
+            auto& c = (*rcit);
+            visit(c);
         }
-
-        std::vector<Command*> trails;
-        for (auto rit = trace.rbegin(); rit != trace.rend(); ++rit) {
-            auto& com = (*rit);
-            cout << com->type << endl;
-            if (com->type != gc::ast::Command::Type::Select) {
-                trails.emplace_back(com);
-            } else if (com->type == gc::ast::Command::Type::Select) {
-                auto s = dynamic_cast<gc::ast::Select*>(com);
-                for (auto it = trails.begin(); it != trails.end(); ++it) {
-                    auto& t = (*it);
-                    //t->removed=true;
-                    s->leftExt.push_back(t);
-                    s->rightExt.push_back(t);
-                }
-                trails.clear();
-            }
-        }
-        cout << "-----------------------------------------------------------\n";
     }
 
     void visit(gc::ast::Command* command) {
         switch (command->type) {
         case gc::ast::Command::Type::Select: {
-            trace.push_back(command);
+            auto s = dynamic_cast<gc::ast::Select*>(command);
+            for (auto it = trace.begin(); it != trace.end(); ++it) {
+                auto& t = (*it);
+                Command* cpl = t->clone();
+                Command* cpr = t->clone();
+                t->removed = true;
+                s->leftExt.push_back(cpl);
+                s->rightExt.push_back(cpr);
+            }
+            trace.clear();
             auto choice = dynamic_cast<gc::ast::Select*>(command);
             for (auto c : choice->left) {
                 visit(c);

@@ -81,18 +81,18 @@ class PrinterVisitor : public Visitor<string> {
         stringstream ss;
         std::vector<gc::ast::Command*> vc;
         for (auto c : choice->left) {
-            vc.emplace_back(c);
+            vc.push_back(c);
         }
         for (auto c : choice->leftExt) {
-            vc.emplace_back(c);
+            vc.push_back(c);
         }
         ss << "(" << visit(vc) << ")\n";
         vc.clear();
         for (auto c : choice->right) {
-            vc.emplace_back(c);
+            vc.push_back(c);
         }
         for (auto c : choice->rightExt) {
-            vc.emplace_back(c);
+            vc.push_back(c);
         }
         ss << "(" << visit(vc) << ")";
         return ss.str();

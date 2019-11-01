@@ -114,6 +114,7 @@ void print(std::vector<T>& v){
 %start prog;
 
 %right "[]";
+%precedence "==>";
 %precedence "&&";
 %precedence "||";
 %precedence "!";

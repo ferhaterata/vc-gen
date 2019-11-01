@@ -20,7 +20,7 @@ static gc::location loc;
 
 %option prefix="gc"
 
-id    [a-zA-Z]"!"?[a-zA-Z_0-9]*
+id    [a-zA-Z][a-zA-Z_0-9]*"!"?[a-zA-Z_0-9]*
 int   [0-9]+
 blank [ \t]
 

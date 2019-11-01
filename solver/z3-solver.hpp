@@ -48,10 +48,10 @@ inline Result Z3::parse(const std::string& file) {
     std::size_t found = file.find("error");
     if (found != std::string::npos)
         return Result::ERROR;
-    found = file.find("sat");
+    found = file.find("unsat");
     if (found != std::string::npos)
-        return Result::SAT;
-    return Result::UNSAT;
+        return Result::UNSAT;
+    return Result::SAT;
 }
 
 #endif // Z3_SOLVER_HPP

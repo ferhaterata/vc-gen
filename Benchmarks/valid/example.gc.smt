@@ -1,10 +1,19 @@
-assert n >= 0; 
-assert p!0 = p; havoc p; assert p = 0; 
-assert x!0 = x; havoc x; assert x = 0; 
-assume p = x * m and x <= n; 
-havoc p; havoc x; 
-assert p = x * m and x <= n; 
-(assert n < N; assert x!1 = x; havoc x; assert x = x!1 + 1;  assert p!1 = p; havoc p; assert p = p!1 + m;  assume p = x * m and x <= n; assert false; )
- []
-(assert not n < N ; ) 
-assume p = p * m; 
+(declare-fun p() Int)
+(declare-fun m() Int)
+(declare-fun x() Int)
+(declare-fun n() Int)
+(declare-fun p!1() Int)
+(declare-fun p?0() Int)
+(declare-fun x!1() Int)
+(declare-fun x?1() Int)
+(declare-fun N() Int)
+(declare-fun x?2() Int)
+(declare-fun p?3() Int)
+(declare-fun x?4() Int)
+(declare-fun x!0() Int)
+(declare-fun p?5() Int)
+(declare-fun p!0() Int)
+
+(assert (not (=> (>= n 0) (=> (= p!0 p) (=> (= p?5 0) (=> (= x!0 x) (=> (= x?4 0) (and (and (= p?5 (* x?4 m)) (<= x?4 n)) (=> (and (= p?3 (* x?2 m)) (<= x?2 n)) (and (=> (< n N) (=> (= x!1 x?2) (=> (= x?1 (+ x!1 1)) (=> (= p!1 p?3) (=> (= p?0 (+ p!1 m)) (and (and (= p?0 (* x?1 m)) (<= x?1 n)) (=> false (and (= p?0 (* p?0 m)) true)))))))) (=> (not (< n N)) (and (= p?3 (* p?3 m)) true))))))))))))
+(check-sat)
+(exit)

@@ -1,6 +1,7 @@
-(assume x > y;(assume x!0 = x; havoc x; assume x = y;)
-(assume y!0 = y; havoc y; assume y = x;)
-[]
-assume !(x > y);(assume x!1 = x; havoc x; assume x = x!1;)
-(assume y!1 = y; havoc y; assume y = y!1;))
-(assert x <= y;)
+(assume x > y;
+ assume x!0 = x; havoc x; assume x = y;
+ assume y!0 = y; havoc y; assume y = x;
+ []
+ assume !(x > y);assume x!1 = x; havoc x; assume x = x!1;
+ assume y!1 = y; havoc y; assume y = y!1;)
+assert x <= y;

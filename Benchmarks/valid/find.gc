@@ -1,11 +1,11 @@
 (assume 0 <= N;)
 (assume n!0 = n; havoc n; assume n = 0;)
-(assert (0 <= n and n <= N); assert forall i ((0 <= i and i < n) implies a(i) != x);)
+(assert 0 <= n && n <= N; assert forall i, 0 <= i && i < n ==> a[i] != x;)
 (havoc n;)
-(assume (0 <= n and n <= N); assume forall i ((0 <= i and i < n) implies a(i) != x);)
-(assume n < N && a(n) != x;
+(assume 0 <= n && n <= N; assume forall i, 0 <= i && i < n ==> a[i] != x;)
+(assume n < N && a[n] != x;
 (assume n!1 = n; havoc n; assume n = n!1 + 1;)
-assert (0 <= n and n <= N); assert forall i ((0 <= i and i < n) implies a(i) != x); assume false;)
+assert 0 <= n && n <= N; assert forall i, 0 <= i && i < n ==> a[i] != x; assume false;
 []
-assume !(n < N && a(n) != x);)
-(assert (a(n) = x or forall i ((0 <= i and i < N) implies a(i) != x));)
+assume !(n < N && a[n] != x);)
+(assert a[n] = x || forall i, 0 <= i && i < N ==> a[i] != x;)

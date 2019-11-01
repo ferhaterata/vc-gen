@@ -23,14 +23,24 @@ class SmtCompiler : public gc::ast::Visitor<string> {
     gc::ast::Program* prog;
     std::string output; // the resulting smt formula
     std::string trailer = "true";
-
-    // WP(havoc x, B) = B[a/x] (a fresh in B)
+    int posix = 0; // post script for fresh variables
     std::vector<string> locs;
+
+    static void ReplaceStringInPlace(std::string& subject,
+                                     const std::string& search,
+                                     const std::string& replace) {
+        size_t pos = 0;
+        while ((pos = subject.find(search, pos)) != std::string::npos) {
+            subject.replace(pos, search.length(), replace);
+            pos += replace.length();
+        }
+    }
 
   public:
     explicit SmtCompiler(gc::ast::Program* prog) : prog(prog) {
         visit(prog);
         stringstream ss;
+        // declare distinct locations
         vector<string> v;
         for (const auto& l : locs) {
             if (std::find(v.begin(), v.end(), l) == v.end()) {
@@ -87,7 +97,20 @@ class SmtCompiler : public gc::ast::Visitor<string> {
         return "";
     }
 
-    string visit(const gc::ast::Havoc* h) override { return ""; }
+    string visit(const gc::ast::Havoc* h) override {
+        string& temp = trailer;
+
+        string fresh = h->location.identifier + "?" +
+                       std::to_string(posix++);             // fresh: "x?1"
+        locs.push_back(fresh);                              // add fresh
+        string target = " " + h->location.identifier + " "; // target: " x "
+        string s = " " + fresh + " ";                       // search: " x!1"
+        ReplaceStringInPlace(trailer, target, s);           // replace s
+        target = " " + h->location.identifier + ")";        // target: " x)"
+        s = " " + fresh + ")";                              // search: " x!1)"
+        ReplaceStringInPlace(trailer, target, s);           // search s
+        return "";
+    }
 
     string visit(const gc::ast::List* list) override {
         auto& cv = list->commands;
@@ -198,22 +221,22 @@ class SmtCompiler : public gc::ast::Visitor<string> {
     string visit(const gc::ast::UniversalQuantifier* assertion) override {
         stringstream ss;
         // (forall (x Type) (y Type) .. )
-        ss << "(forall ";
+        ss << "(forall (";
         for (const auto& var : assertion->variables) {
-            ss << "(" << var << " int)";
+            ss << "(" << var << " Int)";
         }
-        ss << " ";
+        ss << ") ";
         ss << visit(&assertion->body) << ")";
         return ss.str();
     }
 
     string visit(const gc::ast::ExistentialQuantifier* assertion) override {
         stringstream ss;
-        ss << "(exists ";
+        ss << "(exists (";
         for (const auto& var : assertion->variables) {
-            ss << "(" << var << " int)";
+            ss << "(" << var << " Int)";
         }
-        ss << " ";
+        ss << ") ";
         ss << visit(&assertion->body) << ")";
         return ss.str();
     }

@@ -1,9 +1,8 @@
 State 30 conflicts: 1 shift/reduce
-State 33 conflicts: 1 shift/reduce
 State 55 conflicts: 4 shift/reduce
-State 62 conflicts: 2 shift/reduce
-State 63 conflicts: 2 shift/reduce
-State 64 conflicts: 3 shift/reduce
+State 62 conflicts: 1 shift/reduce
+State 63 conflicts: 1 shift/reduce
+State 64 conflicts: 1 shift/reduce
 State 66 conflicts: 1 shift/reduce
 State 67 conflicts: 1 shift/reduce
 State 68 conflicts: 1 shift/reduce
@@ -561,9 +560,6 @@ State 33
    12          | assertion . "&&" assertion
    13          | assertion . "==>" assertion
 
-    "==>"  shift, and go to state 40
-
-    "==>"     [reduce using rule 10 (assertion)]
     $default  reduce using rule 10 (assertion)
 
 
@@ -952,11 +948,9 @@ State 62
    12          | assertion . "&&" assertion
    13          | assertion . "==>" assertion
 
-    "||"   shift, and go to state 37
-    "==>"  shift, and go to state 40
+    "||"  shift, and go to state 37
 
     "||"      [reduce using rule 11 (assertion)]
-    "==>"     [reduce using rule 11 (assertion)]
     $default  reduce using rule 11 (assertion)
 
 
@@ -967,12 +961,10 @@ State 63
    12          | assertion "&&" assertion .
    13          | assertion . "==>" assertion
 
-    "||"   shift, and go to state 37
-    "&&"   shift, and go to state 38
-    "==>"  shift, and go to state 40
+    "||"  shift, and go to state 37
+    "&&"  shift, and go to state 38
 
     "&&"      [reduce using rule 12 (assertion)]
-    "==>"     [reduce using rule 12 (assertion)]
     $default  reduce using rule 12 (assertion)
 
 
@@ -987,8 +979,6 @@ State 64
     "&&"   shift, and go to state 38
     "==>"  shift, and go to state 40
 
-    "||"      [reduce using rule 13 (assertion)]
-    "&&"      [reduce using rule 13 (assertion)]
     "==>"     [reduce using rule 13 (assertion)]
     $default  reduce using rule 13 (assertion)
 

@@ -100,24 +100,24 @@ class SmtCompiler : public gc::ast::Visitor<string> {
 
     string visit(const gc::ast::Select* choice) override {
 
-        string m_trailer = trailer;
-        trailer = "";
+        string m_trailer = trailer; // save the main trailer
 
         auto& cl = choice->left;
         for (auto rcit = cl.rbegin(); rcit != cl.rend(); ++rcit) {
             visit(*rcit);
         }
         string l_trailer = trailer;
-        l_trailer = l_trailer + "\b " + m_trailer + ")";
-        trailer = "";
+
+        trailer = m_trailer; // restore the main trailer
 
         auto& cr = choice->right;
         for (auto rcit = cr.rbegin(); rcit != cr.rend(); ++rcit) {
             visit(*rcit);
         }
         string r_trailer = trailer;
-        r_trailer = r_trailer = trailer + "\b " + m_trailer + ")";
+
         trailer = "(and " + l_trailer + " " + r_trailer + ")";
+
         return "";
     }
 

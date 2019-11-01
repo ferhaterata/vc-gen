@@ -29,7 +29,6 @@ class SmtCompiler : public gc::ast::Visitor<string> {
     std::vector<string> locs;
 
   public:
-    // done
     explicit SmtCompiler(gc::ast::Program* prog) : prog(prog) {
         string body = visit(prog);
         stringstream ss;
@@ -45,7 +44,6 @@ class SmtCompiler : public gc::ast::Visitor<string> {
 
     const string& compile() { return output; }
 
-    // done
     string visit(const gc::ast::Program* program) override {
         stringstream ss;
         for (auto& it : program->commands) {
@@ -81,7 +79,6 @@ class SmtCompiler : public gc::ast::Visitor<string> {
         return ss.str();
     }
 
-    // done
     string visit(const gc::ast::Assume* a) override {
         stringstream ss;
         ss << "(=> " << visit(&a->assertion);
@@ -89,7 +86,6 @@ class SmtCompiler : public gc::ast::Visitor<string> {
         return ss.str();
     }
 
-    // done
     string visit(const gc::ast::Assert* assert) override {
         stringstream ss;
         ss << "(and " << visit(&assert->assertion);
@@ -97,7 +93,6 @@ class SmtCompiler : public gc::ast::Visitor<string> {
         return ss.str();
     }
 
-    // done
     string visit(const gc::ast::Havoc* h) override {
         stringstream ss;
 
@@ -110,7 +105,6 @@ class SmtCompiler : public gc::ast::Visitor<string> {
         return ss.str();
     }
 
-    // done
     string visit(const gc::ast::List* list) override {
         stringstream ss;
         for (auto c : list->commands) {
@@ -122,20 +116,32 @@ class SmtCompiler : public gc::ast::Visitor<string> {
 
     string visit(const gc::ast::Select* choice) override {
         stringstream ss;
-        ss << "(and " << visit(choice->left) << " ";
-        ss << visit(choice->leftExt) << " ";
-        ss << visit(choice->right) << " ";
-        ss << visit(choice->rightExt) << ")";
+        std::vector<gc::ast::Command*> vc;
+        for (auto c : choice->left) {
+            vc.emplace_back(c);
+        }
+        for (auto c : choice->leftExt) {
+            vc.emplace_back(c);
+        }
+        ss << "(and " << visit(vc) << " ";
+        vc.clear();
+        for (auto c : choice->right) {
+            vc.emplace_back(c);
+        }
+        for (auto c : choice->rightExt) {
+            vc.emplace_back(c);
+        }
+        ss << visit(vc) << ")";
         return ss.str();
     }
 
     string visit(const vector<gc::ast::Command*>& commands) {
         stringstream ss;
-        ss << "(";
+        ss << "";
         for (auto command : commands) {
             ss << visit(command) << " ";
         }
-        ss << "\b)";
+        ss << "\b";
         return ss.str();
     }
 
@@ -194,35 +200,30 @@ class SmtCompiler : public gc::ast::Visitor<string> {
         return ss.str();
     }
 
-    // done
     string visit(const gc::ast::Negation* assertion) override {
         stringstream ss;
         ss << "(not " << visit(&assertion->assertion) << ")";
         return ss.str();
     }
 
-    // done
     string visit(const gc::ast::Conjunction* a) override {
         stringstream ss;
         ss << "(and " << visit(&a->left) << " " << visit(&a->right) << ")";
         return ss.str();
     }
 
-    // done
     string visit(const gc::ast::Disjunction* a) override {
         stringstream ss;
         ss << "(or " << visit(&a->left) << " " << visit(&a->right) << ")";
         return ss.str();
     }
 
-    // done
     string visit(const gc::ast::Implication* a) override {
         stringstream ss;
         ss << "(=> " << visit(&a->left) << " " << visit(&a->right) << ")";
         return ss.str();
     }
 
-    // done
     string visit(const gc::ast::UniversalQuantifier* assertion) override {
         stringstream ss;
         // (forall (x Type) (y Type) .. )
@@ -235,7 +236,6 @@ class SmtCompiler : public gc::ast::Visitor<string> {
         return ss.str();
     }
 
-    // done
     string visit(const gc::ast::ExistentialQuantifier* assertion) override {
         stringstream ss;
         ss << "(exists ";
@@ -282,14 +282,12 @@ class SmtCompiler : public gc::ast::Visitor<string> {
         return ss.str();
     }
 
-    // done
     string visit(const gc::ast::Constant* expression) override {
         stringstream ss;
         ss << expression->number << "";
         return ss.str();
     }
 
-    // done
     string visit(const gc::ast::ArrayLocation* e) override {
         stringstream ss;
         ss << "(select " << visit(&e->location) << " " << visit(&e->index)
@@ -297,42 +295,36 @@ class SmtCompiler : public gc::ast::Visitor<string> {
         return ss.str();
     }
 
-    // done
     string visit(const gc::ast::Negate* expression) override {
         stringstream ss;
         ss << "(- " << visit(&expression->expression) << ")";
         return ss.str();
     }
 
-    // done
     string visit(const gc::ast::Sum* e) override {
         stringstream ss;
         ss << "(+" << visit(&e->left) << " " << visit(&e->right) << ")";
         return ss.str();
     }
 
-    // done
     string visit(const gc::ast::Subtract* e) override {
         stringstream ss;
         ss << "(- " << visit(&e->left) << " " << visit(&e->right) << ")";
         return ss.str();
     }
 
-    // done
     string visit(const gc::ast::Multiply* e) override {
         stringstream ss;
         ss << "(* " << visit(&e->left) << " " << visit(&e->right) << ")";
         return ss.str();
     }
 
-    // done
     string visit(const gc::ast::Divide* e) override {
         stringstream ss;
         ss << "(div " << visit(&e->left) << " " << visit(&e->right) << ")";
         return ss.str();
     }
 
-    // done
     string visit(const gc::ast::Mod* e) override {
         stringstream ss;
         ss << "(mod " << visit(&e->left) << " " << visit(&e->right) << ")";
@@ -368,42 +360,36 @@ class SmtCompiler : public gc::ast::Visitor<string> {
         return ss.str();
     }
 
-    // done
     string visit(const gc::ast::EqualComparison* c) override {
         stringstream ss;
         ss << "(= " << visit(&c->left) << " " << visit(&c->right) << ")";
         return ss.str();
     }
 
-    // done
     string visit(const gc::ast::NotEqualComparison* c) override {
         stringstream ss;
         ss << "(not (= " << visit(&c->left) << " " << visit(&c->right) << "))";
         return ss.str();
     }
 
-    // done
     string visit(const gc::ast::LeqComparison* c) override {
         stringstream ss;
         ss << "(<= " << visit(&c->left) << " " << visit(&c->right) << ")";
         return ss.str();
     }
 
-    // done
     string visit(const gc::ast::GeqComparison* c) override {
         stringstream ss;
         ss << "(>= " << visit(&c->left) << " " << visit(&c->right) << ")";
         return ss.str();
     }
 
-    // done
     string visit(const gc::ast::LtComparison* c) override {
         stringstream ss;
         ss << "(< " << visit(&c->left) << " " << visit(&c->right) << ")";
         return ss.str();
     }
 
-    // done
     string visit(const gc::ast::GtComparison* c) override {
         stringstream ss;
         ss << "(> " << visit(&c->left) << " " << visit(&c->right) << ")";

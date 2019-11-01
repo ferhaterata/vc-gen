@@ -28,6 +28,8 @@ class PrinterVisitor : public Visitor<string> {
 
     string visit(const Command* command) override {
         stringstream ss;
+        if (command->removed)
+            return ss.str();
         switch (command->type) {
         case Command::Type::Assume:
             ss << visit(dynamic_cast<const Assume*>(command));
@@ -77,27 +79,38 @@ class PrinterVisitor : public Visitor<string> {
 
     string visit(const Select* choice) override {
         stringstream ss;
-        ss << "(";
-        for (auto command : choice->left) {
-            ss << visit(command) << " ";
+        std::vector<gc::ast::Command*> vc;
+        for (auto c : choice->left) {
+            vc.emplace_back(c);
         }
-        ss << "\b)\n";
-        ss << " []\n";
-        ss << "(";
-        for (auto command : choice->right) {
-            ss << visit(command) << " ";
+        for (auto c : choice->leftExt) {
+            vc.emplace_back(c);
         }
-        ss << "\b)";
+        ss << "(" << visit(vc) << ")\n";
+        vc.clear();
+        for (auto c : choice->right) {
+            vc.emplace_back(c);
+        }
+        for (auto c : choice->rightExt) {
+            vc.emplace_back(c);
+        }
+        ss << "(" << visit(vc) << ")";
         return ss.str();
     }
 
-    string visit(const True* aTrue) override {
-        return "true";
+    string visit(const vector<gc::ast::Command*>& commands) {
+        stringstream ss;
+        ss << "";
+        for (auto command : commands) {
+            ss << visit(command) << " ";
+        }
+        ss << "\b";
+        return ss.str();
     }
 
-    string visit(const False* aFalse) override {
-        return "false";
-    }
+    string visit(const True* aTrue) override { return "true"; }
+
+    string visit(const False* aFalse) override { return "false"; }
 
     string visit(const Assertion* assertion) override {
         stringstream ss;
@@ -121,12 +134,10 @@ class PrinterVisitor : public Visitor<string> {
             ss << visit(dynamic_cast<const False*>(assertion));
             break;
         case Assertion::Type::UniversalQuantification:
-            ss << visit(
-                dynamic_cast<const UniversalQuantifier*>(assertion));
+            ss << visit(dynamic_cast<const UniversalQuantifier*>(assertion));
             break;
         case Assertion::Type::ExistentialQuantification:
-            ss << visit(
-                dynamic_cast<const ExistentialQuantifier*>(assertion));
+            ss << visit(dynamic_cast<const ExistentialQuantifier*>(assertion));
             break;
         case Assertion::Type::Comparison:
             ss << visit(dynamic_cast<const Comparison*>(assertion));

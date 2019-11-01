@@ -55,7 +55,9 @@ class Purifier {
                 trails.emplace_back(com);
             } else if (com->type == gc::ast::Command::Type::Select) {
                 auto s = dynamic_cast<gc::ast::Select*>(com);
-                for (auto t : trails) {
+                for (auto it = trails.begin(); it != trails.end(); ++it) {
+                    auto& t = (*it);
+                    //t->removed=true;
                     s->leftExt.push_back(t);
                     s->rightExt.push_back(t);
                 }

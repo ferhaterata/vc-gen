@@ -52,10 +52,10 @@ void run(gc_driver& driver) {
     Result result = solver.run(filename);
     switch (result) {
     case Result::SAT:
-        cout << "Not Valid!";
+        cout << "sat :: Not Valid!";
         break;
     case Result::UNSAT:
-        cout << "Not Valid!";
+        cout << "unsat :: Valid!";
         break;
     case Result::ERROR:
         cout << "Error in formula:\n";

@@ -181,20 +181,20 @@ class GcCompiler : public imp::ast::Visitor<string> {
     string visit(const imp::ast::Program* program) override {
         stringstream ss;
         if (!program->preConditions.empty()) {
-            ss << "(";
+            ss << "";
             for (const auto& node : program->preConditions) {
                 ss << visit(node) << " ";
             }
-            ss << "\b)\n";
+            ss << "\b\n";
         }
         ss << visit(&program->block);
         ss << "\n";
         if (!program->postConditions.empty()) {
-            ss << "(";
+            ss << "";
             for (const auto& node : program->postConditions) {
                 ss << visit(node) << " ";
             }
-            ss << "\b)";
+            ss << "\b";
         }
         return ss.str();
     }
@@ -431,10 +431,10 @@ class GcCompiler : public imp::ast::Visitor<string> {
         std::pair<string, string> pair(statement->loc.identifier,
                                        statement->loc.fresh);
         symbols.push_back(pair);
-        ss << "(assume " << pair.second << " = " << pair.first << "; ";
+        ss << "assume " << pair.second << " = " << pair.first << "; ";
         ss << "havoc " << pair.first << "; ";
         ss << "assume " << pair.first << " = " << visit(&statement->expr)
-           << ";)";
+           << ";";
         symbols.pop_back();
         // for other calls visit location
         visit(&statement->loc);
@@ -448,10 +448,10 @@ class GcCompiler : public imp::ast::Visitor<string> {
         std::pair<string, string> pair(statement->locFirst.identifier,
                                        statement->locFirst.fresh);
         symbols.push_back(pair);
-        ss << "(assume " << pair.second << " = " << pair.first << "; ";
+        ss << "assume " << pair.second << " = " << pair.first << "; ";
         ss << "havoc " << pair.first << "; ";
         ss << "assume " << pair.first << " = " << visit(&statement->exprFirst)
-           << ";)";
+           << ";";
         symbols.pop_back();
         // for other calls visit location
         visit(&statement->exprFirst);
@@ -460,10 +460,10 @@ class GcCompiler : public imp::ast::Visitor<string> {
         pair.first = statement->locSecond.identifier;
         pair.second = statement->locSecond.fresh;
         symbols.push_back(pair);
-        ss << "(assume " << pair.second << " = " << pair.first << "; ";
+        ss << "assume " << pair.second << " = " << pair.first << "; ";
         ss << "havoc " << pair.first << "; ";
         ss << "assume " << pair.first << " = " << visit(&statement->exprSecond)
-           << ";)";
+           << ";";
         symbols.pop_back();
         // for other calls visit location
         visit(&statement->exprFirst);
@@ -491,10 +491,10 @@ class GcCompiler : public imp::ast::Visitor<string> {
 
     string visit(const imp::ast::IfThenStatement* statement) override {
         stringstream ss;
-        ss << "(";
+        ss << "";
         ss << "assume " << visit(&statement->condition) << ";\n";
         ss << visit(&statement->thenBlock);
-        ss << ")";
+        ss << "";
         return ss.str();
     }
 
@@ -514,27 +514,27 @@ class GcCompiler : public imp::ast::Visitor<string> {
         indent.push_back(' ');
         stringstream ss;
         // assert I;
-        ss << "(";
+        ss << "";
         for (const auto& invariant : statement->invariants) {
             ss << "assert " << visit(invariant) << "; ";
         }
-        ss << "\b)\n";
+        ss << "\b\n";
         // havoc x1; ...; havoc xn;
         // collect modified locations for havoc
         visit(&statement->block);
         if (!havocs.empty()) {
-            ss << "(";
+            ss << "";
             for (const auto& h : havocs) {
                 ss << "havoc " << h << "; ";
             }
-            ss << "\b)\n";
+            ss << "\b\n";
         }
         // assume I;
-        ss << "(";
+        ss << "";
         for (const auto& invariant : statement->invariants) {
             ss << "assume " << visit(invariant) << "; ";
         }
-        ss << "\b)\n";
+        ss << "\b\n";
         // (assume b; GC(c); assert I; assume false)
         // (assume b;
         ss << "(assume " << visit(&statement->condition) << ";\n" << indent;

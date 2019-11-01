@@ -23,13 +23,23 @@ class PrinterVisitor : public Visitor<string> {
     const string& getOutput() const { return output; }
 
     explicit PrinterVisitor(const Program* prog) : prog(prog) {
-        output = visit(prog);
+        stringstream ss;
+        ss << "(" << visit(prog) << ")";
+        output = ss.str();
+    }
+
+    string visit(const Program* program) override {
+        stringstream ss;
+        auto& cv = prog->commands;
+        for (auto rcit = cv.rbegin(); rcit != cv.rend(); ++rcit) {
+            auto& c = (*rcit);
+            ss << "(" << visit(c) << ")";
+        }
+        return ss.str();
     }
 
     string visit(const Command* command) override {
         stringstream ss;
-        if (command->removed)
-            return ss.str();
         switch (command->type) {
         case Command::Type::Assume:
             ss << visit(dynamic_cast<const Assume*>(command));
@@ -58,13 +68,13 @@ class PrinterVisitor : public Visitor<string> {
 
     string visit(const Assert* assert) override {
         stringstream ss;
-        ss << "assert " << visit(&assert->assertion) << ";";
+        ss << "(assert " << visit(&assert->assertion) << ";";
         return ss.str();
     }
 
     string visit(const Havoc* havoc) override {
         stringstream ss;
-        ss << "havoc " << visit(&havoc->location) << ";";
+        ss << "(havoc " << visit(&havoc->location) << ";";
         return ss.str();
     }
 
@@ -86,7 +96,7 @@ class PrinterVisitor : public Visitor<string> {
         for (auto c : choice->leftExt) {
             vc.push_back(c);
         }
-        ss << "(" << visit(vc) << ")\n";
+        ss << "(" << visit(vc) << " [] ";
         vc.clear();
         for (auto c : choice->right) {
             vc.push_back(c);
@@ -94,7 +104,7 @@ class PrinterVisitor : public Visitor<string> {
         for (auto c : choice->rightExt) {
             vc.push_back(c);
         }
-        ss << "(" << visit(vc) << ")";
+        ss << "" << visit(vc)<< ")";
         return ss.str();
     }
 
@@ -152,13 +162,7 @@ class PrinterVisitor : public Visitor<string> {
         return ss.str();
     }
 
-    string visit(const Program* program) override {
-        stringstream ss;
-        for (const auto& node : program->commands) {
-            ss << visit(node) << "\n";
-        }
-        return ss.str();
-    }
+
 
     string visit(const Negation* assertion) override {
         stringstream ss;

@@ -36,7 +36,7 @@ void run(gc_driver& driver) {
     printFile(driver.file);
     cout << "\n";
     cout << "---------------------------------------------------------------\n";
-    gc::ast::Purifier purifier(driver.program);
+//    gc::ast::Purifier purifier(driver.program);
     gc::ast::PrinterVisitor visitor(driver.program);
     std::cout << visitor.getOutput() << std::endl;
     cout << "---------------------------------------------------------------\n";

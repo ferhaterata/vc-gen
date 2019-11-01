@@ -19,7 +19,7 @@
 #include <vector>
 #include <stack>
 #include <iterator>
-#include "ast/imp.hpp"
+#include "../ast/imp.hpp"
 class imp_driver;
 }
 
@@ -38,7 +38,7 @@ class imp_driver;
 
 %code
 {
-# include "imp-driver.hpp"
+# include "../imp-driver.hpp"
 
 template <class T, class V>
 T&& enlist(T& t, V& v)

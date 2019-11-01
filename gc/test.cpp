@@ -4,13 +4,12 @@
 //  Copyright (c) 2019 Yale University. All rights reserved.
 // -----------------------------------------------------------------------------
 
-//#include "gc/ast/printer-visitor.hpp"
-#include "gc/ast/printer-visitor.hpp"
-#include "gc/ast/prufier.hpp"
-#include "gc/compiler/smt-compiler.hpp"
-#include "gc/gc-driver.hpp"
-#include "solver/z3-solver.hpp"
-#include "tools.hpp"
+#include "ast/printer-visitor.hpp"
+#include "ast/prufier.hpp"
+#include "compiler/smt-compiler.hpp"
+#include "gc-driver.hpp"
+#include "../solver/z3-solver.hpp"
+#include "../tools.hpp"
 #include <iostream>
 
 void run(gc_driver&);

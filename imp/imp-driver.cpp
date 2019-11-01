@@ -5,8 +5,8 @@
 // -----------------------------------------------------------------------------
 
 #include "imp-driver.hpp"
-#include "imp-parser.hpp"
 #include "ast/imp.hpp"
+#include "recognizer/imp-parser.hpp"
 #include <fstream>
 #include <sstream>
 
@@ -58,7 +58,7 @@ std::string imp_driver::getLine(unsigned lineno) {
     std::ifstream is(file);
     std::string line;
     if (is.is_open()) {
-        for (int i = 1; std::getline(is, line); i++) {
+        for (unsigned i = 1; std::getline(is, line); i++) {
             if (i == lineno)
                 break;
         }

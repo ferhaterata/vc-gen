@@ -45,7 +45,7 @@
 // Unqualified %code blocks.
 #line 40 "/home/ferhat/git/vc-gen/gc/gc-parser.yy"
 
-# include "gc-driver.hpp"
+# include "../gc-driver.hpp"
 
 template <class T, class V>
 T&& enlist(T& t, V& v)

@@ -4,8 +4,7 @@
 //  Copyright (c) 2019 Yale University. All rights reserved.
 // -----------------------------------------------------------------------------
 
-#include "ast/printer-visitor.hpp"
-#include "gc/compiler/smt-compiler.hpp"
+#include "imp/ast/printer-visitor.hpp"
 #include "imp/compiler/gc-compiler.hpp"
 #include "imp/imp-driver.hpp"
 #include "tools.hpp"

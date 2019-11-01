@@ -846,7 +846,7 @@ char *yytext;
 # include <climits>
 # include <cstdlib>
 # include <string>
-# include "imp-driver.hpp"
+# include "../imp-driver.hpp"
 # include "imp-parser.hpp"
 
 // Work around an incompatibility in flex (at least versions
@@ -2571,3 +2571,5 @@ imp_driver::scan_end ()
 {
   fclose (yyin);
 }
+
+

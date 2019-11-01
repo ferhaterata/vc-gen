@@ -7,7 +7,7 @@
 #ifndef GC_SMT_COMPILER_HPP
 #define GC_SMT_COMPILER_HPP
 
-#include "gc/ast/visitor.hpp"
+#include "../ast/visitor.hpp"
 #include <algorithm>
 #include <map>
 #include <sstream>

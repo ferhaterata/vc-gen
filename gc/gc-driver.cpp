@@ -6,7 +6,7 @@
 
 #include "gc-driver.hpp"
 #include "ast/gc.hpp"
-#include "gc-parser.hpp"
+#include "recognizer/gc-parser.hpp"
 #include <fstream>
 #include <sstream>
 
@@ -58,7 +58,7 @@ std::string gc_driver::getLine(unsigned lineno) {
     std::ifstream is(file);
     std::string line;
     if (is.is_open()) {
-        for (int i = 1; std::getline(is, line); i++) {
+        for (unsigned i = 1; std::getline(is, line); i++) {
             if (i == lineno)
                 break;
         }

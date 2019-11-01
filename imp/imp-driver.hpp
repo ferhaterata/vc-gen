@@ -7,7 +7,7 @@
 #ifndef VCGEN_DRIVER_HHP
 #define VCGEN_DRIVER_HHP
 
-#include "imp-parser.hpp"
+#include "recognizer/imp-parser.hpp"
 #include <map>
 #include <string>
 // Tell Flex the lexer's prototype ...

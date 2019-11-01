@@ -195,7 +195,7 @@ class Negation : public Assertion {
     const Assertion& assertion;
 
     explicit Negation(Assertion& assertion)
-        : assertion(assertion), Assertion(Type::Negation) {}
+        : Assertion(Type::Negation), assertion(assertion) {}
 
     ~Negation() override {
         std::cout << "\n Deleting Negation 0x" << this << dec << "...";
@@ -229,7 +229,7 @@ class Disjunction : public Assertion {
     const Assertion& right;
 
     Disjunction(Assertion& left, Assertion& right)
-        : left(left), right(right), Assertion(Type::Disjunction) {}
+        : Assertion(Type::Disjunction), left(left), right(right) {}
 
     ~Disjunction() override {
         std::cout << "\n Deleting Disjunction 0x" << this << dec << "...";
@@ -245,7 +245,7 @@ class Conjunction : public Assertion {
     const Assertion& right;
 
     Conjunction(Assertion& left, Assertion& right)
-        : left(left), right(right), Assertion(Type::Conjunction) {}
+        : Assertion(Type::Conjunction), left(left), right(right) {}
 
     ~Conjunction() override {
         std::cout << "\n Deleting Conjunction 0x" << this << dec << "...";
@@ -261,7 +261,7 @@ class Implication : public Assertion {
     const Assertion& right;
 
     Implication(Assertion& left, Assertion& right)
-        : left(left), right(right), Assertion(Type::Implication) {}
+        : Assertion(Type::Implication), left(left), right(right) {}
 
     ~Implication() override {
         std::cout << "\n Deleting Implication 0x" << this << dec << "...";
@@ -277,8 +277,8 @@ class UniversalQuantifier : public Assertion {
     const Assertion& body;
 
     UniversalQuantifier(vector<string> variables, Assertion& body)
-        : variables(std::move(variables)), body(body),
-          Assertion(Type::UniversalQuantification) {}
+        : Assertion(Type::UniversalQuantification),
+          variables(std::move(variables)), body(body) {}
 
     ~UniversalQuantifier() override {
         std::cout << "\n Deleting UniversalQuantifier 0x" << this << dec
@@ -294,8 +294,8 @@ class ExistentialQuantifier : public Assertion {
     const Assertion& body;
 
     ExistentialQuantifier(vector<string> variables, Assertion& body)
-        : variables(std::move(variables)), body(body),
-          Assertion(Type::ExistentialQuantification) {}
+        : Assertion(Type::ExistentialQuantification),
+          variables(std::move(variables)), body(body) {}
 
     ~ExistentialQuantifier() override {
         std::cout << "\n Deleting ExistentialQuantifier 0x" << this << dec
@@ -310,7 +310,7 @@ class Constant : public Expression {
     const int number;
 
     explicit Constant(const int number)
-        : number(number), Expression(Type::Constant) {}
+        : Expression(Type::Constant), number(number) {}
 
     ~Constant() override {
         std::cout << "\n Deleting Constant 0x" << this << dec << "...";
@@ -324,7 +324,7 @@ class ArrayLocation : public Expression {
     const Expression& index;
 
     ArrayLocation(Location& location, Expression& index)
-        : location(location), index(index), Expression(Type::ArrayLocation) {}
+        : Expression(Type::ArrayLocation), location(location), index(index) {}
 
     ~ArrayLocation() override {
         std::cout << "\n Deleting ArrayLocation 0x" << this << dec << "...";
@@ -339,7 +339,7 @@ class Negate : public Expression {
     const Expression& expression;
 
     explicit Negate(Expression& expression)
-        : expression(expression), Expression(Type::Negate) {}
+        : Expression(Type::Negate), expression(expression) {}
 
     ~Negate() override {
         std::cout << "\n Deleting Negate 0x" << this << dec << "...";
@@ -354,7 +354,7 @@ class Sum : public Expression {
     const Expression& right;
 
     Sum(Expression& left, Expression& right)
-        : left(left), right(right), Expression(Type::Sum) {}
+        : Expression(Type::Sum), left(left), right(right) {}
 
     ~Sum() override {
         std::cout << "\n Deleting Sum 0x" << this << dec << "...";
@@ -370,7 +370,7 @@ class Subtract : public Expression {
     const Expression& right;
 
     Subtract(Expression& left, Expression& right)
-        : left(left), right(right), Expression(Type::Subtract) {}
+        : Expression(Type::Subtract), left(left), right(right) {}
 
     ~Subtract() override {
         std::cout << "\n Deleting Subtract 0x" << this << dec << "...";
@@ -386,7 +386,7 @@ class Multiply : public Expression {
     const Expression& right;
 
     Multiply(Expression& left, Expression& right)
-        : left(left), right(right), Expression(Type::Multiply) {}
+        : Expression(Type::Multiply), left(left), right(right) {}
 
     ~Multiply() override {
         std::cout << "\n Deleting Multiply 0x" << this << dec << "...";
@@ -402,7 +402,7 @@ class Divide : public Expression {
     const Expression& right;
 
     Divide(Expression& left, Expression& right)
-        : left(left), right(right), Expression(Type::Divide) {}
+        : Expression(Type::Divide), left(left), right(right) {}
 
     ~Divide() override {
         std::cout << "\n Deleting Divide 0x" << this << dec << "...";
@@ -418,7 +418,7 @@ class Mod : public Expression {
     const Expression& right;
 
     Mod(Expression& left, Expression& right)
-        : left(left), right(right), Expression(Type::Mod) {}
+        : Expression(Type::Mod), left(left), right(right) {}
 
     ~Mod() override {
         std::cout << "\n Deleting Mod 0x" << this << dec << "...";
@@ -441,7 +441,7 @@ class Comparison : public Assertion {
     const Type type;
 
     explicit Comparison(Comparison::Type type)
-        : type(type), Assertion(Assertion::Type::Comparison) {}
+        : Assertion(Assertion::Type::Comparison), type(type) {}
 };
 
 // -----------------------------------------------------------------------------
@@ -451,8 +451,8 @@ class EqualComparison : public Comparison {
     const Expression& right;
 
     EqualComparison(Expression& left, Expression& right)
-        : left(left), right(right),
-          Comparison(Comparison::Type::EqualComparison) {}
+        : Comparison(Comparison::Type::EqualComparison), left(left),
+          right(right) {}
 
     ~EqualComparison() override {
         std::cout << "\n Deleting EqualComparison 0x" << this << dec << "...";
@@ -468,8 +468,8 @@ class NotEqualComparison : public Comparison {
     const Expression& right;
 
     NotEqualComparison(Expression& left, Expression& right)
-        : left(left), right(right),
-          Comparison(Comparison::Type::NotEqualComparison) {}
+        : Comparison(Comparison::Type::NotEqualComparison), left(left),
+          right(right) {}
 
     ~NotEqualComparison() override {
         std::cout << "\n Deleting NotEqualComparison 0x" << this << dec
@@ -486,8 +486,8 @@ class LeqComparison : public Comparison {
     const Expression& right;
 
     LeqComparison(Expression& left, Expression& right)
-        : left(left), right(right),
-          Comparison(Comparison::Type::LeqComparison) {}
+        : Comparison(Comparison::Type::LeqComparison), left(left),
+          right(right) {}
 
     ~LeqComparison() override {
         std::cout << "\n Deleting LeqComparison 0x" << this << dec << "...";
@@ -503,8 +503,8 @@ class GeqComparison : public Comparison {
     const Expression& right;
 
     GeqComparison(Expression& left, Expression& right)
-        : left(left), right(right),
-          Comparison(Comparison::Type::GeqComparison) {}
+        : Comparison(Comparison::Type::GeqComparison), left(left),
+          right(right) {}
 
     ~GeqComparison() override {
         std::cout << "\n Deleting GeqComparison 0x" << this << dec << "...";
@@ -520,7 +520,7 @@ class LtComparison : public Comparison {
     const Expression& right;
 
     LtComparison(Expression& left, Expression& right)
-        : left(left), right(right), Comparison(Comparison::Type::LtComparison) {
+        : Comparison(Comparison::Type::LtComparison), left(left), right(right) {
     }
 
     ~LtComparison() override {
@@ -537,7 +537,7 @@ class GtComparison : public Comparison {
     const Expression& right;
 
     GtComparison(Expression& left, Expression& right)
-        : left(left), right(right), Comparison(Comparison::Type::GtComparison) {
+        : Comparison(Comparison::Type::GtComparison), left(left), right(right) {
     }
 
     ~GtComparison() override {

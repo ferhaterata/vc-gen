@@ -19,7 +19,7 @@
 #include <vector>
 #include <stack>
 #include <iterator>
-#include "ast/gc.hpp"
+#include "../ast/gc.hpp"
 class gc_driver;
 }
 
@@ -38,7 +38,7 @@ class gc_driver;
 
 %code
 {
-# include "gc-driver.hpp"
+# include "../gc-driver.hpp"
 
 template <class T, class V>
 T&& enlist(T& t, V& v)

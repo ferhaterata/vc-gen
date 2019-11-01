@@ -848,7 +848,7 @@ char *yytext;
 # include <climits>
 # include <cstdlib>
 # include <string>
-# include "gc-driver.hpp"
+# include "../gc-driver.hpp"
 # include "gc-parser.hpp"
 
 // Work around an incompatibility in flex (at least versions

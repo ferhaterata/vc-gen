@@ -7,8 +7,8 @@
 #ifndef IMP_GC_COMPILER_HPP
 #define IMP_GC_COMPILER_HPP
 
+#include "../ast/visitor.hpp"
 #include "algorithm"
-#include "ast/visitor.hpp"
 #include <map>
 #include <sstream>
 #include <string>

@@ -7,7 +7,7 @@
 #ifndef GC_DRIVER_HPP
 #define GC_DRIVER_HPP
 
-#include "gc-parser.hpp"
+#include "recognizer/gc-parser.hpp"
 #include <map>
 #include <string>
 // Tell Flex the lexer's prototype ...

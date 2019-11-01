@@ -1,0 +1,12 @@
+assume 0 <= N;
+assume i!0 = i; havoc i; assume i = 0;
+assert i <= N; assert forall j, 0 <= j && j < i ==> a[j] = b[N - j];
+havoc i; havoc a;
+assume i <= N; assume forall j, 0 <= j && j < i ==> a[j] = b[N - j];
+(assume i < N;
+ (assume a!0[i] = a; havoc a; assume a = b[N - i];)
+ assume i!1 = i; havoc i; assume i = i!1 + 1;
+ assert i <= N; assert forall j, 0 <= j && j < i ==> a[j] = b[N - j]; assume false;
+ []
+ assume !(i < N);)
+assert forall i, 0 <= i && i < N ==> a[i] = b[N - i];

@@ -1739,7 +1739,7 @@ switch (yytype)
     static const char* const yytname_[];
 #if IMPDEBUG
   // YYRLINE[YYN] -- Source line where rule number YYN was defined.
-  static const unsigned char yyrline_[];
+  static const unsigned short yyrline_[];
     /// Report on the debug stream that the rule \a r is going to be reduced.
     virtual void yy_reduce_print_ (int r);
     /// Print the state stack on the debug stream.
@@ -1968,7 +1968,7 @@ switch (yytype)
     enum
     {
       yyeof_ = 0,
-      yylast_ = 212,     ///< Last index in yytable_.
+      yylast_ = 215,     ///< Last index in yytable_.
       yynnts_ = 19,  ///< Number of nonterminal symbols.
       yyfinal_ = 4, ///< Termination state number.
       yyterror_ = 1,

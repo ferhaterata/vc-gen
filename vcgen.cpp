@@ -4,9 +4,12 @@
 //  Copyright (c) 2019 Yale University. All rights reserved.
 // -----------------------------------------------------------------------------
 
+#include "gc/compiler/smt-compiler.hpp"
+#include "gc/gc-driver.hpp"
 #include "imp/ast/printer-visitor.hpp"
 #include "imp/compiler/gc-compiler.hpp"
 #include "imp/imp-driver.hpp"
+#include "solver/z3-solver.hpp"
 #include "tools.hpp"
 #include <iostream>
 
@@ -30,20 +33,45 @@ int main(int argc, char* argv[]) {
     return 0;
 }
 
-void run(imp_driver& driver) {
-    printFile(driver.file);
+void run(imp_driver& impDriver) {
+    printFile(impDriver.file);
     cout << "\n";
     cout << "---------------------------------------------------------------\n";
-    imp::ast::PrinterVisitor visitor(driver.program);
+    imp::ast::PrinterVisitor visitor(impDriver.program);
     std::cout << visitor.getOutput() << std::endl;
     cout << "---------------------------------------------------------------\n";
-    imp::compiler::GcCompiler compiler(driver.program);
-    std::string gc = compiler.compile();
+    imp::compiler::GcCompiler gcCompiler(impDriver.program);
+    std::string gc = gcCompiler.compile();
     std::cout << gc << std::endl;
-    std::string filename = driver.program->identifier + ".gc";
-    std::ofstream fout(filename);
-    fout << erase(gc, " \b");
-    fout.close();
+    std::string gcFileName = impDriver.program->identifier + ".gc";
+    std::ofstream gc_fout(gcFileName);
+    gc_fout << erase(gc, " \b");
+    gc_fout.close();
+    cout << "---------------------------------------------------------------\n";
+    gc_driver gcDriver;
+    gcDriver.parse(gcFileName);
+    gc::compiler::SmtCompiler smtCompiler(gcDriver.program);
+    std::string smt = smtCompiler.compile();
+    std::cout << smt << std::endl;
+    const std::string& smtFileName = gcDriver.file + ".smt";
+    std::ofstream smt_fout(smtFileName);
+    smt_fout << erase(smt, ")\b ");
+    smt_fout.close();
+    cout << "---------------------------------------------------------------\n";
+    Z3 solver;
+    Result result = solver.run(smtFileName);
+    switch (result) {
+    case Result::SAT:
+        cout << "sat :: Not Valid!";
+        break;
+    case Result::UNSAT:
+        cout << "unsat :: Valid!";
+        break;
+    case Result::ERROR:
+        cout << "Error in formula:\n";
+        cout << solver.getResult();
+        break;
+    }
 }
 
 // print the file

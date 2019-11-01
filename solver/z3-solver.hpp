@@ -23,10 +23,12 @@ class Z3 {
   public:
     Z3() : result() {}
     Result run(const std::string& file) {
-        std::stringstream ss;
+        std::string ss;
         std::string out = file + ".out";
-        ss << cmd << " " << file << " > " << out;
-        std::system(ss.str().c_str());
+        ss = cmd + " " + file + " > " + out;
+        int i = std::system(ss.c_str());
+        if (i != 0)
+            std::cerr << "System call returned: " << i << std::endl;
         result = read(out);
         return parse(result);
     }

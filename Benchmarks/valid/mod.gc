@@ -1,0 +1,24 @@
+assume 0 < n;
+assume i!0 = i; havoc i; assume i = 0;
+assume r!0 = r; havoc r; assume r = a;
+(assume r >= 0;
+ assert r >= 0; assert n * i + r = a;
+havoc i; havoc r;
+assume r >= 0; assume n * i + r = a;
+(assume r >= n;
+  assume r!1 = r; havoc r; assume r = r!1 - n;
+  assume i!1 = i; havoc i; assume i = i!1 + 1;
+  assert r >= 0; assert n * i + r = a; assume false;
+  []
+  assume !(r >= n);)
+ []
+ assume !(r >= 0);assert r < n; assert n * i + r = a;
+havoc r; havoc i;
+assume r < n; assume n * i + r = a;
+(assume r < 0;
+  assume r!2 = r; havoc r; assume r = r!2 + n;
+  assume i!2 = i; havoc i; assume i = i!2 - 1;
+  assert r < n; assert n * i + r = a; assume false;
+  []
+  assume !(r < 0);))
+assert 0 <= r && r < n; assert n * i + r = a;

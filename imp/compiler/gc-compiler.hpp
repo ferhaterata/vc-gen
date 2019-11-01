@@ -308,8 +308,9 @@ class GcCompiler : public imp::ast::Visitor<string> {
     // TODO: check array fragment
     string visit(const imp::ast::ArrayReference* expression) override {
         stringstream ss;
-        ss << visit(&expression->reference);
-        ss << "[" << visit(&expression->index) << "]";
+
+        string ref = visit(&expression->reference);
+        ss << "read(" << ref << ", " << visit(&expression->index) << ")";
         return ss.str();
     }
 
@@ -477,12 +478,12 @@ class GcCompiler : public imp::ast::Visitor<string> {
         std::pair<string, string> pair(statement->loc.identifier,
                                        statement->loc.fresh);
         symbols.push_back(pair);
-        ss << "(assume " << pair.second << "[" << visit(&statement->index)
-           << "]";
+        ss << "(assume " << pair.second;
         ss << " = " << pair.first << "; ";
         ss << "havoc " << pair.first << "; ";
-        ss << "assume " << pair.first << " = " << visit(&statement->exp)
-           << ";)";
+        ss << "assume " << pair.first << " = "
+           << "write(" << pair.second << ", " << visit(&statement->index)
+           << ", " << visit(&statement->exp) << ");)";
         symbols.pop_back();
         // for other calls visit location
         visit(&statement->loc);

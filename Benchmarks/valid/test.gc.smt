@@ -1,0 +1,12 @@
+(declare-fun i() Int)
+(declare-fun i!1() Int)
+(declare-fun i?0() Int)
+(declare-fun a() Int)
+(declare-fun a?1() Int)
+(declare-fun a!0() Int)
+(declare-fun i?2() Int)
+(declare-fun i!0() Int)
+
+(assert (not (=> (= i!0 i) (=> (= i?2 0) (=> (= a!0 a) (=> (= a?1 5) (=> (= i!1 i?2) (=> (= i?0 (+ i!1 1)) true))))))))
+(check-sat)
+(exit)

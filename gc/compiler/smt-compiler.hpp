@@ -98,7 +98,7 @@ class SmtCompiler : public gc::ast::Visitor<string> {
     }
 
     string visit(const gc::ast::Havoc* h) override {
-        string& temp = trailer;
+        // string& temp = trailer;
 
         string fresh = h->location.identifier + "?" +
                        std::to_string(posix++);             // fresh: "x?1"
@@ -108,6 +108,9 @@ class SmtCompiler : public gc::ast::Visitor<string> {
         ReplaceStringInPlace(trailer, target, s);           // replace s
         target = " " + h->location.identifier + ")";        // target: " x)"
         s = " " + fresh + ")";                              // search: " x!1)"
+        ReplaceStringInPlace(trailer, target, s);           // search s
+        target = "(" + h->location.identifier + " ";        // target: "(x "
+        s = "(" + fresh + " ";                              // search: "(x!1 "
         ReplaceStringInPlace(trailer, target, s);           // search s
         return "";
     }

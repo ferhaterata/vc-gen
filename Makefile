@@ -29,11 +29,14 @@ clean:
 # c++ -MM  gc/recognizer/*.cpp >> Makefile
 # c++ -MM  gc/ast/*.cpp >> Makefile
 tools.o: tools.cpp tools.hpp
-vcgen.o: vcgen.cpp imp/ast/printer-visitor.hpp imp/ast/visitor.hpp \
- imp/ast/imp.hpp imp/compiler/gc-compiler.hpp \
+vcgen.o: vcgen.cpp gc/compiler/smt-compiler.hpp \
+ gc/compiler/../ast/visitor.hpp gc/compiler/../ast/gc.hpp \
+ gc/gc-driver.hpp gc/recognizer/gc-parser.hpp gc/recognizer/../ast/gc.hpp \
+ gc/recognizer/location.hh imp/ast/printer-visitor.hpp \
+ imp/ast/visitor.hpp imp/ast/imp.hpp imp/compiler/gc-compiler.hpp \
  imp/compiler/../ast/visitor.hpp imp/imp-driver.hpp \
  imp/recognizer/imp-parser.hpp imp/recognizer/../ast/imp.hpp \
- imp/recognizer/location.hh tools.hpp
+ imp/recognizer/location.hh solver/z3-solver.hpp tools.hpp
 imp-driver.o: imp/imp-driver.cpp imp/imp-driver.hpp \
  imp/recognizer/imp-parser.hpp imp/recognizer/../ast/imp.hpp \
  imp/recognizer/../ast/visitor.hpp imp/recognizer/../ast/imp.hpp \

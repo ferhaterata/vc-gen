@@ -1,0 +1,5 @@
+program test
+is
+  i := 0;
+  a[i] := a[j+3] + 1;
+end

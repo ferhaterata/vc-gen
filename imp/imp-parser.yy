@@ -218,6 +218,10 @@ prog: "program" "identifier" pre_list post_list "is" block "end"
     | "program" "identifier" pre_list "is" block "end"
       { std::vector<imp::ast::PostCondition*> post;
         $$ = new imp::ast::Program($2, $3, post, *$5); driver.program = $$;}
+    | "program" "identifier" "is" block "end"
+      { std::vector<imp::ast::PreCondition*> pre;
+        std::vector<imp::ast::PostCondition*> post;
+        $$ = new imp::ast::Program($2, pre, post, *$4); driver.program = $$;}
     ;
 
 pre_list:

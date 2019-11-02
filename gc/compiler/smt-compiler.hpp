@@ -40,6 +40,19 @@ class SmtCompiler : public gc::ast::Visitor<string> {
   public:
     explicit SmtCompiler(gc::ast::Program* prog) : prog(prog) {
         visit(prog);
+
+        // locate array constants
+        for (const auto& a : arrs) {
+            size_t pos = 0;
+            if ((pos = a.find('!', pos)) != std::string::npos) {
+                string s = a.substr(0, pos);
+                for (const auto& l : locs) {
+                    if (l.find(s) == 0) {
+                        arrs.push_back(l);
+                    }
+                }
+            }
+        }
         stringstream ss;
         // declare distinct locations
         vector<string> v;
@@ -107,19 +120,15 @@ class SmtCompiler : public gc::ast::Visitor<string> {
         string havoc = h->location.identifier;
         string fresh = havoc + "?" + std::to_string(posix++); // fresh: "x?1"
         locs.push_back(fresh);                                // add fresh
-
-        if (std::find(arrs.begin(), arrs.end(), havoc) != arrs.end())
-            arrs.push_back(fresh);
-
-        string target = " " + havoc + " ";        // target: " x "
-        string s = " " + fresh + " ";             // search: " x!1"
-        ReplaceStringInPlace(trailer, target, s); // replace s
-        target = " " + havoc + ")";               // target: " x)"
-        s = " " + fresh + ")";                    // search: " x!1)"
-        ReplaceStringInPlace(trailer, target, s); // search s
-        target = "(" + havoc + " ";               // target: "(x "
-        s = "(" + fresh + " ";                    // search: "(x!1 "
-        ReplaceStringInPlace(trailer, target, s); // search s
+        string target = " " + havoc + " ";                    // target: " x "
+        string s = " " + fresh + " ";                         // search: " x!1"
+        ReplaceStringInPlace(trailer, target, s);             // replace s
+        target = " " + havoc + ")";                           // target: " x)"
+        s = " " + fresh + ")";                                // search: " x!1)"
+        ReplaceStringInPlace(trailer, target, s);             // search s
+        target = "(" + havoc + " ";                           // target: "(x "
+        s = "(" + fresh + " ";                                // search: "(x!1 "
+        ReplaceStringInPlace(trailer, target, s);             // search s
         return "";
     }
 

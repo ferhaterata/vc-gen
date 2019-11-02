@@ -10,6 +10,7 @@ OBJ = tools.o vcgen.o imp/imp-driver.o imp/ast/imp.o \
  gc/gc-driver.o gc/recognizer/gc-parser.o gc/ast/gc.o \
  gc/recognizer/gc-scanner.o
 # gc/test.o
+TEST = Benchmark/valid/bubble.imp
 TARGET = vcgen
 #-----------------------------------------------------------
 # Rules
@@ -58,7 +59,7 @@ gc-driver.o: gc/gc-driver.cpp gc/gc-driver.hpp \
  gc/recognizer/gc-parser.hpp gc/recognizer/../ast/gc.hpp \
  gc/recognizer/location.hh gc/ast/gc.hpp
 test.o: gc/test.cpp gc/ast/printer-visitor.hpp gc/ast/visitor.hpp \
- gc/ast/gc.hpp gc/ast/prufier.hpp gc/compiler/smt-compiler.hpp \
+ gc/ast/gc.hpp gc/compiler/smt-compiler.hpp \
  gc/compiler/../ast/visitor.hpp gc/gc-driver.hpp \
  gc/recognizer/gc-parser.hpp gc/recognizer/../ast/gc.hpp \
  gc/recognizer/location.hh gc/../solver/z3-solver.hpp gc/../tools.hpp

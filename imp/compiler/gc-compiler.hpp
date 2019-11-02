@@ -489,11 +489,16 @@ class GcCompiler : public imp::ast::Visitor<string> {
     }
 
     string visit(const imp::ast::IfThenStatement* statement) override {
+        indent.push_back(' ');
         stringstream ss;
-        ss << "";
-        ss << "assume " << visit(&statement->condition) << ";\n";
+        ss << "(";
+        ss << "assume " << visit(&statement->condition) << ";\n" << indent;
         ss << visit(&statement->thenBlock);
-        ss << "";
+        ss << "\n" << indent << "[]\n" << indent;
+        ss << "assume !(" << visit(&statement->condition) << ");";
+        ss << " assume true;";
+        ss << ")";
+        indent.pop_back();
         return ss.str();
     }
 

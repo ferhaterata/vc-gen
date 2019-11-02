@@ -1,0 +1,11 @@
+assume 0 <= N;
+assume n!0 = n; havoc n; assume n = 0;
+assert 0 <= n && n <= N; assert forall i, 0 <= i && i < n ==> read(a, i) != x;
+havoc n;
+assume 0 <= n && n <= N; assume forall i, 0 <= i && i < n ==> read(a, i) != x;
+(assume n < N || read(a, n) != x;
+ assume n!1 = n; havoc n; assume n = n!1 + 1;
+ assert 0 <= n && n <= N; assert forall i, 0 <= i && i < n ==> read(a, i) != x; assume false;
+ []
+ assume !(n < N || read(a, n) != x);)
+assert read(a, n) = x || forall i, 0 <= i && i < N ==> read(a, i) != x;

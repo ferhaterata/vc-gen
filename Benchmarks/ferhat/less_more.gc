@@ -1,0 +1,4 @@
+assume 0 < y;
+assume more!0 = more; havoc more; assume more = x + y;
+assume less!0 = less; havoc less; assume less = x - y;
+assert less < x && x < more;

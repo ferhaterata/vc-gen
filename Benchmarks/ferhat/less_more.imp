@@ -1,0 +1,7 @@
+program less_more
+   pre 0 < y
+   post less < x && x < more
+is
+   more := x + y;
+   less := x - y;
+end

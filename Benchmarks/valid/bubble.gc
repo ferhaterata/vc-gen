@@ -9,10 +9,12 @@ assume 0 <= bound && bound <= n; assume forall j k, 0 <= j && j < k && bound <= 
 havoc bound; havoc i; havoc t; havoc a;
 assume 0 <= i && i < bound; assume forall j, 0 <= j && j < i ==> read(a, j) <= read(a, i); assume forall j k, 0 <= j && j < k && bound <= k && k < n ==> read(a, j) <= read(a, k);
 (assume i < bound - 1;
-  assume read(a, i) > read(a, i + 1);
-assume t!0 = t; havoc t; assume t = read(a, i);
-  assume a!0 = a; havoc a; assume a = write(a!0, i, read(a!0, i + 1));
-  assume a!1 = a; havoc a; assume a = write(a!1, i + 1, t);
+  (assume read(a, i) > read(a, i + 1);
+   assume t!0 = t; havoc t; assume t = read(a, i);
+   assume a!0 = a; havoc a; assume a = write(a!0, i, read(a!0, i + 1));
+   assume a!1 = a; havoc a; assume a = write(a!1, i + 1, t);
+   []
+   assume !(read(a, i) > read(a, i + 1)); assume true;)
   assume i!1 = i; havoc i; assume i = i!1 + 1;
   assert 0 <= i && i < bound; assert forall j, 0 <= j && j < i ==> read(a, j) <= read(a, i); assert forall j k, 0 <= j && j < k && bound <= k && k < n ==> read(a, j) <= read(a, k); assume false;
   []

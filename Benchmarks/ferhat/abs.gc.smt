@@ -1,0 +1,11 @@
+(declare-const return Int)
+(declare-const x Int)
+(declare-const return?0 Int)
+(declare-const return!0 Int)
+(declare-const return?1 Int)
+(declare-const return!1 Int)
+(declare-const y Int)
+
+(assert (not (=> (<= 0 y) (=> (=> (<= 0 x) (= x y)) (=> (=> (< x 0) (= y (- x))) (and (=> (< x 0) (=> (= return!0 return) (=> (= return?0 (- x)) true))) (=> (not (< x 0)) (=> (= return!1 return) (=> (= return?1 x) true)))))))))
+(check-sat)
+(exit)

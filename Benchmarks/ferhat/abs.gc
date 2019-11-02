@@ -1,0 +1,5 @@
+assume 0 <= y; assume 0 <= x ==> x = y; assume x < 0 ==> y = -x;
+(assume x < 0;
+ assume return!0 = return; havoc return; assume return = -x;
+ []
+ assume !(x < 0);assume return!1 = return; havoc return; assume return = x;)

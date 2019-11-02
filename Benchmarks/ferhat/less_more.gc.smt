@@ -1,0 +1,12 @@
+(declare-const less Int)
+(declare-const x Int)
+(declare-const more Int)
+(declare-const y Int)
+(declare-const less?0 Int)
+(declare-const less!0 Int)
+(declare-const more?1 Int)
+(declare-const more!0 Int)
+
+(assert (not (=> (< 0 y) (=> (= more!0 more) (=> (= more?1 (+ x y)) (=> (= less!0 less) (=> (= less?0 (- x y)) (and (and (< less?0 x) (< x more?1)) true))))))))
+(check-sat)
+(exit)

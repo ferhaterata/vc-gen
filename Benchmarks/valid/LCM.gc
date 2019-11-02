@@ -5,8 +5,10 @@ assert A % gcd = 0 && B % gcd = 0;
 havoc gcd; havoc j;
 assume A % gcd = 0 && B % gcd = 0;
 (assume j <= A || j <= B;
- assume A % j = 0 && B % j = 0;
-assume gcd!1 = gcd; havoc gcd; assume gcd = j;
+ (assume A % j = 0 && B % j = 0;
+  assume gcd!1 = gcd; havoc gcd; assume gcd = j;
+  []
+  assume !(A % j = 0 && B % j = 0); assume true;)
  assert A % gcd = 0 && B % gcd = 0; assume false;
  []
  assume !(j <= A || j <= B);)

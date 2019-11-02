@@ -1,0 +1,11 @@
+program abs
+   pre 0 <= y
+   pre 0 <= x ==> x = y
+   pre x < 0 ==> y = -x
+is
+   if x < 0 then
+     return := -x;
+   else
+     return := x;
+   end
+end

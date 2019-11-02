@@ -1,6 +1,6 @@
 program myfind
    pre 0 <= index ==> (index < N && a[index] = key)
-   post index < 0 ==> forall k, (0 <= k &&  k < N) ==> a[k] != key
+   post index < 0 ==> forall k, (0 <= k && k < N) ==> a[k] != key
 is
    index := 0;
    while index < N

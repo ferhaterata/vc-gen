@@ -34,10 +34,10 @@ cmake_force:
 SHELL = /bin/sh
 
 # The CMake executable.
-CMAKE_COMMAND = /snap/clion/88/bin/cmake/linux/bin/cmake
+CMAKE_COMMAND = /snap/clion/92/bin/cmake/linux/bin/cmake
 
 # The command to remove a file.
-RM = /snap/clion/88/bin/cmake/linux/bin/cmake -E remove -f
+RM = /snap/clion/92/bin/cmake/linux/bin/cmake -E remove -f
 
 # Escaping for special characters.
 EQUALS = =
@@ -92,22 +92,9 @@ CMakeFiles/vcgen.dir/vcgen.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/vcgen.dir/vcgen.cpp.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ferhat/git/vc-gen/vcgen.cpp -o CMakeFiles/vcgen.dir/vcgen.cpp.s
 
-CMakeFiles/vcgen.dir/imp/imp-driver.cpp.o: CMakeFiles/vcgen.dir/flags.make
-CMakeFiles/vcgen.dir/imp/imp-driver.cpp.o: ../imp/imp-driver.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ferhat/git/vc-gen/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/vcgen.dir/imp/imp-driver.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/vcgen.dir/imp/imp-driver.cpp.o -c /home/ferhat/git/vc-gen/imp/imp-driver.cpp
-
-CMakeFiles/vcgen.dir/imp/imp-driver.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/vcgen.dir/imp/imp-driver.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ferhat/git/vc-gen/imp/imp-driver.cpp > CMakeFiles/vcgen.dir/imp/imp-driver.cpp.i
-
-CMakeFiles/vcgen.dir/imp/imp-driver.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/vcgen.dir/imp/imp-driver.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ferhat/git/vc-gen/imp/imp-driver.cpp -o CMakeFiles/vcgen.dir/imp/imp-driver.cpp.s
-
 CMakeFiles/vcgen.dir/imp/recognizer/imp-parser.cpp.o: CMakeFiles/vcgen.dir/flags.make
 CMakeFiles/vcgen.dir/imp/recognizer/imp-parser.cpp.o: ../imp/recognizer/imp-parser.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ferhat/git/vc-gen/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/vcgen.dir/imp/recognizer/imp-parser.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ferhat/git/vc-gen/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/vcgen.dir/imp/recognizer/imp-parser.cpp.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/vcgen.dir/imp/recognizer/imp-parser.cpp.o -c /home/ferhat/git/vc-gen/imp/recognizer/imp-parser.cpp
 
 CMakeFiles/vcgen.dir/imp/recognizer/imp-parser.cpp.i: cmake_force
@@ -121,7 +108,7 @@ CMakeFiles/vcgen.dir/imp/recognizer/imp-parser.cpp.s: cmake_force
 CMakeFiles/vcgen.dir/imp/recognizer/imp-scanner.cpp.o: CMakeFiles/vcgen.dir/flags.make
 CMakeFiles/vcgen.dir/imp/recognizer/imp-scanner.cpp.o: ../imp/recognizer/imp-scanner.cpp
 CMakeFiles/vcgen.dir/imp/recognizer/imp-scanner.cpp.o: ../imp/recognizer/imp-parser.hpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ferhat/git/vc-gen/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/vcgen.dir/imp/recognizer/imp-scanner.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ferhat/git/vc-gen/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/vcgen.dir/imp/recognizer/imp-scanner.cpp.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/vcgen.dir/imp/recognizer/imp-scanner.cpp.o -c /home/ferhat/git/vc-gen/imp/recognizer/imp-scanner.cpp
 
 CMakeFiles/vcgen.dir/imp/recognizer/imp-scanner.cpp.i: cmake_force
@@ -132,18 +119,31 @@ CMakeFiles/vcgen.dir/imp/recognizer/imp-scanner.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/vcgen.dir/imp/recognizer/imp-scanner.cpp.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ferhat/git/vc-gen/imp/recognizer/imp-scanner.cpp -o CMakeFiles/vcgen.dir/imp/recognizer/imp-scanner.cpp.s
 
-CMakeFiles/vcgen.dir/imp/imp.cpp.o: CMakeFiles/vcgen.dir/flags.make
-CMakeFiles/vcgen.dir/imp/imp.cpp.o: ../imp/imp.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ferhat/git/vc-gen/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object CMakeFiles/vcgen.dir/imp/imp.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/vcgen.dir/imp/imp.cpp.o -c /home/ferhat/git/vc-gen/imp/imp.cpp
+CMakeFiles/vcgen.dir/imp/imp-driver.cpp.o: CMakeFiles/vcgen.dir/flags.make
+CMakeFiles/vcgen.dir/imp/imp-driver.cpp.o: ../imp/imp-driver.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ferhat/git/vc-gen/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/vcgen.dir/imp/imp-driver.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/vcgen.dir/imp/imp-driver.cpp.o -c /home/ferhat/git/vc-gen/imp/imp-driver.cpp
 
-CMakeFiles/vcgen.dir/imp/imp.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/vcgen.dir/imp/imp.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ferhat/git/vc-gen/imp/imp.cpp > CMakeFiles/vcgen.dir/imp/imp.cpp.i
+CMakeFiles/vcgen.dir/imp/imp-driver.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/vcgen.dir/imp/imp-driver.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ferhat/git/vc-gen/imp/imp-driver.cpp > CMakeFiles/vcgen.dir/imp/imp-driver.cpp.i
 
-CMakeFiles/vcgen.dir/imp/imp.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/vcgen.dir/imp/imp.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ferhat/git/vc-gen/imp/imp.cpp -o CMakeFiles/vcgen.dir/imp/imp.cpp.s
+CMakeFiles/vcgen.dir/imp/imp-driver.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/vcgen.dir/imp/imp-driver.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ferhat/git/vc-gen/imp/imp-driver.cpp -o CMakeFiles/vcgen.dir/imp/imp-driver.cpp.s
+
+CMakeFiles/vcgen.dir/imp/ast/imp.cpp.o: CMakeFiles/vcgen.dir/flags.make
+CMakeFiles/vcgen.dir/imp/ast/imp.cpp.o: ../imp/ast/imp.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ferhat/git/vc-gen/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object CMakeFiles/vcgen.dir/imp/ast/imp.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/vcgen.dir/imp/ast/imp.cpp.o -c /home/ferhat/git/vc-gen/imp/ast/imp.cpp
+
+CMakeFiles/vcgen.dir/imp/ast/imp.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/vcgen.dir/imp/ast/imp.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ferhat/git/vc-gen/imp/ast/imp.cpp > CMakeFiles/vcgen.dir/imp/ast/imp.cpp.i
+
+CMakeFiles/vcgen.dir/imp/ast/imp.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/vcgen.dir/imp/ast/imp.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ferhat/git/vc-gen/imp/ast/imp.cpp -o CMakeFiles/vcgen.dir/imp/ast/imp.cpp.s
 
 CMakeFiles/vcgen.dir/tools.cpp.o: CMakeFiles/vcgen.dir/flags.make
 CMakeFiles/vcgen.dir/tools.cpp.o: ../tools.cpp
@@ -158,22 +158,9 @@ CMakeFiles/vcgen.dir/tools.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/vcgen.dir/tools.cpp.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ferhat/git/vc-gen/tools.cpp -o CMakeFiles/vcgen.dir/tools.cpp.s
 
-CMakeFiles/vcgen.dir/gc/gc-driver.cpp.o: CMakeFiles/vcgen.dir/flags.make
-CMakeFiles/vcgen.dir/gc/gc-driver.cpp.o: ../gc/gc-driver.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ferhat/git/vc-gen/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Building CXX object CMakeFiles/vcgen.dir/gc/gc-driver.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/vcgen.dir/gc/gc-driver.cpp.o -c /home/ferhat/git/vc-gen/gc/gc-driver.cpp
-
-CMakeFiles/vcgen.dir/gc/gc-driver.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/vcgen.dir/gc/gc-driver.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ferhat/git/vc-gen/gc/gc-driver.cpp > CMakeFiles/vcgen.dir/gc/gc-driver.cpp.i
-
-CMakeFiles/vcgen.dir/gc/gc-driver.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/vcgen.dir/gc/gc-driver.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ferhat/git/vc-gen/gc/gc-driver.cpp -o CMakeFiles/vcgen.dir/gc/gc-driver.cpp.s
-
 CMakeFiles/vcgen.dir/gc/recognizer/gc-parser.cpp.o: CMakeFiles/vcgen.dir/flags.make
 CMakeFiles/vcgen.dir/gc/recognizer/gc-parser.cpp.o: ../gc/recognizer/gc-parser.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ferhat/git/vc-gen/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Building CXX object CMakeFiles/vcgen.dir/gc/recognizer/gc-parser.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ferhat/git/vc-gen/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Building CXX object CMakeFiles/vcgen.dir/gc/recognizer/gc-parser.cpp.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/vcgen.dir/gc/recognizer/gc-parser.cpp.o -c /home/ferhat/git/vc-gen/gc/recognizer/gc-parser.cpp
 
 CMakeFiles/vcgen.dir/gc/recognizer/gc-parser.cpp.i: cmake_force
@@ -187,7 +174,7 @@ CMakeFiles/vcgen.dir/gc/recognizer/gc-parser.cpp.s: cmake_force
 CMakeFiles/vcgen.dir/gc/recognizer/gc-scanner.cpp.o: CMakeFiles/vcgen.dir/flags.make
 CMakeFiles/vcgen.dir/gc/recognizer/gc-scanner.cpp.o: ../gc/recognizer/gc-scanner.cpp
 CMakeFiles/vcgen.dir/gc/recognizer/gc-scanner.cpp.o: ../gc/recognizer/gc-parser.hpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ferhat/git/vc-gen/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_13) "Building CXX object CMakeFiles/vcgen.dir/gc/recognizer/gc-scanner.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ferhat/git/vc-gen/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Building CXX object CMakeFiles/vcgen.dir/gc/recognizer/gc-scanner.cpp.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/vcgen.dir/gc/recognizer/gc-scanner.cpp.o -c /home/ferhat/git/vc-gen/gc/recognizer/gc-scanner.cpp
 
 CMakeFiles/vcgen.dir/gc/recognizer/gc-scanner.cpp.i: cmake_force
@@ -198,45 +185,58 @@ CMakeFiles/vcgen.dir/gc/recognizer/gc-scanner.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/vcgen.dir/gc/recognizer/gc-scanner.cpp.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ferhat/git/vc-gen/gc/recognizer/gc-scanner.cpp -o CMakeFiles/vcgen.dir/gc/recognizer/gc-scanner.cpp.s
 
-CMakeFiles/vcgen.dir/gc/gc.cpp.o: CMakeFiles/vcgen.dir/flags.make
-CMakeFiles/vcgen.dir/gc/gc.cpp.o: ../gc/gc.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ferhat/git/vc-gen/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_14) "Building CXX object CMakeFiles/vcgen.dir/gc/gc.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/vcgen.dir/gc/gc.cpp.o -c /home/ferhat/git/vc-gen/gc/gc.cpp
+CMakeFiles/vcgen.dir/gc/gc-driver.cpp.o: CMakeFiles/vcgen.dir/flags.make
+CMakeFiles/vcgen.dir/gc/gc-driver.cpp.o: ../gc/gc-driver.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ferhat/git/vc-gen/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_13) "Building CXX object CMakeFiles/vcgen.dir/gc/gc-driver.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/vcgen.dir/gc/gc-driver.cpp.o -c /home/ferhat/git/vc-gen/gc/gc-driver.cpp
 
-CMakeFiles/vcgen.dir/gc/gc.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/vcgen.dir/gc/gc.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ferhat/git/vc-gen/gc/gc.cpp > CMakeFiles/vcgen.dir/gc/gc.cpp.i
+CMakeFiles/vcgen.dir/gc/gc-driver.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/vcgen.dir/gc/gc-driver.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ferhat/git/vc-gen/gc/gc-driver.cpp > CMakeFiles/vcgen.dir/gc/gc-driver.cpp.i
 
-CMakeFiles/vcgen.dir/gc/gc.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/vcgen.dir/gc/gc.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ferhat/git/vc-gen/gc/gc.cpp -o CMakeFiles/vcgen.dir/gc/gc.cpp.s
+CMakeFiles/vcgen.dir/gc/gc-driver.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/vcgen.dir/gc/gc-driver.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ferhat/git/vc-gen/gc/gc-driver.cpp -o CMakeFiles/vcgen.dir/gc/gc-driver.cpp.s
+
+CMakeFiles/vcgen.dir/gc/ast/gc.cpp.o: CMakeFiles/vcgen.dir/flags.make
+CMakeFiles/vcgen.dir/gc/ast/gc.cpp.o: ../gc/ast/gc.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ferhat/git/vc-gen/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_14) "Building CXX object CMakeFiles/vcgen.dir/gc/ast/gc.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/vcgen.dir/gc/ast/gc.cpp.o -c /home/ferhat/git/vc-gen/gc/ast/gc.cpp
+
+CMakeFiles/vcgen.dir/gc/ast/gc.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/vcgen.dir/gc/ast/gc.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ferhat/git/vc-gen/gc/ast/gc.cpp > CMakeFiles/vcgen.dir/gc/ast/gc.cpp.i
+
+CMakeFiles/vcgen.dir/gc/ast/gc.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/vcgen.dir/gc/ast/gc.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ferhat/git/vc-gen/gc/ast/gc.cpp -o CMakeFiles/vcgen.dir/gc/ast/gc.cpp.s
 
 # Object files for target vcgen
 vcgen_OBJECTS = \
 "CMakeFiles/vcgen.dir/vcgen.cpp.o" \
-"CMakeFiles/vcgen.dir/imp/imp-driver.cpp.o" \
 "CMakeFiles/vcgen.dir/imp/recognizer/imp-parser.cpp.o" \
 "CMakeFiles/vcgen.dir/imp/recognizer/imp-scanner.cpp.o" \
-"CMakeFiles/vcgen.dir/imp/imp.cpp.o" \
+"CMakeFiles/vcgen.dir/imp/imp-driver.cpp.o" \
+"CMakeFiles/vcgen.dir/imp/ast/imp.cpp.o" \
 "CMakeFiles/vcgen.dir/tools.cpp.o" \
-"CMakeFiles/vcgen.dir/gc/gc-driver.cpp.o" \
 "CMakeFiles/vcgen.dir/gc/recognizer/gc-parser.cpp.o" \
 "CMakeFiles/vcgen.dir/gc/recognizer/gc-scanner.cpp.o" \
-"CMakeFiles/vcgen.dir/gc/gc.cpp.o"
+"CMakeFiles/vcgen.dir/gc/gc-driver.cpp.o" \
+"CMakeFiles/vcgen.dir/gc/ast/gc.cpp.o"
 
 # External object files for target vcgen
 vcgen_EXTERNAL_OBJECTS =
 
 vcgen: CMakeFiles/vcgen.dir/vcgen.cpp.o
-vcgen: CMakeFiles/vcgen.dir/imp/imp-driver.cpp.o
 vcgen: CMakeFiles/vcgen.dir/imp/recognizer/imp-parser.cpp.o
 vcgen: CMakeFiles/vcgen.dir/imp/recognizer/imp-scanner.cpp.o
-vcgen: CMakeFiles/vcgen.dir/imp/imp.cpp.o
+vcgen: CMakeFiles/vcgen.dir/imp/imp-driver.cpp.o
+vcgen: CMakeFiles/vcgen.dir/imp/ast/imp.cpp.o
 vcgen: CMakeFiles/vcgen.dir/tools.cpp.o
-vcgen: CMakeFiles/vcgen.dir/gc/gc-driver.cpp.o
 vcgen: CMakeFiles/vcgen.dir/gc/recognizer/gc-parser.cpp.o
 vcgen: CMakeFiles/vcgen.dir/gc/recognizer/gc-scanner.cpp.o
-vcgen: CMakeFiles/vcgen.dir/gc/gc.cpp.o
+vcgen: CMakeFiles/vcgen.dir/gc/gc-driver.cpp.o
+vcgen: CMakeFiles/vcgen.dir/gc/ast/gc.cpp.o
 vcgen: CMakeFiles/vcgen.dir/build.make
 vcgen: CMakeFiles/vcgen.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/ferhat/git/vc-gen/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_15) "Linking CXX executable vcgen"

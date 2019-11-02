@@ -4,8 +4,8 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
+  "/home/ferhat/git/vc-gen/gc/ast/gc.cpp" "/home/ferhat/git/vc-gen/cmake-build-debug/CMakeFiles/gc.dir/gc/ast/gc.cpp.o"
   "/home/ferhat/git/vc-gen/gc/gc-driver.cpp" "/home/ferhat/git/vc-gen/cmake-build-debug/CMakeFiles/gc.dir/gc/gc-driver.cpp.o"
-  "/home/ferhat/git/vc-gen/gc/gc.cpp" "/home/ferhat/git/vc-gen/cmake-build-debug/CMakeFiles/gc.dir/gc/gc.cpp.o"
   "/home/ferhat/git/vc-gen/gc/recognizer/gc-parser.cpp" "/home/ferhat/git/vc-gen/cmake-build-debug/CMakeFiles/gc.dir/gc/recognizer/gc-parser.cpp.o"
   "/home/ferhat/git/vc-gen/gc/recognizer/gc-scanner.cpp" "/home/ferhat/git/vc-gen/cmake-build-debug/CMakeFiles/gc.dir/gc/recognizer/gc-scanner.cpp.o"
   "/home/ferhat/git/vc-gen/gc/test.cpp" "/home/ferhat/git/vc-gen/cmake-build-debug/CMakeFiles/gc.dir/gc/test.cpp.o"

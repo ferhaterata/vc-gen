@@ -154,23 +154,35 @@
 				</MakeCommands>
 			</Target>
 		</Build>
+		<Unit filename="/home/ferhat/git/vc-gen/gc/ast/gc.cpp">
+			<Option target="vcgen"/>
+			<Option target="gc"/>
+		</Unit>
+		<Unit filename="/home/ferhat/git/vc-gen/gc/ast/gc.hpp">
+			<Option target="vcgen"/>
+			<Option target="gc"/>
+		</Unit>
+		<Unit filename="/home/ferhat/git/vc-gen/gc/ast/printer-visitor.hpp">
+			<Option target="vcgen"/>
+			<Option target="gc"/>
+		</Unit>
+		<Unit filename="/home/ferhat/git/vc-gen/gc/ast/prufier.hpp">
+			<Option target="vcgen"/>
+			<Option target="gc"/>
+		</Unit>
+		<Unit filename="/home/ferhat/git/vc-gen/gc/ast/visitor.hpp">
+			<Option target="vcgen"/>
+			<Option target="gc"/>
+		</Unit>
+		<Unit filename="/home/ferhat/git/vc-gen/gc/compiler/smt-compiler.hpp">
+			<Option target="vcgen"/>
+			<Option target="gc"/>
+		</Unit>
 		<Unit filename="/home/ferhat/git/vc-gen/gc/gc-driver.cpp">
 			<Option target="vcgen"/>
 			<Option target="gc"/>
 		</Unit>
 		<Unit filename="/home/ferhat/git/vc-gen/gc/gc-driver.hpp">
-			<Option target="vcgen"/>
-			<Option target="gc"/>
-		</Unit>
-		<Unit filename="/home/ferhat/git/vc-gen/gc/gc.cpp">
-			<Option target="vcgen"/>
-			<Option target="gc"/>
-		</Unit>
-		<Unit filename="/home/ferhat/git/vc-gen/gc/gc.hpp">
-			<Option target="vcgen"/>
-			<Option target="gc"/>
-		</Unit>
-		<Unit filename="/home/ferhat/git/vc-gen/gc/printer-visitor.hpp">
 			<Option target="vcgen"/>
 			<Option target="gc"/>
 		</Unit>
@@ -197,9 +209,17 @@
 		<Unit filename="/home/ferhat/git/vc-gen/gc/test.cpp">
 			<Option target="gc"/>
 		</Unit>
-		<Unit filename="/home/ferhat/git/vc-gen/gc/visitor.hpp">
+		<Unit filename="/home/ferhat/git/vc-gen/imp/ast/imp.cpp">
 			<Option target="vcgen"/>
-			<Option target="gc"/>
+		</Unit>
+		<Unit filename="/home/ferhat/git/vc-gen/imp/ast/imp.hpp">
+			<Option target="vcgen"/>
+		</Unit>
+		<Unit filename="/home/ferhat/git/vc-gen/imp/ast/printer-visitor.hpp">
+			<Option target="vcgen"/>
+		</Unit>
+		<Unit filename="/home/ferhat/git/vc-gen/imp/ast/visitor.hpp">
+			<Option target="vcgen"/>
 		</Unit>
 		<Unit filename="/home/ferhat/git/vc-gen/imp/compiler/gc-compiler.hpp">
 			<Option target="vcgen"/>
@@ -208,15 +228,6 @@
 			<Option target="vcgen"/>
 		</Unit>
 		<Unit filename="/home/ferhat/git/vc-gen/imp/imp-driver.hpp">
-			<Option target="vcgen"/>
-		</Unit>
-		<Unit filename="/home/ferhat/git/vc-gen/imp/imp.cpp">
-			<Option target="vcgen"/>
-		</Unit>
-		<Unit filename="/home/ferhat/git/vc-gen/imp/imp.hpp">
-			<Option target="vcgen"/>
-		</Unit>
-		<Unit filename="/home/ferhat/git/vc-gen/imp/printer-visitor.hpp">
 			<Option target="vcgen"/>
 		</Unit>
 		<Unit filename="/home/ferhat/git/vc-gen/imp/recognizer/imp-parser.cpp">
@@ -234,8 +245,9 @@
 		<Unit filename="/home/ferhat/git/vc-gen/imp/recognizer/imp-scanner.cpp.rule">
 			<Option target="vcgen"/>
 		</Unit>
-		<Unit filename="/home/ferhat/git/vc-gen/imp/visitor.hpp">
+		<Unit filename="/home/ferhat/git/vc-gen/solver/z3-solver.hpp">
 			<Option target="vcgen"/>
+			<Option target="gc"/>
 		</Unit>
 		<Unit filename="/home/ferhat/git/vc-gen/tools.cpp">
 			<Option target="vcgen"/>

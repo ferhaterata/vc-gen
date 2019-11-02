@@ -34,10 +34,10 @@ cmake_force:
 SHELL = /bin/sh
 
 # The CMake executable.
-CMAKE_COMMAND = /snap/clion/88/bin/cmake/linux/bin/cmake
+CMAKE_COMMAND = /snap/clion/92/bin/cmake/linux/bin/cmake
 
 # The command to remove a file.
-RM = /snap/clion/88/bin/cmake/linux/bin/cmake -E remove -f
+RM = /snap/clion/92/bin/cmake/linux/bin/cmake -E remove -f
 
 # Escaping for special characters.
 EQUALS = =
@@ -94,22 +94,9 @@ CMakeFiles/gc.dir/tools.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/gc.dir/tools.cpp.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ferhat/git/vc-gen/tools.cpp -o CMakeFiles/gc.dir/tools.cpp.s
 
-CMakeFiles/gc.dir/gc/gc-driver.cpp.o: CMakeFiles/gc.dir/flags.make
-CMakeFiles/gc.dir/gc/gc-driver.cpp.o: ../gc/gc-driver.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ferhat/git/vc-gen/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/gc.dir/gc/gc-driver.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/gc.dir/gc/gc-driver.cpp.o -c /home/ferhat/git/vc-gen/gc/gc-driver.cpp
-
-CMakeFiles/gc.dir/gc/gc-driver.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/gc.dir/gc/gc-driver.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ferhat/git/vc-gen/gc/gc-driver.cpp > CMakeFiles/gc.dir/gc/gc-driver.cpp.i
-
-CMakeFiles/gc.dir/gc/gc-driver.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/gc.dir/gc/gc-driver.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ferhat/git/vc-gen/gc/gc-driver.cpp -o CMakeFiles/gc.dir/gc/gc-driver.cpp.s
-
 CMakeFiles/gc.dir/gc/recognizer/gc-parser.cpp.o: CMakeFiles/gc.dir/flags.make
 CMakeFiles/gc.dir/gc/recognizer/gc-parser.cpp.o: ../gc/recognizer/gc-parser.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ferhat/git/vc-gen/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/gc.dir/gc/recognizer/gc-parser.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ferhat/git/vc-gen/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/gc.dir/gc/recognizer/gc-parser.cpp.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/gc.dir/gc/recognizer/gc-parser.cpp.o -c /home/ferhat/git/vc-gen/gc/recognizer/gc-parser.cpp
 
 CMakeFiles/gc.dir/gc/recognizer/gc-parser.cpp.i: cmake_force
@@ -123,7 +110,7 @@ CMakeFiles/gc.dir/gc/recognizer/gc-parser.cpp.s: cmake_force
 CMakeFiles/gc.dir/gc/recognizer/gc-scanner.cpp.o: CMakeFiles/gc.dir/flags.make
 CMakeFiles/gc.dir/gc/recognizer/gc-scanner.cpp.o: ../gc/recognizer/gc-scanner.cpp
 CMakeFiles/gc.dir/gc/recognizer/gc-scanner.cpp.o: ../gc/recognizer/gc-parser.hpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ferhat/git/vc-gen/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/gc.dir/gc/recognizer/gc-scanner.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ferhat/git/vc-gen/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/gc.dir/gc/recognizer/gc-scanner.cpp.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/gc.dir/gc/recognizer/gc-scanner.cpp.o -c /home/ferhat/git/vc-gen/gc/recognizer/gc-scanner.cpp
 
 CMakeFiles/gc.dir/gc/recognizer/gc-scanner.cpp.i: cmake_force
@@ -134,37 +121,50 @@ CMakeFiles/gc.dir/gc/recognizer/gc-scanner.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/gc.dir/gc/recognizer/gc-scanner.cpp.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ferhat/git/vc-gen/gc/recognizer/gc-scanner.cpp -o CMakeFiles/gc.dir/gc/recognizer/gc-scanner.cpp.s
 
-CMakeFiles/gc.dir/gc/gc.cpp.o: CMakeFiles/gc.dir/flags.make
-CMakeFiles/gc.dir/gc/gc.cpp.o: ../gc/gc.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ferhat/git/vc-gen/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/gc.dir/gc/gc.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/gc.dir/gc/gc.cpp.o -c /home/ferhat/git/vc-gen/gc/gc.cpp
+CMakeFiles/gc.dir/gc/gc-driver.cpp.o: CMakeFiles/gc.dir/flags.make
+CMakeFiles/gc.dir/gc/gc-driver.cpp.o: ../gc/gc-driver.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ferhat/git/vc-gen/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/gc.dir/gc/gc-driver.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/gc.dir/gc/gc-driver.cpp.o -c /home/ferhat/git/vc-gen/gc/gc-driver.cpp
 
-CMakeFiles/gc.dir/gc/gc.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/gc.dir/gc/gc.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ferhat/git/vc-gen/gc/gc.cpp > CMakeFiles/gc.dir/gc/gc.cpp.i
+CMakeFiles/gc.dir/gc/gc-driver.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/gc.dir/gc/gc-driver.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ferhat/git/vc-gen/gc/gc-driver.cpp > CMakeFiles/gc.dir/gc/gc-driver.cpp.i
 
-CMakeFiles/gc.dir/gc/gc.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/gc.dir/gc/gc.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ferhat/git/vc-gen/gc/gc.cpp -o CMakeFiles/gc.dir/gc/gc.cpp.s
+CMakeFiles/gc.dir/gc/gc-driver.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/gc.dir/gc/gc-driver.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ferhat/git/vc-gen/gc/gc-driver.cpp -o CMakeFiles/gc.dir/gc/gc-driver.cpp.s
+
+CMakeFiles/gc.dir/gc/ast/gc.cpp.o: CMakeFiles/gc.dir/flags.make
+CMakeFiles/gc.dir/gc/ast/gc.cpp.o: ../gc/ast/gc.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ferhat/git/vc-gen/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/gc.dir/gc/ast/gc.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/gc.dir/gc/ast/gc.cpp.o -c /home/ferhat/git/vc-gen/gc/ast/gc.cpp
+
+CMakeFiles/gc.dir/gc/ast/gc.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/gc.dir/gc/ast/gc.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ferhat/git/vc-gen/gc/ast/gc.cpp > CMakeFiles/gc.dir/gc/ast/gc.cpp.i
+
+CMakeFiles/gc.dir/gc/ast/gc.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/gc.dir/gc/ast/gc.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ferhat/git/vc-gen/gc/ast/gc.cpp -o CMakeFiles/gc.dir/gc/ast/gc.cpp.s
 
 # Object files for target gc
 gc_OBJECTS = \
 "CMakeFiles/gc.dir/gc/test.cpp.o" \
 "CMakeFiles/gc.dir/tools.cpp.o" \
-"CMakeFiles/gc.dir/gc/gc-driver.cpp.o" \
 "CMakeFiles/gc.dir/gc/recognizer/gc-parser.cpp.o" \
 "CMakeFiles/gc.dir/gc/recognizer/gc-scanner.cpp.o" \
-"CMakeFiles/gc.dir/gc/gc.cpp.o"
+"CMakeFiles/gc.dir/gc/gc-driver.cpp.o" \
+"CMakeFiles/gc.dir/gc/ast/gc.cpp.o"
 
 # External object files for target gc
 gc_EXTERNAL_OBJECTS =
 
 gc: CMakeFiles/gc.dir/gc/test.cpp.o
 gc: CMakeFiles/gc.dir/tools.cpp.o
-gc: CMakeFiles/gc.dir/gc/gc-driver.cpp.o
 gc: CMakeFiles/gc.dir/gc/recognizer/gc-parser.cpp.o
 gc: CMakeFiles/gc.dir/gc/recognizer/gc-scanner.cpp.o
-gc: CMakeFiles/gc.dir/gc/gc.cpp.o
+gc: CMakeFiles/gc.dir/gc/gc-driver.cpp.o
+gc: CMakeFiles/gc.dir/gc/ast/gc.cpp.o
 gc: CMakeFiles/gc.dir/build.make
 gc: CMakeFiles/gc.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/ferhat/git/vc-gen/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Linking CXX executable gc"

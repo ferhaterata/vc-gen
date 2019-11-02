@@ -39,10 +39,10 @@ cmake_force:
 SHELL = /bin/sh
 
 # The CMake executable.
-CMAKE_COMMAND = /snap/clion/88/bin/cmake/linux/bin/cmake
+CMAKE_COMMAND = /snap/clion/92/bin/cmake/linux/bin/cmake
 
 # The command to remove a file.
-RM = /snap/clion/88/bin/cmake/linux/bin/cmake -E remove -f
+RM = /snap/clion/92/bin/cmake/linux/bin/cmake -E remove -f
 
 # Escaping for special characters.
 EQUALS = =
@@ -59,7 +59,7 @@ CMAKE_BINARY_DIR = /home/ferhat/git/vc-gen/cmake-build-debug
 # Special rule for the target rebuild_cache
 rebuild_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake to regenerate build system..."
-	/snap/clion/88/bin/cmake/linux/bin/cmake -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
+	/snap/clion/92/bin/cmake/linux/bin/cmake -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
 .PHONY : rebuild_cache
 
 # Special rule for the target rebuild_cache
@@ -70,7 +70,7 @@ rebuild_cache/fast: rebuild_cache
 # Special rule for the target edit_cache
 edit_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "No interactive CMake dialog available..."
-	/snap/clion/88/bin/cmake/linux/bin/cmake -E echo No\ interactive\ CMake\ dialog\ available.
+	/snap/clion/92/bin/cmake/linux/bin/cmake -E echo No\ interactive\ CMake\ dialog\ available.
 .PHONY : edit_cache
 
 # Special rule for the target edit_cache
@@ -136,6 +136,36 @@ gc/fast:
 	$(MAKE) -f CMakeFiles/gc.dir/build.make CMakeFiles/gc.dir/build
 .PHONY : gc/fast
 
+gc/ast/gc.o: gc/ast/gc.cpp.o
+
+.PHONY : gc/ast/gc.o
+
+# target to build an object file
+gc/ast/gc.cpp.o:
+	$(MAKE) -f CMakeFiles/vcgen.dir/build.make CMakeFiles/vcgen.dir/gc/ast/gc.cpp.o
+	$(MAKE) -f CMakeFiles/gc.dir/build.make CMakeFiles/gc.dir/gc/ast/gc.cpp.o
+.PHONY : gc/ast/gc.cpp.o
+
+gc/ast/gc.i: gc/ast/gc.cpp.i
+
+.PHONY : gc/ast/gc.i
+
+# target to preprocess a source file
+gc/ast/gc.cpp.i:
+	$(MAKE) -f CMakeFiles/vcgen.dir/build.make CMakeFiles/vcgen.dir/gc/ast/gc.cpp.i
+	$(MAKE) -f CMakeFiles/gc.dir/build.make CMakeFiles/gc.dir/gc/ast/gc.cpp.i
+.PHONY : gc/ast/gc.cpp.i
+
+gc/ast/gc.s: gc/ast/gc.cpp.s
+
+.PHONY : gc/ast/gc.s
+
+# target to generate assembly for a file
+gc/ast/gc.cpp.s:
+	$(MAKE) -f CMakeFiles/vcgen.dir/build.make CMakeFiles/vcgen.dir/gc/ast/gc.cpp.s
+	$(MAKE) -f CMakeFiles/gc.dir/build.make CMakeFiles/gc.dir/gc/ast/gc.cpp.s
+.PHONY : gc/ast/gc.cpp.s
+
 gc/gc-driver.o: gc/gc-driver.cpp.o
 
 .PHONY : gc/gc-driver.o
@@ -165,36 +195,6 @@ gc/gc-driver.cpp.s:
 	$(MAKE) -f CMakeFiles/vcgen.dir/build.make CMakeFiles/vcgen.dir/gc/gc-driver.cpp.s
 	$(MAKE) -f CMakeFiles/gc.dir/build.make CMakeFiles/gc.dir/gc/gc-driver.cpp.s
 .PHONY : gc/gc-driver.cpp.s
-
-gc/gc.o: gc/gc.cpp.o
-
-.PHONY : gc/gc.o
-
-# target to build an object file
-gc/gc.cpp.o:
-	$(MAKE) -f CMakeFiles/vcgen.dir/build.make CMakeFiles/vcgen.dir/gc/gc.cpp.o
-	$(MAKE) -f CMakeFiles/gc.dir/build.make CMakeFiles/gc.dir/gc/gc.cpp.o
-.PHONY : gc/gc.cpp.o
-
-gc/gc.i: gc/gc.cpp.i
-
-.PHONY : gc/gc.i
-
-# target to preprocess a source file
-gc/gc.cpp.i:
-	$(MAKE) -f CMakeFiles/vcgen.dir/build.make CMakeFiles/vcgen.dir/gc/gc.cpp.i
-	$(MAKE) -f CMakeFiles/gc.dir/build.make CMakeFiles/gc.dir/gc/gc.cpp.i
-.PHONY : gc/gc.cpp.i
-
-gc/gc.s: gc/gc.cpp.s
-
-.PHONY : gc/gc.s
-
-# target to generate assembly for a file
-gc/gc.cpp.s:
-	$(MAKE) -f CMakeFiles/vcgen.dir/build.make CMakeFiles/vcgen.dir/gc/gc.cpp.s
-	$(MAKE) -f CMakeFiles/gc.dir/build.make CMakeFiles/gc.dir/gc/gc.cpp.s
-.PHONY : gc/gc.cpp.s
 
 gc/recognizer/gc-parser.o: gc/recognizer/gc-parser.cpp.o
 
@@ -283,6 +283,33 @@ gc/test.cpp.s:
 	$(MAKE) -f CMakeFiles/gc.dir/build.make CMakeFiles/gc.dir/gc/test.cpp.s
 .PHONY : gc/test.cpp.s
 
+imp/ast/imp.o: imp/ast/imp.cpp.o
+
+.PHONY : imp/ast/imp.o
+
+# target to build an object file
+imp/ast/imp.cpp.o:
+	$(MAKE) -f CMakeFiles/vcgen.dir/build.make CMakeFiles/vcgen.dir/imp/ast/imp.cpp.o
+.PHONY : imp/ast/imp.cpp.o
+
+imp/ast/imp.i: imp/ast/imp.cpp.i
+
+.PHONY : imp/ast/imp.i
+
+# target to preprocess a source file
+imp/ast/imp.cpp.i:
+	$(MAKE) -f CMakeFiles/vcgen.dir/build.make CMakeFiles/vcgen.dir/imp/ast/imp.cpp.i
+.PHONY : imp/ast/imp.cpp.i
+
+imp/ast/imp.s: imp/ast/imp.cpp.s
+
+.PHONY : imp/ast/imp.s
+
+# target to generate assembly for a file
+imp/ast/imp.cpp.s:
+	$(MAKE) -f CMakeFiles/vcgen.dir/build.make CMakeFiles/vcgen.dir/imp/ast/imp.cpp.s
+.PHONY : imp/ast/imp.cpp.s
+
 imp/imp-driver.o: imp/imp-driver.cpp.o
 
 .PHONY : imp/imp-driver.o
@@ -309,33 +336,6 @@ imp/imp-driver.s: imp/imp-driver.cpp.s
 imp/imp-driver.cpp.s:
 	$(MAKE) -f CMakeFiles/vcgen.dir/build.make CMakeFiles/vcgen.dir/imp/imp-driver.cpp.s
 .PHONY : imp/imp-driver.cpp.s
-
-imp/imp.o: imp/imp.cpp.o
-
-.PHONY : imp/imp.o
-
-# target to build an object file
-imp/imp.cpp.o:
-	$(MAKE) -f CMakeFiles/vcgen.dir/build.make CMakeFiles/vcgen.dir/imp/imp.cpp.o
-.PHONY : imp/imp.cpp.o
-
-imp/imp.i: imp/imp.cpp.i
-
-.PHONY : imp/imp.i
-
-# target to preprocess a source file
-imp/imp.cpp.i:
-	$(MAKE) -f CMakeFiles/vcgen.dir/build.make CMakeFiles/vcgen.dir/imp/imp.cpp.i
-.PHONY : imp/imp.cpp.i
-
-imp/imp.s: imp/imp.cpp.s
-
-.PHONY : imp/imp.s
-
-# target to generate assembly for a file
-imp/imp.cpp.s:
-	$(MAKE) -f CMakeFiles/vcgen.dir/build.make CMakeFiles/vcgen.dir/imp/imp.cpp.s
-.PHONY : imp/imp.cpp.s
 
 imp/recognizer/imp-parser.o: imp/recognizer/imp-parser.cpp.o
 
@@ -458,12 +458,12 @@ help:
 	@echo "... edit_cache"
 	@echo "... vcgen"
 	@echo "... gc"
+	@echo "... gc/ast/gc.o"
+	@echo "... gc/ast/gc.i"
+	@echo "... gc/ast/gc.s"
 	@echo "... gc/gc-driver.o"
 	@echo "... gc/gc-driver.i"
 	@echo "... gc/gc-driver.s"
-	@echo "... gc/gc.o"
-	@echo "... gc/gc.i"
-	@echo "... gc/gc.s"
 	@echo "... gc/recognizer/gc-parser.o"
 	@echo "... gc/recognizer/gc-parser.i"
 	@echo "... gc/recognizer/gc-parser.s"
@@ -473,12 +473,12 @@ help:
 	@echo "... gc/test.o"
 	@echo "... gc/test.i"
 	@echo "... gc/test.s"
+	@echo "... imp/ast/imp.o"
+	@echo "... imp/ast/imp.i"
+	@echo "... imp/ast/imp.s"
 	@echo "... imp/imp-driver.o"
 	@echo "... imp/imp-driver.i"
 	@echo "... imp/imp-driver.s"
-	@echo "... imp/imp.o"
-	@echo "... imp/imp.i"
-	@echo "... imp/imp.s"
 	@echo "... imp/recognizer/imp-parser.o"
 	@echo "... imp/recognizer/imp-parser.i"
 	@echo "... imp/recognizer/imp-parser.s"

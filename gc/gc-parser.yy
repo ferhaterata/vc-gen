@@ -23,7 +23,7 @@
 class gc_driver;
 }
 
-%param { gc_driver& driver }       /* The parsing context. */
+%param { gc_driver& driver }        /* The parsing context. */
 
 %locations                          /* we request location tracking. */
 
@@ -115,13 +115,14 @@ void print(std::vector<T>& v){
 
 %start prog;
 
-%right "[]";
+
 %precedence "==>";
-%precedence "&&";
 %precedence "||";
+%precedence "&&";
 %precedence "!";
 %left "+" "-";
 %left "*" "/";
+%right "[]";
 
 prog: commands                              { $$ = new gc::ast::Program($1); driver.program = $$;}
     ;

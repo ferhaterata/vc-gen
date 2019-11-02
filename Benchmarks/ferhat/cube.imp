@@ -1,0 +1,19 @@
+program cube
+  pre 0 <= N
+  post c = N*N*N
+is
+  c := 0;
+  n, k := 0, 1;
+  m := 6;
+  while n < N
+    inv n <= N
+    inv c = n*n*n
+    inv k = 3*n*n + 3*n + 1
+    inv m = 6*n + 6
+  do
+    c := c + k;
+    k := k + m;
+    m := m + 6;
+    n := n + 1;
+  end
+end

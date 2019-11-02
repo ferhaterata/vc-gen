@@ -1031,6 +1031,7 @@ State 67
    13          | assertion . "==>" assertion
 
     "||"  shift, and go to state 41
+    "&&"  shift, and go to state 42
 
     "||"      [reduce using rule 11 (assertion)]
     $default  reduce using rule 11 (assertion)
@@ -1043,7 +1044,6 @@ State 68
    12          | assertion "&&" assertion .
    13          | assertion . "==>" assertion
 
-    "||"  shift, and go to state 41
     "&&"  shift, and go to state 42
 
     "&&"      [reduce using rule 12 (assertion)]

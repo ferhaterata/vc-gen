@@ -136,9 +136,11 @@ void print(std::vector<T>& v){
 //%precedence "then";
 //%precedence "else";
 //%right "then" "else";
-%precedence "!";
-%precedence "&&";
+
+%precedence "==>";
 %precedence "||";
+%precedence "&&";
+%precedence "!";
 //%left "<" ">" "=" "!=" "<=" ">=";
 %left "+" "-";
 %left "*" "/";

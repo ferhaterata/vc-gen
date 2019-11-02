@@ -1,11 +1,11 @@
 assume i!0 = i; havoc i; assume i = 0;
-assert 0 <= i && i <= N; assert forall j, 0 <= j && j < i ==> read(c, j) = read(a, j);
+assert 0 <= i && i <= A; assert forall j, 0 <= j && j < i ==> read(c, j) = read(a, j);
 havoc i; havoc c;
-assume 0 <= i && i <= N; assume forall j, 0 <= j && j < i ==> read(c, j) = read(a, j);
+assume 0 <= i && i <= A; assume forall j, 0 <= j && j < i ==> read(c, j) = read(a, j);
 (assume i < A;
  assume c!0 = c; havoc c; assume c = write(c!0, i, read(a, i));
  assume i!1 = i; havoc i; assume i = i!1 + 1;
- assert 0 <= i && i <= N; assert forall j, 0 <= j && j < i ==> read(c, j) = read(a, j); assume false;
+ assert 0 <= i && i <= A; assert forall j, 0 <= j && j < i ==> read(c, j) = read(a, j); assume false;
  []
  assume !(i < A);)
 assume i!2 = i; havoc i; assume i = 0;
@@ -18,4 +18,4 @@ assume 0 <= i && i <= B; assume forall j, 0 <= j && j < A ==> read(c, j) = read(
  assert 0 <= i && i <= B; assert forall j, 0 <= j && j < A ==> read(c, j) = read(a, j); assert forall j, 0 <= j && j < i ==> read(c, j + B) = read(b, j); assume false;
  []
  assume !(i < B);)
-assert c = a + b;
+assert C = A + B;

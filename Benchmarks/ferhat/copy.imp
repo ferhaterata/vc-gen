@@ -1,0 +1,13 @@
+program copy
+  pre 0 <= x
+  post x = y
+is
+  a := x;
+  y := 0;
+  while a != 0
+    inv y + a = x
+  do
+    y := y + 1;
+    a := a - 1;
+  end
+end

@@ -1,19 +1,14 @@
-
-function power(n:int, e:nat):int
-{
-   if (e==0) then 1 else n * power(n,e-1)
-}
-
-method power
-    pre p= power(n, e);
+program myfind
+   pre 0 <= index ==> (index < N && a[index] = key)
+   post index < 0 ==> forall k, (0 <= k &&  k < N) ==> a[k] != key
 is
-    var i:= 0;
-    p:= 1;
-    while (i!=e)
-    invariant i<=e;
-    invariant p==power(n, i);
-    {
-       i := i+1;
-       p := p*n;   // running product
-    }
-}
+   index := 0;
+   while index < N
+      inv 0 <= index <= a.Length
+      inv forall k, (0 <= k && k < index) ==> a[k] != key
+   do
+      if a[index] == key
+      index := index + 1;
+   end
+   index := -1;
+end

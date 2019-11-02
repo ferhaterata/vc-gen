@@ -125,6 +125,14 @@ ASSN := COMP
      | "exists" [ x ] "," ASSN
      | "(" ASSN ")"
 
+The precedences of different boolean operators are described in the
+following table.
+
+  higher | ( )
+         | !
+         | &&
+         | ||
+  lower  | ==>
 
 ω. EXTENSIONS
 

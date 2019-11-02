@@ -1,0 +1,23 @@
+program concat
+	post C = A + B
+is
+	i := 0;
+
+	while i < A
+		inv 0 <= i && i <= A
+		inv forall j, 0 <= j && j < i ==> c[j] = a[j]
+	do
+		c[i] := a[i];
+		i := i + 1;
+	end
+
+	i := 0;
+	while i < B
+		inv 0 <= i && i <= B
+		inv forall j, 0 <= j && j < A ==> c[j] = a[j]
+		inv forall j, 0 <= j && j < i ==> c[j+B] = b[j]
+	do
+		c[i + A] := b[i];
+		i := i + 1;
+	end
+end

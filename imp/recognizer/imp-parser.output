@@ -1,13 +1,12 @@
 State 38 conflicts: 1 shift/reduce
-State 42 conflicts: 1 shift/reduce
 State 81 conflicts: 1 shift/reduce
 State 82 conflicts: 1 shift/reduce
 State 83 conflicts: 1 shift/reduce
 State 84 conflicts: 1 shift/reduce
 State 85 conflicts: 5 shift/reduce
-State 93 conflicts: 2 shift/reduce
-State 94 conflicts: 2 shift/reduce
-State 95 conflicts: 3 shift/reduce
+State 93 conflicts: 1 shift/reduce
+State 94 conflicts: 1 shift/reduce
+State 95 conflicts: 1 shift/reduce
 State 111 conflicts: 3 shift/reduce
 State 112 conflicts: 3 shift/reduce
 State 115 conflicts: 1 shift/reduce
@@ -729,11 +728,6 @@ State 42
    51          | assertion . "&&" assertion
    52          | assertion . "==>" assertion
 
-    "||"   shift, and go to state 58
-    "&&"   shift, and go to state 59
-    "==>"  shift, and go to state 60
-
-    "==>"     [reduce using rule 49 (assertion)]
     $default  reduce using rule 49 (assertion)
 
 
@@ -1438,11 +1432,10 @@ State 93
    51          | assertion . "&&" assertion
    52          | assertion . "==>" assertion
 
-    "||"   shift, and go to state 58
-    "==>"  shift, and go to state 60
+    "||"  shift, and go to state 58
+    "&&"  shift, and go to state 59
 
     "||"      [reduce using rule 50 (assertion)]
-    "==>"     [reduce using rule 50 (assertion)]
     $default  reduce using rule 50 (assertion)
 
 
@@ -1453,12 +1446,9 @@ State 94
    51          | assertion "&&" assertion .
    52          | assertion . "==>" assertion
 
-    "||"   shift, and go to state 58
-    "&&"   shift, and go to state 59
-    "==>"  shift, and go to state 60
+    "&&"  shift, and go to state 59
 
     "&&"      [reduce using rule 51 (assertion)]
-    "==>"     [reduce using rule 51 (assertion)]
     $default  reduce using rule 51 (assertion)
 
 
@@ -1473,8 +1463,6 @@ State 95
     "&&"   shift, and go to state 59
     "==>"  shift, and go to state 60
 
-    "||"      [reduce using rule 52 (assertion)]
-    "&&"      [reduce using rule 52 (assertion)]
     "==>"     [reduce using rule 52 (assertion)]
     $default  reduce using rule 52 (assertion)
 
@@ -1495,9 +1483,6 @@ State 97
    14 bexp: "!" bexp .
    15     | bexp . "||" bexp
    16     | bexp . "&&" bexp
-
-    "||"  shift, and go to state 98
-    "&&"  shift, and go to state 99
 
     $default  reduce using rule 14 (bexp)
 
@@ -1719,6 +1704,7 @@ State 115
    16     | bexp . "&&" bexp
 
     "||"  shift, and go to state 98
+    "&&"  shift, and go to state 99
 
     "||"      [reduce using rule 15 (bexp)]
     $default  reduce using rule 15 (bexp)
@@ -1730,7 +1716,6 @@ State 116
    16     | bexp . "&&" bexp
    16     | bexp "&&" bexp .
 
-    "||"  shift, and go to state 98
     "&&"  shift, and go to state 99
 
     "&&"      [reduce using rule 16 (bexp)]

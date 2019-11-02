@@ -8,6 +8,7 @@
 #define Z3_SOLVER_HPP
 
 #include <fstream>
+#include <iostream>
 #include <sstream>
 #include <string>
 

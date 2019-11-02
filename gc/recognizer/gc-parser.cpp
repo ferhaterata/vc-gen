@@ -268,47 +268,47 @@ namespace gc {
   {
     switch (that.type_get ())
     {
-      case 38: // assertion
+      case 40: // assertion
         value.YY_MOVE_OR_COPY< gc::ast::Assertion* > (YY_MOVE (that.value));
         break;
 
-      case 37: // command
+      case 39: // command
         value.YY_MOVE_OR_COPY< gc::ast::Command* > (YY_MOVE (that.value));
         break;
 
-      case 39: // comparison
+      case 41: // comparison
         value.YY_MOVE_OR_COPY< gc::ast::Comparison* > (YY_MOVE (that.value));
         break;
 
-      case 42: // constant
+      case 44: // constant
         value.YY_MOVE_OR_COPY< gc::ast::Constant* > (YY_MOVE (that.value));
         break;
 
-      case 41: // expression
+      case 43: // expression
         value.YY_MOVE_OR_COPY< gc::ast::Expression* > (YY_MOVE (that.value));
         break;
 
-      case 40: // location
+      case 42: // location
         value.YY_MOVE_OR_COPY< gc::ast::Location* > (YY_MOVE (that.value));
         break;
 
-      case 35: // prog
+      case 37: // prog
         value.YY_MOVE_OR_COPY< gc::ast::Program* > (YY_MOVE (that.value));
         break;
 
-      case 33: // "number"
+      case 35: // "number"
         value.YY_MOVE_OR_COPY< int > (YY_MOVE (that.value));
         break;
 
-      case 32: // "identifier"
+      case 34: // "identifier"
         value.YY_MOVE_OR_COPY< std::string > (YY_MOVE (that.value));
         break;
 
-      case 36: // commands
+      case 38: // commands
         value.YY_MOVE_OR_COPY< std::vector<gc::ast::Command*> > (YY_MOVE (that.value));
         break;
 
-      case 43: // identifiers
+      case 45: // identifiers
         value.YY_MOVE_OR_COPY< std::vector<std::string> > (YY_MOVE (that.value));
         break;
 
@@ -327,47 +327,47 @@ namespace gc {
   {
     switch (that.type_get ())
     {
-      case 38: // assertion
+      case 40: // assertion
         value.move< gc::ast::Assertion* > (YY_MOVE (that.value));
         break;
 
-      case 37: // command
+      case 39: // command
         value.move< gc::ast::Command* > (YY_MOVE (that.value));
         break;
 
-      case 39: // comparison
+      case 41: // comparison
         value.move< gc::ast::Comparison* > (YY_MOVE (that.value));
         break;
 
-      case 42: // constant
+      case 44: // constant
         value.move< gc::ast::Constant* > (YY_MOVE (that.value));
         break;
 
-      case 41: // expression
+      case 43: // expression
         value.move< gc::ast::Expression* > (YY_MOVE (that.value));
         break;
 
-      case 40: // location
+      case 42: // location
         value.move< gc::ast::Location* > (YY_MOVE (that.value));
         break;
 
-      case 35: // prog
+      case 37: // prog
         value.move< gc::ast::Program* > (YY_MOVE (that.value));
         break;
 
-      case 33: // "number"
+      case 35: // "number"
         value.move< int > (YY_MOVE (that.value));
         break;
 
-      case 32: // "identifier"
+      case 34: // "identifier"
         value.move< std::string > (YY_MOVE (that.value));
         break;
 
-      case 36: // commands
+      case 38: // commands
         value.move< std::vector<gc::ast::Command*> > (YY_MOVE (that.value));
         break;
 
-      case 43: // identifiers
+      case 45: // identifiers
         value.move< std::vector<std::string> > (YY_MOVE (that.value));
         break;
 
@@ -386,47 +386,47 @@ namespace gc {
     state = that.state;
     switch (that.type_get ())
     {
-      case 38: // assertion
+      case 40: // assertion
         value.move< gc::ast::Assertion* > (that.value);
         break;
 
-      case 37: // command
+      case 39: // command
         value.move< gc::ast::Command* > (that.value);
         break;
 
-      case 39: // comparison
+      case 41: // comparison
         value.move< gc::ast::Comparison* > (that.value);
         break;
 
-      case 42: // constant
+      case 44: // constant
         value.move< gc::ast::Constant* > (that.value);
         break;
 
-      case 41: // expression
+      case 43: // expression
         value.move< gc::ast::Expression* > (that.value);
         break;
 
-      case 40: // location
+      case 42: // location
         value.move< gc::ast::Location* > (that.value);
         break;
 
-      case 35: // prog
+      case 37: // prog
         value.move< gc::ast::Program* > (that.value);
         break;
 
-      case 33: // "number"
+      case 35: // "number"
         value.move< int > (that.value);
         break;
 
-      case 32: // "identifier"
+      case 34: // "identifier"
         value.move< std::string > (that.value);
         break;
 
-      case 36: // commands
+      case 38: // commands
         value.move< std::vector<gc::ast::Command*> > (that.value);
         break;
 
-      case 43: // identifiers
+      case 45: // identifiers
         value.move< std::vector<std::string> > (that.value);
         break;
 
@@ -689,47 +689,47 @@ namespace gc {
          when using variants.  */
       switch (yyr1_[yyn])
     {
-      case 38: // assertion
+      case 40: // assertion
         yylhs.value.emplace< gc::ast::Assertion* > ();
         break;
 
-      case 37: // command
+      case 39: // command
         yylhs.value.emplace< gc::ast::Command* > ();
         break;
 
-      case 39: // comparison
+      case 41: // comparison
         yylhs.value.emplace< gc::ast::Comparison* > ();
         break;
 
-      case 42: // constant
+      case 44: // constant
         yylhs.value.emplace< gc::ast::Constant* > ();
         break;
 
-      case 41: // expression
+      case 43: // expression
         yylhs.value.emplace< gc::ast::Expression* > ();
         break;
 
-      case 40: // location
+      case 42: // location
         yylhs.value.emplace< gc::ast::Location* > ();
         break;
 
-      case 35: // prog
+      case 37: // prog
         yylhs.value.emplace< gc::ast::Program* > ();
         break;
 
-      case 33: // "number"
+      case 35: // "number"
         yylhs.value.emplace< int > ();
         break;
 
-      case 32: // "identifier"
+      case 34: // "identifier"
         yylhs.value.emplace< std::string > ();
         break;
 
-      case 36: // commands
+      case 38: // commands
         yylhs.value.emplace< std::vector<gc::ast::Command*> > ();
         break;
 
-      case 43: // identifiers
+      case 45: // identifiers
         yylhs.value.emplace< std::vector<std::string> > ();
         break;
 
@@ -754,235 +754,241 @@ namespace gc {
           switch (yyn)
             {
   case 2:
-#line 124 "/home/ferhat/git/vc-gen/gc/gc-parser.yy"
+#line 126 "/home/ferhat/git/vc-gen/gc/gc-parser.yy"
     { yylhs.value.as < gc::ast::Program* > () = new gc::ast::Program(yystack_[0].value.as < std::vector<gc::ast::Command*> > ()); driver.program = yylhs.value.as < gc::ast::Program* > ();}
 #line 760 "/home/ferhat/git/vc-gen/gc/recognizer/gc-parser.cpp"
     break;
 
   case 3:
-#line 128 "/home/ferhat/git/vc-gen/gc/gc-parser.yy"
+#line 130 "/home/ferhat/git/vc-gen/gc/gc-parser.yy"
     { yylhs.value.as < std::vector<gc::ast::Command*> > () = {yystack_[0].value.as < gc::ast::Command* > ()}; }
 #line 766 "/home/ferhat/git/vc-gen/gc/recognizer/gc-parser.cpp"
     break;
 
   case 4:
-#line 129 "/home/ferhat/git/vc-gen/gc/gc-parser.yy"
+#line 131 "/home/ferhat/git/vc-gen/gc/gc-parser.yy"
     { yylhs.value.as < std::vector<gc::ast::Command*> > () = enlist(yystack_[1].value.as < std::vector<gc::ast::Command*> > (), yystack_[0].value.as < gc::ast::Command* > ()); }
 #line 772 "/home/ferhat/git/vc-gen/gc/recognizer/gc-parser.cpp"
     break;
 
   case 5:
-#line 130 "/home/ferhat/git/vc-gen/gc/gc-parser.yy"
+#line 132 "/home/ferhat/git/vc-gen/gc/gc-parser.yy"
     { yylhs.value.as < std::vector<gc::ast::Command*> > () = {new gc::ast::Select(yystack_[2].value.as < std::vector<gc::ast::Command*> > (), yystack_[0].value.as < std::vector<gc::ast::Command*> > ())}; }
 #line 778 "/home/ferhat/git/vc-gen/gc/recognizer/gc-parser.cpp"
     break;
 
   case 6:
-#line 134 "/home/ferhat/git/vc-gen/gc/gc-parser.yy"
+#line 136 "/home/ferhat/git/vc-gen/gc/gc-parser.yy"
     { yylhs.value.as < gc::ast::Command* > () = new gc::ast::Assume(*yystack_[1].value.as < gc::ast::Assertion* > ()); }
 #line 784 "/home/ferhat/git/vc-gen/gc/recognizer/gc-parser.cpp"
     break;
 
   case 7:
-#line 135 "/home/ferhat/git/vc-gen/gc/gc-parser.yy"
+#line 137 "/home/ferhat/git/vc-gen/gc/gc-parser.yy"
     { yylhs.value.as < gc::ast::Command* > () = new gc::ast::Assert(*yystack_[1].value.as < gc::ast::Assertion* > ()); }
 #line 790 "/home/ferhat/git/vc-gen/gc/recognizer/gc-parser.cpp"
     break;
 
   case 8:
-#line 136 "/home/ferhat/git/vc-gen/gc/gc-parser.yy"
+#line 138 "/home/ferhat/git/vc-gen/gc/gc-parser.yy"
     { yylhs.value.as < gc::ast::Command* > () = new gc::ast::Havoc(*yystack_[1].value.as < gc::ast::Location* > ());}
 #line 796 "/home/ferhat/git/vc-gen/gc/recognizer/gc-parser.cpp"
     break;
 
   case 9:
-#line 137 "/home/ferhat/git/vc-gen/gc/gc-parser.yy"
+#line 139 "/home/ferhat/git/vc-gen/gc/gc-parser.yy"
     { yylhs.value.as < gc::ast::Command* > () = new gc::ast::List(yystack_[1].value.as < std::vector<gc::ast::Command*> > ()); }
 #line 802 "/home/ferhat/git/vc-gen/gc/recognizer/gc-parser.cpp"
     break;
 
   case 10:
-#line 142 "/home/ferhat/git/vc-gen/gc/gc-parser.yy"
+#line 144 "/home/ferhat/git/vc-gen/gc/gc-parser.yy"
     { yylhs.value.as < gc::ast::Assertion* > () = yystack_[0].value.as < gc::ast::Comparison* > (); }
 #line 808 "/home/ferhat/git/vc-gen/gc/recognizer/gc-parser.cpp"
     break;
 
   case 11:
-#line 143 "/home/ferhat/git/vc-gen/gc/gc-parser.yy"
+#line 145 "/home/ferhat/git/vc-gen/gc/gc-parser.yy"
     { yylhs.value.as < gc::ast::Assertion* > () = new gc::ast::Negation(*yystack_[0].value.as < gc::ast::Assertion* > ()); }
 #line 814 "/home/ferhat/git/vc-gen/gc/recognizer/gc-parser.cpp"
     break;
 
   case 12:
-#line 144 "/home/ferhat/git/vc-gen/gc/gc-parser.yy"
+#line 146 "/home/ferhat/git/vc-gen/gc/gc-parser.yy"
     { yylhs.value.as < gc::ast::Assertion* > () = new gc::ast::Disjunction(*yystack_[2].value.as < gc::ast::Assertion* > (), *yystack_[0].value.as < gc::ast::Assertion* > ()); }
 #line 820 "/home/ferhat/git/vc-gen/gc/recognizer/gc-parser.cpp"
     break;
 
   case 13:
-#line 145 "/home/ferhat/git/vc-gen/gc/gc-parser.yy"
+#line 147 "/home/ferhat/git/vc-gen/gc/gc-parser.yy"
     { yylhs.value.as < gc::ast::Assertion* > () = new gc::ast::Conjunction(*yystack_[2].value.as < gc::ast::Assertion* > (), *yystack_[0].value.as < gc::ast::Assertion* > ()); }
 #line 826 "/home/ferhat/git/vc-gen/gc/recognizer/gc-parser.cpp"
     break;
 
   case 14:
-#line 146 "/home/ferhat/git/vc-gen/gc/gc-parser.yy"
+#line 148 "/home/ferhat/git/vc-gen/gc/gc-parser.yy"
     { yylhs.value.as < gc::ast::Assertion* > () = new gc::ast::Implication(*yystack_[2].value.as < gc::ast::Assertion* > (), *yystack_[0].value.as < gc::ast::Assertion* > ()); }
 #line 832 "/home/ferhat/git/vc-gen/gc/recognizer/gc-parser.cpp"
     break;
 
   case 15:
-#line 147 "/home/ferhat/git/vc-gen/gc/gc-parser.yy"
+#line 149 "/home/ferhat/git/vc-gen/gc/gc-parser.yy"
     { yylhs.value.as < gc::ast::Assertion* > () = new gc::ast::UniversalQuantifier(yystack_[2].value.as < std::vector<std::string> > (), *yystack_[0].value.as < gc::ast::Assertion* > ()); /*print<std::string>($2);*/ }
 #line 838 "/home/ferhat/git/vc-gen/gc/recognizer/gc-parser.cpp"
     break;
 
   case 16:
-#line 148 "/home/ferhat/git/vc-gen/gc/gc-parser.yy"
+#line 150 "/home/ferhat/git/vc-gen/gc/gc-parser.yy"
     { yylhs.value.as < gc::ast::Assertion* > () = new gc::ast::ExistentialQuantifier(yystack_[2].value.as < std::vector<std::string> > (), *yystack_[0].value.as < gc::ast::Assertion* > ()); /*print<std::string>($2);*/ }
 #line 844 "/home/ferhat/git/vc-gen/gc/recognizer/gc-parser.cpp"
     break;
 
   case 17:
-#line 149 "/home/ferhat/git/vc-gen/gc/gc-parser.yy"
+#line 151 "/home/ferhat/git/vc-gen/gc/gc-parser.yy"
     { yylhs.value.as < gc::ast::Assertion* > () = new gc::ast::True(); }
 #line 850 "/home/ferhat/git/vc-gen/gc/recognizer/gc-parser.cpp"
     break;
 
   case 18:
-#line 150 "/home/ferhat/git/vc-gen/gc/gc-parser.yy"
+#line 152 "/home/ferhat/git/vc-gen/gc/gc-parser.yy"
     { yylhs.value.as < gc::ast::Assertion* > () = new gc::ast::False(); }
 #line 856 "/home/ferhat/git/vc-gen/gc/recognizer/gc-parser.cpp"
     break;
 
   case 19:
-#line 151 "/home/ferhat/git/vc-gen/gc/gc-parser.yy"
+#line 153 "/home/ferhat/git/vc-gen/gc/gc-parser.yy"
     { yylhs.value.as < gc::ast::Assertion* > () = yystack_[1].value.as < gc::ast::Assertion* > (); }
 #line 862 "/home/ferhat/git/vc-gen/gc/recognizer/gc-parser.cpp"
     break;
 
   case 20:
-#line 155 "/home/ferhat/git/vc-gen/gc/gc-parser.yy"
+#line 157 "/home/ferhat/git/vc-gen/gc/gc-parser.yy"
     { yylhs.value.as < gc::ast::Comparison* > () = new gc::ast::EqualComparison(*yystack_[2].value.as < gc::ast::Expression* > (), *yystack_[0].value.as < gc::ast::Expression* > ()); }
 #line 868 "/home/ferhat/git/vc-gen/gc/recognizer/gc-parser.cpp"
     break;
 
   case 21:
-#line 156 "/home/ferhat/git/vc-gen/gc/gc-parser.yy"
+#line 158 "/home/ferhat/git/vc-gen/gc/gc-parser.yy"
     { yylhs.value.as < gc::ast::Comparison* > () = new gc::ast::NotEqualComparison(*yystack_[2].value.as < gc::ast::Expression* > (), *yystack_[0].value.as < gc::ast::Expression* > ()); }
 #line 874 "/home/ferhat/git/vc-gen/gc/recognizer/gc-parser.cpp"
     break;
 
   case 22:
-#line 157 "/home/ferhat/git/vc-gen/gc/gc-parser.yy"
+#line 159 "/home/ferhat/git/vc-gen/gc/gc-parser.yy"
     { yylhs.value.as < gc::ast::Comparison* > () = new gc::ast::LeqComparison(*yystack_[2].value.as < gc::ast::Expression* > (), *yystack_[0].value.as < gc::ast::Expression* > ()); }
 #line 880 "/home/ferhat/git/vc-gen/gc/recognizer/gc-parser.cpp"
     break;
 
   case 23:
-#line 158 "/home/ferhat/git/vc-gen/gc/gc-parser.yy"
+#line 160 "/home/ferhat/git/vc-gen/gc/gc-parser.yy"
     { yylhs.value.as < gc::ast::Comparison* > () = new gc::ast::GeqComparison(*yystack_[2].value.as < gc::ast::Expression* > (), *yystack_[0].value.as < gc::ast::Expression* > ()); }
 #line 886 "/home/ferhat/git/vc-gen/gc/recognizer/gc-parser.cpp"
     break;
 
   case 24:
-#line 159 "/home/ferhat/git/vc-gen/gc/gc-parser.yy"
+#line 161 "/home/ferhat/git/vc-gen/gc/gc-parser.yy"
     { yylhs.value.as < gc::ast::Comparison* > () = new gc::ast::LtComparison(*yystack_[2].value.as < gc::ast::Expression* > (), *yystack_[0].value.as < gc::ast::Expression* > ()); }
 #line 892 "/home/ferhat/git/vc-gen/gc/recognizer/gc-parser.cpp"
     break;
 
   case 25:
-#line 160 "/home/ferhat/git/vc-gen/gc/gc-parser.yy"
+#line 162 "/home/ferhat/git/vc-gen/gc/gc-parser.yy"
     { yylhs.value.as < gc::ast::Comparison* > () = new gc::ast::GtComparison(*yystack_[2].value.as < gc::ast::Expression* > (), *yystack_[0].value.as < gc::ast::Expression* > ()); }
 #line 898 "/home/ferhat/git/vc-gen/gc/recognizer/gc-parser.cpp"
     break;
 
   case 26:
-#line 163 "/home/ferhat/git/vc-gen/gc/gc-parser.yy"
+#line 165 "/home/ferhat/git/vc-gen/gc/gc-parser.yy"
     { yylhs.value.as < gc::ast::Location* > () = new gc::ast::Location(yystack_[0].value.as < std::string > ()); }
 #line 904 "/home/ferhat/git/vc-gen/gc/recognizer/gc-parser.cpp"
     break;
 
   case 27:
-#line 167 "/home/ferhat/git/vc-gen/gc/gc-parser.yy"
+#line 169 "/home/ferhat/git/vc-gen/gc/gc-parser.yy"
     { yylhs.value.as < gc::ast::Expression* > () = yystack_[0].value.as < gc::ast::Location* > (); }
 #line 910 "/home/ferhat/git/vc-gen/gc/recognizer/gc-parser.cpp"
     break;
 
   case 28:
-#line 168 "/home/ferhat/git/vc-gen/gc/gc-parser.yy"
-    { yylhs.value.as < gc::ast::Expression* > () = new gc::ast::ArrayLocation(*yystack_[3].value.as < gc::ast::Location* > (), *yystack_[1].value.as < gc::ast::Expression* > ()); }
+#line 170 "/home/ferhat/git/vc-gen/gc/gc-parser.yy"
+    { yylhs.value.as < gc::ast::Expression* > () = yystack_[0].value.as < gc::ast::Constant* > (); }
 #line 916 "/home/ferhat/git/vc-gen/gc/recognizer/gc-parser.cpp"
     break;
 
   case 29:
-#line 169 "/home/ferhat/git/vc-gen/gc/gc-parser.yy"
-    { yylhs.value.as < gc::ast::Expression* > () = yystack_[0].value.as < gc::ast::Constant* > (); }
+#line 171 "/home/ferhat/git/vc-gen/gc/gc-parser.yy"
+    { yylhs.value.as < gc::ast::Expression* > () = new gc::ast::Negate(*yystack_[0].value.as < gc::ast::Expression* > ()); }
 #line 922 "/home/ferhat/git/vc-gen/gc/recognizer/gc-parser.cpp"
     break;
 
   case 30:
-#line 170 "/home/ferhat/git/vc-gen/gc/gc-parser.yy"
-    { yylhs.value.as < gc::ast::Expression* > () = new gc::ast::Negate(*yystack_[0].value.as < gc::ast::Expression* > ()); }
+#line 172 "/home/ferhat/git/vc-gen/gc/gc-parser.yy"
+    { yylhs.value.as < gc::ast::Expression* > () = new gc::ast::Sum(*yystack_[2].value.as < gc::ast::Expression* > (), *yystack_[0].value.as < gc::ast::Expression* > ());}
 #line 928 "/home/ferhat/git/vc-gen/gc/recognizer/gc-parser.cpp"
     break;
 
   case 31:
-#line 171 "/home/ferhat/git/vc-gen/gc/gc-parser.yy"
-    { yylhs.value.as < gc::ast::Expression* > () = new gc::ast::Sum(*yystack_[2].value.as < gc::ast::Expression* > (), *yystack_[0].value.as < gc::ast::Expression* > ());}
+#line 173 "/home/ferhat/git/vc-gen/gc/gc-parser.yy"
+    { yylhs.value.as < gc::ast::Expression* > () = new gc::ast::Subtract(*yystack_[2].value.as < gc::ast::Expression* > (), *yystack_[0].value.as < gc::ast::Expression* > ()); }
 #line 934 "/home/ferhat/git/vc-gen/gc/recognizer/gc-parser.cpp"
     break;
 
   case 32:
-#line 172 "/home/ferhat/git/vc-gen/gc/gc-parser.yy"
-    { yylhs.value.as < gc::ast::Expression* > () = new gc::ast::Subtract(*yystack_[2].value.as < gc::ast::Expression* > (), *yystack_[0].value.as < gc::ast::Expression* > ()); }
+#line 174 "/home/ferhat/git/vc-gen/gc/gc-parser.yy"
+    { yylhs.value.as < gc::ast::Expression* > () = new gc::ast::Multiply(*yystack_[2].value.as < gc::ast::Expression* > (), *yystack_[0].value.as < gc::ast::Expression* > ()); }
 #line 940 "/home/ferhat/git/vc-gen/gc/recognizer/gc-parser.cpp"
     break;
 
   case 33:
-#line 173 "/home/ferhat/git/vc-gen/gc/gc-parser.yy"
-    { yylhs.value.as < gc::ast::Expression* > () = new gc::ast::Multiply(*yystack_[2].value.as < gc::ast::Expression* > (), *yystack_[0].value.as < gc::ast::Expression* > ()); }
+#line 175 "/home/ferhat/git/vc-gen/gc/gc-parser.yy"
+    { yylhs.value.as < gc::ast::Expression* > () = new gc::ast::Divide(*yystack_[2].value.as < gc::ast::Expression* > (), *yystack_[0].value.as < gc::ast::Expression* > ()); }
 #line 946 "/home/ferhat/git/vc-gen/gc/recognizer/gc-parser.cpp"
     break;
 
   case 34:
-#line 174 "/home/ferhat/git/vc-gen/gc/gc-parser.yy"
-    { yylhs.value.as < gc::ast::Expression* > () = new gc::ast::Divide(*yystack_[2].value.as < gc::ast::Expression* > (), *yystack_[0].value.as < gc::ast::Expression* > ()); }
+#line 176 "/home/ferhat/git/vc-gen/gc/gc-parser.yy"
+    { yylhs.value.as < gc::ast::Expression* > () = new gc::ast::Mod(*yystack_[2].value.as < gc::ast::Expression* > (), *yystack_[0].value.as < gc::ast::Expression* > ()); }
 #line 952 "/home/ferhat/git/vc-gen/gc/recognizer/gc-parser.cpp"
     break;
 
   case 35:
-#line 175 "/home/ferhat/git/vc-gen/gc/gc-parser.yy"
-    { yylhs.value.as < gc::ast::Expression* > () = new gc::ast::Mod(*yystack_[2].value.as < gc::ast::Expression* > (), *yystack_[0].value.as < gc::ast::Expression* > ()); }
+#line 177 "/home/ferhat/git/vc-gen/gc/gc-parser.yy"
+    { yylhs.value.as < gc::ast::Expression* > () = new gc::ast::Read(*yystack_[3].value.as < gc::ast::Location* > (), *yystack_[1].value.as < gc::ast::Expression* > ()); }
 #line 958 "/home/ferhat/git/vc-gen/gc/recognizer/gc-parser.cpp"
     break;
 
   case 36:
-#line 176 "/home/ferhat/git/vc-gen/gc/gc-parser.yy"
-    { yylhs.value.as < gc::ast::Expression* > () = yystack_[1].value.as < gc::ast::Expression* > ();}
+#line 178 "/home/ferhat/git/vc-gen/gc/gc-parser.yy"
+    { yylhs.value.as < gc::ast::Expression* > () = new gc::ast::Write(*yystack_[5].value.as < gc::ast::Location* > (), *yystack_[3].value.as < gc::ast::Expression* > (), *yystack_[1].value.as < gc::ast::Expression* > ()); }
 #line 964 "/home/ferhat/git/vc-gen/gc/recognizer/gc-parser.cpp"
     break;
 
   case 37:
 #line 179 "/home/ferhat/git/vc-gen/gc/gc-parser.yy"
-    { yylhs.value.as < gc::ast::Constant* > () = new gc::ast::Constant(yystack_[0].value.as < int > ()); }
+    { yylhs.value.as < gc::ast::Expression* > () = yystack_[1].value.as < gc::ast::Expression* > ();}
 #line 970 "/home/ferhat/git/vc-gen/gc/recognizer/gc-parser.cpp"
     break;
 
   case 38:
-#line 183 "/home/ferhat/git/vc-gen/gc/gc-parser.yy"
-    { yylhs.value.as < std::vector<std::string> > () = {yystack_[0].value.as < std::string > ()}; }
+#line 182 "/home/ferhat/git/vc-gen/gc/gc-parser.yy"
+    { yylhs.value.as < gc::ast::Constant* > () = new gc::ast::Constant(yystack_[0].value.as < int > ()); }
 #line 976 "/home/ferhat/git/vc-gen/gc/recognizer/gc-parser.cpp"
     break;
 
   case 39:
-#line 184 "/home/ferhat/git/vc-gen/gc/gc-parser.yy"
-    { yylhs.value.as < std::vector<std::string> > () = enlist(yystack_[1].value.as < std::vector<std::string> > (), yystack_[0].value.as < std::string > ()); }
+#line 186 "/home/ferhat/git/vc-gen/gc/gc-parser.yy"
+    { yylhs.value.as < std::vector<std::string> > () = {yystack_[0].value.as < std::string > ()}; }
 #line 982 "/home/ferhat/git/vc-gen/gc/recognizer/gc-parser.cpp"
     break;
 
+  case 40:
+#line 187 "/home/ferhat/git/vc-gen/gc/gc-parser.yy"
+    { yylhs.value.as < std::vector<std::string> > () = enlist(yystack_[1].value.as < std::vector<std::string> > (), yystack_[0].value.as < std::string > ()); }
+#line 988 "/home/ferhat/git/vc-gen/gc/recognizer/gc-parser.cpp"
+    break;
 
-#line 986 "/home/ferhat/git/vc-gen/gc/recognizer/gc-parser.cpp"
+
+#line 992 "/home/ferhat/git/vc-gen/gc/recognizer/gc-parser.cpp"
 
             default:
               break;
@@ -1253,108 +1259,119 @@ namespace gc {
   }
 
 
-  const signed char gc_parser::yypact_ninf_ = -21;
+  const signed char gc_parser::yypact_ninf_ = -29;
 
   const signed char gc_parser::yytable_ninf_ = -1;
 
   const short
   gc_parser::yypact_[] =
   {
-      43,    43,    -2,    -2,   -20,    16,    13,   -21,    24,     7,
-      -2,    -2,   -19,   -19,   -21,   -21,   -21,   -21,   105,   -21,
-      -1,   106,   -21,   108,     0,   -21,    43,   -21,   -21,     7,
-     127,    72,    93,   -21,   -21,   -15,     6,    -2,    -2,   -21,
-      -2,     7,     7,     7,     7,     7,     7,     7,     7,     7,
-       7,     7,     7,   -21,   -21,    13,    79,   -21,   -21,    -2,
-     -21,    -2,     1,    -8,   112,    71,   127,   127,    29,    29,
-     133,   133,   133,   133,   133,   133,   133,   112,   112,   -21
+      21,    21,    -1,    -1,   -28,     8,    59,   -29,    63,    53,
+      -1,    -1,   -15,   -15,   -29,   -29,    22,    23,   -29,   -29,
+      -5,   -29,   -29,   127,   -29,    41,    43,   -29,    21,   -29,
+     -29,    53,   157,    93,   114,   -29,   -29,     1,    29,   -28,
+     -28,    -1,    -1,   -29,    -1,    53,    53,    53,    53,    53,
+      53,    53,    53,    53,    53,    53,   -29,   -29,    59,   100,
+     -29,   -29,    -1,   -29,    -1,    45,    46,    52,    -7,    62,
+     157,   157,    66,    66,   154,   154,   154,   154,   154,   154,
+     154,    62,    62,    53,    53,    94,   140,    53,   -29,   147,
+     -29
   };
 
   const unsigned char
   gc_parser::yydefact_[] =
   {
        0,     0,     0,     0,     0,     0,     2,     3,     0,     0,
-       0,     0,     0,     0,    17,    18,    26,    37,     0,    10,
-      27,     0,    29,     0,     0,     1,     0,     4,     9,     0,
-      30,     0,     0,    11,    38,     0,     0,     0,     0,     6,
-       0,     0,     0,     0,     0,     0,     0,     0,     0,     0,
-       0,     0,     0,     7,     8,     5,     0,    19,    36,     0,
-      39,     0,    12,    13,    14,     0,    31,    32,    33,    34,
-      35,    20,    21,    22,    23,    24,    25,    15,    16,    28
+       0,     0,     0,     0,    17,    18,     0,     0,    26,    38,
+       0,    10,    27,     0,    28,     0,     0,     1,     0,     4,
+       9,     0,    29,     0,     0,    11,    39,     0,     0,     0,
+       0,     0,     0,     6,     0,     0,     0,     0,     0,     0,
+       0,     0,     0,     0,     0,     0,     7,     8,     5,     0,
+      19,    37,     0,    40,     0,     0,     0,    12,    13,    14,
+      30,    31,    32,    33,    34,    20,    21,    22,    23,    24,
+      25,    15,    16,     0,     0,     0,     0,     0,    35,     0,
+      36
   };
 
   const signed char
   gc_parser::yypgoto_[] =
   {
-     -21,   -21,     3,    -5,    -3,   -21,    41,    18,   -21,    33
+     -29,   -29,     4,    -4,     6,   -29,    16,    -9,   -29,    64
   };
 
   const signed char
   gc_parser::yydefgoto_[] =
   {
-      -1,     5,     6,     7,    18,    19,    20,    21,    22,    35
+      -1,     5,     6,     7,    20,    21,    22,    23,    24,    37
   };
 
   const unsigned char
   gc_parser::yytable_[] =
   {
-      23,    27,     9,    27,     8,    59,    10,    31,    33,    37,
-      38,     9,    16,    34,    11,    29,    25,    60,    37,    54,
-      41,     1,    12,    13,    14,    15,    61,    30,    32,    55,
-      16,    17,     1,    28,    62,    63,    46,    64,    60,    16,
-      17,     2,     3,     4,    26,    24,    36,    56,     0,     0,
-      27,     1,     2,     3,     4,    26,    77,     0,    78,    65,
-      66,    67,    68,    69,    70,    71,    72,    73,    74,    75,
-      76,     2,     3,     4,    42,    43,    44,    45,    46,     0,
-       0,    57,    42,    43,    44,    45,    46,     0,    58,    37,
-      38,     0,     0,    79,     0,    40,    42,    43,    44,    45,
-      46,     0,    58,    47,    48,    49,    50,    51,    52,    42,
-      43,    44,    45,    46,     0,     0,    47,    48,    49,    50,
-      51,    52,    37,    38,    39,    37,    38,    53,    40,    37,
-      38,    40,    44,    45,    46,    40,    42,    43,    44,    45,
-      46
+      32,    34,    29,     9,    29,     8,    18,    10,    27,    25,
+      41,    42,    41,    42,    43,    11,    33,    35,    44,    36,
+      26,    62,    59,    12,    13,    14,    15,    16,    17,     1,
+      39,    40,    58,    18,    19,    63,    70,    71,    72,    73,
+      74,    75,    76,    77,    78,    79,    80,    67,    68,    64,
+      69,     2,     3,     4,    29,    65,    66,     9,    41,    42,
+      56,    31,    57,    63,    44,    83,    84,     1,    81,    41,
+      82,     1,    30,    49,    85,    86,     0,    38,    89,    41,
+      42,    16,    17,     0,     0,    44,     0,    18,    19,     2,
+       3,     4,    28,     2,     3,     4,    28,    45,    46,    47,
+      48,    49,    60,    45,    46,    47,    48,    49,     0,    61,
+      41,    42,     0,     0,    87,     0,    44,    45,    46,    47,
+      48,    49,     0,    61,    50,    51,    52,    53,    54,    55,
+      45,    46,    47,    48,    49,     0,     0,    50,    51,    52,
+      53,    54,    55,    45,    46,    47,    48,    49,     0,    88,
+      45,    46,    47,    48,    49,     0,    90,    45,    46,    47,
+      48,    49,    47,    48,    49
   };
 
   const signed char
   gc_parser::yycheck_[] =
   {
-       3,     6,     4,     8,     1,    20,     8,    10,    11,    17,
-      18,     4,    32,    32,    16,     8,     0,    32,    17,    19,
-      21,     8,    24,    25,    26,    27,    20,     9,    10,    26,
-      32,    33,     8,     9,    37,    38,     7,    40,    32,    32,
-      33,    28,    29,    30,    31,     4,    13,    29,    -1,    -1,
-      55,     8,    28,    29,    30,    31,    59,    -1,    61,    41,
-      42,    43,    44,    45,    46,    47,    48,    49,    50,    51,
-      52,    28,    29,    30,     3,     4,     5,     6,     7,    -1,
-      -1,     9,     3,     4,     5,     6,     7,    -1,     9,    17,
-      18,    -1,    -1,    22,    -1,    23,     3,     4,     5,     6,
-       7,    -1,     9,    10,    11,    12,    13,    14,    15,     3,
-       4,     5,     6,     7,    -1,    -1,    10,    11,    12,    13,
-      14,    15,    17,    18,    19,    17,    18,    19,    23,    17,
-      18,    23,     5,     6,     7,    23,     3,     4,     5,     6,
-       7
+       9,    10,     6,     4,     8,     1,    34,     8,     0,     3,
+      17,    18,    17,    18,    19,    16,    10,    11,    23,    34,
+       4,    20,    31,    24,    25,    26,    27,    28,    29,     8,
+       8,     8,    28,    34,    35,    34,    45,    46,    47,    48,
+      49,    50,    51,    52,    53,    54,    55,    41,    42,    20,
+      44,    30,    31,    32,    58,    39,    40,     4,    17,    18,
+      19,     8,    19,    34,    23,    20,    20,     8,    62,    17,
+      64,     8,     9,     7,    83,    84,    -1,    13,    87,    17,
+      18,    28,    29,    -1,    -1,    23,    -1,    34,    35,    30,
+      31,    32,    33,    30,    31,    32,    33,     3,     4,     5,
+       6,     7,     9,     3,     4,     5,     6,     7,    -1,     9,
+      17,    18,    -1,    -1,    20,    -1,    23,     3,     4,     5,
+       6,     7,    -1,     9,    10,    11,    12,    13,    14,    15,
+       3,     4,     5,     6,     7,    -1,    -1,    10,    11,    12,
+      13,    14,    15,     3,     4,     5,     6,     7,    -1,     9,
+       3,     4,     5,     6,     7,    -1,     9,     3,     4,     5,
+       6,     7,     5,     6,     7
   };
 
   const unsigned char
   gc_parser::yystos_[] =
   {
-       0,     8,    28,    29,    30,    35,    36,    37,    36,     4,
-       8,    16,    24,    25,    26,    27,    32,    33,    38,    39,
-      40,    41,    42,    38,    40,     0,    31,    37,     9,     8,
-      41,    38,    41,    38,    32,    43,    43,    17,    18,    19,
-      23,    21,     3,     4,     5,     6,     7,    10,    11,    12,
-      13,    14,    15,    19,    19,    36,    41,     9,     9,    20,
-      32,    20,    38,    38,    38,    41,    41,    41,    41,    41,
-      41,    41,    41,    41,    41,    41,    41,    38,    38,    22
+       0,     8,    30,    31,    32,    37,    38,    39,    38,     4,
+       8,    16,    24,    25,    26,    27,    28,    29,    34,    35,
+      40,    41,    42,    43,    44,    40,    42,     0,    33,    39,
+       9,     8,    43,    40,    43,    40,    34,    45,    45,     8,
+       8,    17,    18,    19,    23,     3,     4,     5,     6,     7,
+      10,    11,    12,    13,    14,    15,    19,    19,    38,    43,
+       9,     9,    20,    34,    20,    42,    42,    40,    40,    40,
+      43,    43,    43,    43,    43,    43,    43,    43,    43,    43,
+      43,    40,    40,    20,    20,    43,    43,    20,     9,    43,
+       9
   };
 
   const unsigned char
   gc_parser::yyr1_[] =
   {
-       0,    34,    35,    36,    36,    36,    37,    37,    37,    37,
-      38,    38,    38,    38,    38,    38,    38,    38,    38,    38,
-      39,    39,    39,    39,    39,    39,    40,    41,    41,    41,
-      41,    41,    41,    41,    41,    41,    41,    42,    43,    43
+       0,    36,    37,    38,    38,    38,    39,    39,    39,    39,
+      40,    40,    40,    40,    40,    40,    40,    40,    40,    40,
+      41,    41,    41,    41,    41,    41,    42,    43,    43,    43,
+      43,    43,    43,    43,    43,    43,    43,    43,    44,    45,
+      45
   };
 
   const unsigned char
@@ -1362,8 +1379,9 @@ namespace gc {
   {
        0,     2,     1,     1,     2,     3,     3,     3,     3,     3,
        1,     2,     3,     3,     3,     4,     4,     1,     1,     3,
-       3,     3,     3,     3,     3,     3,     1,     1,     4,     1,
-       2,     3,     3,     3,     3,     3,     3,     1,     1,     2
+       3,     3,     3,     3,     3,     3,     1,     1,     1,     2,
+       3,     3,     3,     3,     3,     6,     8,     3,     1,     1,
+       2
   };
 
 
@@ -1377,20 +1395,21 @@ namespace gc {
   "\"/\"", "\"%\"", "\"(\"", "\")\"", "\"=\"", "\"!=\"", "\"<=\"",
   "\">=\"", "\"<\"", "\">\"", "\"!\"", "\"||\"", "\"&&\"", "\";\"",
   "\",\"", "\"[\"", "\"]\"", "\"==>\"", "\"forall\"", "\"exists\"",
-  "\"true\"", "\"false\"", "\"assume\"", "\"assert\"", "\"havoc\"",
-  "\"[]\"", "\"identifier\"", "\"number\"", "$accept", "prog", "commands",
-  "command", "assertion", "comparison", "location", "expression",
-  "constant", "identifiers", YY_NULLPTR
+  "\"true\"", "\"false\"", "\"write\"", "\"read\"", "\"assume\"",
+  "\"assert\"", "\"havoc\"", "\"[]\"", "\"identifier\"", "\"number\"",
+  "$accept", "prog", "commands", "command", "assertion", "comparison",
+  "location", "expression", "constant", "identifiers", YY_NULLPTR
   };
 
 #if GCDEBUG
   const unsigned char
   gc_parser::yyrline_[] =
   {
-       0,   124,   124,   128,   129,   130,   134,   135,   136,   137,
-     142,   143,   144,   145,   146,   147,   148,   149,   150,   151,
-     155,   156,   157,   158,   159,   160,   163,   167,   168,   169,
-     170,   171,   172,   173,   174,   175,   176,   179,   183,   184
+       0,   126,   126,   130,   131,   132,   136,   137,   138,   139,
+     144,   145,   146,   147,   148,   149,   150,   151,   152,   153,
+     157,   158,   159,   160,   161,   162,   165,   169,   170,   171,
+     172,   173,   174,   175,   176,   177,   178,   179,   182,   186,
+     187
   };
 
   // Print the state stack on the debug stream.
@@ -1425,9 +1444,9 @@ namespace gc {
 
 #line 8 "/home/ferhat/git/vc-gen/gc/gc-parser.yy"
 } // gc
-#line 1429 "/home/ferhat/git/vc-gen/gc/recognizer/gc-parser.cpp"
+#line 1448 "/home/ferhat/git/vc-gen/gc/recognizer/gc-parser.cpp"
 
-#line 186 "/home/ferhat/git/vc-gen/gc/gc-parser.yy"
+#line 189 "/home/ferhat/git/vc-gen/gc/gc-parser.yy"
 
 
 void

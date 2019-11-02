@@ -235,8 +235,11 @@ class PrinterVisitor : public Visitor<string> {
         case Expression::Type::Location:
             ss << visit(dynamic_cast<const Location*>(expression));
             break;
-        case Expression::Type::ArrayLocation:
-            ss << visit(dynamic_cast<const ArrayLocation*>(expression));
+        case Expression::Type::Read:
+            ss << visit(dynamic_cast<const Read*>(expression));
+            break;
+        case Expression::Type::Write:
+            ss << visit(dynamic_cast<const Write*>(expression));
             break;
         case Expression::Type::Constant:
             ss << visit(dynamic_cast<const Constant*>(expression));
@@ -269,10 +272,18 @@ class PrinterVisitor : public Visitor<string> {
         return ss.str();
     }
 
-    string visit(const ArrayLocation* expression) override {
+    string visit(const Read* expression) override {
         stringstream ss;
-        ss << visit(&expression->location);
-        ss << "[" << visit(&expression->index) << "]";
+        ss << "read(" << visit(&expression->location);
+        ss << ", " << visit(&expression->index) << ")";
+        return ss.str();
+    }
+
+    string visit(const Write* expression) override {
+        stringstream ss;
+        ss << "write(" << visit(&expression->location);
+        ss << ", " << visit(&expression->index) << ", "
+           << visit(&expression->value) << ")";
         return ss.str();
     }
 

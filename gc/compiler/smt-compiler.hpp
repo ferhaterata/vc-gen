@@ -25,6 +25,7 @@ class SmtCompiler : public gc::ast::Visitor<string> {
     std::string trailer = "true";
     int posix = 0; // post script for fresh variables
     std::vector<string> locs;
+    std::vector<string> arrs;
 
     static void ReplaceStringInPlace(std::string& subject,
                                      const std::string& search,
@@ -45,7 +46,10 @@ class SmtCompiler : public gc::ast::Visitor<string> {
         for (const auto& l : locs) {
             if (std::find(v.begin(), v.end(), l) == v.end()) {
                 v.push_back(l);
-                ss << "(declare-fun " << l << "() Int)\n";
+                if (std::find(arrs.begin(), arrs.end(), l) == arrs.end())
+                    ss << "(declare-const " << l << " Int)\n";
+                else
+                    ss << "(declare-const " << l << " (Array Int Int))\n";
             }
         }
         ss << "\n";
@@ -100,18 +104,22 @@ class SmtCompiler : public gc::ast::Visitor<string> {
     string visit(const gc::ast::Havoc* h) override {
         // string& temp = trailer;
 
-        string fresh = h->location.identifier + "?" +
-                       std::to_string(posix++);             // fresh: "x?1"
-        locs.push_back(fresh);                              // add fresh
-        string target = " " + h->location.identifier + " "; // target: " x "
-        string s = " " + fresh + " ";                       // search: " x!1"
-        ReplaceStringInPlace(trailer, target, s);           // replace s
-        target = " " + h->location.identifier + ")";        // target: " x)"
-        s = " " + fresh + ")";                              // search: " x!1)"
-        ReplaceStringInPlace(trailer, target, s);           // search s
-        target = "(" + h->location.identifier + " ";        // target: "(x "
-        s = "(" + fresh + " ";                              // search: "(x!1 "
-        ReplaceStringInPlace(trailer, target, s);           // search s
+        string havoc = h->location.identifier;
+        string fresh = havoc + "?" + std::to_string(posix++); // fresh: "x?1"
+        locs.push_back(fresh);                                // add fresh
+
+        if (std::find(arrs.begin(), arrs.end(), havoc) != arrs.end())
+            arrs.push_back(fresh);
+
+        string target = " " + havoc + " ";        // target: " x "
+        string s = " " + fresh + " ";             // search: " x!1"
+        ReplaceStringInPlace(trailer, target, s); // replace s
+        target = " " + havoc + ")";               // target: " x)"
+        s = " " + fresh + ")";                    // search: " x!1)"
+        ReplaceStringInPlace(trailer, target, s); // search s
+        target = "(" + havoc + " ";               // target: "(x "
+        s = "(" + fresh + " ";                    // search: "(x!1 "
+        ReplaceStringInPlace(trailer, target, s); // search s
         return "";
     }
 
@@ -189,7 +197,6 @@ class SmtCompiler : public gc::ast::Visitor<string> {
         return ss.str();
     }
 
-    // TODO
     string visit(const gc::ast::Location* location) override {
         stringstream ss;
         ss << location->identifier;
@@ -250,9 +257,11 @@ class SmtCompiler : public gc::ast::Visitor<string> {
         case gc::ast::Expression::Type::Location:
             ss << visit(dynamic_cast<const gc::ast::Location*>(expression));
             break;
-        case gc::ast::Expression::Type::ArrayLocation:
-            ss << visit(
-                dynamic_cast<const gc::ast::ArrayLocation*>(expression));
+        case gc::ast::Expression::Type::Read:
+            ss << visit(dynamic_cast<const gc::ast::Read*>(expression));
+            break;
+        case gc::ast::Expression::Type::Write:
+            ss << visit(dynamic_cast<const gc::ast::Write*>(expression));
             break;
         case gc::ast::Expression::Type::Constant:
             ss << visit(dynamic_cast<const gc::ast::Constant*>(expression));
@@ -285,10 +294,19 @@ class SmtCompiler : public gc::ast::Visitor<string> {
         return ss.str();
     }
 
-    string visit(const gc::ast::ArrayLocation* e) override {
+    string visit(const gc::ast::Read* e) override {
         stringstream ss;
         ss << "(select " << visit(&e->location) << " " << visit(&e->index)
            << ")";
+        arrs.push_back(e->location.identifier);
+        return ss.str();
+    }
+
+    string visit(const gc::ast::Write* e) override {
+        stringstream ss;
+        ss << "(store " << visit(&e->location) << " " << visit(&e->index) << " "
+           << visit(&e->value) << ")";
+        arrs.push_back(e->location.identifier);
         return ss.str();
     }
 

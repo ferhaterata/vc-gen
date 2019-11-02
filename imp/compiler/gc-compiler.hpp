@@ -284,7 +284,6 @@ class GcCompiler : public imp::ast::Visitor<string> {
     }
 
     // being used havocs here
-    // TODO: check array fragment
     string visit(const imp::ast::Reference* expression) override {
         std::stringstream ss;
 
@@ -305,7 +304,6 @@ class GcCompiler : public imp::ast::Visitor<string> {
         return ss.str();
     }
 
-    // TODO: check array fragment
     string visit(const imp::ast::ArrayReference* expression) override {
         stringstream ss;
 
@@ -478,12 +476,12 @@ class GcCompiler : public imp::ast::Visitor<string> {
         std::pair<string, string> pair(statement->loc.identifier,
                                        statement->loc.fresh);
         symbols.push_back(pair);
-        ss << "(assume " << pair.second;
+        ss << "assume " << pair.second;
         ss << " = " << pair.first << "; ";
         ss << "havoc " << pair.first << "; ";
         ss << "assume " << pair.first << " = "
            << "write(" << pair.second << ", " << visit(&statement->index)
-           << ", " << visit(&statement->exp) << ");)";
+           << ", " << visit(&statement->exp) << ");";
         symbols.pop_back();
         // for other calls visit location
         visit(&statement->loc);

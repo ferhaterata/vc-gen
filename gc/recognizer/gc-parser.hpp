@@ -486,12 +486,14 @@ namespace gc {
         TOK_SOME = 280,
         TOK_TRUE = 281,
         TOK_FALSE = 282,
-        TOK_ASSUME = 283,
-        TOK_ASSERT = 284,
-        TOK_HAVOC = 285,
-        TOK_CHOICE = 286,
-        TOK_IDENTIFIER = 287,
-        TOK_NUMBER = 288
+        TOK_WRITE = 283,
+        TOK_READ = 284,
+        TOK_ASSUME = 285,
+        TOK_ASSERT = 286,
+        TOK_HAVOC = 287,
+        TOK_CHOICE = 288,
+        TOK_IDENTIFIER = 289,
+        TOK_NUMBER = 290
       };
     };
 
@@ -711,47 +713,47 @@ namespace gc {
         // Type destructor.
 switch (yytype)
     {
-      case 38: // assertion
+      case 40: // assertion
         value.template destroy< gc::ast::Assertion* > ();
         break;
 
-      case 37: // command
+      case 39: // command
         value.template destroy< gc::ast::Command* > ();
         break;
 
-      case 39: // comparison
+      case 41: // comparison
         value.template destroy< gc::ast::Comparison* > ();
         break;
 
-      case 42: // constant
+      case 44: // constant
         value.template destroy< gc::ast::Constant* > ();
         break;
 
-      case 41: // expression
+      case 43: // expression
         value.template destroy< gc::ast::Expression* > ();
         break;
 
-      case 40: // location
+      case 42: // location
         value.template destroy< gc::ast::Location* > ();
         break;
 
-      case 35: // prog
+      case 37: // prog
         value.template destroy< gc::ast::Program* > ();
         break;
 
-      case 33: // "number"
+      case 35: // "number"
         value.template destroy< int > ();
         break;
 
-      case 32: // "identifier"
+      case 34: // "identifier"
         value.template destroy< std::string > ();
         break;
 
-      case 36: // commands
+      case 38: // commands
         value.template destroy< std::vector<gc::ast::Command*> > ();
         break;
 
-      case 43: // identifiers
+      case 45: // identifiers
         value.template destroy< std::vector<std::string> > ();
         break;
 
@@ -834,13 +836,13 @@ switch (yytype)
       symbol_type (int tok, location_type l)
         : super_type(token_type (tok), std::move (l))
       {
-        YYASSERT (tok == token::TOK_EOF || tok == token::TOK_PLUS || tok == token::TOK_MINUS || tok == token::TOK_STAR || tok == token::TOK_SLASH || tok == token::TOK_MOD || tok == token::TOK_LPAREN || tok == token::TOK_RPAREN || tok == token::TOK_EQUAL || tok == token::TOK_NEQUAL || tok == token::TOK_LEQ || tok == token::TOK_GEQ || tok == token::TOK_LT || tok == token::TOK_GT || tok == token::TOK_NOT || tok == token::TOK_OR || tok == token::TOK_AND || tok == token::TOK_SEMICOLON || tok == token::TOK_COMMA || tok == token::TOK_LSQUARE || tok == token::TOK_RSQUARE || tok == token::TOK_IMPLY || tok == token::TOK_ALL || tok == token::TOK_SOME || tok == token::TOK_TRUE || tok == token::TOK_FALSE || tok == token::TOK_ASSUME || tok == token::TOK_ASSERT || tok == token::TOK_HAVOC || tok == token::TOK_CHOICE);
+        YYASSERT (tok == token::TOK_EOF || tok == token::TOK_PLUS || tok == token::TOK_MINUS || tok == token::TOK_STAR || tok == token::TOK_SLASH || tok == token::TOK_MOD || tok == token::TOK_LPAREN || tok == token::TOK_RPAREN || tok == token::TOK_EQUAL || tok == token::TOK_NEQUAL || tok == token::TOK_LEQ || tok == token::TOK_GEQ || tok == token::TOK_LT || tok == token::TOK_GT || tok == token::TOK_NOT || tok == token::TOK_OR || tok == token::TOK_AND || tok == token::TOK_SEMICOLON || tok == token::TOK_COMMA || tok == token::TOK_LSQUARE || tok == token::TOK_RSQUARE || tok == token::TOK_IMPLY || tok == token::TOK_ALL || tok == token::TOK_SOME || tok == token::TOK_TRUE || tok == token::TOK_FALSE || tok == token::TOK_WRITE || tok == token::TOK_READ || tok == token::TOK_ASSUME || tok == token::TOK_ASSERT || tok == token::TOK_HAVOC || tok == token::TOK_CHOICE);
       }
 #else
       symbol_type (int tok, const location_type& l)
         : super_type(token_type (tok), l)
       {
-        YYASSERT (tok == token::TOK_EOF || tok == token::TOK_PLUS || tok == token::TOK_MINUS || tok == token::TOK_STAR || tok == token::TOK_SLASH || tok == token::TOK_MOD || tok == token::TOK_LPAREN || tok == token::TOK_RPAREN || tok == token::TOK_EQUAL || tok == token::TOK_NEQUAL || tok == token::TOK_LEQ || tok == token::TOK_GEQ || tok == token::TOK_LT || tok == token::TOK_GT || tok == token::TOK_NOT || tok == token::TOK_OR || tok == token::TOK_AND || tok == token::TOK_SEMICOLON || tok == token::TOK_COMMA || tok == token::TOK_LSQUARE || tok == token::TOK_RSQUARE || tok == token::TOK_IMPLY || tok == token::TOK_ALL || tok == token::TOK_SOME || tok == token::TOK_TRUE || tok == token::TOK_FALSE || tok == token::TOK_ASSUME || tok == token::TOK_ASSERT || tok == token::TOK_HAVOC || tok == token::TOK_CHOICE);
+        YYASSERT (tok == token::TOK_EOF || tok == token::TOK_PLUS || tok == token::TOK_MINUS || tok == token::TOK_STAR || tok == token::TOK_SLASH || tok == token::TOK_MOD || tok == token::TOK_LPAREN || tok == token::TOK_RPAREN || tok == token::TOK_EQUAL || tok == token::TOK_NEQUAL || tok == token::TOK_LEQ || tok == token::TOK_GEQ || tok == token::TOK_LT || tok == token::TOK_GT || tok == token::TOK_NOT || tok == token::TOK_OR || tok == token::TOK_AND || tok == token::TOK_SEMICOLON || tok == token::TOK_COMMA || tok == token::TOK_LSQUARE || tok == token::TOK_RSQUARE || tok == token::TOK_IMPLY || tok == token::TOK_ALL || tok == token::TOK_SOME || tok == token::TOK_TRUE || tok == token::TOK_FALSE || tok == token::TOK_WRITE || tok == token::TOK_READ || tok == token::TOK_ASSUME || tok == token::TOK_ASSERT || tok == token::TOK_HAVOC || tok == token::TOK_CHOICE);
       }
 #endif
 #if 201103L <= YY_CPLUSPLUS
@@ -1299,6 +1301,36 @@ switch (yytype)
 #if 201103L <= YY_CPLUSPLUS
       static
       symbol_type
+      make_WRITE (location_type l)
+      {
+        return symbol_type (token::TOK_WRITE, std::move (l));
+      }
+#else
+      static
+      symbol_type
+      make_WRITE (const location_type& l)
+      {
+        return symbol_type (token::TOK_WRITE, l);
+      }
+#endif
+#if 201103L <= YY_CPLUSPLUS
+      static
+      symbol_type
+      make_READ (location_type l)
+      {
+        return symbol_type (token::TOK_READ, std::move (l));
+      }
+#else
+      static
+      symbol_type
+      make_READ (const location_type& l)
+      {
+        return symbol_type (token::TOK_READ, l);
+      }
+#endif
+#if 201103L <= YY_CPLUSPLUS
+      static
+      symbol_type
       make_ASSUME (location_type l)
       {
         return symbol_type (token::TOK_ASSUME, std::move (l));
@@ -1692,12 +1724,12 @@ switch (yytype)
     enum
     {
       yyeof_ = 0,
-      yylast_ = 140,     ///< Last index in yytable_.
+      yylast_ = 164,     ///< Last index in yytable_.
       yynnts_ = 10,  ///< Number of nonterminal symbols.
-      yyfinal_ = 25, ///< Termination state number.
+      yyfinal_ = 27, ///< Termination state number.
       yyterror_ = 1,
       yyerrcode_ = 256,
-      yyntokens_ = 34  ///< Number of tokens.
+      yyntokens_ = 36  ///< Number of tokens.
     };
 
 
@@ -1743,9 +1775,10 @@ switch (yytype)
        2,     2,     2,     2,     2,     2,     1,     2,     3,     4,
        5,     6,     7,     8,     9,    10,    11,    12,    13,    14,
       15,    16,    17,    18,    19,    20,    21,    22,    23,    24,
-      25,    26,    27,    28,    29,    30,    31,    32,    33
+      25,    26,    27,    28,    29,    30,    31,    32,    33,    34,
+      35
     };
-    const unsigned user_token_number_max_ = 288;
+    const unsigned user_token_number_max_ = 290;
     const token_number_type undef_token_ = 2;
 
     if (static_cast<int> (t) <= yyeof_)
@@ -1766,47 +1799,47 @@ switch (yytype)
   {
     switch (this->type_get ())
     {
-      case 38: // assertion
+      case 40: // assertion
         value.move< gc::ast::Assertion* > (std::move (that.value));
         break;
 
-      case 37: // command
+      case 39: // command
         value.move< gc::ast::Command* > (std::move (that.value));
         break;
 
-      case 39: // comparison
+      case 41: // comparison
         value.move< gc::ast::Comparison* > (std::move (that.value));
         break;
 
-      case 42: // constant
+      case 44: // constant
         value.move< gc::ast::Constant* > (std::move (that.value));
         break;
 
-      case 41: // expression
+      case 43: // expression
         value.move< gc::ast::Expression* > (std::move (that.value));
         break;
 
-      case 40: // location
+      case 42: // location
         value.move< gc::ast::Location* > (std::move (that.value));
         break;
 
-      case 35: // prog
+      case 37: // prog
         value.move< gc::ast::Program* > (std::move (that.value));
         break;
 
-      case 33: // "number"
+      case 35: // "number"
         value.move< int > (std::move (that.value));
         break;
 
-      case 32: // "identifier"
+      case 34: // "identifier"
         value.move< std::string > (std::move (that.value));
         break;
 
-      case 36: // commands
+      case 38: // commands
         value.move< std::vector<gc::ast::Command*> > (std::move (that.value));
         break;
 
-      case 43: // identifiers
+      case 45: // identifiers
         value.move< std::vector<std::string> > (std::move (that.value));
         break;
 
@@ -1825,47 +1858,47 @@ switch (yytype)
   {
     switch (this->type_get ())
     {
-      case 38: // assertion
+      case 40: // assertion
         value.copy< gc::ast::Assertion* > (YY_MOVE (that.value));
         break;
 
-      case 37: // command
+      case 39: // command
         value.copy< gc::ast::Command* > (YY_MOVE (that.value));
         break;
 
-      case 39: // comparison
+      case 41: // comparison
         value.copy< gc::ast::Comparison* > (YY_MOVE (that.value));
         break;
 
-      case 42: // constant
+      case 44: // constant
         value.copy< gc::ast::Constant* > (YY_MOVE (that.value));
         break;
 
-      case 41: // expression
+      case 43: // expression
         value.copy< gc::ast::Expression* > (YY_MOVE (that.value));
         break;
 
-      case 40: // location
+      case 42: // location
         value.copy< gc::ast::Location* > (YY_MOVE (that.value));
         break;
 
-      case 35: // prog
+      case 37: // prog
         value.copy< gc::ast::Program* > (YY_MOVE (that.value));
         break;
 
-      case 33: // "number"
+      case 35: // "number"
         value.copy< int > (YY_MOVE (that.value));
         break;
 
-      case 32: // "identifier"
+      case 34: // "identifier"
         value.copy< std::string > (YY_MOVE (that.value));
         break;
 
-      case 36: // commands
+      case 38: // commands
         value.copy< std::vector<gc::ast::Command*> > (YY_MOVE (that.value));
         break;
 
-      case 43: // identifiers
+      case 45: // identifiers
         value.copy< std::vector<std::string> > (YY_MOVE (that.value));
         break;
 
@@ -1891,47 +1924,47 @@ switch (yytype)
     super_type::move (s);
     switch (this->type_get ())
     {
-      case 38: // assertion
+      case 40: // assertion
         value.move< gc::ast::Assertion* > (YY_MOVE (s.value));
         break;
 
-      case 37: // command
+      case 39: // command
         value.move< gc::ast::Command* > (YY_MOVE (s.value));
         break;
 
-      case 39: // comparison
+      case 41: // comparison
         value.move< gc::ast::Comparison* > (YY_MOVE (s.value));
         break;
 
-      case 42: // constant
+      case 44: // constant
         value.move< gc::ast::Constant* > (YY_MOVE (s.value));
         break;
 
-      case 41: // expression
+      case 43: // expression
         value.move< gc::ast::Expression* > (YY_MOVE (s.value));
         break;
 
-      case 40: // location
+      case 42: // location
         value.move< gc::ast::Location* > (YY_MOVE (s.value));
         break;
 
-      case 35: // prog
+      case 37: // prog
         value.move< gc::ast::Program* > (YY_MOVE (s.value));
         break;
 
-      case 33: // "number"
+      case 35: // "number"
         value.move< int > (YY_MOVE (s.value));
         break;
 
-      case 32: // "identifier"
+      case 34: // "identifier"
         value.move< std::string > (YY_MOVE (s.value));
         break;
 
-      case 36: // commands
+      case 38: // commands
         value.move< std::vector<gc::ast::Command*> > (YY_MOVE (s.value));
         break;
 
-      case 43: // identifiers
+      case 45: // identifiers
         value.move< std::vector<std::string> > (YY_MOVE (s.value));
         break;
 
@@ -2002,14 +2035,14 @@ switch (yytype)
        0,   256,   257,   258,   259,   260,   261,   262,   263,   264,
      265,   266,   267,   268,   269,   270,   271,   272,   273,   274,
      275,   276,   277,   278,   279,   280,   281,   282,   283,   284,
-     285,   286,   287,   288
+     285,   286,   287,   288,   289,   290
     };
     return token_type (yytoken_number_[type]);
   }
 
 #line 8 "/home/ferhat/git/vc-gen/gc/gc-parser.yy"
 } // gc
-#line 2013 "/home/ferhat/git/vc-gen/gc/recognizer/gc-parser.hpp"
+#line 2046 "/home/ferhat/git/vc-gen/gc/recognizer/gc-parser.hpp"
 
 
 

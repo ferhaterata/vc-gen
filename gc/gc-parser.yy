@@ -87,6 +87,8 @@ void print(std::vector<T>& v){
   SOME      "exists"
   TRUE      "true"
   FALSE     "false"
+  WRITE     "write"
+  READ      "read"
   ASSUME    "assume"
   ASSERT    "assert"
   HAVOC     "havoc"
@@ -164,16 +166,17 @@ location: "identifier"                      { $$ = new gc::ast::Location($1); }
     ;
 
 expression:
-      location                              { $$ = $1; }
-    | location "[" expression "]"           { $$ = new gc::ast::ArrayLocation(*$1, *$3); }
-    | constant                              { $$ = $1; }
-    | "-" expression                        { $$ = new gc::ast::Negate(*$2); }
-    | expression "+" expression             { $$ = new gc::ast::Sum(*$1, *$3);}
-    | expression "-" expression             { $$ = new gc::ast::Subtract(*$1, *$3); }
-    | expression "*" expression             { $$ = new gc::ast::Multiply(*$1, *$3); }
-    | expression "/" expression             { $$ = new gc::ast::Divide(*$1, *$3); }
-    | expression "%" expression             { $$ = new gc::ast::Mod(*$1, *$3); }
-    | "(" expression ")"                    { $$ = $2;}
+      location                                                  { $$ = $1; }
+    | constant                                                  { $$ = $1; }
+    | "-" expression                                            { $$ = new gc::ast::Negate(*$2); }
+    | expression "+" expression                                 { $$ = new gc::ast::Sum(*$1, *$3);}
+    | expression "-" expression                                 { $$ = new gc::ast::Subtract(*$1, *$3); }
+    | expression "*" expression                                 { $$ = new gc::ast::Multiply(*$1, *$3); }
+    | expression "/" expression                                 { $$ = new gc::ast::Divide(*$1, *$3); }
+    | expression "%" expression                                 { $$ = new gc::ast::Mod(*$1, *$3); }
+    | "read"  "(" location "," expression ")"                   { $$ = new gc::ast::Read(*$3, *$5); }
+    | "write" "(" location "," expression "," expression ")"    { $$ = new gc::ast::Write(*$3, *$5, *$7); }
+    | "(" expression ")"                                        { $$ = $2;}
     ;
 
 constant: "number"                          { $$ = new gc::ast::Constant($1); }

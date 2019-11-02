@@ -63,6 +63,8 @@ blank [ \t]
 "exists"    return gc::gc_parser::make_SOME(loc);
 "true"      return gc::gc_parser::make_TRUE(loc);
 "false"     return gc::gc_parser::make_FALSE(loc);
+"write"     return gc::gc_parser::make_WRITE(loc);
+"read"      return gc::gc_parser::make_READ(loc);
 "assume"    return gc::gc_parser::make_ASSUME(loc);
 "assert"    return gc::gc_parser::make_ASSERT(loc);
 "havoc"     return gc::gc_parser::make_HAVOC(loc);

@@ -44,7 +44,8 @@ class Expression : public Node {
 
   public:
     enum class Type {
-        ArrayLocation,
+        Read,
+        Write,
         Constant,
         Negate,
         Sum,
@@ -324,19 +325,39 @@ class Constant : public Expression {
 };
 
 // -----------------------------------------------------------------------------
-class ArrayLocation : public Expression {
+class Read : public Expression {
   public:
     const Location& location;
     const Expression& index;
 
-    ArrayLocation(Location& location, Expression& index)
-        : Expression(Type::ArrayLocation), location(location), index(index) {}
+    Read(Location& location, Expression& index)
+        : Expression(Type::Read), location(location), index(index) {}
 
-    ~ArrayLocation() override {
-        //        std::cout << " Deleting ArrayLocation 0x" << this << dec <<
+    ~Read() override {
+        //        std::cout << " Deleting Read Array 0x" << this << dec <<
         //        "...\n";
         delete &index;
         delete &location;
+    }
+};
+
+// -----------------------------------------------------------------------------
+class Write : public Expression {
+  public:
+    const Location& location;
+    const Expression& index;
+    const Expression& value;
+
+    Write(Location& location, Expression& index, Expression& value)
+        : Expression(Type::Write), location(location), index(index),
+          value(value) {}
+
+    ~Write() override {
+        //        std::cout << " Deleting Write Array 0x" << this << dec <<
+        //        "...\n";
+        delete &index;
+        delete &location;
+        delete &value;
     }
 };
 

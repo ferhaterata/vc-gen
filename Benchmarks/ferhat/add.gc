@@ -1,0 +1,13 @@
+assume 0 <= x && 0 <= y;
+assume r!0 = r; havoc r; assume r = 2 * x;
+assume n!0 = n; havoc n; assume n = y;
+assert r = 2 * x + y - n;
+havoc r; havoc n;
+assume r = 2 * x + y - n;
+(assume n != 0;
+ assume r!1 = r; havoc r; assume r = r!1 + 1;
+ assume n!1 = n; havoc n; assume n = n!1 - 1;
+ assert r = 2 * x + y - n; assume false;
+ []
+ assume !(n != 0);)
+assert r = 2 * x + y;

@@ -1,0 +1,10 @@
+program count
+    post i == n
+is
+    i:= 0;
+    while i < n
+        inv if n >= 0 then i <= n else i == 0
+    do
+        i:= i + 1;
+    end
+end

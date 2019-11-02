@@ -1,0 +1,17 @@
+assume 0 <= N;
+assume c!0 = c; havoc c; assume c = 0;
+assume n!0 = n; havoc n; assume n = 0;
+assume k!0 = k; havoc k; assume k = 1;
+assume m!0 = m; havoc m; assume m = 6;
+assert n <= N; assert c = n * n * n; assert k = 3 * n * n + 3 * n + 1; assert m = 6 * n + 6;
+havoc c; havoc m; havoc k; havoc n;
+assume n <= N; assume c = n * n * n; assume k = 3 * n * n + 3 * n + 1; assume m = 6 * n + 6;
+(assume n < N;
+ assume c!1 = c; havoc c; assume c = c!1 + k;
+ assume k!1 = k; havoc k; assume k = k!1 + m;
+ assume m!1 = m; havoc m; assume m = m!1 + 6;
+ assume n!1 = n; havoc n; assume n = n!1 + 1;
+ assert n <= N; assert c = n * n * n; assert k = 3 * n * n + 3 * n + 1; assert m = 6 * n + 6; assume false;
+ []
+ assume !(n < N);)
+assert c = N * N * N;

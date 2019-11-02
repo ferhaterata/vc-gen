@@ -1,0 +1,19 @@
+assume forall j k, 0 <= j && j < k && k < N ==> read(a, j) <= read(a, k);
+assume low!0 = low; havoc low; assume low = 0;
+assume high!0 = high; havoc high; assume high = N;
+assert 0 <= low && low <= high && high <= N; assert forall i, 0 <= i && i < N && ! low <= i && i < high ==> read(a, i) != value;
+havoc mid; havoc low; havoc high; havoc index;
+assume 0 <= low && low <= high && high <= N; assume forall i, 0 <= i && i < N && ! low <= i && i < high ==> read(a, i) != value;
+(assume low < high;
+ assume mid!0 = mid; havoc mid; assume mid = low + high / 2;
+ assume read(a, mid) < value;
+assume low!1 = low; havoc low; assume low = mid + 1;
+ (assume value < read(a, mid);
+  assume high!1 = high; havoc high; assume high = mid;
+  []
+  assume !(value < read(a, mid));assume index!0 = index; havoc index; assume index = mid;)
+ assert 0 <= low && low <= high && high <= N; assert forall i, 0 <= i && i < N && ! low <= i && i < high ==> read(a, i) != value; assume false;
+ []
+ assume !(low < high);)
+assume index!1 = index; havoc index; assume index = -1;
+assert 0 <= index && index < N ==> read(a, index) = value; assert 0 > index ==> forall k, 0 <= k && k < N ==> read(a, k) != value;

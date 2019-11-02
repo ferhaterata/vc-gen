@@ -1,0 +1,11 @@
+(declare-const i Int)
+(declare-const n Int)
+(declare-const i!1 Int)
+(declare-const i?0 Int)
+(declare-const i?1 Int)
+(declare-const i?2 Int)
+(declare-const i!0 Int)
+
+(assert (not (=> (= i!0 i) (=> (= i?2 0) (and (=> (>= n 0) (<= i?2 n)) (and (=> (> n 0) (= i?2 0)) (=> (=> (>= n 0) (<= i?1 n)) (=> (=> (> n 0) (= i?1 0)) (and (=> (< i?1 n) (=> (= i!1 i?1) (=> (= i?0 (+ i!1 1)) (and (=> (>= n 0) (<= i?0 n)) (and (=> (> n 0) (= i?0 0)) (=> false (and (= i?0 n) true))))))) (=> (not (< i?1 n)) (and (= i?1 n) true)))))))))))
+(check-sat)
+(exit)

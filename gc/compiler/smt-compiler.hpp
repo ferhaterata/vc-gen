@@ -42,6 +42,9 @@ class SmtCompiler : public gc::ast::Visitor<string> {
         visit(prog);
 
         // locate array constants
+        // store and select pushes array constancs followed by '!'
+        // if "a!1" is in stored or read then any constants starts with 'a' must
+        // be an array as well.
         for (const auto& a : arrs) {
             size_t pos = 0;
             if ((pos = a.find('!', pos)) != std::string::npos) {
@@ -54,8 +57,7 @@ class SmtCompiler : public gc::ast::Visitor<string> {
             }
         }
         stringstream ss;
-        // declare distinct locations
-        vector<string> v;
+        vector<string> v; // to declare distinct locations
         for (const auto& l : locs) {
             if (std::find(v.begin(), v.end(), l) == v.end()) {
                 v.push_back(l);

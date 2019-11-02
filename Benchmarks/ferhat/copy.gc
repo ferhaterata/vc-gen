@@ -1,0 +1,13 @@
+assume 0 <= x;
+assume a!0 = a; havoc a; assume a = x;
+assume y!0 = y; havoc y; assume y = 0;
+assert y + a = x;
+havoc a; havoc y;
+assume y + a = x;
+(assume a != 0;
+ assume y!1 = y; havoc y; assume y = y!1 + 1;
+ assume a!1 = a; havoc a; assume a = a!1 - 1;
+ assert y + a = x; assume false;
+ []
+ assume !(a != 0);)
+assert x = y;

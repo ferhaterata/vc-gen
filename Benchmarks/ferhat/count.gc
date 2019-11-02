@@ -1,0 +1,10 @@
+assume i!0 = i; havoc i; assume i = 0;
+assert n >= 0 ==> i <= n; assert n > 0 ==> i = 0;
+havoc i;
+assume n >= 0 ==> i <= n; assume n > 0 ==> i = 0;
+(assume i < n;
+ assume i!1 = i; havoc i; assume i = i!1 + 1;
+ assert n >= 0 ==> i <= n; assert n > 0 ==> i = 0; assume false;
+ []
+ assume !(i < n);)
+assert i = n;

@@ -1,0 +1,19 @@
+
+function power(n:int, e:nat):int
+{
+   if (e==0) then 1 else n * power(n,e-1)
+}
+
+method power
+    pre p= power(n, e);
+is
+    var i:= 0;
+    p:= 1;
+    while (i!=e)
+    invariant i<=e;
+    invariant p==power(n, i);
+    {
+       i := i+1;
+       p := p*n;   // running product
+    }
+}

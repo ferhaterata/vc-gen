@@ -1,0 +1,13 @@
+assume 0 <= index ==> index < N && read(a, index) = key;
+assume index!0 = index; havoc index; assume index = 0;
+assert 0 <= index && index <= N; assert forall k, 0 <= k && k < index ==> read(a, k) != key;
+havoc index;
+assume 0 <= index && index <= N; assume forall k, 0 <= k && k < index ==> read(a, k) != key;
+(assume index < N;
+ assume read(a, index) = key;
+assume index!1 = index; havoc index; assume index = index!1 + 1;
+ assert 0 <= index && index <= N; assert forall k, 0 <= k && k < index ==> read(a, k) != key; assume false;
+ []
+ assume !(index < N);)
+assume index!2 = index; havoc index; assume index = -1;
+assert index < 0 ==> forall k, 0 <= k && k < N ==> read(a, k) != key;

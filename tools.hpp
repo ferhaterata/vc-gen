@@ -2,7 +2,7 @@
 // File: tools.hpp ----------------------------------------------------
 // Header file for the C++ tools library.
 // Authors:  Alice E. Fischer and Michael J. Fischer.
-// Modified September 2018.
+// Modified October 2019 by Ferhat Erata.
 
 #pragma once
 

@@ -1,6 +1,6 @@
 <!--
 // -----------------------------------------------------------------------------
-// File: readme.md -------------------------------------------------------------- 
+// File: readme.md -------------------------------------------------------------
 // Created by Ferhat Erata <ferhat.erata@yale.edu> on Sun November 03, 2019 
 // -----------------------------------------------------------------------------
 -->
@@ -16,7 +16,6 @@ Quick Overview:
 * Tooling workflow:  
 
 **.imp** =compile=> **.gc** =compile=> **.gc.smt** =z3=> **.gc.smt.out**
-
 
 Building and Running:
 ---------------------
@@ -37,7 +36,94 @@ Building and Running:
 
     `./vcgen -p -s <filename>` 
    
-6. Examples:   
+Code Structure:
+---------------
+````
+.
+├── gc                              /* GC Language Namespace    */  
+│   ├── ast                         
+│   │   ├── gc.cpp
+│   │   ├── gc.hpp                  /* Abstract Syntax Tree     */
+│   │   ├── printer-visitor.hpp     /* Pretty Printer Visitor   */
+│   │   └── visitor.hpp             /* Pure Abstract Visitor    */
+│   ├── recognizer                  /* Flex/Bison Recognizer    */
+│   │   ├── gc-parser.cpp
+│   │   ├── gc-parser.gv
+│   │   ├── gc-parser.hpp
+│   │   ├── gc-parser.output
+│   │   ├── gc-scanner.cpp
+│   │   └── location.hh
+│   ├── compiler
+│   │   └── smt-compiler.hpp        /* SMT-LIB Compiler Visitor */
+│   ├── gc-driver.cpp
+│   ├── gc-driver.hpp               /* Driver for GC Language   */
+│   ├── gc-parser.yy                /* Bison Parser Definition  */
+│   ├── gc-scanner.ll               /* Flex Lexer Definition    */
+│   └── test.cpp
+├── imp                             /* IMP Language Namespace   */
+│   ├── ast
+│   │   ├── imp.cpp
+│   │   ├── imp.hpp                 /* Abstract Syntax Tree     */
+│   │   ├── printer-visitor.hpp     /* Pretty Printer Visitor   */
+│   │   └── visitor.hpp             /* Pure Abstract Visitor    */
+│   ├── recognizer                  /* Flex/Bison Recognizer    */
+│   │   ├── imp-parser.cpp
+│   │   ├── imp-parser.gv
+│   │   ├── imp-parser.hpp
+│   │   ├── imp-parser.output
+│   │   ├── imp-scanner.cpp
+│   │   ├── location.hh
+│   │   └── location.hpp
+│   ├── compiler                    /* GC Compiler Visitor      */
+│   │   └── gc-compiler.hpp
+│   ├── imp-driver.cpp
+│   ├── imp-driver.hpp              /* Driver for IMP Language  */
+│   ├── imp-parser.yy               /* Bison Parser Definition  */
+│   └── imp-scanner.ll              /* Flex Lexer Definition    */
+├── solver                          /* SMT Solver Namespace     */
+│   ├── z3-solver.cpp
+│   └── z3-solver.hpp               /* Z3 Solver Wrapper        */
+├── Makefile
+├── readme.md
+├── tools.cpp
+├── tools.hpp
+└── vcgen.cpp                       /* Main Conductor           */
+````   
+Benchmarks:
+---------------
+````
+Benchmarks
+├── ferhat                          /* My own VALID benchmarks   */
+│   ├── abs.imp                     
+│   ├── add.imp                     
+│   ├── binary_search.imp
+│   ├── concat.imp
+│   ├── copy.imp
+│   ├── count.imp
+│   ├── cube.imp
+│   ├── less_more.imp
+│   ├── max.imp
+│   ├── test1.imp
+│   └── test2.imp
+├── invalid
+│   ├── find_invalid.imp
+│   ├── order_invalid.imp
+│   └── prime_invalid.imp
+└── valid
+    ├── bubble.imp
+    ├── example.imp
+    ├── find.imp
+    ├── gcd.imp
+    ├── lcm.imp
+    ├── mod.imp
+    ├── mult.imp
+    ├── order.imp
+    ├── prime.imp
+    ├── rev.imp
+    └── test.imp
+````
+Examples:   
+---------
 * Run 1: 
 ````
 $ ./vcgen Benchmarks/ferhat/cube.imp

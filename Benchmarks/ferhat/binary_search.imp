@@ -6,18 +6,19 @@ is
    low, high := 0, N;
    while (low < high)
       inv 0 <= low && low <= high && high <= N
-      inv forall i, 0 <= i && i < N && !(low <= i && i < high) ==> a[i] != value
+      inv forall i, (0 <= i && i < N && !(low <= i && i < high)) ==> a[i] != value
    do
       mid := (low + high) / 2;
       if (a[mid] < value)
       then
          low := mid + 1;
-      end
-      if (value < a[mid])
-      then
-         high := mid;
       else
-         index := mid;
+          if (value < a[mid])
+          then
+             high := mid;
+          else
+             index := mid;
+          end
       end
    end
    index := -1;

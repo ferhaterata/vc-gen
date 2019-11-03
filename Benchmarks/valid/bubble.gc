@@ -1,8 +1,8 @@
 assume n > 0;
 assume bound!0 = bound; havoc bound; assume bound = n;
-assert 0 <= bound && bound <= n; assert forall j k, 0 <= j && j < k && bound <= k && k < n ==> read(a, j) <= read(a, k);
+assert 0 <= bound && bound <= n; assert forall j k, (0 <= j && j < k && bound <= k && k < n) ==> read(a, j) <= read(a, k);
 havoc bound;
-assume 0 <= bound && bound <= n; assume forall j k, 0 <= j && j < k && bound <= k && k < n ==> read(a, j) <= read(a, k);
+assume 0 <= bound && bound <= n; assume forall j k, (0 <= j && j < k && bound <= k && k < n) ==> read(a, j) <= read(a, k);
 (assume bound > 0;
  assume i!0 = i; havoc i; assume i = 0;
  assert 0 <= i && i < bound; assert forall j, 0 <= j && j < i ==> read(a, j) <= read(a, i); assert forall j k, 0 <= j && j < k && bound <= k && k < n ==> read(a, j) <= read(a, k);
@@ -20,7 +20,7 @@ assume 0 <= i && i < bound; assume forall j, 0 <= j && j < i ==> read(a, j) <= r
   []
   assume !(i < bound - 1);)
  assume bound!1 = bound; havoc bound; assume bound = bound!1 - 1;
- assert 0 <= bound && bound <= n; assert forall j k, 0 <= j && j < k && bound <= k && k < n ==> read(a, j) <= read(a, k); assume false;
+ assert 0 <= bound && bound <= n; assert forall j k, (0 <= j && j < k && bound <= k && k < n) ==> read(a, j) <= read(a, k); assume false;
  []
  assume !(bound > 0);)
 assert forall i j, 0 <= i && i <= j && j < n ==> read(a, i) <= read(a, j);

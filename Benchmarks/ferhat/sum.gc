@@ -2,17 +2,12 @@ assume 0 <= N;
 assume sum!0 = sum; havoc sum; assume sum = 0;
 assume max!0 = max; havoc max; assume max = 0;
 assume i!0 = i; havoc i; assume i = 0;
-assert i <= N && sum <= i * max;
+assert (i <= N) && (sum <= i * max);
 havoc sum; havoc max; havoc i;
-assume i <= N && sum <= i * max;
+assume (i <= N) && (sum <= i * max);
 (assume i < N;
- (assume max < read(a, i);
-  assume max!1 = max; havoc max; assume max = read(a, i);
-  []
-  assume !(max < read(a, i)); assume true;)
- assume sum!1 = sum; havoc sum; assume sum = sum!1 + read(a, i);
  assume i!1 = i; havoc i; assume i = i!1 + 1;
- assert i <= N && sum <= i * max; assume false;
+ assert (i <= N) && (sum <= i * max); assume false;
  []
  assume !(i < N);)
 assert sum <= N * max;

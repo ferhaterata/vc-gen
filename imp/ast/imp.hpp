@@ -33,6 +33,7 @@ class BooleanExpression : public Node {
         OrExpression,
         AndExpression,
         Comparison,
+        Parentheses,
     };
     const Type type;
     explicit BooleanExpression(const Type type) : type(type) {}
@@ -48,7 +49,8 @@ class NotExpression : public BooleanExpression {
         : BooleanExpression(Type::NotExpression), expression(expression) {}
 
     ~NotExpression() override {
-//        std::cout << " Deleting NotExpression 0x" << this << dec << "...\n";
+        //        std::cout << " Deleting NotExpression 0x" << this << dec <<
+        //        "...\n";
         delete &expression;
     }
 };
@@ -63,7 +65,8 @@ class OrExpression : public BooleanExpression {
         : BooleanExpression(Type::OrExpression), left(left), right(right) {}
 
     ~OrExpression() override {
-//        std::cout << " Deleting OrExpression 0x" << this << dec << "...\n";
+        //        std::cout << " Deleting OrExpression 0x" << this << dec <<
+        //        "...\n";
         delete &left;
         delete &right;
     }
@@ -79,9 +82,26 @@ class AndExpression : public BooleanExpression {
         : BooleanExpression(Type::AndExpression), left(left), right(right) {}
 
     ~AndExpression() override {
-//        std::cout << " Deleting AndExpression 0x" << this << dec << "...\n";
+        //        std::cout << " Deleting AndExpression 0x" << this << dec <<
+        //        "...\n";
         delete &left;
         delete &right;
+    }
+};
+
+// -----------------------------------------------------------------------------
+class BooleanParentheses : public BooleanExpression {
+  public:
+    const BooleanExpression& inner;
+
+    BooleanParentheses(BooleanExpression& inner)
+        : BooleanExpression(BooleanExpression::Type::Parentheses),
+          inner(inner) {}
+
+    ~BooleanParentheses() override {
+        //        std::cout << " Deleting BooleanParentheses 0x" << this << dec
+        //        << "...\n";
+        delete &inner;
     }
 };
 
@@ -96,6 +116,7 @@ class Assertion : public Node {
         UniversalQuantification,
         ExistentialQuantification,
         Comparison,
+        Parentheses,
     };
     const Type type;
     explicit Assertion(Type type) : type(type) {}
@@ -128,7 +149,8 @@ class Location : public Node {
         : identifier(std::move(identifier)), fresh(std::move(fresh)) {}
 
     ~Location() override {
-//        std::cout << " Deleting Location 0x" << this << dec << "...\n";
+        //        std::cout << " Deleting Location 0x" << this << dec <<
+        //        "...\n";
     }
 };
 
@@ -140,7 +162,8 @@ class Invariant : public Node {
     explicit Invariant(Assertion& assertion) : assertion(assertion) {}
 
     ~Invariant() override {
-//        std::cout << " Deleting Invariant 0x" << this << dec << "...\n";
+        //        std::cout << " Deleting Invariant 0x" << this << dec <<
+        //        "...\n";
         delete &assertion;
     }
     //    void accept(Visitor<Node>* v) { v->visit(this); }
@@ -154,7 +177,7 @@ class Block : public Node {
     explicit Block(vector<Statement*> stmts) : stmts(std::move(stmts)) {}
 
     ~Block() override {
-//        std::cout << " Deleting Block 0x" << this << dec << "...\n";
+        //        std::cout << " Deleting Block 0x" << this << dec << "...\n";
         for (auto s : stmts)
             delete s;
     }
@@ -169,7 +192,8 @@ class PreCondition : public Node {
     explicit PreCondition(Assertion& assertion) : assertion(assertion) {}
 
     ~PreCondition() override {
-//        std::cout << " Deleting PreCondition 0x" << this << dec << "...\n";
+        //        std::cout << " Deleting PreCondition 0x" << this << dec <<
+        //        "...\n";
         delete &assertion;
     }
     //    void accept(Visitor<Node>* v) { v->visit(this); }
@@ -183,7 +207,8 @@ class PostCondition : public Node {
     explicit PostCondition(Assertion& assertion) : assertion(assertion) {}
 
     ~PostCondition() override {
-//        std::cout << " Deleting PostCondition 0x" << this << dec << "...\n";
+        //        std::cout << " Deleting PostCondition 0x" << this << dec <<
+        //        "...\n";
         delete &assertion;
     }
     //    void accept(Visitor<Node>* v) { v->visit(this); }
@@ -203,7 +228,7 @@ class Program : public Node {
           postConditions(std::move(postConditions)), block(block) {}
 
     ~Program() override {
-//        std::cout << " Deleting Program 0x" << this << dec << "...\n";
+        //        std::cout << " Deleting Program 0x" << this << dec << "...\n";
         delete &block;
         for (auto p : preConditions)
             delete p;
@@ -222,7 +247,8 @@ class Negation : public Assertion {
         : Assertion(Type::Negation), assertion(assertion) {}
 
     ~Negation() override {
-//        std::cout << " Deleting Negation 0x" << this << dec << "...\n";
+        //        std::cout << " Deleting Negation 0x" << this << dec <<
+        //        "...\n";
         delete &assertion;
     }
 };
@@ -237,7 +263,8 @@ class Disjunction : public Assertion {
         : Assertion(Type::Disjunction), left(left), right(right) {}
 
     ~Disjunction() override {
-//        std::cout << " Deleting Disjunction 0x" << this << dec << "...\n";
+        //        std::cout << " Deleting Disjunction 0x" << this << dec <<
+        //        "...\n";
         delete &left;
         delete &right;
     }
@@ -253,7 +280,8 @@ class Conjunction : public Assertion {
         : Assertion(Type::Conjunction), left(left), right(right) {}
 
     ~Conjunction() override {
-//        std::cout << " Deleting Conjunction 0x" << this << dec << "...\n";
+        //        std::cout << " Deleting Conjunction 0x" << this << dec <<
+        //        "...\n";
         delete &left;
         delete &right;
     }
@@ -269,9 +297,26 @@ class Implication : public Assertion {
         : Assertion(Type::Implication), left(left), right(right) {}
 
     ~Implication() override {
-//        std::cout << " Deleting Implication 0x" << this << dec << "...\n";
+        //        std::cout << " Deleting Implication 0x" << this << dec <<
+        //        "...\n";
         delete &left;
         delete &right;
+    }
+};
+
+// -----------------------------------------------------------------------------
+class AssertionParentheses : public Assertion {
+  public:
+    const Assertion& inner;
+
+    AssertionParentheses(Assertion& inner)
+        : Assertion(Assertion::Type::Parentheses), inner(inner) {}
+
+    ~AssertionParentheses() override {
+        //        std::cout << " Deleting AssertionParentheses 0x" << this <<
+        //        dec <<
+        //        "...\n";
+        delete &inner;
     }
 };
 
@@ -286,8 +331,8 @@ class UniversalQuantifier : public Assertion {
           variables(std::move(variables)), body(body) {}
 
     ~UniversalQuantifier() override {
-//        std::cout << " Deleting UniversalQuantifier 0x" << this << dec
-//                  << "...\n";
+        //        std::cout << " Deleting UniversalQuantifier 0x" << this << dec
+        //                  << "...\n";
         delete &body;
     }
 };
@@ -303,8 +348,9 @@ class ExistentialQuantifier : public Assertion {
           variables(std::move(variables)), body(body) {}
 
     ~ExistentialQuantifier() override {
-//        std::cout << " Deleting ExistentialQuantifier 0x" << this << dec
-//                  << "...\n";
+        //        std::cout << " Deleting ExistentialQuantifier 0x" << this <<
+        //        dec
+        //                  << "...\n";
         delete &body;
     }
 };
@@ -323,6 +369,7 @@ class ArithmeticExpression : public Node {
         Multiply,
         Divide,
         Mod,
+        Parentheses
     };
     Type type;
     explicit ArithmeticExpression(Type type) : type(type) {}
@@ -339,7 +386,8 @@ class Reference : public ArithmeticExpression {
           identifier(std::move(identifier)) {}
 
     ~Reference() override {
-//        std::cout << " Deleting Reference 0x" << this << dec << "...\n";
+        //        std::cout << " Deleting Reference 0x" << this << dec <<
+        //        "...\n";
     }
 };
 
@@ -352,7 +400,8 @@ class Constant : public ArithmeticExpression {
         : ArithmeticExpression(Type::Constant), number(number) {}
 
     ~Constant() override {
-//        std::cout << " Deleting Constant 0x" << this << dec << "...\n";
+        //        std::cout << " Deleting Constant 0x" << this << dec <<
+        //        "...\n";
     }
 };
 
@@ -367,7 +416,8 @@ class ArrayReference : public ArithmeticExpression {
           index(index) {}
 
     ~ArrayReference() override {
-//        std::cout << " Deleting ArrayReference 0x" << this << dec << "...\n";
+        //        std::cout << " Deleting ArrayReference 0x" << this << dec <<
+        //        "...\n";
         delete &index;
         delete &reference;
     }
@@ -382,7 +432,7 @@ class Negate : public ArithmeticExpression {
         : ArithmeticExpression(Type::Negate), expression(expression) {}
 
     ~Negate() override {
-//        std::cout << " Deleting Negate 0x" << this << dec << "...\n";
+        //        std::cout << " Deleting Negate 0x" << this << dec << "...\n";
         delete &expression;
     }
 };
@@ -397,7 +447,7 @@ class Sum : public ArithmeticExpression {
         : ArithmeticExpression(Type::Sum), left(left), right(right) {}
 
     ~Sum() override {
-//        std::cout << " Deleting Sum 0x" << this << dec << "...\n";
+        //        std::cout << " Deleting Sum 0x" << this << dec << "...\n";
         delete &left;
         delete &right;
     }
@@ -413,7 +463,8 @@ class Subtract : public ArithmeticExpression {
         : ArithmeticExpression(Type::Subtract), left(left), right(right) {}
 
     ~Subtract() override {
-//        std::cout << " Deleting Subtract 0x" << this << dec << "...\n";
+        //        std::cout << " Deleting Subtract 0x" << this << dec <<
+        //        "...\n";
         delete &left;
         delete &right;
     }
@@ -429,7 +480,8 @@ class Multiply : public ArithmeticExpression {
         : ArithmeticExpression(Type::Multiply), left(left), right(right) {}
 
     ~Multiply() override {
-//        std::cout << " Deleting Multiply 0x" << this << dec << "...\n";
+        //        std::cout << " Deleting Multiply 0x" << this << dec <<
+        //        "...\n";
         delete &left;
         delete &right;
     }
@@ -445,7 +497,7 @@ class Divide : public ArithmeticExpression {
         : ArithmeticExpression(Type::Divide), left(left), right(right) {}
 
     ~Divide() override {
-//        std::cout << " Deleting Divide 0x" << this << dec << "...\n";
+        //        std::cout << " Deleting Divide 0x" << this << dec << "...\n";
         delete &left;
         delete &right;
     }
@@ -461,9 +513,24 @@ class Mod : public ArithmeticExpression {
         : ArithmeticExpression(Type::Mod), left(left), right(right) {}
 
     ~Mod() override {
-//        std::cout << " Deleting Mod 0x" << this << dec << "...\n";
+        //        std::cout << " Deleting Mod 0x" << this << dec << "...\n";
         delete &left;
         delete &right;
+    }
+};
+
+// -----------------------------------------------------------------------------
+class ArithmeticParentheses : public ArithmeticExpression {
+  public:
+    const ArithmeticExpression& inner;
+
+    ArithmeticParentheses(ArithmeticExpression& inner)
+        : ArithmeticExpression(ArithmeticExpression::Type::Parentheses),
+          inner(inner) {}
+
+    ~ArithmeticParentheses() override {
+        //        std::cout << " Deleting Mod 0x" << this << dec << "...\n";
+        delete &inner;
     }
 };
 
@@ -497,7 +564,8 @@ class EqualComparison : public Comparison {
           right(right) {}
 
     ~EqualComparison() override {
-//        std::cout << " Deleting EqualComparison 0x" << this << dec << "...\n";
+        //        std::cout << " Deleting EqualComparison 0x" << this << dec <<
+        //        "...\n";
         delete &left;
         delete &right;
     }
@@ -514,8 +582,8 @@ class NotEqualComparison : public Comparison {
           right(right) {}
 
     ~NotEqualComparison() override {
-//        std::cout << " Deleting NotEqualComparison 0x" << this << dec
-//                  << "...\n";
+        //        std::cout << " Deleting NotEqualComparison 0x" << this << dec
+        //                  << "...\n";
         delete &left;
         delete &right;
     }
@@ -532,7 +600,8 @@ class LeqComparison : public Comparison {
           right(right) {}
 
     ~LeqComparison() override {
-//        std::cout << " Deleting LeqComparison 0x" << this << dec << "...\n";
+        //        std::cout << " Deleting LeqComparison 0x" << this << dec <<
+        //        "...\n";
         delete &left;
         delete &right;
     }
@@ -549,7 +618,8 @@ class GeqComparison : public Comparison {
           right(right) {}
 
     ~GeqComparison() override {
-//        std::cout << " Deleting GeqComparison 0x" << this << dec << "...\n";
+        //        std::cout << " Deleting GeqComparison 0x" << this << dec <<
+        //        "...\n";
         delete &left;
         delete &right;
     }
@@ -566,7 +636,8 @@ class LtComparison : public Comparison {
     }
 
     ~LtComparison() override {
-//        std::cout << " Deleting LtComparison 0x" << this << dec << "...\n";
+        //        std::cout << " Deleting LtComparison 0x" << this << dec <<
+        //        "...\n";
         delete &left;
         delete &right;
     }
@@ -583,7 +654,8 @@ class GtComparison : public Comparison {
     }
 
     ~GtComparison() override {
-//        std::cout << " Deleting GtComparison 0x" << this << dec << "...\n";
+        //        std::cout << " Deleting GtComparison 0x" << this << dec <<
+        //        "...\n";
         delete &left;
         delete &right;
     }
@@ -600,8 +672,8 @@ class AssignmentStatement : public Statement {
           expr(expr) {}
 
     ~AssignmentStatement() override {
-//        std::cout << " Deleting AssignmentStatement 0x" << this << dec
-//                  << "...\n";
+        //        std::cout << " Deleting AssignmentStatement 0x" << this << dec
+        //                  << "...\n";
         delete &loc;
         delete &expr;
     }
@@ -623,8 +695,9 @@ class MultipleAssignmentStatement : public Statement {
           exprSecond(exprSecond) {}
 
     ~MultipleAssignmentStatement() override {
-//        std::cout << " Deleting MultipleAssignmentStatement 0x" << this << dec
-//                  << "...\n";
+        //        std::cout << " Deleting MultipleAssignmentStatement 0x" <<
+        //        this << dec
+        //                  << "...\n";
         delete &locFirst;
         delete &locSecond;
         delete &exprFirst;
@@ -645,8 +718,9 @@ class ArrayAssignmentStatement : public Statement {
           index(index), exp(exp) {}
 
     ~ArrayAssignmentStatement() override {
-//        std::cout << " Deleting ArrayAssignmentStatement 0x" << this << dec
-//                  << "...\n";
+        //        std::cout << " Deleting ArrayAssignmentStatement 0x" << this
+        //        << dec
+        //                  << "...\n";
         delete &loc;
         delete &index;
         delete &exp;
@@ -664,7 +738,8 @@ class IfThenStatement : public Statement {
           thenBlock(thenBlock) {}
 
     ~IfThenStatement() override {
-//        std::cout << " Deleting IfThenStatement 0x" << this << dec << "...\n";
+        //        std::cout << " Deleting IfThenStatement 0x" << this << dec <<
+        //        "...\n";
         delete &condition;
         delete &thenBlock;
     }
@@ -683,8 +758,8 @@ class IfThenElseStatement : public Statement {
           thenBlock(thenBlock), elseBlock(elseBlock) {}
 
     ~IfThenElseStatement() override {
-//        std::cout << " Deleting IfThenElseStatement 0x" << this << dec
-//                  << "...\n";
+        //        std::cout << " Deleting IfThenElseStatement 0x" << this << dec
+        //                  << "...\n";
         delete &condition;
         delete &thenBlock;
         delete &elseBlock;
@@ -704,7 +779,8 @@ class WhileStatement : public Statement {
           invariants(std::move(invariants)), block(block) {}
 
     ~WhileStatement() override {
-//        std::cout << " Deleting WhileStatement 0x" << this << dec << "...\n";
+        //        std::cout << " Deleting WhileStatement 0x" << this << dec <<
+        //        "...\n";
         delete &condition;
         for (auto item : invariants) {
             delete item;

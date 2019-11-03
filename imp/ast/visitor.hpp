@@ -16,11 +16,14 @@ class BooleanExpression;
 class Program;
 class Assertion;
 class ArithmeticExpression;
+class ArithmeticParentheses;
 class PreCondition;
 class AndExpression;
 class ArrayAssignmentStatement;
 class ArrayReference;
 class AssignmentStatement;
+class AssertionParentheses;
+class BooleanParentheses;
 class Block;
 class Comparison;
 class Conjunction;
@@ -54,20 +57,22 @@ class Sum;
 class WhileStatement;
 class UniversalQuantifier;
 
-template <class T>
-class Visitor {
+template <class T> class Visitor {
   public:
     virtual T visit(const Statement*) = 0;
     virtual T visit(const BooleanExpression*) = 0;
     virtual T visit(const Assertion*) = 0;
     virtual T visit(const Program*) = 0;
     virtual T visit(const ArithmeticExpression*) = 0;
+    virtual T visit(const ArithmeticParentheses*) = 0;
     virtual T visit(const PreCondition*) = 0;
     virtual T visit(const AndExpression*) = 0;
     virtual T visit(const ArrayAssignmentStatement*) = 0;
     virtual T visit(const ArrayReference*) = 0;
     virtual T visit(const AssignmentStatement*) = 0;
+    virtual T visit(const AssertionParentheses*) = 0;
     virtual T visit(const Block*) = 0;
+    virtual T visit(const BooleanParentheses*) = 0;
     virtual T visit(const Comparison*) = 0;
     virtual T visit(const Conjunction*) = 0;
     virtual T visit(const Constant*) = 0;
@@ -100,6 +105,6 @@ class Visitor {
     virtual T visit(const WhileStatement*) = 0;
 };
 
-} // namespace ast
+} // namespace imp::ast
 
 #endif // IMP_VISITOR_HPP

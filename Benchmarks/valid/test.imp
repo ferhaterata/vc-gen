@@ -1,5 +1,5 @@
 program test
+ post i = 0 && a[i] = 1 ==> x = 1
 is
-  i := 0;
-  a[i] := a[j+3] + 1;
+  x := a[i] + i;
 end

@@ -51,6 +51,10 @@ class GcCompiler : public imp::ast::Visitor<string> {
         case imp::ast::BooleanExpression::Type::Comparison:
             ss << visit(dynamic_cast<const imp::ast::Comparison*>(expression));
             break;
+        case ast::BooleanExpression::Type::Parentheses:
+            ss << visit(
+                dynamic_cast<const imp::ast::BooleanParentheses*>(expression));
+            break;
         }
         return ss.str();
     }
@@ -72,6 +76,12 @@ class GcCompiler : public imp::ast::Visitor<string> {
         stringstream ss;
         ss << "" << visit(&expression->left) << " && "
            << visit(&expression->right) << "";
+        return ss.str();
+    }
+
+    string visit(const imp::ast::BooleanParentheses* expression) override {
+        stringstream ss;
+        ss << "(" << visit(&expression->inner) << ")";
         return ss.str();
     }
 
@@ -100,6 +110,10 @@ class GcCompiler : public imp::ast::Visitor<string> {
             break;
         case imp::ast::Assertion::Type::Comparison:
             ss << visit(dynamic_cast<const imp::ast::Comparison*>(assertion));
+            break;
+        case ast::Assertion::Type::Parentheses:
+            ss << visit(
+                dynamic_cast<const imp::ast::AssertionParentheses*>(assertion));
             break;
         }
         return ss.str();
@@ -226,6 +240,12 @@ class GcCompiler : public imp::ast::Visitor<string> {
         return ss.str();
     }
 
+    string visit(const imp::ast::AssertionParentheses* assertion) override {
+        stringstream ss;
+        ss << "(" << visit(&assertion->inner) << ")";
+        return ss.str();
+    }
+
     string visit(const imp::ast::UniversalQuantifier* assertion) override {
         stringstream ss;
         ss << "forall ";
@@ -278,6 +298,10 @@ class GcCompiler : public imp::ast::Visitor<string> {
             break;
         case imp::ast::ArithmeticExpression::Type::Mod:
             ss << visit(dynamic_cast<const imp::ast::Mod*>(expression));
+            break;
+        case ast::ArithmeticExpression::Type::Parentheses:
+            ss << visit(dynamic_cast<const imp::ast::ArithmeticParentheses*>(
+                expression));
             break;
         }
         return ss.str();
@@ -350,6 +374,12 @@ class GcCompiler : public imp::ast::Visitor<string> {
         stringstream ss;
         ss << "" << visit(&expression->left) << " % "
            << visit(&expression->right) << "";
+        return ss.str();
+    }
+
+    string visit(const imp::ast::ArithmeticParentheses* expression) override {
+        stringstream ss;
+        ss << "(" << visit(&expression->inner) << ")";
         return ss.str();
     }
 

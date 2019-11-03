@@ -12,5 +12,5 @@ assume A % gcd = 0 && B % gcd = 0;
  assert A % gcd = 0 && B % gcd = 0; assume false;
  []
  assume !(j <= A || j <= B);)
-assume lcm!0 = lcm; havoc lcm; assume lcm = A * B / gcd;
+assume lcm!0 = lcm; havoc lcm; assume lcm = (A * B) / gcd;
 assert A <= lcm && lcm <= A * B && B <= lcm;

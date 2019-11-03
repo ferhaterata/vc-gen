@@ -155,7 +155,7 @@ aexp:
     | aexp "*" aexp             { $$ = new imp::ast::Multiply(*$1, *$3); }
     | aexp "/" aexp             { $$ = new imp::ast::Divide(*$1, *$3); }
     | aexp "%" aexp             { $$ = new imp::ast::Mod(*$1, *$3); }
-    | "(" aexp ")"              { $$ = $2;}
+    | "(" aexp ")"              { $$ = new imp::ast::ArithmeticParentheses(*$2); }
     ;
 
 reference: "identifier"         { $$ = new imp::ast::Reference($1); }
@@ -169,7 +169,7 @@ bexp:
     | "!" bexp                  { $$ = new imp::ast::NotExpression(*$2); }
     | bexp "||" bexp            { $$ = new imp::ast::OrExpression(*$1, *$3); }
     | bexp "&&" bexp            { $$ = new imp::ast::AndExpression(*$1, *$3); }
-    | "(" bexp ")"              { $$ = $2;}
+    | "(" bexp ")"              { $$ = new imp::ast::BooleanParentheses(*$2);}
     ;
 
 comp:
@@ -250,10 +250,10 @@ assertion:
     | assertion "==>" assertion                 { $$ = new imp::ast::Implication(*$1, *$3); }
     | "forall" identifier_list "," assertion    { $$ = new imp::ast::UniversalQuantifier($2, *$4); /*print<std::string>($2);*/ }
     | "exists" identifier_list "," assertion    { $$ = new imp::ast::ExistentialQuantifier($2, *$4); /*print<std::string>($2);*/ }
-    | "(" assertion ")"                         { $$ = $2; }
+    | "(" assertion ")"                         { $$ = new imp::ast::AssertionParentheses(*$2); }
     | "(" error ")"                             {  }
-    ;
 
+    ;
 identifier_list:
       "identifier"                              { $$ = {$1}; }
     | identifier_list "identifier"              { $$ = enlist($1, $2); }

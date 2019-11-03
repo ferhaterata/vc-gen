@@ -7,6 +7,7 @@ include_directories(
         .
         imp imp/recognizer imp/compiler
         gc gc/recognizer
+        solver
 )
 
 find_package(BISON)
@@ -58,11 +59,10 @@ add_executable(vcgen
         gc/ast/gc.cpp
         gc/ast/visitor.hpp
         gc/ast/printer-visitor.hpp
-        gc/ast/prufier.hpp
         gc/compiler/smt-compiler.hpp
         ##########
         solver/z3-solver.hpp
-        )
+        solver/z3-solver.cpp)
 
 add_executable(gc
         gc/test.cpp
@@ -78,7 +78,7 @@ add_executable(gc
         gc/ast/gc.cpp
         gc/ast/visitor.hpp
         gc/ast/printer-visitor.hpp
-        gc/ast/prufier.hpp
         gc/compiler/smt-compiler.hpp
         ##########
-        solver/z3-solver.hpp)
+        solver/z3-solver.hpp
+        solver/z3-solver.cpp)

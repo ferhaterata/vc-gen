@@ -41,6 +41,9 @@ class PrinterVisitor : public Visitor<string> {
         case BooleanExpression::Type::Comparison:
             ss << visit(dynamic_cast<const Comparison*>(expression));
             break;
+        case BooleanExpression::Type::Parentheses:
+            ss << visit(dynamic_cast<const BooleanParentheses*>(expression));
+            break;
         }
         return ss.str();
     }
@@ -65,6 +68,12 @@ class PrinterVisitor : public Visitor<string> {
         return ss.str();
     }
 
+    string visit(const BooleanParentheses* expression) override {
+        stringstream ss;
+        ss << "(" << visit(&expression->inner) << ")";
+        return ss.str();
+    }
+
     string visit(const Assertion* assertion) override {
         stringstream ss;
         switch (assertion->type) {
@@ -81,15 +90,16 @@ class PrinterVisitor : public Visitor<string> {
             ss << visit(dynamic_cast<const Implication*>(assertion));
             break;
         case Assertion::Type::UniversalQuantification:
-            ss << visit(
-                dynamic_cast<const UniversalQuantifier*>(assertion));
+            ss << visit(dynamic_cast<const UniversalQuantifier*>(assertion));
             break;
         case Assertion::Type::ExistentialQuantification:
-            ss << visit(
-                dynamic_cast<const ExistentialQuantifier*>(assertion));
+            ss << visit(dynamic_cast<const ExistentialQuantifier*>(assertion));
             break;
         case Assertion::Type::Comparison:
             ss << visit(dynamic_cast<const Comparison*>(assertion));
+            break;
+        case Assertion::Type::Parentheses:
+            ss << visit(dynamic_cast<const AssertionParentheses*>(assertion));
             break;
         }
         return ss.str();
@@ -201,6 +211,12 @@ class PrinterVisitor : public Visitor<string> {
         return ss.str();
     }
 
+    string visit(const AssertionParentheses* assertion) override {
+        stringstream ss;
+        ss << "(" << visit(&assertion->inner) << ")";
+        return ss.str();
+    }
+
     string visit(const UniversalQuantifier* assertion) override {
         stringstream ss;
         ss << "(forall ";
@@ -252,6 +268,9 @@ class PrinterVisitor : public Visitor<string> {
             break;
         case ArithmeticExpression::Type::Mod:
             ss << visit(dynamic_cast<const Mod*>(expression));
+            break;
+        case ArithmeticExpression::Type::Parentheses:
+            ss << visit(dynamic_cast<const ArithmeticParentheses*>(expression));
             break;
         }
         return ss.str();
@@ -314,6 +333,12 @@ class PrinterVisitor : public Visitor<string> {
         stringstream ss;
         ss << "(" << visit(&expression->left) << " % "
            << visit(&expression->right) << ")";
+        return ss.str();
+    }
+
+    string visit(const ArithmeticParentheses* expression) override {
+        stringstream ss;
+        ss << "(" << visit(&expression->inner) << ")";
         return ss.str();
     }
 

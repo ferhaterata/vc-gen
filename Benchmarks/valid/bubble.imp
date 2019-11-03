@@ -6,7 +6,7 @@ is
   bound := n;
   while bound > 0
     inv 0 <= bound && bound <= n
-    inv forall j k, 0 <= j && j < k && bound <= k && k < n ==> a[j] <= a[k]
+    inv forall j k, (0 <= j && j < k && bound <= k && k < n) ==> a[j] <= a[k]
   do
     i := 0;
     while i < bound - 1

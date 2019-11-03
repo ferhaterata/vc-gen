@@ -953,7 +953,7 @@ namespace imp {
 
   case 11:
 #line 158 "/home/ferhat/git/vc-gen/imp/imp-parser.yy"
-    { yylhs.value.as < imp::ast::ArithmeticExpression* > () = yystack_[1].value.as < imp::ast::ArithmeticExpression* > ();}
+    { yylhs.value.as < imp::ast::ArithmeticExpression* > () = new imp::ast::ArithmeticParentheses(*yystack_[1].value.as < imp::ast::ArithmeticExpression* > ()); }
 #line 958 "/home/ferhat/git/vc-gen/imp/recognizer/imp-parser.cpp"
     break;
 
@@ -995,7 +995,7 @@ namespace imp {
 
   case 18:
 #line 172 "/home/ferhat/git/vc-gen/imp/imp-parser.yy"
-    { yylhs.value.as < imp::ast::BooleanExpression* > () = yystack_[1].value.as < imp::ast::BooleanExpression* > ();}
+    { yylhs.value.as < imp::ast::BooleanExpression* > () = new imp::ast::BooleanParentheses(*yystack_[1].value.as < imp::ast::BooleanExpression* > ());}
 #line 1000 "/home/ferhat/git/vc-gen/imp/recognizer/imp-parser.cpp"
     break;
 
@@ -1228,7 +1228,7 @@ namespace imp {
 
   case 56:
 #line 253 "/home/ferhat/git/vc-gen/imp/imp-parser.yy"
-    { yylhs.value.as < imp::ast::Assertion* > () = yystack_[1].value.as < imp::ast::Assertion* > (); }
+    { yylhs.value.as < imp::ast::Assertion* > () = new imp::ast::AssertionParentheses(*yystack_[1].value.as < imp::ast::Assertion* > ()); }
 #line 1233 "/home/ferhat/git/vc-gen/imp/recognizer/imp-parser.cpp"
     break;
 

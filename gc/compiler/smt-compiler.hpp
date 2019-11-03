@@ -42,7 +42,7 @@ class SmtCompiler : public gc::ast::Visitor<string> {
         visit(prog);
 
         // locate array constants
-        // store and select pushes array constancs followed by '!'
+        // store and select pushes array constants followed by '!'
         // if "a!1" is in stored or read then any constants starts with 'a' must
         // be an array as well.
         for (const auto& a : arrs) {

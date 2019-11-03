@@ -83,10 +83,12 @@ Code Structure:
 ├── solver                          /* SMT Solver Namespace     */
 │   ├── z3-solver.cpp
 │   └── z3-solver.hpp               /* Z3 Solver Wrapper        */
-├── Makefile
-├── readme.md
-├── tools.cpp
-├── tools.hpp
+├── Makefile                        /* Make (Build/Debug/Clean) */
+├── readme.md                       /* This File                */
+├── CMakeLists.txt                  /* CMake Configuration      */
+├── .clang-format                   /* C++ Formatting Definition*/
+├── tools.cpp                     
+├── tools.hpp                       /* Macro definitions        */
 └── vcgen.cpp                       /* Main Conductor           */
 ````   
 Benchmarks:

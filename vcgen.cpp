@@ -13,33 +13,36 @@
 #include "tools.hpp"
 #include <iostream>
 
-void run(imp_driver&);
+void run(imp_driver&, gc_driver&);
 std::string& erase(std::string&, const std::string&);
 void printFile(const std::string&);
 
 int main(int argc, char* argv[]) {
     banner();
-    imp_driver driver;
+    imp_driver impDriver;
+    gc_driver gcDriver;
     for (int i = 1; i < argc; ++i)
         if (argv[i] == std::string("-p"))
-            driver.trace_parsing = true;
+            impDriver.trace_parsing = true;
         else if (argv[i] == std::string("-s"))
-            driver.trace_scanning = true;
-        else if (!driver.parse(argv[i])) {
-            run(driver);
+            impDriver.trace_scanning = true;
+        else if (!impDriver.parse(argv[i])) {
+            run(impDriver, gcDriver);
         } else
             return 1;
     bye();
     return 0;
 }
 
-void run(imp_driver& impDriver) {
+void run(imp_driver& impDriver, gc_driver& gcDriver) {
     printFile(impDriver.file);
     cout << "\n";
     cout << "---------------------------------------------------------------\n";
+
     imp::ast::PrinterVisitor visitor(impDriver.program);
     std::cout << visitor.getOutput() << std::endl;
     cout << "---------------------------------------------------------------\n";
+
     imp::compiler::GcCompiler gcCompiler(impDriver.program);
     std::string gc = gcCompiler.compile();
     std::cout << gc << std::endl;
@@ -48,7 +51,7 @@ void run(imp_driver& impDriver) {
     gc_fout << erase(gc, " \b");
     gc_fout.close();
     cout << "---------------------------------------------------------------\n";
-    gc_driver gcDriver;
+
     gcDriver.parse(gcFileName);
     gc::compiler::SmtCompiler smtCompiler(gcDriver.program);
     std::string smt = smtCompiler.compile();
@@ -58,6 +61,7 @@ void run(imp_driver& impDriver) {
     smt_fout << erase(smt, ")\b ");
     smt_fout.close();
     cout << "---------------------------------------------------------------\n";
+
     Z3 solver;
     Result result = solver.run(smtFileName);
     switch (result) {
@@ -72,7 +76,6 @@ void run(imp_driver& impDriver) {
         cout << solver.getResult();
         break;
     }
-    separator()
 }
 
 // print the file

@@ -8,7 +8,7 @@ CXXFLAGS = -O1 -std=c++17
 OBJ = tools.o vcgen.o imp/imp-driver.o imp/ast/imp.o \
  imp/recognizer/imp-parser.o imp/recognizer/imp-scanner.o \
  gc/gc-driver.o gc/recognizer/gc-parser.o gc/ast/gc.o \
- gc/recognizer/gc-scanner.o
+ gc/recognizer/gc-scanner.o solver/z3-solver.o
 # gc/test.o
 TARGET = vcgen
 #-----------------------------------------------------------
@@ -32,6 +32,8 @@ clean:
 # c++ -MM  gc/*.cpp >> Makefile
 # c++ -MM  gc/recognizer/*.cpp >> Makefile
 # c++ -MM  gc/ast/*.cpp >> Makefile
+# ---
+# c++ -MM  solver/*.cpp >> Makefile
 tools.o: tools.cpp tools.hpp
 vcgen.o: vcgen.cpp gc/compiler/smt-compiler.hpp \
  gc/compiler/../ast/visitor.hpp gc/compiler/../ast/gc.hpp \
@@ -45,7 +47,8 @@ imp-driver.o: imp/imp-driver.cpp imp/imp-driver.hpp \
  imp/recognizer/imp-parser.hpp imp/recognizer/../ast/imp.hpp \
  imp/recognizer/../ast/visitor.hpp imp/recognizer/../ast/imp.hpp \
  imp/recognizer/location.hh imp/ast/imp.hpp
-imp.o: imp/ast/imp.cpp imp/ast/imp.hpp imp/ast/visitor.hpp
+imp.o: imp/ast/imp.cpp imp/ast/imp.hpp imp/ast/../../tools.hpp \
+ imp/ast/visitor.hpp
 imp-parser.o: imp/recognizer/imp-parser.cpp imp/recognizer/imp-parser.hpp \
  imp/recognizer/../ast/imp.hpp imp/recognizer/../ast/visitor.hpp \
  imp/recognizer/../ast/imp.hpp imp/recognizer/location.hh \
@@ -74,3 +77,4 @@ gc-scanner.o: gc/recognizer/gc-scanner.cpp gc/recognizer/../gc-driver.hpp \
  gc/recognizer/../recognizer/../ast/gc.hpp \
  gc/recognizer/../recognizer/location.hh gc/recognizer/gc-parser.hpp
 gc.o: gc/ast/gc.cpp gc/ast/gc.hpp gc/ast/../../tools.hpp
+z3-solver.o: solver/z3-solver.cpp solver/z3-solver.hpp

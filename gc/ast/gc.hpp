@@ -69,11 +69,7 @@ class Location : public Expression {
         : Expression(Expression::Type::Location),
           identifier(std::move(identifier)) {}
 
-    ~Location() override {
-        d("Location")
-        //        std::cout << " Deleting Location 0x" << this << dec <<
-        //        "...\n";
-    }
+    ~Location() override { d(gc::ast::Location) }
 };
 
 // -----------------------------------------------------------------------------
@@ -102,10 +98,7 @@ class Assume : public Command {
     explicit Assume(const Assertion& assertion)
         : Command(Command::Type::Assume), assertion(assertion) {}
 
-    ~Assume() override {
-        //        std::cout << " Deleting Assume 0x" << this << dec << "...\n";
-        delete &assertion;
-    }
+    ~Assume() override { d(gc::ast::Assume) delete &assertion; }
 };
 
 // -----------------------------------------------------------------------------
@@ -116,10 +109,7 @@ class Assert : public Command {
     explicit Assert(const Assertion& assertion)
         : Command(Command::Type::Assert), assertion(assertion) {}
 
-    ~Assert() override {
-        //        std::cout << " Deleting Assert 0x" << this << dec << "...\n";
-        delete &assertion;
-    }
+    ~Assert() override { d(gc::ast::Assert) delete &assertion; }
 };
 
 // -----------------------------------------------------------------------------
@@ -130,10 +120,7 @@ class Havoc : public Command {
     explicit Havoc(const Location& location)
         : Command(Command::Type::Havoc), location(location) {}
 
-    ~Havoc() override {
-        //        std::cout << " Deleting Havoc 0x" << this << dec << "...\n";
-        delete &location;
-    }
+    ~Havoc() override { d(gc::ast::Havoc) delete &location; }
 };
 
 // -----------------------------------------------------------------------------
@@ -148,10 +135,7 @@ class Select : public Command {
           right(std::move(right)) {}
 
     ~Select() override {
-        //        std::cout << " Deleting Select 0x" << this << dec << "...\n";
-        for (auto c : left) {
-            delete c;
-        }
+        d(gc::ast::Select) for (auto c : left) { delete c; }
         for (auto c : right) {
             delete c;
         }
@@ -167,11 +151,7 @@ class List : public Command {
         : Command(Command::Type::List), commands(std::move(commands)) {}
 
     ~List() override {
-        //        std::cout << " Deleting Command List 0x" << this << dec <<
-        //        "...\n";
-        for (auto c : commands) {
-            delete c;
-        }
+        d(gc::ast::List) for (auto c : commands) { delete c; }
     }
 };
 
@@ -184,9 +164,7 @@ class Program : public Node {
         : commands(std::move(commands)) {}
 
     ~Program() override {
-        //        std::cout << " Deleting Program 0x" << this << dec << "...\n";
-        for (auto c : commands)
-            delete c;
+        d(gc::ast::Program) for (auto c : commands) delete c;
     }
 };
 
@@ -198,20 +176,14 @@ class Negation : public Assertion {
     explicit Negation(Assertion& assertion)
         : Assertion(Type::Negation), assertion(assertion) {}
 
-    ~Negation() override {
-        //        std::cout << " Deleting Negation 0x" << this << dec <<
-        //        "...\n";
-        delete &assertion;
-    }
+    ~Negation() override { d(gc::ast::Negation) delete &assertion; }
 };
 
 // -----------------------------------------------------------------------------
 class True : public Assertion {
   public:
     True() : Assertion(Assertion::Type::True) {}
-    ~True() override {
-        //        std::cout << " Deleting True 0x" << this << dec << "...\n";
-    }
+    ~True() override { d(gc::ast::True) }
 };
 
 // -----------------------------------------------------------------------------
@@ -219,9 +191,7 @@ class False : public Assertion {
   public:
     False() : Assertion(Assertion::Type::False) {}
 
-    ~False() override {
-        //        std::cout << " Deleting False 0x" << this << dec << "...\n";
-    }
+    ~False() override { d(gc::ast::False) }
 };
 
 // -----------------------------------------------------------------------------
@@ -234,9 +204,7 @@ class Disjunction : public Assertion {
         : Assertion(Type::Disjunction), left(left), right(right) {}
 
     ~Disjunction() override {
-        //        std::cout << " Deleting Disjunction 0x" << this << dec <<
-        //        "...\n";
-        delete &left;
+        d(gc::ast::Disjunction) delete &left;
         delete &right;
     }
 };
@@ -251,9 +219,7 @@ class Conjunction : public Assertion {
         : Assertion(Type::Conjunction), left(left), right(right) {}
 
     ~Conjunction() override {
-        //        std::cout << " Deleting Conjunction 0x" << this << dec <<
-        //        "...\n";
-        delete &left;
+        d(gc::ast::Conjunction) delete &left;
         delete &right;
     }
 };
@@ -268,9 +234,7 @@ class Implication : public Assertion {
         : Assertion(Type::Implication), left(left), right(right) {}
 
     ~Implication() override {
-        //        std::cout << " Deleting Implication 0x" << this << dec <<
-        //        "...\n";
-        delete &left;
+        d(gc::ast::Implication) delete &left;
         delete &right;
     }
 };
@@ -286,9 +250,7 @@ class UniversalQuantifier : public Assertion {
           variables(std::move(variables)), body(body) {}
 
     ~UniversalQuantifier() override {
-        //        std::cout << " Deleting UniversalQuantifier 0x" << this << dec
-        //                  << "...\n";
-        delete &body;
+        d(gc::ast::UniversalQuantifier) delete &body;
     }
 };
 
@@ -303,10 +265,7 @@ class ExistentialQuantifier : public Assertion {
           variables(std::move(variables)), body(body) {}
 
     ~ExistentialQuantifier() override {
-        //        std::cout << " Deleting ExistentialQuantifier 0x" << this <<
-        //        dec
-        //                  << "...\n";
-        delete &body;
+        d(gc::ast::ExistentialQuantifier) delete &body;
     }
 };
 
@@ -318,10 +277,7 @@ class Constant : public Expression {
     explicit Constant(const int number)
         : Expression(Type::Constant), number(number) {}
 
-    ~Constant() override {
-        //        std::cout << " Deleting Constant 0x" << this << dec <<
-        //        "...\n";
-    }
+    ~Constant() override { d(gc::ast::Constant) }
 };
 
 // -----------------------------------------------------------------------------
@@ -334,9 +290,7 @@ class Read : public Expression {
         : Expression(Type::Read), location(location), index(index) {}
 
     ~Read() override {
-        //        std::cout << " Deleting Read Array 0x" << this << dec <<
-        //        "...\n";
-        delete &index;
+        d(gc::ast::Read) delete &index;
         delete &location;
     }
 };
@@ -353,9 +307,7 @@ class Write : public Expression {
           value(value) {}
 
     ~Write() override {
-        //        std::cout << " Deleting Write Array 0x" << this << dec <<
-        //        "...\n";
-        delete &index;
+        d(gc::ast::Write) delete &index;
         delete &location;
         delete &value;
     }
@@ -369,10 +321,7 @@ class Negate : public Expression {
     explicit Negate(Expression& expression)
         : Expression(Type::Negate), expression(expression) {}
 
-    ~Negate() override {
-        //        std::cout << " Deleting Negate 0x" << this << dec << "...\n";
-        delete &expression;
-    }
+    ~Negate() override { d(gc::ast::Negate) delete &expression; }
 };
 
 // -----------------------------------------------------------------------------
@@ -385,8 +334,7 @@ class Sum : public Expression {
         : Expression(Type::Sum), left(left), right(right) {}
 
     ~Sum() override {
-        //        std::cout << " Deleting Sum 0x" << this << dec << "...\n";
-        delete &left;
+        d(gc::ast::Sum) delete &left;
         delete &right;
     }
 };
@@ -401,9 +349,7 @@ class Subtract : public Expression {
         : Expression(Type::Subtract), left(left), right(right) {}
 
     ~Subtract() override {
-        //        std::cout << " Deleting Subtract 0x" << this << dec <<
-        //        "...\n";
-        delete &left;
+        d(gc::ast::Subtract) delete &left;
         delete &right;
     }
 };
@@ -418,9 +364,7 @@ class Multiply : public Expression {
         : Expression(Type::Multiply), left(left), right(right) {}
 
     ~Multiply() override {
-        //        std::cout << " Deleting Multiply 0x" << this << dec <<
-        //        "...\n";
-        delete &left;
+        d(gc::ast::Multiply) delete &left;
         delete &right;
     }
 };
@@ -435,8 +379,7 @@ class Divide : public Expression {
         : Expression(Type::Divide), left(left), right(right) {}
 
     ~Divide() override {
-        //        std::cout << " Deleting Divide 0x" << this << dec << "...\n";
-        delete &left;
+        d(gc::ast::Divide) delete &left;
         delete &right;
     }
 };
@@ -451,8 +394,7 @@ class Mod : public Expression {
         : Expression(Type::Mod), left(left), right(right) {}
 
     ~Mod() override {
-        //        std::cout << " Deleting Mod 0x" << this << dec << "...\n";
-        delete &left;
+        d(gc::ast::Mod) delete &left;
         delete &right;
     }
 };
@@ -485,9 +427,7 @@ class EqualComparison : public Comparison {
           right(right) {}
 
     ~EqualComparison() override {
-        //        std::cout << " Deleting EqualComparison 0x" << this << dec <<
-        //        "...\n";
-        delete &left;
+        d(gc::ast::EqualComparison) delete &left;
         delete &right;
     }
 };
@@ -503,9 +443,7 @@ class NotEqualComparison : public Comparison {
           right(right) {}
 
     ~NotEqualComparison() override {
-        //        std::cout << " Deleting NotEqualComparison 0x" << this << dec
-        //                  << "...\n";
-        delete &left;
+        d(gc::ast::NotEqualComparison) delete &left;
         delete &right;
     }
 };
@@ -521,9 +459,7 @@ class LeqComparison : public Comparison {
           right(right) {}
 
     ~LeqComparison() override {
-        //        std::cout << " Deleting LeqComparison 0x" << this << dec <<
-        //        "...\n";
-        delete &left;
+        d(gc::ast::LeqComparison) delete &left;
         delete &right;
     }
 };
@@ -539,9 +475,7 @@ class GeqComparison : public Comparison {
           right(right) {}
 
     ~GeqComparison() override {
-        //        std::cout << " Deleting GeqComparison 0x" << this << dec <<
-        //        "...\n";
-        delete &left;
+        d(gc::ast::GeqComparison) delete &left;
         delete &right;
     }
 };
@@ -557,9 +491,7 @@ class LtComparison : public Comparison {
     }
 
     ~LtComparison() override {
-        //        std::cout << " Deleting LtComparison 0x" << this << dec <<
-        //        "...\n";
-        delete &left;
+        d(gc::ast::LtComparison) delete &left;
         delete &right;
     }
 };
@@ -575,9 +507,7 @@ class GtComparison : public Comparison {
     }
 
     ~GtComparison() override {
-        //        std::cout << " Deleting GtComparison 0x" << this << dec <<
-        //        "...\n";
-        delete &left;
+        d(gc::ast::GtComparison) delete &left;
         delete &right;
     }
 };

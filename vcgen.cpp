@@ -72,6 +72,7 @@ void run(imp_driver& impDriver) {
         cout << solver.getResult();
         break;
     }
+    separator()
 }
 
 // print the file

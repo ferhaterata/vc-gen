@@ -1,0 +1,8 @@
+program test2
+    pre x > 0
+is
+    while x != 0
+    do
+        x:= x - 1;
+    end
+end

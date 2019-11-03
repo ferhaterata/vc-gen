@@ -11,10 +11,10 @@
 #include <map>
 #include <string>
 // Tell Flex the lexer's prototype ...
-#define YY_DECL imp::imp_parser::symbol_type implex(imp_driver& driver)
+#define IMP_DECL imp::imp_parser::symbol_type implex(imp_driver& driver)
 
 // ... and declare it for the parser's sake.
-YY_DECL;
+IMP_DECL;
 // Conducting the whole scanning and parsing of imp.
 
 class imp_driver {

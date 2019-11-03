@@ -7,6 +7,7 @@
 #ifndef VC_GEN_GC_HPP
 #define VC_GEN_GC_HPP
 
+#include "../../tools.hpp"
 #include <iostream>
 #include <map>
 #include <string>
@@ -69,6 +70,7 @@ class Location : public Expression {
           identifier(std::move(identifier)) {}
 
     ~Location() override {
+        d("Location")
         //        std::cout << " Deleting Location 0x" << this << dec <<
         //        "...\n";
     }
@@ -140,8 +142,6 @@ class Select : public Command {
   public:
     vector<Command*> left;
     vector<Command*> right;
-    vector<Command*> leftExt;  // no custody
-    vector<Command*> rightExt; // no custody
 
     Select(vector<Command*> left, vector<Command*> right)
         : Command(Command::Type::Select), left(std::move(left)),

@@ -4,21 +4,24 @@
 
 #-----------------------------------------------------------
 # Macro definitions
-CXXFLAGS = -O1 -g -Wall -std=c++17
+CXXFLAGS = -O1 -std=c++17
 OBJ = tools.o vcgen.o imp/imp-driver.o imp/ast/imp.o \
  imp/recognizer/imp-parser.o imp/recognizer/imp-scanner.o \
  gc/gc-driver.o gc/recognizer/gc-parser.o gc/ast/gc.o \
  gc/recognizer/gc-scanner.o
 # gc/test.o
-TEST = Benchmark/valid/bubble.imp
 TARGET = vcgen
 #-----------------------------------------------------------
 # Rules
 all: $(TARGET)
 $(TARGET): $(OBJ)
 	$(CXX) -o $@ $(OBJ)
+
+debug: CXXFLAGS += -DDEBUG -g -Wall
+debug: $(TARGET)
+
 clean:
-	rm -f $(OBJ) $(TARGET)
+	rm -f $(OBJ) $(TARGET) $(DEBUG)
 #-----------------------------------------------------------
 # Dependencies
 # c++ -MM *.cpp >> Makefile
@@ -70,4 +73,4 @@ gc-scanner.o: gc/recognizer/gc-scanner.cpp gc/recognizer/../gc-driver.hpp \
  gc/recognizer/../recognizer/gc-parser.hpp \
  gc/recognizer/../recognizer/../ast/gc.hpp \
  gc/recognizer/../recognizer/location.hh gc/recognizer/gc-parser.hpp
-gc.o: gc/ast/gc.cpp gc/ast/gc.hpp
+gc.o: gc/ast/gc.cpp gc/ast/gc.hpp gc/ast/../../tools.hpp

@@ -550,11 +550,13 @@ class GcCompiler : public imp::ast::Visitor<string> {
         indent.push_back(' ');
         stringstream ss;
         // assert I;
-        ss << "";
-        for (const auto& invariant : statement->invariants) {
-            ss << "assert " << visit(invariant) << "; ";
+        if (!statement->invariants.empty()) {
+            ss << "";
+            for (const auto& invariant : statement->invariants) {
+                ss << "assert " << visit(invariant) << "; ";
+            }
+            ss << "\b\n";
         }
-        ss << "\b\n";
         // havoc x1; ...; havoc xn;
         // collect modified locations for havoc
         visit(&statement->block);
@@ -566,11 +568,13 @@ class GcCompiler : public imp::ast::Visitor<string> {
             ss << "\b\n";
         }
         // assume I;
-        ss << "";
-        for (const auto& invariant : statement->invariants) {
-            ss << "assume " << visit(invariant) << "; ";
+        if (!statement->invariants.empty()) {
+            ss << "";
+            for (const auto& invariant : statement->invariants) {
+                ss << "assume " << visit(invariant) << "; ";
+            }
+            ss << "\b\n";
         }
-        ss << "\b\n";
         // (assume b; GC(c); assert I; assume false)
         // (assume b;
         ss << "(assume " << visit(&statement->condition) << ";\n" << indent;

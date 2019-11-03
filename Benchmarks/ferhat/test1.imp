@@ -1,0 +1,5 @@
+program test1
+ post i = 0 && a[i] = 1 ==> x = 1
+is
+  x := a[i] + i;
+end

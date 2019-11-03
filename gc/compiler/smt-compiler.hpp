@@ -40,11 +40,10 @@ class SmtCompiler : public gc::ast::Visitor<string> {
   public:
     explicit SmtCompiler(gc::ast::Program* prog) : prog(prog) {
         visit(prog);
-
         // locate array constants
         // store and select pushes array constants followed by '!'
-        // if "a!1" is in stored or read then any constants starts with 'a' must
-        // be an array as well.
+        // if "a!1" is in stored or read then any constants starts with 'a'
+        // must be an array as well.
         for (const auto& a : arrs) {
             size_t pos = 0;
             if ((pos = a.find('!', pos)) != std::string::npos) {

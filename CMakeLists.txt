@@ -10,6 +10,8 @@ include_directories(
         solver
 )
 
+add_definitions(-DDEBUG)
+
 find_package(BISON)
 find_package(FLEX)
 

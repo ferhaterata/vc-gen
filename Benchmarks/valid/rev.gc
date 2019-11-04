@@ -1,7 +1,7 @@
 assume 0 <= N;
 assume i!0 = i; havoc i; assume i = 0;
 assert i <= N; assert forall j, 0 <= j && j < i ==> read(a, j) = read(b, N - j);
-havoc i; havoc a;
+havoc a; havoc i;
 assume i <= N; assume forall j, 0 <= j && j < i ==> read(a, j) = read(b, N - j);
 (assume i < N;
  assume a!0 = a; havoc a; assume a = write(a!0, i, read(b, N - i));

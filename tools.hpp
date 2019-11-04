@@ -6,7 +6,7 @@
 
 #pragma once
 
-// Use -DDEBUG on the g++ command line to build the nested inner class version
+// Use -DDEBUG on the g++ command line to build the debug version
 #ifdef DEBUG
 // Macro to print and then run a line of source code
 #define v(a)                                                                   \
@@ -14,7 +14,12 @@
     a
 
 // Macro to print a variable
-#define p(a) #a "=" << a
+#define p(a)                                                                   \
+    cout << #a " = " << a << endl;                                             \
+    a
+
+// Macro to print a key and value
+#define kv(a, b) cout << "[" #a << "\t= " << b << " ]" << endl;
 
 // Macro to print destructors
 #define d(a) cout << "\n Deleting " << #a << " " << this << dec << "...";
@@ -22,15 +27,17 @@
 // Macro to print a debug separator
 #define separator()                                                            \
     cout << "\n";                                                              \
-    cout << "---------------------------------------------------------------";
+    cout << "---------------------------------------------------------------"; \
+    cout << "\n";
 
 #else
 #define DEBUG 0
 // alternative way to define them:
 #define v(a) a
 
-// Macro to print a variable
 #define p(a) a
+
+#define kv(a, b)
 
 #define d(a)
 

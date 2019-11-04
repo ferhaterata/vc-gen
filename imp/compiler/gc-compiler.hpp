@@ -559,6 +559,7 @@ class GcCompiler : public imp::ast::Visitor<string> {
         }
         // havoc x1; ...; havoc xn;
         // collect modified locations for havoc
+        havocs.clear();
         visit(&statement->block);
         if (!havocs.empty()) {
             ss << "";

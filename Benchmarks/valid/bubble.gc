@@ -6,7 +6,7 @@ assume 0 <= bound && bound <= n; assume forall j k, (0 <= j && j < k && bound <=
 (assume bound > 0;
  assume i!0 = i; havoc i; assume i = 0;
  assert 0 <= i && i < bound; assert forall j, 0 <= j && j < i ==> read(a, j) <= read(a, i); assert forall j k, 0 <= j && j < k && bound <= k && k < n ==> read(a, j) <= read(a, k);
-havoc bound; havoc i; havoc t; havoc a;
+havoc t; havoc a; havoc i;
 assume 0 <= i && i < bound; assume forall j, 0 <= j && j < i ==> read(a, j) <= read(a, i); assume forall j k, 0 <= j && j < k && bound <= k && k < n ==> read(a, j) <= read(a, k);
 (assume i < bound - 1;
   (assume read(a, i) > read(a, i + 1);

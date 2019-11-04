@@ -3,7 +3,7 @@ assume i!0 = i; havoc i; assume i = 0;
 assume r!0 = r; havoc r; assume r = a;
 (assume r >= 0;
  assert r >= 0; assert n * i + r = a;
-havoc i; havoc r;
+havoc r; havoc i;
 assume r >= 0; assume n * i + r = a;
 (assume r >= n;
   assume r!1 = r; havoc r; assume r = r!1 - n;

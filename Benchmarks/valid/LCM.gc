@@ -2,7 +2,7 @@ assume 0 <= A && 0 <= B; assume A != 0 || B != 0;
 assume gcd!0 = gcd; havoc gcd; assume gcd = 1;
 assume j!0 = j; havoc j; assume j = 1;
 assert A % gcd = 0 && B % gcd = 0;
-havoc gcd; havoc j;
+havoc gcd;
 assume A % gcd = 0 && B % gcd = 0;
 (assume j <= A || j <= B;
  (assume A % j = 0 && B % j = 0;

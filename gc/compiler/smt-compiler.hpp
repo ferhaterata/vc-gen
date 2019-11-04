@@ -7,6 +7,7 @@
 #ifndef GC_SMT_COMPILER_HPP
 #define GC_SMT_COMPILER_HPP
 
+#include "../../tools.hpp"
 #include "../ast/visitor.hpp"
 #include <algorithm>
 #include <map>
@@ -71,6 +72,7 @@ class SmtCompiler : public gc::ast::Visitor<string> {
         ss << "\n(check-sat)\n";
         ss << "(exit)\n";
         output = ss.str();
+        separator()
     }
 
     const string& compile() { return output; }
@@ -107,30 +109,31 @@ class SmtCompiler : public gc::ast::Visitor<string> {
 
     string visit(const gc::ast::Assume* a) override {
         trailer = "(=> " + visit(&a->assertion) + " " + trailer + ")";
-        return "";
+        kv(Assume, trailer) return "";
     }
 
     string visit(const gc::ast::Assert* a) override {
         trailer = "(and " + visit(&a->assertion) + " " + trailer + ")";
-        return "";
+        kv(Assert, trailer) return "";
     }
 
     string visit(const gc::ast::Havoc* h) override {
         // string& temp = trailer;
 
         string havoc = h->location.identifier;
-        string fresh = havoc + "?" + std::to_string(posix++); // fresh: "x?1"
-        locs.push_back(fresh);                                // add fresh
-        string target = " " + havoc + " ";                    // target: " x "
-        string s = " " + fresh + " ";                         // search: " x!1"
-        ReplaceStringInPlace(trailer, target, s);             // replace s
-        target = " " + havoc + ")";                           // target: " x)"
-        s = " " + fresh + ")";                                // search: " x!1)"
-        ReplaceStringInPlace(trailer, target, s);             // search s
-        target = "(" + havoc + " ";                           // target: "(x "
-        s = "(" + fresh + " ";                                // search: "(x!1 "
-        ReplaceStringInPlace(trailer, target, s);             // search s
-        return "";
+        kv(Havoc, havoc) string fresh =
+            havoc + "?" + std::to_string(posix++); // fresh: "x?1"
+        kv(Havoc, fresh) locs.push_back(fresh);    // add fresh
+        string target = " " + havoc + " ";         // target: " x "
+        string s = " " + fresh + " ";              // search: " x!1"
+        ReplaceStringInPlace(trailer, target, s);  // replace s
+        target = " " + havoc + ")";                // target: " x)"
+        s = " " + fresh + ")";                     // search: " x!1)"
+        ReplaceStringInPlace(trailer, target, s);  // search s
+        target = "(" + havoc + " ";                // target: "(x "
+        s = "(" + fresh + " ";                     // search: "(x!1 "
+        ReplaceStringInPlace(trailer, target, s);  // search s
+        kv(Havoc, trailer) return "";
     }
 
     string visit(const gc::ast::List* list) override {
@@ -145,8 +148,7 @@ class SmtCompiler : public gc::ast::Visitor<string> {
     string visit(const gc::ast::Select* choice) override {
 
         string m_trailer = trailer; // save the main trailer
-
-        auto& cl = choice->left;
+        kv(Select, m_trailer) auto& cl = choice->left;
         for (auto rcit = cl.rbegin(); rcit != cl.rend(); ++rcit) {
             visit(*rcit);
         }
@@ -159,10 +161,11 @@ class SmtCompiler : public gc::ast::Visitor<string> {
             visit(*rcit);
         }
         string r_trailer = trailer;
-
         trailer = "(and " + l_trailer + " " + r_trailer + ")";
 
-        return "";
+        kv(Left, l_trailer) kv(Right, r_trailer) kv(Final, trailer)
+
+            return "";
     }
 
     // TODO delegate this to lexical analysis

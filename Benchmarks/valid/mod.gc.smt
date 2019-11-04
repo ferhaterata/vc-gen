@@ -6,8 +6,8 @@
 (declare-const i?0 Int)
 (declare-const r!1 Int)
 (declare-const r?1 Int)
-(declare-const r?2 Int)
-(declare-const i?3 Int)
+(declare-const i?2 Int)
+(declare-const r?3 Int)
 (declare-const i!2 Int)
 (declare-const i?4 Int)
 (declare-const r!2 Int)
@@ -19,6 +19,6 @@
 (declare-const i?9 Int)
 (declare-const i!0 Int)
 
-(assert (not (=> (< 0 n) (=> (= i!0 i) (=> (= i?9 0) (=> (= r!0 r) (=> (= r?8 a) (and (=> (>= r?8 0) (and (>= r?8 0) (and (= (+ (* n i?9) r?8) a) (=> (>= r?2 0) (=> (= (+ (* n i?3) r?2) a) (and (=> (>= r?2 n) (=> (= r!1 r?2) (=> (= r?1 (- r!1 n)) (=> (= i!1 i?3) (=> (= i?0 (+ i!1 1)) (and (>= r?1 0) (and (= (+ (* n i?0) r?1) a) (=> false (and (and (<= 0 r?1) (< r?1 n)) (and (= (+ (* n i?0) r?1) a) true)))))))))) (=> (not (>= r?2 n)) (and (and (<= 0 r?2) (< r?2 n)) (and (= (+ (* n i?3) r?2) a) true))))))))) (=> (not (>= r?8 0)) (and (< r?8 n) (and (= (+ (* n i?9) r?8) a) (=> (< r?7 n) (=> (= (+ (* n i?6) r?7) a) (and (=> (< r?7 0) (=> (= r!2 r?7) (=> (= r?5 (+ r!2 n)) (=> (= i!2 i?6) (=> (= i?4 (- i!2 1)) (and (< r?5 n) (and (= (+ (* n i?4) r?5) a) (=> false (and (and (<= 0 r?5) (< r?5 n)) (and (= (+ (* n i?4) r?5) a) true)))))))))) (=> (not (< r?7 0)) (and (and (<= 0 r?7) (< r?7 n)) (and (= (+ (* n i?6) r?7) a) true)))))))))))))))))
+(assert (not (=> (< 0 n) (=> (= i!0 i) (=> (= i?9 0) (=> (= r!0 r) (=> (= r?8 a) (and (=> (>= r?8 0) (and (>= r?8 0) (and (= (+ (* n i?9) r?8) a) (=> (>= r?3 0) (=> (= (+ (* n i?2) r?3) a) (and (=> (>= r?3 n) (=> (= r!1 r?3) (=> (= r?1 (- r!1 n)) (=> (= i!1 i?2) (=> (= i?0 (+ i!1 1)) (and (>= r?1 0) (and (= (+ (* n i?0) r?1) a) (=> false (and (and (<= 0 r?1) (< r?1 n)) (and (= (+ (* n i?0) r?1) a) true)))))))))) (=> (not (>= r?3 n)) (and (and (<= 0 r?3) (< r?3 n)) (and (= (+ (* n i?2) r?3) a) true))))))))) (=> (not (>= r?8 0)) (and (< r?8 n) (and (= (+ (* n i?9) r?8) a) (=> (< r?7 n) (=> (= (+ (* n i?6) r?7) a) (and (=> (< r?7 0) (=> (= r!2 r?7) (=> (= r?5 (+ r!2 n)) (=> (= i!2 i?6) (=> (= i?4 (- i!2 1)) (and (< r?5 n) (and (= (+ (* n i?4) r?5) a) (=> false (and (and (<= 0 r?5) (< r?5 n)) (and (= (+ (* n i?4) r?5) a) true)))))))))) (=> (not (< r?7 0)) (and (and (<= 0 r?7) (< r?7 n)) (and (= (+ (* n i?6) r?7) a) true)))))))))))))))))
 (check-sat)
 (exit)

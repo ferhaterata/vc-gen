@@ -7,7 +7,7 @@
 
 Prerequisites: 
 --------------
-* Prepared and tested on linux environment.
+* Prepared and tested on linux environments (including _zoo_ machines).
 * -std=c++17 g++ compiler or above
 
 Quick Overview:

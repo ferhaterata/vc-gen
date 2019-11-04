@@ -228,7 +228,7 @@ Normal termination.
    
 * Run 2: 
 ````
-$ ./vcgen Benchmarks/ferhat/cube.imp
+$ ./vcgen Benchmarks/ferhat/max.imp
 
 ---------------------------------------------------------------
         Ferhat Erata

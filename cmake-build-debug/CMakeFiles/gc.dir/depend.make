@@ -3,24 +3,28 @@
 
 CMakeFiles/gc.dir/gc/ast/gc.cpp.o: ../gc/ast/gc.cpp
 CMakeFiles/gc.dir/gc/ast/gc.cpp.o: ../gc/ast/gc.hpp
+CMakeFiles/gc.dir/gc/ast/gc.cpp.o: ../tools.hpp
 
 CMakeFiles/gc.dir/gc/gc-driver.cpp.o: ../gc/ast/gc.hpp
 CMakeFiles/gc.dir/gc/gc-driver.cpp.o: ../gc/gc-driver.cpp
 CMakeFiles/gc.dir/gc/gc-driver.cpp.o: ../gc/gc-driver.hpp
 CMakeFiles/gc.dir/gc/gc-driver.cpp.o: ../gc/recognizer/gc-parser.hpp
 CMakeFiles/gc.dir/gc/gc-driver.cpp.o: ../gc/recognizer/location.hh
+CMakeFiles/gc.dir/gc/gc-driver.cpp.o: ../tools.hpp
 
 CMakeFiles/gc.dir/gc/recognizer/gc-parser.cpp.o: ../gc/ast/gc.hpp
 CMakeFiles/gc.dir/gc/recognizer/gc-parser.cpp.o: ../gc/gc-driver.hpp
 CMakeFiles/gc.dir/gc/recognizer/gc-parser.cpp.o: ../gc/recognizer/gc-parser.cpp
 CMakeFiles/gc.dir/gc/recognizer/gc-parser.cpp.o: ../gc/recognizer/gc-parser.hpp
 CMakeFiles/gc.dir/gc/recognizer/gc-parser.cpp.o: ../gc/recognizer/location.hh
+CMakeFiles/gc.dir/gc/recognizer/gc-parser.cpp.o: ../tools.hpp
 
 CMakeFiles/gc.dir/gc/recognizer/gc-scanner.cpp.o: ../gc/ast/gc.hpp
 CMakeFiles/gc.dir/gc/recognizer/gc-scanner.cpp.o: ../gc/gc-driver.hpp
 CMakeFiles/gc.dir/gc/recognizer/gc-scanner.cpp.o: ../gc/recognizer/gc-parser.hpp
 CMakeFiles/gc.dir/gc/recognizer/gc-scanner.cpp.o: ../gc/recognizer/gc-scanner.cpp
 CMakeFiles/gc.dir/gc/recognizer/gc-scanner.cpp.o: ../gc/recognizer/location.hh
+CMakeFiles/gc.dir/gc/recognizer/gc-scanner.cpp.o: ../tools.hpp
 
 CMakeFiles/gc.dir/gc/test.cpp.o: ../gc/ast/gc.hpp
 CMakeFiles/gc.dir/gc/test.cpp.o: ../gc/ast/printer-visitor.hpp
@@ -32,6 +36,9 @@ CMakeFiles/gc.dir/gc/test.cpp.o: ../gc/recognizer/location.hh
 CMakeFiles/gc.dir/gc/test.cpp.o: ../gc/test.cpp
 CMakeFiles/gc.dir/gc/test.cpp.o: ../solver/z3-solver.hpp
 CMakeFiles/gc.dir/gc/test.cpp.o: ../tools.hpp
+
+CMakeFiles/gc.dir/solver/z3-solver.cpp.o: ../solver/z3-solver.cpp
+CMakeFiles/gc.dir/solver/z3-solver.cpp.o: ../solver/z3-solver.hpp
 
 CMakeFiles/gc.dir/tools.cpp.o: ../tools.cpp
 CMakeFiles/gc.dir/tools.cpp.o: ../tools.hpp

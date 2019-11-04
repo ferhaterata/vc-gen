@@ -3,28 +3,33 @@
 
 CMakeFiles/vcgen.dir/gc/ast/gc.cpp.o: ../gc/ast/gc.cpp
 CMakeFiles/vcgen.dir/gc/ast/gc.cpp.o: ../gc/ast/gc.hpp
+CMakeFiles/vcgen.dir/gc/ast/gc.cpp.o: ../tools.hpp
 
 CMakeFiles/vcgen.dir/gc/gc-driver.cpp.o: ../gc/ast/gc.hpp
 CMakeFiles/vcgen.dir/gc/gc-driver.cpp.o: ../gc/gc-driver.cpp
 CMakeFiles/vcgen.dir/gc/gc-driver.cpp.o: ../gc/gc-driver.hpp
 CMakeFiles/vcgen.dir/gc/gc-driver.cpp.o: ../gc/recognizer/gc-parser.hpp
 CMakeFiles/vcgen.dir/gc/gc-driver.cpp.o: ../gc/recognizer/location.hh
+CMakeFiles/vcgen.dir/gc/gc-driver.cpp.o: ../tools.hpp
 
 CMakeFiles/vcgen.dir/gc/recognizer/gc-parser.cpp.o: ../gc/ast/gc.hpp
 CMakeFiles/vcgen.dir/gc/recognizer/gc-parser.cpp.o: ../gc/gc-driver.hpp
 CMakeFiles/vcgen.dir/gc/recognizer/gc-parser.cpp.o: ../gc/recognizer/gc-parser.cpp
 CMakeFiles/vcgen.dir/gc/recognizer/gc-parser.cpp.o: ../gc/recognizer/gc-parser.hpp
 CMakeFiles/vcgen.dir/gc/recognizer/gc-parser.cpp.o: ../gc/recognizer/location.hh
+CMakeFiles/vcgen.dir/gc/recognizer/gc-parser.cpp.o: ../tools.hpp
 
 CMakeFiles/vcgen.dir/gc/recognizer/gc-scanner.cpp.o: ../gc/ast/gc.hpp
 CMakeFiles/vcgen.dir/gc/recognizer/gc-scanner.cpp.o: ../gc/gc-driver.hpp
 CMakeFiles/vcgen.dir/gc/recognizer/gc-scanner.cpp.o: ../gc/recognizer/gc-parser.hpp
 CMakeFiles/vcgen.dir/gc/recognizer/gc-scanner.cpp.o: ../gc/recognizer/gc-scanner.cpp
 CMakeFiles/vcgen.dir/gc/recognizer/gc-scanner.cpp.o: ../gc/recognizer/location.hh
+CMakeFiles/vcgen.dir/gc/recognizer/gc-scanner.cpp.o: ../tools.hpp
 
 CMakeFiles/vcgen.dir/imp/ast/imp.cpp.o: ../imp/ast/imp.cpp
 CMakeFiles/vcgen.dir/imp/ast/imp.cpp.o: ../imp/ast/imp.hpp
 CMakeFiles/vcgen.dir/imp/ast/imp.cpp.o: ../imp/ast/visitor.hpp
+CMakeFiles/vcgen.dir/imp/ast/imp.cpp.o: ../tools.hpp
 
 CMakeFiles/vcgen.dir/imp/imp-driver.cpp.o: ../imp/ast/imp.hpp
 CMakeFiles/vcgen.dir/imp/imp-driver.cpp.o: ../imp/ast/visitor.hpp
@@ -32,6 +37,7 @@ CMakeFiles/vcgen.dir/imp/imp-driver.cpp.o: ../imp/imp-driver.cpp
 CMakeFiles/vcgen.dir/imp/imp-driver.cpp.o: ../imp/imp-driver.hpp
 CMakeFiles/vcgen.dir/imp/imp-driver.cpp.o: ../imp/recognizer/imp-parser.hpp
 CMakeFiles/vcgen.dir/imp/imp-driver.cpp.o: ../imp/recognizer/location.hh
+CMakeFiles/vcgen.dir/imp/imp-driver.cpp.o: ../tools.hpp
 
 CMakeFiles/vcgen.dir/imp/recognizer/imp-parser.cpp.o: ../imp/ast/imp.hpp
 CMakeFiles/vcgen.dir/imp/recognizer/imp-parser.cpp.o: ../imp/ast/visitor.hpp
@@ -39,6 +45,7 @@ CMakeFiles/vcgen.dir/imp/recognizer/imp-parser.cpp.o: ../imp/imp-driver.hpp
 CMakeFiles/vcgen.dir/imp/recognizer/imp-parser.cpp.o: ../imp/recognizer/imp-parser.cpp
 CMakeFiles/vcgen.dir/imp/recognizer/imp-parser.cpp.o: ../imp/recognizer/imp-parser.hpp
 CMakeFiles/vcgen.dir/imp/recognizer/imp-parser.cpp.o: ../imp/recognizer/location.hh
+CMakeFiles/vcgen.dir/imp/recognizer/imp-parser.cpp.o: ../tools.hpp
 
 CMakeFiles/vcgen.dir/imp/recognizer/imp-scanner.cpp.o: ../imp/ast/imp.hpp
 CMakeFiles/vcgen.dir/imp/recognizer/imp-scanner.cpp.o: ../imp/ast/visitor.hpp
@@ -46,6 +53,10 @@ CMakeFiles/vcgen.dir/imp/recognizer/imp-scanner.cpp.o: ../imp/imp-driver.hpp
 CMakeFiles/vcgen.dir/imp/recognizer/imp-scanner.cpp.o: ../imp/recognizer/imp-parser.hpp
 CMakeFiles/vcgen.dir/imp/recognizer/imp-scanner.cpp.o: ../imp/recognizer/imp-scanner.cpp
 CMakeFiles/vcgen.dir/imp/recognizer/imp-scanner.cpp.o: ../imp/recognizer/location.hh
+CMakeFiles/vcgen.dir/imp/recognizer/imp-scanner.cpp.o: ../tools.hpp
+
+CMakeFiles/vcgen.dir/solver/z3-solver.cpp.o: ../solver/z3-solver.cpp
+CMakeFiles/vcgen.dir/solver/z3-solver.cpp.o: ../solver/z3-solver.hpp
 
 CMakeFiles/vcgen.dir/tools.cpp.o: ../tools.cpp
 CMakeFiles/vcgen.dir/tools.cpp.o: ../tools.hpp

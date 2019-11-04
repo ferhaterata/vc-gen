@@ -7,6 +7,7 @@ file(REMOVE_RECURSE
   "CMakeFiles/gc.dir/gc/recognizer/gc-parser.cpp.o"
   "CMakeFiles/gc.dir/gc/recognizer/gc-scanner.cpp.o"
   "CMakeFiles/gc.dir/gc/test.cpp.o"
+  "CMakeFiles/gc.dir/solver/z3-solver.cpp.o"
   "CMakeFiles/gc.dir/tools.cpp.o"
   "gc"
   "gc.pdb"

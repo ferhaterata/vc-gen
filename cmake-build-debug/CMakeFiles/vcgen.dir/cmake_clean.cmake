@@ -13,6 +13,7 @@ file(REMOVE_RECURSE
   "CMakeFiles/vcgen.dir/imp/imp-driver.cpp.o"
   "CMakeFiles/vcgen.dir/imp/recognizer/imp-parser.cpp.o"
   "CMakeFiles/vcgen.dir/imp/recognizer/imp-scanner.cpp.o"
+  "CMakeFiles/vcgen.dir/solver/z3-solver.cpp.o"
   "CMakeFiles/vcgen.dir/tools.cpp.o"
   "CMakeFiles/vcgen.dir/vcgen.cpp.o"
   "vcgen"

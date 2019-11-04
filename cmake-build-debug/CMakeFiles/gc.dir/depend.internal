@@ -4,24 +4,28 @@
 CMakeFiles/gc.dir/gc/ast/gc.cpp.o
  /home/ferhat/git/vc-gen/gc/ast/gc.cpp
  /home/ferhat/git/vc-gen/gc/ast/gc.hpp
+ /home/ferhat/git/vc-gen/tools.hpp
 CMakeFiles/gc.dir/gc/gc-driver.cpp.o
  /home/ferhat/git/vc-gen/gc/ast/gc.hpp
  /home/ferhat/git/vc-gen/gc/gc-driver.cpp
  /home/ferhat/git/vc-gen/gc/gc-driver.hpp
  /home/ferhat/git/vc-gen/gc/recognizer/gc-parser.hpp
  /home/ferhat/git/vc-gen/gc/recognizer/location.hh
+ /home/ferhat/git/vc-gen/tools.hpp
 CMakeFiles/gc.dir/gc/recognizer/gc-parser.cpp.o
  /home/ferhat/git/vc-gen/gc/ast/gc.hpp
  /home/ferhat/git/vc-gen/gc/gc-driver.hpp
  /home/ferhat/git/vc-gen/gc/recognizer/gc-parser.cpp
  /home/ferhat/git/vc-gen/gc/recognizer/gc-parser.hpp
  /home/ferhat/git/vc-gen/gc/recognizer/location.hh
+ /home/ferhat/git/vc-gen/tools.hpp
 CMakeFiles/gc.dir/gc/recognizer/gc-scanner.cpp.o
  /home/ferhat/git/vc-gen/gc/ast/gc.hpp
  /home/ferhat/git/vc-gen/gc/gc-driver.hpp
  /home/ferhat/git/vc-gen/gc/recognizer/gc-parser.hpp
  /home/ferhat/git/vc-gen/gc/recognizer/gc-scanner.cpp
  /home/ferhat/git/vc-gen/gc/recognizer/location.hh
+ /home/ferhat/git/vc-gen/tools.hpp
 CMakeFiles/gc.dir/gc/test.cpp.o
  /home/ferhat/git/vc-gen/gc/ast/gc.hpp
  /home/ferhat/git/vc-gen/gc/ast/printer-visitor.hpp
@@ -33,6 +37,9 @@ CMakeFiles/gc.dir/gc/test.cpp.o
  /home/ferhat/git/vc-gen/gc/test.cpp
  /home/ferhat/git/vc-gen/solver/z3-solver.hpp
  /home/ferhat/git/vc-gen/tools.hpp
+CMakeFiles/gc.dir/solver/z3-solver.cpp.o
+ /home/ferhat/git/vc-gen/solver/z3-solver.cpp
+ /home/ferhat/git/vc-gen/solver/z3-solver.hpp
 CMakeFiles/gc.dir/tools.cpp.o
  /home/ferhat/git/vc-gen/tools.cpp
  /home/ferhat/git/vc-gen/tools.hpp

@@ -391,6 +391,36 @@ imp/recognizer/imp-scanner.cpp.s:
 	$(MAKE) -f CMakeFiles/vcgen.dir/build.make CMakeFiles/vcgen.dir/imp/recognizer/imp-scanner.cpp.s
 .PHONY : imp/recognizer/imp-scanner.cpp.s
 
+solver/z3-solver.o: solver/z3-solver.cpp.o
+
+.PHONY : solver/z3-solver.o
+
+# target to build an object file
+solver/z3-solver.cpp.o:
+	$(MAKE) -f CMakeFiles/vcgen.dir/build.make CMakeFiles/vcgen.dir/solver/z3-solver.cpp.o
+	$(MAKE) -f CMakeFiles/gc.dir/build.make CMakeFiles/gc.dir/solver/z3-solver.cpp.o
+.PHONY : solver/z3-solver.cpp.o
+
+solver/z3-solver.i: solver/z3-solver.cpp.i
+
+.PHONY : solver/z3-solver.i
+
+# target to preprocess a source file
+solver/z3-solver.cpp.i:
+	$(MAKE) -f CMakeFiles/vcgen.dir/build.make CMakeFiles/vcgen.dir/solver/z3-solver.cpp.i
+	$(MAKE) -f CMakeFiles/gc.dir/build.make CMakeFiles/gc.dir/solver/z3-solver.cpp.i
+.PHONY : solver/z3-solver.cpp.i
+
+solver/z3-solver.s: solver/z3-solver.cpp.s
+
+.PHONY : solver/z3-solver.s
+
+# target to generate assembly for a file
+solver/z3-solver.cpp.s:
+	$(MAKE) -f CMakeFiles/vcgen.dir/build.make CMakeFiles/vcgen.dir/solver/z3-solver.cpp.s
+	$(MAKE) -f CMakeFiles/gc.dir/build.make CMakeFiles/gc.dir/solver/z3-solver.cpp.s
+.PHONY : solver/z3-solver.cpp.s
+
 tools.o: tools.cpp.o
 
 .PHONY : tools.o
@@ -485,6 +515,9 @@ help:
 	@echo "... imp/recognizer/imp-scanner.o"
 	@echo "... imp/recognizer/imp-scanner.i"
 	@echo "... imp/recognizer/imp-scanner.s"
+	@echo "... solver/z3-solver.o"
+	@echo "... solver/z3-solver.i"
+	@echo "... solver/z3-solver.s"
 	@echo "... tools.o"
 	@echo "... tools.i"
 	@echo "... tools.s"

@@ -6,7 +6,13 @@
 
 #IncludeRegexTransform: 
 
+/home/ferhat/git/vc-gen/gc/ast/gc.cpp
+gc.hpp
 /home/ferhat/git/vc-gen/gc/ast/gc.hpp
+
+/home/ferhat/git/vc-gen/gc/ast/gc.hpp
+../../tools.hpp
+/home/ferhat/git/vc-gen/tools.hpp
 iostream
 -
 map
@@ -29,6 +35,8 @@ gc.hpp
 /home/ferhat/git/vc-gen/gc/ast/gc.hpp
 
 /home/ferhat/git/vc-gen/gc/compiler/smt-compiler.hpp
+../../tools.hpp
+/home/ferhat/git/vc-gen/tools.hpp
 ../ast/visitor.hpp
 /home/ferhat/git/vc-gen/gc/ast/visitor.hpp
 algorithm
@@ -157,6 +165,10 @@ sstream
 -
 string
 -
+
+/home/ferhat/git/vc-gen/tools.cpp
+tools.hpp
+/home/ferhat/git/vc-gen/tools.hpp
 
 /home/ferhat/git/vc-gen/tools.hpp
 fstream

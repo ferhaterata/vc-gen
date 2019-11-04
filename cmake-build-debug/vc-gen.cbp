@@ -50,6 +50,7 @@
 					<Add directory="/home/ferhat/git/vc-gen/imp/compiler"/>
 					<Add directory="/home/ferhat/git/vc-gen/gc"/>
 					<Add directory="/home/ferhat/git/vc-gen/gc/recognizer"/>
+					<Add directory="/home/ferhat/git/vc-gen/solver"/>
 					<Add directory="/usr/include/c++/7"/>
 					<Add directory="/usr/include/x86_64-linux-gnu/c++/7"/>
 					<Add directory="/usr/include/c++/7/backward"/>
@@ -79,6 +80,7 @@
 					<Add directory="/home/ferhat/git/vc-gen/imp/compiler"/>
 					<Add directory="/home/ferhat/git/vc-gen/gc"/>
 					<Add directory="/home/ferhat/git/vc-gen/gc/recognizer"/>
+					<Add directory="/home/ferhat/git/vc-gen/solver"/>
 					<Add directory="/usr/include/c++/7"/>
 					<Add directory="/usr/include/x86_64-linux-gnu/c++/7"/>
 					<Add directory="/usr/include/c++/7/backward"/>
@@ -108,6 +110,7 @@
 					<Add directory="/home/ferhat/git/vc-gen/imp/compiler"/>
 					<Add directory="/home/ferhat/git/vc-gen/gc"/>
 					<Add directory="/home/ferhat/git/vc-gen/gc/recognizer"/>
+					<Add directory="/home/ferhat/git/vc-gen/solver"/>
 					<Add directory="/usr/include/c++/7"/>
 					<Add directory="/usr/include/x86_64-linux-gnu/c++/7"/>
 					<Add directory="/usr/include/c++/7/backward"/>
@@ -137,6 +140,7 @@
 					<Add directory="/home/ferhat/git/vc-gen/imp/compiler"/>
 					<Add directory="/home/ferhat/git/vc-gen/gc"/>
 					<Add directory="/home/ferhat/git/vc-gen/gc/recognizer"/>
+					<Add directory="/home/ferhat/git/vc-gen/solver"/>
 					<Add directory="/usr/include/c++/7"/>
 					<Add directory="/usr/include/x86_64-linux-gnu/c++/7"/>
 					<Add directory="/usr/include/c++/7/backward"/>
@@ -163,10 +167,6 @@
 			<Option target="gc"/>
 		</Unit>
 		<Unit filename="/home/ferhat/git/vc-gen/gc/ast/printer-visitor.hpp">
-			<Option target="vcgen"/>
-			<Option target="gc"/>
-		</Unit>
-		<Unit filename="/home/ferhat/git/vc-gen/gc/ast/prufier.hpp">
 			<Option target="vcgen"/>
 			<Option target="gc"/>
 		</Unit>
@@ -244,6 +244,10 @@
 		</Unit>
 		<Unit filename="/home/ferhat/git/vc-gen/imp/recognizer/imp-scanner.cpp.rule">
 			<Option target="vcgen"/>
+		</Unit>
+		<Unit filename="/home/ferhat/git/vc-gen/solver/z3-solver.cpp">
+			<Option target="vcgen"/>
+			<Option target="gc"/>
 		</Unit>
 		<Unit filename="/home/ferhat/git/vc-gen/solver/z3-solver.hpp">
 			<Option target="vcgen"/>

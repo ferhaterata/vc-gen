@@ -12,8 +12,8 @@
 (declare-const c!1 Int)
 (declare-const c?3 Int)
 (declare-const n?4 Int)
-(declare-const k?5 Int)
-(declare-const m?6 Int)
+(declare-const m?5 Int)
+(declare-const k?6 Int)
 (declare-const c?7 Int)
 (declare-const m?8 Int)
 (declare-const m!0 Int)
@@ -24,6 +24,6 @@
 (declare-const c?11 Int)
 (declare-const c!0 Int)
 
-(assert (not (=> (<= 0 N) (=> (= c!0 c) (=> (= c?11 0) (=> (= n!0 n) (=> (= n?10 0) (=> (= k!0 k) (=> (= k?9 1) (=> (= m!0 m) (=> (= m?8 6) (and (<= n?10 N) (and (= c?11 (* (* n?10 n?10) n?10)) (and (= k?9 (+ (+ (* (* 3 n?10) n?10) (* 3 n?10)) 1)) (and (= m?8 (+ (* 6 n?10) 6)) (=> (<= n?4 N) (=> (= c?7 (* (* n?4 n?4) n?4)) (=> (= k?5 (+ (+ (* (* 3 n?4) n?4) (* 3 n?4)) 1)) (=> (= m?6 (+ (* 6 n?4) 6)) (and (=> (< n?4 N) (=> (= c!1 c?7) (=> (= c?3 (+ c!1 k?5)) (=> (= k!1 k?5) (=> (= k?2 (+ k!1 m?6)) (=> (= m!1 m?6) (=> (= m?1 (+ m!1 6)) (=> (= n!1 n?4) (=> (= n?0 (+ n!1 1)) (and (<= n?0 N) (and (= c?3 (* (* n?0 n?0) n?0)) (and (= k?2 (+ (+ (* (* 3 n?0) n?0) (* 3 n?0)) 1)) (and (= m?1 (+ (* 6 n?0) 6)) (=> false (and (= c?3 (* (* N N) N)) true))))))))))))))) (=> (not (< n?4 N)) (and (= c?7 (* (* N N) N)) true))))))))))))))))))))))
+(assert (not (=> (<= 0 N) (=> (= c!0 c) (=> (= c?11 0) (=> (= n!0 n) (=> (= n?10 0) (=> (= k!0 k) (=> (= k?9 1) (=> (= m!0 m) (=> (= m?8 6) (and (<= n?10 N) (and (= c?11 (* (* n?10 n?10) n?10)) (and (= k?9 (+ (+ (* (* 3 n?10) n?10) (* 3 n?10)) 1)) (and (= m?8 (+ (* 6 n?10) 6)) (=> (<= n?4 N) (=> (= c?7 (* (* n?4 n?4) n?4)) (=> (= k?6 (+ (+ (* (* 3 n?4) n?4) (* 3 n?4)) 1)) (=> (= m?5 (+ (* 6 n?4) 6)) (and (=> (< n?4 N) (=> (= c!1 c?7) (=> (= c?3 (+ c!1 k?6)) (=> (= k!1 k?6) (=> (= k?2 (+ k!1 m?5)) (=> (= m!1 m?5) (=> (= m?1 (+ m!1 6)) (=> (= n!1 n?4) (=> (= n?0 (+ n!1 1)) (and (<= n?0 N) (and (= c?3 (* (* n?0 n?0) n?0)) (and (= k?2 (+ (+ (* (* 3 n?0) n?0) (* 3 n?0)) 1)) (and (= m?1 (+ (* 6 n?0) 6)) (=> false (and (= c?3 (* (* N N) N)) true))))))))))))))) (=> (not (< n?4 N)) (and (= c?7 (* (* N N) N)) true))))))))))))))))))))))
 (check-sat)
 (exit)

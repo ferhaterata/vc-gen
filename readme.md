@@ -108,10 +108,10 @@ Benchmarks
 │   ├── test1.imp
 │   └── test2.imp
 ├── invalid
-│   ├── find_invalid.imp
+│   ├── find_invalid.imp            /* Given INVALID benchmarks   */
 │   ├── order_invalid.imp
 │   └── prime_invalid.imp
-└── valid
+└── valid                           /* Given VALID benchmarks     */
     ├── bubble.imp
     ├── example.imp
     ├── find.imp
@@ -294,6 +294,116 @@ assert forall j, (l <= j && j <= u) ==> read(a, j) <= max;
 (declare-const max!0 Int)
 
 (assert (not (=> (= max!0 max) (=> (= max?5 (select a l)) (=> (= i!0 i) (=> (= i?4 (+ l 1)) (and (forall ((j Int)) (=> (and (<= l j) (< j i?4)) (<= (select a j) max?5))) (=> (forall ((j Int)) (=> (and (<= l j) (< j i?2)) (<= (select a j) max?3))) (and (=> (<= i?2 u) (and (=> (> (select a i?2) max?3) (=> (= max!1 max?3) (=> (= max?1 (select a i?2)) (=> (= i!1 i?2) (=> (= i?0 (+ i!1 1)) (and (forall ((j Int)) (=> (and (<= l j) (< j i?0)) (<= (select a j) max?1))) (=> false (and (forall ((j Int)) (=> (and (<= l j) (<= j u)) (<= (select a j) max?1))) true)))))))) (=> (not (> (select a i?2) max?3)) (=> true (=> (= i!1 i?2) (=> (= i?0 (+ i!1 1)) (and (forall ((j Int)) (=> (and (<= l j) (< j i?0)) (<= (select a j) max?3))) (=> false (and (forall ((j Int)) (=> (and (<= l j) (<= j u)) (<= (select a j) max?3))) true))))))))) (=> (not (<= i?2 u)) (and (forall ((j Int)) (=> (and (<= l j) (<= j u)) (<= (select a j) max?3))) true)))))))))))
+(check-sat)
+(exit)
+
+---------------------------------------------------------------
+unsat :: Valid!
+---------------------------------------------------------------
+Normal termination.
+
+````
+   
+* Run 3: 
+````
+$ ./vcgen Benchmarks/ferhat/binary_search.imp 
+
+---------------------------------------------------------------
+        Ferhat Erata
+        CPSC 454/554
+        Sun Nov  3 2019 19:57:46
+---------------------------------------------------------------
+program binarySearch
+   pre N >= 0
+   pre forall j k, (0 <= j && j < k && k < N) ==> a[j] <= a[k]
+   post (0 <= index && index < N) ==> a[index] = value
+   post 0 > index ==> forall k, (0 <= k && k < N) ==> a[k] != value
+is
+   low, high := 0, N;
+   while (low < high)
+      inv 0 <= low && low <= high && high <= N
+      inv forall i, (0 <= i && i < N && !(low <= i && i < high)) ==> a[i] != value
+   do
+      mid := (low + high) / 2;
+      if (a[mid] < value)
+      then
+         low := mid + 1;
+      else
+          if (value < a[mid])
+          then
+             high := mid;
+          else
+             index := mid;
+          end
+      end
+   end
+   index := -1;
+end
+---------------------------------------------------------------
+(program binarySearch
+  (precondition (N >= 0))
+  (precondition (forall j k ((((0 <= j) and ((j < k) and (k < N)))) implies (a[j] <= a[k]))))
+  (postcondition ((((0 <= index) and (index < N))) implies (a[index] = value)))
+  (postcondition ((0 > index) implies (forall k ((((0 <= k) and (k < N))) implies (a[k] != value)))))
+(low, high := 0, N)
+(while ((low < high))
+  (invariant ((0 <= low) and ((low <= high) and (high <= N))))
+  (invariant (forall i ((((0 <= i) and ((i < N) and (not (((low <= i) and (i < high))) )))) implies (a[i] != value))))
+(mid := (((low + high)) / 2))
+(if ((a[mid] < value)) then (low := (mid + 1)) else (if ((value < a[mid])) then (high := mid) else (index := mid))))
+(index := (-1))
+---------------------------------------------------------------
+assume N >= 0; assume forall j k, (0 <= j && j < k && k < N) ==> read(a, j) <= read(a, k); 
+assume low!0 = low; havoc low; assume low = 0;
+assume high!0 = high; havoc high; assume high = N;
+assert 0 <= low && low <= high && high <= N; assert forall i, (0 <= i && i < N && ! (low <= i && i < high)) ==> read(a, i) != value; 
+havoc mid; havoc low; havoc high; havoc index; 
+assume 0 <= low && low <= high && high <= N; assume forall i, (0 <= i && i < N && ! (low <= i && i < high)) ==> read(a, i) != value; 
+(assume (low < high);
+ assume mid!0 = mid; havoc mid; assume mid = (low + high) / 2;
+ (assume (read(a, mid) < value);
+  assume low!1 = low; havoc low; assume low = mid + 1;
+  []
+  assume !((read(a, mid) < value));(assume (value < read(a, mid));
+   assume high!1 = high; havoc high; assume high = mid;
+   []
+   assume !((value < read(a, mid)));assume index!0 = index; havoc index; assume index = mid;))
+ assert 0 <= low && low <= high && high <= N; assert forall i, (0 <= i && i < N && ! (low <= i && i < high)) ==> read(a, i) != value; assume false;
+ []
+ assume !((low < high));)
+assume index!1 = index; havoc index; assume index = -1;
+assert (0 <= index && index < N) ==> read(a, index) = value; assert 0 > index ==> forall k, (0 <= k && k < N) ==> read(a, k) != value; 
+---------------------------------------------------------------
+(declare-const index Int)
+(declare-const k Int)
+(declare-const N Int)
+(declare-const a (Array Int Int))
+(declare-const value Int)
+(declare-const index?0 Int)
+(declare-const index!1 Int)
+(declare-const i Int)
+(declare-const low Int)
+(declare-const high Int)
+(declare-const mid Int)
+(declare-const low?1 Int)
+(declare-const low!1 Int)
+(declare-const high?2 Int)
+(declare-const high!1 Int)
+(declare-const index?3 Int)
+(declare-const index!0 Int)
+(declare-const mid?4 Int)
+(declare-const mid!0 Int)
+(declare-const index?5 Int)
+(declare-const high?6 Int)
+(declare-const low?7 Int)
+(declare-const mid?8 Int)
+(declare-const high?9 Int)
+(declare-const high!0 Int)
+(declare-const low?10 Int)
+(declare-const low!0 Int)
+(declare-const j Int)
+
+(assert (not (=> (>= N 0) (=> (forall ((j Int)(k Int)) (=> (and (<= 0 j) (and (< j k) (< k N))) (<= (select a j) (select a k)))) (=> (= low!0 low) (=> (= low?10 0) (=> (= high!0 high) (=> (= high?9 N) (and (and (<= 0 low?10) (and (<= low?10 high?9) (<= high?9 N))) (and (forall ((i Int)) (=> (and (<= 0 i) (and (< i N) (not (and (<= low?10 i) (< i high?9))))) (not (= (select a i) value)))) (=> (and (<= 0 low?7) (and (<= low?7 high?6) (<= high?6 N))) (=> (forall ((i Int)) (=> (and (<= 0 i) (and (< i N) (not (and (<= low?7 i) (< i high?6))))) (not (= (select a i) value)))) (and (=> (< low?7 high?6) (=> (= mid!0 mid?8) (=> (= mid?4 (div (+ low?7 high?6) 2)) (and (=> (< (select a mid?4) value) (=> (= low!1 low?7) (=> (= low?1 (+ mid?4 1)) (and (and (<= 0 low?1) (and (<= low?1 high?6) (<= high?6 N))) (and (forall ((i Int)) (=> (and (<= 0 i) (and (< i N) (not (and (<= low?1 i) (< i high?6))))) (not (= (select a i) value)))) (=> false (=> (= index!1 index?5) (=> (= index?0 (- 1)) (and (=> (and (<= 0 index?0) (< index?0 N)) (= (select a index?0) value)) (and (=> (> 0 index?0) (forall ((k Int)) (=> (and (<= 0 k) (< k N)) (not (= (select a k) value))))) true)))))))))) (=> (not (< (select a mid?4) value)) (and (=> (< value (select a mid?4)) (=> (= high!1 high?6) (=> (= high?2 mid?4) (and (and (<= 0 low?7) (and (<= low?7 high?2) (<= high?2 N))) (and (forall ((i Int)) (=> (and (<= 0 i) (and (< i N) (not (and (<= low?7 i) (< i high?2))))) (not (= (select a i) value)))) (=> false (=> (= index!1 index?5) (=> (= index?0 (- 1)) (and (=> (and (<= 0 index?0) (< index?0 N)) (= (select a index?0) value)) (and (=> (> 0 index?0) (forall ((k Int)) (=> (and (<= 0 k) (< k N)) (not (= (select a k) value))))) true)))))))))) (=> (not (< value (select a mid?4))) (=> (= index!0 index?5) (=> (= index?3 mid?4) (and (and (<= 0 low?7) (and (<= low?7 high?6) (<= high?6 N))) (and (forall ((i Int)) (=> (and (<= 0 i) (and (< i N) (not (and (<= low?7 i) (< i high?6))))) (not (= (select a i) value)))) (=> false (=> (= index!1 index?3) (=> (= index?0 (- 1)) (and (=> (and (<= 0 index?0) (< index?0 N)) (= (select a index?0) value)) (and (=> (> 0 index?0) (forall ((k Int)) (=> (and (<= 0 k) (< k N)) (not (= (select a k) value))))) true)))))))))))))))) (=> (not (< low?7 high?6)) (=> (= index!1 index?5) (=> (= index?0 (- 1)) (and (=> (and (<= 0 index?0) (< index?0 N)) (= (select a index?0) value)) (and (=> (> 0 index?0) (forall ((k Int)) (=> (and (<= 0 k) (< k N)) (not (= (select a k) value))))) true))))))))))))))))))
 (check-sat)
 (exit)
 

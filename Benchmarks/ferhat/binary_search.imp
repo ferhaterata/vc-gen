@@ -1,4 +1,5 @@
 program binarySearch
+   pre N >= 0
    pre forall j k, (0 <= j && j < k && k < N) ==> a[j] <= a[k]
    post (0 <= index && index < N) ==> a[index] = value
    post 0 > index ==> forall k, (0 <= k && k < N) ==> a[k] != value

@@ -4,7 +4,7 @@
 
 #-----------------------------------------------------------
 # Macro definitions
-CXXFLAGS = -O1 -std=c++17
+CXXFLAGS = -O2 -std=c++17
 OBJ = tools.o vcgen.o imp/imp-driver.o imp/ast/imp.o \
  imp/recognizer/imp-parser.o imp/recognizer/imp-scanner.o \
  gc/gc-driver.o gc/recognizer/gc-parser.o gc/ast/gc.o \
@@ -21,7 +21,7 @@ debug: CXXFLAGS += -DDEBUG -g -Wall
 debug: $(TARGET)
 
 clean:
-	rm -f $(OBJ) $(TARGET) $(DEBUG)
+	rm -f $(OBJ) $(TARGET) $(DEBUG) *.gc *.gc.smt *.gc.smt.out
 #-----------------------------------------------------------
 # Dependencies
 # c++ -MM *.cpp >> Makefile

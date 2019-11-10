@@ -182,6 +182,7 @@ class Negation : public Assertion {
 // -----------------------------------------------------------------------------
 class True : public Assertion {
   public:
+    const string identifier = "true";
     True() : Assertion(Assertion::Type::True) {}
     ~True() override { d(gc::ast::True) }
 };
@@ -189,6 +190,7 @@ class True : public Assertion {
 // -----------------------------------------------------------------------------
 class False : public Assertion {
   public:
+    const string identifier = "false";
     False() : Assertion(Assertion::Type::False) {}
 
     ~False() override { d(gc::ast::False) }

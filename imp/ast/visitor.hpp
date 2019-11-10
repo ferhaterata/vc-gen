@@ -103,6 +103,8 @@ template <class T> class Visitor {
     virtual T visit(const Sum*) = 0;
     virtual T visit(const UniversalQuantifier*) = 0;
     virtual T visit(const WhileStatement*) = 0;
+
+    virtual ~Visitor()= default;
 };
 
 } // namespace imp::ast

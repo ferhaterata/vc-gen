@@ -83,6 +83,8 @@ template <class T> class Visitor {
     virtual T visit(const GeqComparison*) = 0;
     virtual T visit(const LtComparison*) = 0;
     virtual T visit(const GtComparison*) = 0;
+
+    virtual ~Visitor() = default;
 };
 
 } // namespace gc::ast

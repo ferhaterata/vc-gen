@@ -20,18 +20,15 @@ namespace imp::compiler {
 
 class GcCompiler : public imp::ast::Visitor<string> {
   private:
-    const imp::ast::Program* prog;
     string output;
     std::vector<std::pair<string, string>> symbols;
     std::vector<std::string> havocs;
     string indent = "";
 
   public:
-    const string& compile() const { return output; }
+    [[nodiscard]] const string& compile() const { return output; }
 
-    explicit GcCompiler(const imp::ast::Program* prog) : prog(prog) {
-        output = visit(prog);
-    }
+    explicit GcCompiler(const imp::ast::Program* prog) { output = visit(prog); }
 
     string visit(const imp::ast::BooleanExpression* expression) override {
         stringstream ss;

@@ -21,7 +21,6 @@ namespace gc::compiler {
 
 class SmtCompiler : public gc::ast::Visitor<string> {
   private:
-    gc::ast::Program* prog;
     std::string output; // the resulting smt formula
     std::string trailer = "true";
     int posix = 0; // post script for fresh variables
@@ -39,7 +38,7 @@ class SmtCompiler : public gc::ast::Visitor<string> {
     }
 
   public:
-    explicit SmtCompiler(gc::ast::Program* prog) : prog(prog) {
+    explicit SmtCompiler(gc::ast::Program* prog) {
         visit(prog);
         // locate array constants
         // store and select pushes array constants followed by '!'
@@ -78,7 +77,7 @@ class SmtCompiler : public gc::ast::Visitor<string> {
     const string& compile() { return output; }
 
     string visit(const gc::ast::Program* program) override {
-        auto& cv = prog->commands;
+        auto& cv = program->commands;
         for (auto rcit = cv.rbegin(); rcit != cv.rend(); ++rcit) {
             auto& c = (*rcit);
             visit(c);
@@ -168,11 +167,13 @@ class SmtCompiler : public gc::ast::Visitor<string> {
             return "";
     }
 
-    // TODO delegate this to lexical analysis
-    string visit(const gc::ast::True* aTrue) override { return "true"; }
+    string visit(const gc::ast::True* expression) override {
+        return expression->identifier;
+    }
 
-    // TODO delegate this to lexical analysis
-    string visit(const gc::ast::False* aFalse) override { return "false"; }
+    string visit(const gc::ast::False* expression) override {
+        return expression->identifier;
+    }
 
     string visit(const gc::ast::Assertion* assertion) override {
         stringstream ss;

@@ -10,6 +10,8 @@ include_directories(
         solver
 )
 
+add_compile_options(-O1 -g -Wall -Wextra -Wpedantic -Wnull-dereference -Wnon-virtual-dtor)
+
 #add_definitions(-DDEBUG)
 
 find_package(BISON)

@@ -16,13 +16,12 @@ namespace imp::ast {
 
 class PrinterVisitor : public Visitor<string> {
   private:
-    const Program* prog;
     string output;
 
   public:
-    const string& getOutput() const { return output; }
+    [[nodiscard]] const string& getOutput() const { return output; }
 
-    explicit PrinterVisitor(const Program* prog) : prog(prog) {
+    explicit PrinterVisitor(const Program* prog) {
         output = visit(prog);
     }
 

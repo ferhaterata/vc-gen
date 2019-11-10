@@ -6,6 +6,10 @@
 
 #IncludeRegexTransform: 
 
+/home/ferhat/git/vc-gen/gc/ast/gc.cpp
+gc.hpp
+/home/ferhat/git/vc-gen/gc/ast/gc.hpp
+
 /home/ferhat/git/vc-gen/gc/ast/gc.hpp
 ../../tools.hpp
 /home/ferhat/git/vc-gen/tools.hpp
@@ -40,12 +44,32 @@ utility
 vector
 -
 
+/home/ferhat/git/vc-gen/gc/gc-driver.cpp
+gc-driver.hpp
+/home/ferhat/git/vc-gen/gc/gc-driver.hpp
+ast/gc.hpp
+/home/ferhat/git/vc-gen/gc/ast/gc.hpp
+recognizer/gc-parser.hpp
+/home/ferhat/git/vc-gen/gc/recognizer/gc-parser.hpp
+fstream
+-
+sstream
+-
+
 /home/ferhat/git/vc-gen/gc/gc-driver.hpp
 recognizer/gc-parser.hpp
 /home/ferhat/git/vc-gen/gc/recognizer/gc-parser.hpp
 map
 -
 string
+-
+
+/home/ferhat/git/vc-gen/gc/recognizer/gc-parser.cpp
+gc-parser.hpp
+/home/ferhat/git/vc-gen/gc/recognizer/gc-parser.hpp
+../gc-driver.hpp
+/home/ferhat/git/vc-gen/gc/gc-driver.hpp
+libintl.h
 -
 
 /home/ferhat/git/vc-gen/gc/recognizer/gc-parser.hpp
@@ -78,6 +102,32 @@ typeinfo
 cassert
 -
 
+/home/ferhat/git/vc-gen/gc/recognizer/gc-scanner.cpp
+stdio.h
+-
+string.h
+-
+errno.h
+-
+stdlib.h
+-
+inttypes.h
+-
+cerrno
+-
+climits
+-
+cstdlib
+-
+string
+-
+../gc-driver.hpp
+/home/ferhat/git/vc-gen/gc/gc-driver.hpp
+gc-parser.hpp
+/home/ferhat/git/vc-gen/gc/recognizer/gc-parser.hpp
+unistd.h
+-
+
 /home/ferhat/git/vc-gen/gc/recognizer/location.hh
 algorithm
 -
@@ -85,6 +135,10 @@ iostream
 -
 string
 -
+
+/home/ferhat/git/vc-gen/imp/ast/imp.cpp
+imp.hpp
+/home/ferhat/git/vc-gen/imp/ast/imp.hpp
 
 /home/ferhat/git/vc-gen/imp/ast/imp.hpp
 ../../tools.hpp
@@ -124,12 +178,32 @@ string
 vector
 -
 
+/home/ferhat/git/vc-gen/imp/imp-driver.cpp
+imp-driver.hpp
+/home/ferhat/git/vc-gen/imp/imp-driver.hpp
+ast/imp.hpp
+/home/ferhat/git/vc-gen/imp/ast/imp.hpp
+recognizer/imp-parser.hpp
+/home/ferhat/git/vc-gen/imp/recognizer/imp-parser.hpp
+fstream
+-
+sstream
+-
+
 /home/ferhat/git/vc-gen/imp/imp-driver.hpp
 recognizer/imp-parser.hpp
 /home/ferhat/git/vc-gen/imp/recognizer/imp-parser.hpp
 map
 -
 string
+-
+
+/home/ferhat/git/vc-gen/imp/recognizer/imp-parser.cpp
+imp-parser.hpp
+/home/ferhat/git/vc-gen/imp/recognizer/imp-parser.hpp
+../imp-driver.hpp
+/home/ferhat/git/vc-gen/imp/imp-driver.hpp
+libintl.h
 -
 
 /home/ferhat/git/vc-gen/imp/recognizer/imp-parser.hpp
@@ -162,6 +236,40 @@ typeinfo
 cassert
 -
 
+/home/ferhat/git/vc-gen/imp/recognizer/imp-scanner.cpp
+errno.h
+-
+stdio.h
+-
+stdlib.h
+-
+string.h
+-
+inttypes.h
+-
+../imp-driver.hpp
+/home/ferhat/git/vc-gen/imp/imp-driver.hpp
+imp-parser.hpp
+/home/ferhat/git/vc-gen/imp/recognizer/imp-parser.hpp
+cerrno
+-
+climits
+-
+cstdlib
+-
+string
+-
+unistd.h
+-
+
+/home/ferhat/git/vc-gen/imp/recognizer/location.hh
+algorithm
+-
+iostream
+-
+string
+-
+
 /home/ferhat/git/vc-gen/solver/z3-solver.hpp
 fstream
 -
@@ -171,6 +279,10 @@ sstream
 -
 string
 -
+
+/home/ferhat/git/vc-gen/tools.cpp
+tools.hpp
+/home/ferhat/git/vc-gen/tools.hpp
 
 /home/ferhat/git/vc-gen/tools.hpp
 fstream

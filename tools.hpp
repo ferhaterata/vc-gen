@@ -84,7 +84,7 @@ using namespace std;
 // -------------------------------------------------------------------
 void fbanner(ostream& fout);
 #define banner() fbanner(cout)
-void bye(void);
+void bye();
 void delay(int);
 
 // -------------------------------------------------------------------
@@ -112,13 +112,13 @@ void fatal(const char* format, ...);
 //    of data arguments.
 //    It formats and stores an error message of at most 255 bytes.
 //    The what() member function returns the stored string.
-class Fatal {
+class Fatal : public std::exception {
   private:
     char msg[256];
 
   public:
-    Fatal(const char* format, ...);
-    const char* what() const { return msg; }
+    explicit Fatal(const char* format, ...);
+    [[nodiscard]] const char* what() const noexcept override { return msg; }
 };
 
 // -------------------------------------------------------------------

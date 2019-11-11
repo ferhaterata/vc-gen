@@ -68,19 +68,19 @@
 #include <ctime>
 #include <unistd.h>
 
-struct color {
-    inline static const std::string red = "\033[0;31m";
-    inline static const std::string green = "\033[0;32m";
-    inline static const std::string yellow = "\033[0;33m";
-    inline static const std::string blue = "\033[0;34m";
-    inline static const std::string magenta = "\033[0;35m";
-    inline static const std::string cyan = "\033[0;36m";
-    inline static const std::string bold = "\033[1m";
-    inline static const std::string reset_bold = "\033[21m";
-    inline static const std::string underline = "\033[4m";
-    inline static const std::string reset_underline = "\033[24m";
-    inline static const std::string reset = "\033[0m";
-};
+namespace color {
+inline const auto red = "\033[0;31m";
+inline const auto green = "\033[0;32m";
+inline const auto yellow = "\033[0;33m";
+inline const auto blue = "\033[0;34m";
+inline const auto magenta = "\033[0;35m";
+inline const auto cyan = "\033[0;36m";
+inline const auto bold = "\033[1m";
+inline const auto reset_bold = "\033[21m";
+inline const auto underline = "\033[4m";
+inline const auto reset_underline = "\033[24m";
+inline const auto reset = "\033[0m";
+} // namespace color
 
 using namespace std;
 

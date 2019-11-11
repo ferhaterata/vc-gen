@@ -66,10 +66,10 @@ void run(imp_driver& impDriver, gc_driver& gcDriver) {
     Result result = solver.run(smtFileName);
     switch (result) {
     case Result::SAT:
-        cout << "sat :: Not Valid!";
+        cout << color::red << "sat :: Not Valid!" << color::reset;
         break;
     case Result::UNSAT:
-        cout << "unsat :: Valid!";
+        cout << color::blue << color::bold << "unsat :: Valid!" << color::reset;
         break;
     case Result::ERROR:
         cout << "Error in formula:\n";

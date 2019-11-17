@@ -1,14 +1,14 @@
-assume max!0 = max; havoc max; assume max = read(a, l);
-assume i!0 = i; havoc i; assume i = l + 1;
+[0;36massume [0mmax!0 = max; havoc max; assume max = read(a, l);
+[0;36massume [0mi!0 = i; havoc i; assume i = l + 1;
 assert forall j, (l <= j && j < i) ==> read(a, j) <= max;
 havoc max; havoc i;
 assume forall j, (l <= j && j < i) ==> read(a, j) <= max;
 (assume i <= u;
  (assume read(a, i) > max;
-  assume max!1 = max; havoc max; assume max = read(a, i);
+  [0;36massume [0mmax!1 = max; havoc max; assume max = read(a, i);
   []
   assume !(read(a, i) > max); assume true;)
- assume i!1 = i; havoc i; assume i = i!1 + 1;
+ [0;36massume [0mi!1 = i; havoc i; assume i = i!1 + 1;
  assert forall j, (l <= j && j < i) ==> read(a, j) <= max; assume false;
  []
  assume !(i <= u);)

@@ -1,15 +1,15 @@
 assume 2 <= n;
-assume i!0 = i; havoc i; assume i = 2;
-assume p!0 = p; havoc p; assume p = 1;
+[0;36massume [0mi!0 = i; havoc i; assume i = 2;
+[0;36massume [0mp!0 = p; havoc p; assume p = 1;
 assert i <= n; assert p = 1 ==> (forall j, (2 <= j && j < i) ==> n % j != 0);
 havoc p; havoc i;
 assume i <= n; assume p = 1 ==> (forall j, (2 <= j && j < i) ==> n % j != 0);
 (assume i < n;
  (assume n % i = 0;
-  assume p!1 = p; havoc p; assume p = 0;
+  [0;36massume [0mp!1 = p; havoc p; assume p = 0;
   []
   assume !(n % i = 0); assume true;)
- assume i!1 = i; havoc i; assume i = i!1 + 1;
+ [0;36massume [0mi!1 = i; havoc i; assume i = i!1 + 1;
  assert i <= n; assert p = 1 ==> (forall j, (2 <= j && j < i) ==> n % j != 0); assume false;
  []
  assume !(i < n);)

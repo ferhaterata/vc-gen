@@ -1,0 +1,1 @@
+/usr/bin/c++  -g   CMakeFiles/HowTo.dir/HowTo.cpp.o  -o HowTo 

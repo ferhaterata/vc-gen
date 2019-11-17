@@ -98,7 +98,8 @@ using namespace std;
 // -------------------------------------------------------------------
 void fbanner(ostream& fout);
 #define banner() fbanner(cout)
-void bye();
+void fbye();
+#define bye() fbye()
 void delay(int);
 
 // -------------------------------------------------------------------

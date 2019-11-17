@@ -1,0 +1,1 @@
+/usr/bin/c++  -g   CMakeFiles/var.dir/Variants.cpp.o  -o var 
